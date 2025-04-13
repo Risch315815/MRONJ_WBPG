@@ -1,0 +1,19 @@
+title: My GitHub Page
+description: A website built using Jekyll and GitHub Pages
+theme: minima
+baseurl: "/MRONJ_WBPG"
+url: ""
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .gitignore 

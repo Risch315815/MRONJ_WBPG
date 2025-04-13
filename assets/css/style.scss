@@ -1,0 +1,41 @@
+@import "minima";
+
+// Add your custom styles below
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.site-header {
+  border-top: 5px solid #424242;
+  border-bottom: 1px solid #e8e8e8;
+  background-color: #f8f8f8;
+}
+
+.site-footer {
+  border-top: 1px solid #e8e8e8;
+  padding: 20px 0;
+}
+
+.page-content {
+  padding: 30px 0;
+}
+
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+
+.post-meta {
+  font-size: 14px;
+  color: #828282;
+}
+
+.post-link {
+  display: block;
+  font-size: 24px;
+}
+
+a:hover {
+  text-decoration: underline;
+} 
