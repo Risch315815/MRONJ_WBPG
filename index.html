@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<div class="home">
+  <h1>Welcome to My GitHub Page</h1>
+  
+  <p>This is a website built using Jekyll and GitHub Pages. You can edit this page to customize your site.</p>
+  
+  <h2>Features</h2>
+  
+  <ul>
+    <li>Responsive design using the Minima theme</li>
+    <li>Markdown support for easy content creation</li>
+    <li>GitHub Pages integration for seamless deployment</li>
+  </ul>
+  
+  <h2>Getting Started</h2>
+  
+  <p>To modify this site, edit the Markdown files in the repository. GitHub Pages will automatically rebuild the site when changes are pushed.</p>
+  
+  <h2>Recent Posts</h2>
+  
+  <ul class="post-list">
+    {% for post in site.posts %}
+    <li>
+      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      </h3>
+    </li>
+    {% endfor %}
+  </ul>
+</div> 
