@@ -1,34 +1,35 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRONJ風險評估 - 藥物相關性顎骨壞死</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>MRONJ風險評估</h1>
+      <p>藥物相關性顎骨壞死 (Medication-Related Osteonecrosis of the Jaw)</p>
+    </header>
 
-<div class="home">
-  <h1>Welcome to My GitHub Page</h1>
-  
-  <p>This is a website built using Jekyll and GitHub Pages. You can edit this page to customize your site.</p>
-  
-  <h2>Features</h2>
-  
-  <ul>
-    <li>Responsive design using the Minima theme</li>
-    <li>Markdown support for easy content creation</li>
-    <li>GitHub Pages integration for seamless deployment</li>
-  </ul>
-  
-  <h2>Getting Started</h2>
-  
-  <p>To modify this site, edit the Markdown files in the repository. GitHub Pages will automatically rebuild the site when changes are pushed.</p>
-  
-  <h2>Recent Posts</h2>
-  
-  <ul class="post-list">
-    {% for post in site.posts %}
-    <li>
-      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-      <h3>
-        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-      </h3>
-    </li>
-    {% endfor %}
-  </ul>
-</div> 
+    <main class="home-content">
+      <div class="introduction">
+        <p>本應用程式用於評估患者發生藥物相關性顎骨壞死(MRONJ)的風險。</p>
+        <p>透過收集患者的用藥史和相關病史，我們可以為牙科治療提供風險評估和建議。</p>
+        <p>在繼續之前，請確認您同意提供相關個人資訊用於風險評估。</p>
+      </div>
+
+      <div class="start-button-container">
+        <a href="consent.html" class="btn btn-primary">開始評估</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html> 

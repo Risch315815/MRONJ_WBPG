@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用藥史 - MRONJ風險評估</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>藥物使用史</h1>
+      <p>請提供患者的抗骨吸收藥物或抗血管新生藥物使用情況</p>
+    </header>
+
+    <main>
+      <form id="medication-form" class="assessment-form">
+        <div class="form-group">
+          <label>患者是否曾使用抗骨吸收藥物或抗血管新生藥物？</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hasAntiresorptiveMed" value="yes" required>
+              <span>是</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hasAntiresorptiveMed" value="no">
+              <span>否</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="medication-details" style="display: none;">
+          <div class="form-group">
+            <label for="medicationType">藥物類型</label>
+            <select id="medicationType" name="medicationType" required>
+              <option value="">請選擇藥物類型</option>
+              <option value="Antiresorptive">抗骨吸收藥物</option>
+              <option value="Antiangiogenic">抗血管新生藥物</option>
+              <option value="Both">兩種都有</option>
+            </select>
+          </div>
+          
+          <div id="antiresorptive-details" style="display: none;">
+            <div class="form-group">
+              <label for="medicationSubType">抗骨吸收藥物類型</label>
+              <select id="medicationSubType" name="medicationSubType">
+                <option value="">請選擇藥物類型</option>
+                <option value="Bisphosphonate">雙磷酸鹽類 (Bisphosphonate)</option>
+                <option value="RANKL">RANKL抑制劑 (Denosumab)</option>
+              </select>
+            </div>
+            
+            <div class="form-group" id="bisphosphonate-drugs" style="display: none;">
+              <label for="drugName">藥物名稱</label>
+              <select id="drugName" name="drugName">
+                <option value="">請選擇藥物名稱</option>
+                <option value="Alendronate">Alendronate (Fosamax)</option>
+                <option value="Risedronate">Risedronate (Actonel)</option>
+                <option value="Ibandronate">Ibandronate (Boniva)</option>
+                <option value="Zoledronate">Zoledronate (Zometa, Reclast)</option>
+                <option value="Pamidronate">Pamidronate (Aredia)</option>
+                <option value="Other">其他</option>
+              </select>
+            </div>
+            
+            <div class="form-group" id="rankl-drugs" style="display: none;">
+              <label for="drugName-rankl">藥物名稱</label>
+              <select id="drugName-rankl" name="drugName">
+                <option value="">請選擇藥物名稱</option>
+                <option value="Denosumab">Denosumab (Prolia, Xgeva)</option>
+                <option value="Other">其他</option>
+              </select>
+            </div>
+          </div>
+          
+          <div id="antiangiogenic-details" style="display: none;">
+            <div class="form-group">
+              <label for="antiangiogenicDrug">抗血管新生藥物名稱</label>
+              <select id="antiangiogenicDrug" name="drugName">
+                <option value="">請選擇藥物名稱</option>
+                <option value="Bevacizumab">Bevacizumab (Avastin)</option>
+                <option value="Sunitinib">Sunitinib (Sutent)</option>
+                <option value="Sorafenib">Sorafenib (Nexavar)</option>
+                <option value="Other">其他</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="indication">適應症</label>
+            <select id="indication" name="indication">
+              <option value="">請選擇適應症</option>
+              <option value="骨質疏鬆">骨質疏鬆</option>
+              <option value="骨轉移">骨轉移</option>
+              <option value="多發性骨髓瘤">多發性骨髓瘤</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>開始使用日期</label>
+            <div class="date-inputs">
+              <div>
+                <label for="startYear">年</label>
+                <select id="startYear" name="startYear">
+                  <option value="">請選擇年份</option>
+                </select>
+              </div>
+              <div>
+                <label for="startMonth">月</label>
+                <select id="startMonth" name="startMonth">
+                  <option value="">請選擇月份</option>
+                  <option value="1">1月</option>
+                  <option value="2">2月</option>
+                  <option value="3">3月</option>
+                  <option value="4">4月</option>
+                  <option value="5">5月</option>
+                  <option value="6">6月</option>
+                  <option value="7">7月</option>
+                  <option value="8">8月</option>
+                  <option value="9">9月</option>
+                  <option value="10">10月</option>
+                  <option value="11">11月</option>
+                  <option value="12">12月</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>是否已停止使用？</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="isStopped" value="yes">
+                <span>是</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="isStopped" value="no">
+                <span>否</span>
+              </label>
+            </div>
+          </div>
+          
+          <div id="stop-date" style="display: none;">
+            <div class="form-group">
+              <label>停止使用日期</label>
+              <div class="date-inputs">
+                <div>
+                  <label for="stopYear">年</label>
+                  <select id="stopYear" name="stopYear">
+                    <option value="">請選擇年份</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="stopMonth">月</label>
+                  <select id="stopMonth" name="stopMonth">
+                    <option value="">請選擇月份</option>
+                    <option value="1">1月</option>
+                    <option value="2">2月</option>
+                    <option value="3">3月</option>
+                    <option value="4">4月</option>
+                    <option value="5">5月</option>
+                    <option value="6">6月</option>
+                    <option value="7">7月</option>
+                    <option value="8">8月</option>
+                    <option value="9">9月</option>
+                    <option value="10">10月</option>
+                    <option value="11">11月</option>
+                    <option value="12">12月</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-navigation">
+          <a href="patient-info.html" class="btn btn-secondary">上一步</a>
+          <button type="button" id="next-btn" class="btn btn-primary">下一步</button>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Populate year dropdowns
+      const currentYear = new Date().getFullYear();
+      const startYearSelect = document.getElementById('startYear');
+      const stopYearSelect = document.getElementById('stopYear');
+      
+      for (let year = currentYear; year >= currentYear - 30; year--) {
+        const startOption = document.createElement('option');
+        startOption.value = year;
+        startOption.textContent = year;
+        startYearSelect.appendChild(startOption);
+        
+        const stopOption = document.createElement('option');
+        stopOption.value = year;
+        stopOption.textContent = year;
+        stopYearSelect.appendChild(stopOption);
+      }
+      
+      // Handle medication radio buttons
+      const hasAntiresorptiveMedRadios = document.querySelectorAll('input[name="hasAntiresorptiveMed"]');
+      const medicationDetails = document.getElementById('medication-details');
+      
+      hasAntiresorptiveMedRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          medicationDetails.style.display = this.value === 'yes' ? 'block' : 'none';
+        });
+      });
+      
+      // Handle medication type changes
+      const medicationTypeSelect = document.getElementById('medicationType');
+      const antiresorptiveDetails = document.getElementById('antiresorptive-details');
+      const antiangiogenicDetails = document.getElementById('antiangiogenic-details');
+      
+      medicationTypeSelect.addEventListener('change', function() {
+        const value = this.value;
+        antiresorptiveDetails.style.display = (value === 'Antiresorptive' || value === 'Both') ? 'block' : 'none';
+        antiangiogenicDetails.style.display = (value === 'Antiangiogenic' || value === 'Both') ? 'block' : 'none';
+      });
+      
+      // Handle medication subtype changes
+      const medicationSubTypeSelect = document.getElementById('medicationSubType');
+      const bisphosphonateDrugs = document.getElementById('bisphosphonate-drugs');
+      const ranklDrugs = document.getElementById('rankl-drugs');
+      
+      medicationSubTypeSelect.addEventListener('change', function() {
+        const value = this.value;
+        bisphosphonateDrugs.style.display = value === 'Bisphosphonate' ? 'block' : 'none';
+        ranklDrugs.style.display = value === 'RANKL' ? 'block' : 'none';
+      });
+      
+      // Handle "is stopped" radio buttons
+      const isStoppedRadios = document.querySelectorAll('input[name="isStopped"]');
+      const stopDateSection = document.getElementById('stop-date');
+      
+      isStoppedRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          stopDateSection.style.display = this.value === 'yes' ? 'block' : 'none';
+        });
+      });
+      
+      // Handle form submission
+      const nextBtn = document.getElementById('next-btn');
+      const form = document.getElementById('medication-form');
+      
+      nextBtn.addEventListener('click', function() {
+        if (validateMedicationForm()) {
+          saveMedicationInfo();
+          window.location.href = 'risk-assessment.html';
+        }
+      });
+      
+      function validateMedicationForm() {
+        const hasAntiresorptiveMed = form.querySelector('input[name="hasAntiresorptiveMed"]:checked');
+        if (!hasAntiresorptiveMed) {
+          alert('請選擇患者是否曾使用抗骨吸收藥物或抗血管新生藥物');
+          return false;
+        }
+        
+        if (hasAntiresorptiveMed.value === 'yes') {
+          const medicationType = medicationTypeSelect.value;
+          if (!medicationType) {
+            alert('請選擇藥物類型');
+            return false;
+          }
+          
+          if (medicationType === 'Antiresorptive' || medicationType === 'Both') {
+            const subType = medicationSubTypeSelect.value;
+            if (!subType) {
+              alert('請選擇抗骨吸收藥物類型');
+              return false;
+            }
+            
+            let drugName;
+            if (subType === 'Bisphosphonate') {
+              drugName = document.getElementById('drugName').value;
+            } else if (subType === 'RANKL') {
+              drugName = document.getElementById('drugName-rankl').value;
+            }
+            
+            if (!drugName) {
+              alert('請選擇藥物名稱');
+              return false;
+            }
+          }
+          
+          if (medicationType === 'Antiangiogenic' || medicationType === 'Both') {
+            const antiangiogenicDrug = document.getElementById('antiangiogenicDrug').value;
+            if (!antiangiogenicDrug) {
+              alert('請選擇抗血管新生藥物名稱');
+              return false;
+            }
+          }
+          
+          const indication = document.getElementById('indication').value;
+          if (!indication) {
+            alert('請選擇適應症');
+            return false;
+          }
+          
+          const startYear = document.getElementById('startYear').value;
+          const startMonth = document.getElementById('startMonth').value;
+          if (!startYear || !startMonth) {
+            alert('請選擇開始使用日期');
+            return false;
+          }
+          
+          const isStopped = form.querySelector('input[name="isStopped"]:checked');
+          if (!isStopped) {
+            alert('請選擇是否已停止使用');
+            return false;
+          }
+          
+          if (isStopped.value === 'yes') {
+            const stopYear = document.getElementById('stopYear').value;
+            const stopMonth = document.getElementById('stopMonth').value;
+            if (!stopYear || !stopMonth) {
+              alert('請選擇停止使用日期');
+              return false;
+            }
+          }
+        }
+        
+        return true;
+      }
+      
+      function saveMedicationInfo() {
+        // Update patientData object
+        patientData.hasAntiresorptiveMed = form.querySelector('input[name="hasAntiresorptiveMed"]:checked').value === 'yes';
+        
+        if (patientData.hasAntiresorptiveMed) {
+          patientData.medicationType = medicationTypeSelect.value;
+          
+          if (patientData.medicationType === 'Antiresorptive' || patientData.medicationType === 'Both') {
+            patientData.medicationSubType = medicationSubTypeSelect.value;
+            
+            if (patientData.medicationSubType === 'Bisphosphonate') {
+              patientData.drugName = document.getElementById('drugName').value;
+            } else if (patientData.medicationSubType === 'RANKL') {
+              patientData.drugName = document.getElementById('drugName-rankl').value;
+            }
+          } else if (patientData.medicationType === 'Antiangiogenic') {
+            patientData.drugName = document.getElementById('antiangiogenicDrug').value;
+          }
+          
+          patientData.indication = document.getElementById('indication').value;
+          patientData.startYear = document.getElementById('startYear').value;
+          patientData.startMonth = document.getElementById('startMonth').value;
+          
+          patientData.isStopped = form.querySelector('input[name="isStopped"]:checked').value === 'yes';
+          
+          if (patientData.isStopped) {
+            patientData.stopYear = document.getElementById('stopYear').value;
+            patientData.stopMonth = document.getElementById('stopMonth').value;
+          }
+        }
+        
+        console.log('Medication info saved:', patientData);
+      }
+    });
+  </script>
+</body>
+</html> 

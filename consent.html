@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>同意書 - MRONJ風險評估</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>同意書</h1>
+      <p>請在使用MRONJ風險評估工具前閱讀並同意以下內容</p>
+    </header>
+
+    <main>
+      <div class="consent-content">
+        <div class="consent-section">
+          <h2>個人資料收集聲明</h2>
+          <p>本風險評估工具僅用於評估您的MRONJ（藥物相關性顎骨壞死）風險。我們將收集以下資訊：</p>
+          <ul>
+            <li>基本個人資料（姓名、年齡、性別等）</li>
+            <li>身高、體重資料</li>
+            <li>骨質疏鬆或癌症相關藥物使用史</li>
+            <li>相關疾病史和治療史</li>
+          </ul>
+          <p>所有資料僅用於風險評估，不會存儲於伺服器，也不會用於其他目的。</p>
+        </div>
+
+        <div class="consent-section">
+          <h2>風險評估免責聲明</h2>
+          <p>本工具提供的風險評估只是參考建議，不構成醫療診斷或替代專業醫療意見。最終治療決策應由您與您的醫療團隊共同做出。</p>
+          <p>使用本工具並不建立醫患關係，也不免除您的醫療團隊進行全面評估的責任。</p>
+        </div>
+
+        <div class="consent-checkbox">
+          <label class="checkbox-option">
+            <input type="checkbox" id="consent-checkbox" required>
+            <span>我已閱讀並同意以上內容</span>
+          </label>
+        </div>
+
+        <div class="form-navigation">
+          <a href="index.html" class="btn btn-secondary">返回</a>
+          <button id="continue-btn" class="btn btn-primary" disabled>繼續</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const consentCheckbox = document.getElementById('consent-checkbox');
+      const continueBtn = document.getElementById('continue-btn');
+      
+      consentCheckbox.addEventListener('change', function() {
+        continueBtn.disabled = !this.checked;
+      });
+      
+      continueBtn.addEventListener('click', function() {
+        window.location.href = 'patient-info.html';
+      });
+    });
+  </script>
+</body>
+</html> 

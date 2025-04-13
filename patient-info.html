@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本資料 - MRONJ風險評估</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>患者基本資料</h1>
+      <p>請填寫患者的基本資料以進行風險評估</p>
+    </header>
+
+    <main>
+      <form id="patient-info-form" class="assessment-form">
+        <div class="form-group">
+          <label for="name">姓名</label>
+          <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
+        </div>
+
+        <div class="form-group">
+          <label for="age">年齡</label>
+          <input type="number" id="age" name="age" min="1" max="120" placeholder="請輸入年齡" required>
+        </div>
+
+        <div class="form-group">
+          <label>性別</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="gender" value="male" required>
+              <span>男</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="gender" value="female">
+              <span>女</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="gender" value="other">
+              <span>其他</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="height">身高 (cm)</label>
+          <input type="number" id="height" name="height" min="50" max="250" placeholder="請輸入身高" required>
+        </div>
+
+        <div class="form-group">
+          <label for="weight">體重 (kg)</label>
+          <input type="number" id="weight" name="weight" min="1" max="500" placeholder="請輸入體重" required>
+        </div>
+
+        <div class="form-group">
+          <label>是否罹患癌症？</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hasCancer" value="yes" required>
+              <span>是</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hasCancer" value="no">
+              <span>否</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>是否曾接受頭頸部放射治療？</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="hasRadiotherapy" value="yes" required>
+              <span>是</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hasRadiotherapy" value="no">
+              <span>否</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>請勾選患者的系統性疾病（可複選）</label>
+          <div class="checkbox-group">
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="糖尿病">
+              <span>糖尿病</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="高血壓">
+              <span>高血壓</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="心臟病">
+              <span>心臟病</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="類風濕性關節炎">
+              <span>類風濕性關節炎</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="洗腎">
+              <span>洗腎</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="貧血">
+              <span>貧血</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="免疫系統疾病">
+              <span>免疫系統疾病</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="抽菸">
+              <span>抽菸</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="長期使用類固醇">
+              <span>長期使用類固醇</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="凝血功能異常">
+              <span>凝血功能異常</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-navigation">
+          <a href="consent.html" class="btn btn-secondary">上一步</a>
+          <button type="button" id="next-btn" class="btn btn-primary">下一步</button>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const nextBtn = document.getElementById('next-btn');
+      const form = document.getElementById('patient-info-form');
+      
+      nextBtn.addEventListener('click', function() {
+        if (validateForm(form)) {
+          savePatientInfo();
+          window.location.href = 'medication-history.html';
+        }
+      });
+      
+      function validateForm(form) {
+        const requiredInputs = form.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredInputs.forEach(input => {
+          if (input.type === 'radio') {
+            const name = input.name;
+            if (!form.querySelector(`input[name="${name}"]:checked`)) {
+              isValid = false;
+              // Find the label for this radio group
+              const label = form.querySelector(`label[for="${name}"]`) || 
+                            Array.from(form.querySelectorAll('label')).find(label => 
+                              label.textContent.trim().includes(input.parentNode.textContent.trim())
+                            );
+              
+              if (label) {
+                label.classList.add('invalid');
+                // Add error message if not exists
+                let errorSpan = label.nextElementSibling;
+                if (!errorSpan || !errorSpan.classList.contains('error-message')) {
+                  errorSpan = document.createElement('span');
+                  errorSpan.classList.add('error-message');
+                  errorSpan.style.color = 'red';
+                  errorSpan.style.fontSize = '14px';
+                  errorSpan.textContent = '請選擇一個選項';
+                  label.parentNode.insertBefore(errorSpan, label.nextSibling);
+                }
+              }
+            }
+          } else if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('invalid');
+            
+            // Add error message if not exists
+            let errorSpan = input.nextElementSibling;
+            if (!errorSpan || !errorSpan.classList.contains('error-message')) {
+              errorSpan = document.createElement('span');
+              errorSpan.classList.add('error-message');
+              errorSpan.style.color = 'red';
+              errorSpan.style.fontSize = '14px';
+              errorSpan.textContent = '此欄位必填';
+              input.parentNode.insertBefore(errorSpan, input.nextSibling);
+            }
+          } else {
+            input.classList.remove('invalid');
+            
+            // Remove error message if exists
+            let errorSpan = input.nextElementSibling;
+            if (errorSpan && errorSpan.classList.contains('error-message')) {
+              errorSpan.remove();
+            }
+          }
+        });
+        
+        return isValid;
+      }
+      
+      function savePatientInfo() {
+        // Get form data
+        const formData = new FormData(form);
+        
+        // Update patientData object
+        for (const [key, value] of formData.entries()) {
+          if (key === 'systemicDiseases') {
+            if (!patientData[key]) {
+              patientData[key] = [];
+            }
+            if (!patientData[key].includes(value)) {
+              patientData[key].push(value);
+            }
+          } else {
+            patientData[key] = value;
+          }
+        }
+        
+        // Handle radio buttons special cases
+        patientData.hasCancer = form.querySelector('input[name="hasCancer"]:checked').value === 'yes';
+        patientData.hasRadiotherapy = form.querySelector('input[name="hasRadiotherapy"]:checked').value === 'yes';
+        
+        console.log('Patient info saved:', patientData);
+      }
+    });
+  </script>
+</body>
+</html> 

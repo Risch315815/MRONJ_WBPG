@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>風險評估結果 - MRONJ風險評估</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>風險評估結果</h1>
+      <p>根據提供的資訊，以下是不同牙科治療的MRONJ風險評估</p>
+    </header>
+
+    <main>
+      <div id="patient-summary" class="summary-section">
+        <h2>患者資訊摘要</h2>
+        <div id="patient-info-summary"></div>
+      </div>
+
+      <div id="results-container" class="assessment-results">
+        <!-- Results will be populated by JavaScript -->
+        <div class="loading">計算風險中...</div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="print-btn" class="btn btn-primary">列印評估報告</button>
+        <a href="index.html" class="btn btn-secondary">返回首頁</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if patient data exists
+      if (!patientData || !patientData.name) {
+        alert('無法取得患者資料，請從頭開始填寫評估表');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Display patient summary
+      displayPatientSummary();
+      
+      // Calculate and display risk assessment
+      const assessments = assessRisk();
+      displayResults(assessments);
+      
+      // Print button event
+      document.getElementById('print-btn').addEventListener('click', function() {
+        window.print();
+      });
+    });
+    
+    function displayPatientSummary() {
+      const summaryContainer = document.getElementById('patient-info-summary');
+      
+      // Create summary HTML
+      let summaryHTML = `
+        <div class="summary-item"><strong>姓名:</strong> ${patientData.name}</div>
+        <div class="summary-item"><strong>年齡:</strong> ${patientData.age}</div>
+        <div class="summary-item"><strong>性別:</strong> ${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</div>
+      `;
+      
+      if (patientData.hasAntiresorptiveMed) {
+        summaryHTML += `
+          <div class="summary-item"><strong>用藥情況:</strong> 使用抗骨吸收或抗血管新生藥物</div>
+          <div class="summary-item"><strong>藥物名稱:</strong> ${patientData.drugName || '未提供'}</div>
+          <div class="summary-item"><strong>適應症:</strong> ${patientData.indication || '未提供'}</div>
+        `;
+        
+        // Calculate medication duration
+        const medicationDuration = calculateMedicationDuration();
+        summaryHTML += `<div class="summary-item"><strong>用藥時間:</strong> ${medicationDuration} 個月</div>`;
+      } else {
+        summaryHTML += `<div class="summary-item"><strong>用藥情況:</strong> 未使用相關藥物</div>`;
+      }
+      
+      // Add risk factors if any
+      if (patientData.systemicDiseases && patientData.systemicDiseases.length > 0) {
+        summaryHTML += `<div class="summary-item"><strong>系統性疾病:</strong> ${patientData.systemicDiseases.join(', ')}</div>`;
+      }
+      
+      if (patientData.hasCancer) {
+        summaryHTML += `<div class="summary-item"><strong>癌症:</strong> 是</div>`;
+      }
+      
+      if (patientData.hasRadiotherapy) {
+        summaryHTML += `<div class="summary-item"><strong>頭頸部放射治療:</strong> 是</div>`;
+      }
+      
+      summaryContainer.innerHTML = summaryHTML;
+    }
+    
+    // Display the risk assessment results
+    function displayResults(assessments) {
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.innerHTML = ''; // Clear loading message
+      
+      // Add a title
+      const title = document.createElement('h2');
+      title.textContent = '不同牙科治療的風險評估';
+      resultsContainer.appendChild(title);
+      
+      assessments.forEach(assessment => {
+        const card = document.createElement('div');
+        card.className = 'assessment-card';
+        
+        const procedureTitle = document.createElement('h3');
+        procedureTitle.className = 'procedure-title';
+        procedureTitle.textContent = assessment.procedure;
+        
+        const riskBadge = document.createElement('span');
+        riskBadge.className = 'risk-badge';
+        riskBadge.textContent = assessment.riskLevel;
+        
+        // Set color based on risk level
+        if (assessment.riskLevel === '高風險') {
+          riskBadge.classList.add('high-risk');
+        } else if (assessment.riskLevel === '中度風險') {
+          riskBadge.classList.add('medium-risk');
+        } else {
+          riskBadge.classList.add('low-risk');
+        }
+        
+        const recommendation = document.createElement('p');
+        recommendation.className = 'recommendation';
+        recommendation.textContent = assessment.recommendation;
+        
+        card.appendChild(procedureTitle);
+        card.appendChild(riskBadge);
+        card.appendChild(recommendation);
+        
+        resultsContainer.appendChild(card);
+      });
+      
+      // Add disclaimer
+      const disclaimer = document.createElement('div');
+      disclaimer.className = 'disclaimer';
+      disclaimer.innerHTML = `
+        <p><strong>免責聲明:</strong> 本評估僅供參考，不構成醫療建議或替代專業醫療評估。最終治療決策應由醫療專業人員與患者共同決定。</p>
+      `;
+      resultsContainer.appendChild(disclaimer);
+    }
+  </script>
+</body>
+</html> 
