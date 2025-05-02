@@ -315,8 +315,8 @@
         <a href="medication-history.html" class="btn btn-secondary zh-text">返回</a>
         <a href="medication-history.html" class="btn btn-secondary en-text" style="display: none;">Back</a>
         
-        <button id="save-pdf-btn" class="btn btn-primary zh-text">儲存衛生教育內容</button>
-        <button id="save-pdf-btn-en" class="btn btn-primary en-text" style="display: none;">Save Instructions</button>
+        <a href="assets/files/MRONJ_oral_hygiene_instructions.pdf" download class="btn btn-primary zh-text">儲存衛生教育內容</a>
+        <a href="assets/files/MRONJ_oral_hygiene_instructions.pdf" download class="btn btn-primary en-text" style="display: none;">Save Instructions</a>
       </div>
     </main>
 
@@ -327,7 +327,6 @@
   </div>
 
   <script src="assets/js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Language display functionality
@@ -387,31 +386,6 @@
       // Set initial font size based on stored preferences
       const storedFontSize = localStorage.getItem('fontSize') || 'normal';
       setFontSize(storedFontSize);
-
-      // PDF generation and storage functionality
-      function generatePDF() {
-        // Get the content to be converted to PDF
-        const content = document.querySelector('.page-content');
-        
-        // Configure PDF options
-        const opt = {
-          margin: [10, 10],
-          filename: 'MRONJ_oral_hygiene_instructions.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-
-        // Generate PDF
-        html2pdf().set(opt).from(content).save().then(function() {
-          // After PDF is generated, redirect to risk assessment page
-          window.location.href = 'risk-assessment.html';
-        });
-      }
-
-      // Add click event listeners to the save buttons
-      document.getElementById('save-pdf-btn').addEventListener('click', generatePDF);
-      document.getElementById('save-pdf-btn-en').addEventListener('click', generatePDF);
     });
   </script>
 </body>
