@@ -111,8 +111,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add clear data button if it doesn't exist and we're not on excluded pages
   if (!document.getElementById('clear-data-btn') && 
       !window.location.pathname.includes('risk-assessment') &&
-      !window.location.pathname.includes('index') &&
-      !window.location.pathname.includes('consent')) {
+      !window.location.pathname.includes('oral-hygiene-instruction') &&
+      !window.location.pathname.includes('consent') &&
+      !window.location.pathname.endsWith('/MRONJ_WBPG/') &&
+      !window.location.pathname.endsWith('/MRONJ_WBPG')) {
     const clearButton = document.createElement('button');
     clearButton.id = 'clear-data-btn';
     clearButton.className = 'btn btn-danger';
