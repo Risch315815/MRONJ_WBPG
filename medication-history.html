@@ -1387,7 +1387,6 @@
           // Create a hidden form to POST the data when redirecting (another backup method)
           const form = document.createElement('form');
           form.method = 'POST';
-          form.action = isFutureUse ? 'oral-hygiene-instruction.html' : 'medication-summary.html';
           form.style.display = 'none';
           
           const input = document.createElement('input');
@@ -1398,19 +1397,23 @@
           
           document.body.appendChild(form);
           
-          // Finally redirect
+          // Handle different submission flows based on future use and button clicked
           if (isFutureUse) {
-            // Option 1: form submit with data
+            // For future use, always go to oral-hygiene-instruction.html
+            form.action = 'oral-hygiene-instruction.html';
             form.submit();
-            
-            // Option 2: direct redirect (backup)
-            // setTimeout(() => { window.location.href = 'oral-hygiene-instruction.html'; }, 200);
           } else {
-            // Option 1: form submit with data
-            form.submit();
+            // For current/past use, check which button was clicked
+            const isAddAnother = event.target.id === 'add-medication-btn' || event.target.id === 'add-medication-btn-en';
             
-            // Option 2: direct redirect (backup)
-            // setTimeout(() => { window.location.href = 'medication-summary.html'; }, 200);
+            if (isAddAnother) {
+              // If "再加一種藥物" was clicked, stay on current page
+              window.location.href = 'medication-history.html';
+            } else {
+              // If "添加完成 送出" was clicked, go to summary page
+              form.action = 'medication-summary.html';
+              form.submit();
+            }
           }
         }
       }

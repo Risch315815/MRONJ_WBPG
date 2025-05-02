@@ -2,15 +2,27 @@
 
 // Store patient data in this object
 let patientData = {
+  // Personal Information
   name: '',
+  birthYear: '',
+  birthMonth: '',
+  birthDay: '',
   age: '',
   gender: '',
   height: '',
   weight: '',
+  
+  // Medical History
+  hasCancer: false,
+  hasRadiotherapy: false,
+  systemicDiseases: [],
+  
+  // Medication Information
   hasAntiresorptiveMed: false,
   medicationType: '',
   medicationSubType: '',
   drugName: '',
+  administrationRoute: '',
   indication: '',
   startYear: '',
   startMonth: '',
@@ -18,27 +30,38 @@ let patientData = {
   isStopped: false,
   stopYear: '',
   stopMonth: '',
-  hasCancer: false,
-  hasRadiotherapy: false,
-  systemicDiseases: [],
   medications: []
 };
 
 // Initialize the application when DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Check if there's stored patient data in localStorage
+  if (localStorage.getItem('patientData')) {
+    try {
+      const storedPatientInfo = JSON.parse(localStorage.getItem('patientData'));
+      console.log('Found stored patient info:', storedPatientInfo);
+      
+      // Copy all patient info fields
+      Object.assign(patientData, storedPatientInfo);
+      console.log('Loaded patient info from localStorage');
+    } catch (e) {
+      console.error('Error loading stored patient info:', e);
+    }
+  }
+  
+  // Check if there's stored medication data in localStorage
   if (localStorage.getItem('patientMedicationData')) {
     try {
-      const storedData = JSON.parse(localStorage.getItem('patientMedicationData'));
-      console.log('Found stored patient medication data:', storedData);
+      const storedMedData = JSON.parse(localStorage.getItem('patientMedicationData'));
+      console.log('Found stored patient medication data:', storedMedData);
       
       // If medications exist in stored data, use them
-      if (storedData.medications && storedData.medications.length > 0) {
-        patientData.medications = storedData.medications;
+      if (storedMedData.medications && storedMedData.medications.length > 0) {
+        patientData.medications = storedMedData.medications;
         console.log('Loaded medications from localStorage');
       }
     } catch (e) {
-      console.error('Error loading stored patient data:', e);
+      console.error('Error loading stored medication data:', e);
     }
   }
 
