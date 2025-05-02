@@ -315,8 +315,8 @@
         <a href="medication-history.html" class="btn btn-secondary zh-text">返回</a>
         <a href="medication-history.html" class="btn btn-secondary en-text" style="display: none;">Back</a>
         
-        <a href="assets/files/MRONJ_oral_hygiene_instructions.pdf" download class="btn btn-primary zh-text">儲存衛生教育內容</a>
-        <a href="assets/files/MRONJ_oral_hygiene_instructions.pdf" download class="btn btn-primary en-text" style="display: none;">Save Instructions</a>
+        <button id="save-pdf-btn" class="btn btn-primary zh-text">儲存衛生教育內容</button>
+        <button id="save-pdf-btn-en" class="btn btn-primary en-text" style="display: none;">Save Instructions</button>
       </div>
     </main>
 
@@ -327,6 +327,7 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Language display functionality
@@ -386,6 +387,93 @@
       // Set initial font size based on stored preferences
       const storedFontSize = localStorage.getItem('fontSize') || 'normal';
       setFontSize(storedFontSize);
+
+      // PDF generation functionality
+      function generatePDF() {
+        // Create a new div for PDF content
+        const pdfContent = document.createElement('div');
+        pdfContent.style.padding = '20px';
+        pdfContent.style.maxWidth = '800px';
+        pdfContent.style.margin = '0 auto';
+        
+        // Add patient information section
+        const patientInfo = document.createElement('div');
+        patientInfo.style.marginBottom = '30px';
+        patientInfo.style.padding = '15px';
+        patientInfo.style.backgroundColor = '#f8f9fa';
+        patientInfo.style.borderRadius = '10px';
+        
+        const today = new Date();
+        const dateStr = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;
+        
+        // Get stored language preference
+        const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+        
+        let patientHTML = '';
+        if (storedLang === 'zh') {
+          patientHTML = `
+            <h2 style="margin-bottom: 15px;">病患資料</h2>
+            <p><strong>評估日期：</strong>${dateStr}</p>
+            <p><strong>姓名：</strong>${patientData.name || '--'}</p>
+            <p><strong>年齡：</strong>${patientData.age || '--'} 歲</p>
+            <p><strong>性別：</strong>${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</p>
+          `;
+
+          if (patientData.hasAntiresorptiveMed) {
+            patientHTML += `
+              <p><strong>預計使用藥物：</strong>${patientData.drugName || '--'}</p>
+              <p><strong>使用原因：</strong>${patientData.indication || '--'}</p>
+              <p><strong>給藥途徑：</strong>${patientData.administrationRoute || '--'}</p>
+              <p><strong>使用頻率：</strong>${patientData.frequency || '--'}</p>
+            `;
+          }
+        } else {
+          patientHTML = `
+            <h2 style="margin-bottom: 15px;">Patient Information</h2>
+            <p><strong>Assessment Date: </strong>${dateStr}</p>
+            <p><strong>Name: </strong>${patientData.name || '--'}</p>
+            <p><strong>Age: </strong>${patientData.age || '--'} years old</p>
+            <p><strong>Gender: </strong>${patientData.gender === 'male' ? 'Male' : patientData.gender === 'female' ? 'Female' : 'Other'}</p>
+          `;
+
+          if (patientData.hasAntiresorptiveMed) {
+            patientHTML += `
+              <p><strong>Planned Medication: </strong>${patientData.drugName || '--'}</p>
+              <p><strong>Indication: </strong>${patientData.indication || '--'}</p>
+              <p><strong>Administration Route: </strong>${patientData.administrationRoute || '--'}</p>
+              <p><strong>Frequency: </strong>${patientData.frequency || '--'}</p>
+            `;
+          }
+        }
+        
+        patientInfo.innerHTML = patientHTML;
+        
+        // Add the existing content
+        const content = document.querySelector('.page-content').cloneNode(true);
+        
+        // Combine everything
+        pdfContent.appendChild(patientInfo);
+        pdfContent.appendChild(content);
+        
+        // Configure PDF options
+        const opt = {
+          margin: [10, 10],
+          filename: `MRONJ_oral_hygiene_instructions_${patientData.name || 'patient'}.pdf`,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Generate PDF
+        html2pdf().set(opt).from(pdfContent).save().then(function() {
+          // After PDF is generated, redirect to risk assessment page
+          window.location.href = 'risk-assessment.html';
+        });
+      }
+
+      // Add click event listeners to the save buttons
+      document.getElementById('save-pdf-btn').addEventListener('click', generatePDF);
+      document.getElementById('save-pdf-btn-en').addEventListener('click', generatePDF);
     });
   </script>
 </body>
