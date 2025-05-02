@@ -8,9 +8,9 @@ export default function Home() {
         <Text style={styles.title}>MRONJ風險評估</Text>
         
         <Text style={styles.introduction}>
-          本應用程式用於評估患者發生藥物相關性顎骨壞死(MRONJ)的風險。{'\n\n'}
-          透過收集患者的用藥史和相關病史，我們可以為牙科治療提供風險評估和建議。{'\n\n'}
-          在繼續之前，請確認您同意提供相關個人資訊用於風險評估。
+          本網頁用於評估患者發生藥物相關性顎骨壞死(MRONJ)的風險:{'\n\n'}
+          透過收集患者的用藥史和相關病史，我們可以提供個人化衛生教育。{'\n\n'}
+          請注意：本網站的風險評估結果僅供參考，應根據醫療專業人員的判斷制定治療計畫。
         </Text>
 
         <Link href="/consent" asChild>

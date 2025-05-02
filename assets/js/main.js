@@ -14,16 +14,34 @@ let patientData = {
   indication: '',
   startYear: '',
   startMonth: '',
+  frequency: '',
   isStopped: false,
   stopYear: '',
   stopMonth: '',
   hasCancer: false,
   hasRadiotherapy: false,
-  systemicDiseases: []
+  systemicDiseases: [],
+  medications: []
 };
 
 // Initialize the application when DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
+  // Check if there's stored patient data in localStorage
+  if (localStorage.getItem('patientMedicationData')) {
+    try {
+      const storedData = JSON.parse(localStorage.getItem('patientMedicationData'));
+      console.log('Found stored patient medication data:', storedData);
+      
+      // If medications exist in stored data, use them
+      if (storedData.medications && storedData.medications.length > 0) {
+        patientData.medications = storedData.medications;
+        console.log('Loaded medications from localStorage');
+      }
+    } catch (e) {
+      console.error('Error loading stored patient data:', e);
+    }
+  }
+
   // Initialize any components that need setup
   initFormNavigation();
   
@@ -206,6 +224,30 @@ function assessRisk() {
 function calculateMedicationDuration() {
   if (!patientData.hasAntiresorptiveMed) return 0;
   
+  // If we have multiple medications, find the one with the longest duration
+  if (patientData.medications && patientData.medications.length > 0) {
+    const durations = patientData.medications.map(med => {
+      const startDate = new Date(
+        parseInt(med.startYear),
+        parseInt(med.startMonth) - 1
+      );
+      
+      const endDate = med.isStopped
+        ? new Date(
+            parseInt(med.stopYear),
+            parseInt(med.stopMonth) - 1
+          )
+        : new Date();
+      
+      const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
+      return Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30)); // Convert to months
+    });
+    
+    // Return the longest duration
+    return Math.max(...durations);
+  }
+  
+  // Fallback to single medication calculation
   const startDate = new Date(
     parseInt(patientData.startYear),
     parseInt(patientData.startMonth) - 1

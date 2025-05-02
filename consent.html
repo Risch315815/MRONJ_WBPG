@@ -5,65 +5,259 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>同意書 - MRONJ風險評估</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .font-size-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+      margin-top: 20px;
+    }
+    
+    .font-size-btn {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      color: #212529;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .font-size-btn.active {
+      background-color: #007AFF;
+      color: white;
+      border-color: #007AFF;
+    }
+    
+    .font-size-btn[data-size="normal"] {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="big"] {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="bigger"] {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 16px;
+    }
+    
+    .normal-font .consent-content p,
+    .normal-font .consent-content li,
+    .normal-font .checkbox-option span {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .big-font .consent-content p,
+    .big-font .consent-content li,
+    .big-font .subtitle,
+    .big-font .checkbox-option span {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+    
+    .bigger-font .consent-content p,
+    .bigger-font .consent-content li,
+    .bigger-font .subtitle,
+    .bigger-font .checkbox-option span {
+      font-size: 24px;
+      line-height: 2;
+    }
+    
+    .big-font h1, .big-font h2 {
+      font-size: 32px;
+    }
+    
+    .bigger-font h1, .bigger-font h2 {
+      font-size: 36px;
+    }
+    
+    .big-font .btn {
+      font-size: 20px;
+    }
+    
+    .bigger-font .btn {
+      font-size: 24px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container normal-font">
+    <div class="font-size-selector">
+      <button class="font-size-btn active" data-size="normal">
+        <span class="zh-text">正常</span>
+        <span class="en-text" style="display: none;">Normal</span>
+      </button>
+      <button class="font-size-btn" data-size="big">
+        <span class="zh-text">大</span>
+        <span class="en-text" style="display: none;">Big</span>
+      </button>
+      <button class="font-size-btn" data-size="bigger">
+        <span class="zh-text">特大</span>
+        <span class="en-text" style="display: none;">Bigger</span>
+      </button>
+    </div>
+    
     <header>
-      <h1>同意書</h1>
-      <p>請在使用MRONJ風險評估工具前閱讀並同意以下內容</p>
+      <h1 class="zh-text">同意書</h1>
+      <h1 class="en-text" style="display: none;">Consent Form</h1>
+      <h2 class="zh-text subtitle">請在使用MRONJ風險評估工具前閱讀並同意以下內容</h2>
+      <h2 class="en-text subtitle" style="display: none;">Please read and agree to the following before using the MRONJ Risk Assessment Tool</h2>
     </header>
 
     <main>
       <div class="consent-content">
         <div class="consent-section">
-          <h2>個人資料收集聲明</h2>
-          <p>本風險評估工具僅用於評估您的MRONJ（藥物相關性顎骨壞死）風險。我們將收集以下資訊：</p>
-          <ul>
+          <h2 class="zh-text">個人資料收集聲明</h2>
+          <h2 class="en-text" style="display: none;">Personal Data Collection Statement</h2>
+          <p class="zh-text">本風險評估工具僅用於評估您的MRONJ（藥物相關性顎骨壞死）風險。我們將收集以下資訊：</p>
+          <p class="en-text" style="display: none;">This risk assessment tool is only used to evaluate your risk of MRONJ (Medication-Related Osteonecrosis of the Jaw). We will collect the following information:</p>
+          <ul class="zh-text">
             <li>基本個人資料（姓名、年齡、性別等）</li>
             <li>身高、體重資料</li>
             <li>骨質疏鬆或癌症相關藥物使用史</li>
             <li>相關疾病史和治療史</li>
           </ul>
-          <p>所有資料僅用於風險評估，不會存儲於伺服器，也不會用於其他目的。</p>
+          <ul class="en-text" style="display: none;">
+            <li>Basic personal data (name, age, gender, etc.)</li>
+            <li>Height and weight data</li>
+            <li>History of osteoporosis or cancer-related medication use</li>
+            <li>Relevant medical history and treatment history</li>
+          </ul>
+          <p class="zh-text">所有資料僅用於風險評估，不會存儲於伺服器，也不會用於其他目的。</p>
+          <p class="en-text" style="display: none;">All data is used only for risk assessment, will not be stored on the server, and will not be used for other purposes.</p>
         </div>
 
         <div class="consent-section">
-          <h2>風險評估免責聲明</h2>
-          <p>本工具提供的風險評估只是參考建議，不構成醫療診斷或替代專業醫療意見。最終治療決策應由您與您的醫療團隊共同做出。</p>
-          <p>使用本工具並不建立醫患關係，也不免除您的醫療團隊進行全面評估的責任。</p>
+          <h2 class="zh-text">風險評估免責聲明</h2>
+          <h2 class="en-text" style="display: none;">Risk Assessment Disclaimer</h2>
+          <p class="zh-text">本工具提供的風險評估只是參考建議，不構成醫療診斷或替代專業醫療意見。最終治療決策應由您與您的醫療團隊共同做出。</p>
+          <p class="en-text" style="display: none;">The risk assessment provided by this tool is only a reference suggestion and does not constitute a medical diagnosis or substitute for professional medical advice. Final treatment decisions should be made by you and your healthcare team.</p>
+          <p class="zh-text">使用本工具並不建立醫患關係，也不免除您的醫療團隊進行全面評估的責任。</p>
+          <p class="en-text" style="display: none;">Using this tool does not establish a doctor-patient relationship, nor does it exempt your healthcare team from the responsibility of conducting a comprehensive assessment.</p>
         </div>
 
         <div class="consent-checkbox">
           <label class="checkbox-option">
             <input type="checkbox" id="consent-checkbox" required>
-            <span>我已閱讀並同意以上內容</span>
+            <span class="zh-text">我已閱讀並同意以上內容</span>
+            <span class="en-text" style="display: none;">I have read and agree to the above content</span>
           </label>
         </div>
 
         <div class="form-navigation">
-          <a href="index.html" class="btn btn-secondary">返回</a>
-          <button id="continue-btn" class="btn btn-primary" disabled>繼續</button>
+          <a href="index.html" class="btn btn-secondary zh-text">返回</a>
+          <a href="index.html" class="btn btn-secondary en-text" style="display: none;">Back</a>
+          <button id="continue-btn" class="btn btn-primary zh-text" disabled>繼續</button>
+          <button id="continue-btn-en" class="btn btn-primary en-text" style="display: none;" disabled>Continue</button>
         </div>
       </div>
     </main>
 
     <footer>
-      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="zh-text">版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="en-text" style="display: none;">Version 1.0.0 | <a href="about.html">About this tool</a></p>
     </footer>
   </div>
 
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const consentCheckbox = document.getElementById('consent-checkbox');
-      const continueBtn = document.getElementById('continue-btn');
+      // Language display functionality
+      const zhTexts = document.querySelectorAll('.zh-text');
+      const enTexts = document.querySelectorAll('.en-text');
       
-      consentCheckbox.addEventListener('change', function() {
-        continueBtn.disabled = !this.checked;
+      function applyLanguagePreference() {
+        // Get stored language preference
+        const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+        
+        // Show/hide elements based on language
+        if (storedLang === 'en') {
+          zhTexts.forEach(el => el.style.display = 'none');
+          enTexts.forEach(el => el.style.display = 'block');
+        } else {
+          zhTexts.forEach(el => el.style.display = 'block');
+          enTexts.forEach(el => el.style.display = 'none');
+        }
+      }
+      
+      // Apply language preference when page loads
+      applyLanguagePreference();
+      
+      // Font size selection functionality
+      const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+      const container = document.querySelector('.container');
+      
+      function setFontSize(size) {
+        // Remove all font size classes
+        container.classList.remove('normal-font', 'big-font', 'bigger-font');
+        
+        // Add the selected font size class
+        container.classList.add(`${size}-font`);
+        
+        // Update active button
+        fontSizeBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.size === size) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Store preference
+        localStorage.setItem('fontSize', size);
+        
+        // Ensure language display is maintained
+        applyLanguagePreference();
+      }
+      
+      fontSizeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const size = this.dataset.size;
+          setFontSize(size);
+        });
       });
       
-      continueBtn.addEventListener('click', function() {
+      // Set initial font size based on stored preferences
+      const storedFontSize = localStorage.getItem('fontSize') || 'normal';
+      setFontSize(storedFontSize);
+      
+      // Consent checkbox functionality
+      const consentCheckbox = document.getElementById('consent-checkbox');
+      const continueBtn = document.getElementById('continue-btn');
+      const continueBtnEn = document.getElementById('continue-btn-en');
+      
+      // Add click listeners to both buttons
+      continueBtn.addEventListener('click', function(e) {
+        if (!consentCheckbox.checked) {
+          e.preventDefault();
+          alert('請 點選 同意以上內容');
+          return false;
+        }
         window.location.href = 'patient-info.html';
+      });
+      
+      continueBtnEn.addEventListener('click', function(e) {
+        if (!consentCheckbox.checked) {
+          e.preventDefault();
+          alert('Please check the box to agree to the content above');
+          return false;
+        }
+        window.location.href = 'patient-info.html';
+      });
+      
+      // Update button state when checkbox changes
+      consentCheckbox.addEventListener('change', function() {
+        continueBtn.disabled = !this.checked;
+        continueBtnEn.disabled = !this.checked;
       });
     });
   </script>

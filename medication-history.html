@@ -5,366 +5,1479 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>用藥史 - MRONJ風險評估</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .font-size-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+      margin-top: 20px;
+    }
+    
+    .font-size-btn {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      color: #212529;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .font-size-btn.active {
+      background-color: #007AFF;
+      color: white;
+      border-color: #007AFF;
+    }
+    
+    .font-size-btn[data-size="normal"] {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="big"] {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="bigger"] {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 16px;
+    }
+    
+    .date-row {
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    
+    .date-field {
+      margin-right: 10px;
+    }
+    
+    .date-field select {
+      min-width: 100px;
+      padding: 8px 10px;
+    }
+    
+    .normal-font .assessment-form label,
+    .normal-font .assessment-form input,
+    .normal-font .assessment-form select,
+    .normal-font .assessment-form span,
+    .normal-font .assessment-form p,
+    .normal-font .calculated-value {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .big-font .assessment-form label,
+    .big-font .assessment-form input,
+    .big-font .assessment-form select,
+    .big-font .assessment-form span,
+    .big-font .assessment-form p,
+    .big-font .subtitle,
+    .big-font .calculated-value {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+    
+    .bigger-font .assessment-form label,
+    .bigger-font .assessment-form input,
+    .bigger-font .assessment-form select,
+    .bigger-font .assessment-form span,
+    .bigger-font .assessment-form p,
+    .bigger-font .subtitle,
+    .bigger-font .calculated-value {
+      font-size: 24px;
+      line-height: 2;
+    }
+    
+    .big-font h1, .big-font h2 {
+      font-size: 32px;
+    }
+    
+    .bigger-font h1, .bigger-font h2 {
+      font-size: 36px;
+    }
+    
+    .big-font .btn {
+      font-size: 20px;
+    }
+    
+    .bigger-font .btn {
+      font-size: 24px;
+    }
+    
+    /* Adjust input field sizes for better usability */
+    .big-font input[type="text"],
+    .big-font input[type="number"] {
+      padding: 12px;
+      height: 48px;
+    }
+    
+    .bigger-font input[type="text"],
+    .bigger-font input[type="number"] {
+      padding: 15px;
+      height: 56px;
+    }
+    
+    .section-divider {
+      border-top: 1px solid #ccc;
+      margin: 30px 0;
+    }
+    
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .info-note {
+      background-color: #f8f9fa;
+      border-left: 3px solid #007AFF;
+      padding: 10px 15px;
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #666;
+    }
+    
+    .big-font .info-note {
+      font-size: 18px;
+    }
+    
+    .bigger-font .info-note {
+      font-size: 22px;
+    }
+    
+    /* Medication Grid Layout */
+    .medication-group {
+      margin-top: 15px;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .medication-group h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .medications-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .medication-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      width: calc(50% - 5px);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .medication-card.selected {
+      background-color: #007AFF;
+      border-color: #007AFF;
+      color: white;
+    }
+    
+    .medication-card h4 {
+      font-size: 14px;
+      margin: 0 0 8px 0;
+    }
+    
+    .route-badge {
+      font-size: 12px;
+      background-color: #eee;
+      padding: 3px 8px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    
+    .medication-card.selected .route-badge {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+    
+    /* Reason, Frequency, and Status Buttons */
+    .reason-buttons,
+    .frequency-buttons,
+    .status-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .reason-btn,
+    .frequency-btn,
+    .status-btn {
+      background-color: white;
+      border: 1px solid #007AFF;
+      color: #007AFF;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .reason-btn.selected,
+    .frequency-btn.selected,
+    .status-btn.selected {
+      background-color: #007AFF;
+      color: white;
+    }
+    
+    .error-message {
+      color: #ff3b30;
+      font-size: 14px;
+      margin-top: 8px;
+      padding: 4px 0;
+      font-weight: 500;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .medication-card {
+        width: 100%;
+      }
+      
+      .reason-buttons,
+      .frequency-buttons,
+      .status-buttons {
+        flex-direction: column;
+      }
+    }
+    
+    /* Add style for the form navigation row */
+    .form-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+    }
+    
+    .btn-outline-primary {
+      background-color: transparent;
+      border: 1px solid #007AFF;
+      color: #007AFF;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-outline-primary:hover {
+      background-color: rgba(0, 122, 255, 0.1);
+    }
+    
+    .big-font .btn-outline-primary {
+      font-size: 20px;
+    }
+    
+    .bigger-font .btn-outline-primary {
+      font-size: 24px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container normal-font">
+    <div class="font-size-selector">
+      <button class="font-size-btn active" data-size="normal">
+        <span class="zh-text">正常</span>
+        <span class="en-text" style="display: none;">Normal</span>
+      </button>
+      <button class="font-size-btn" data-size="big">
+        <span class="zh-text">大</span>
+        <span class="en-text" style="display: none;">Big</span>
+      </button>
+      <button class="font-size-btn" data-size="bigger">
+        <span class="zh-text">特大</span>
+        <span class="en-text" style="display: none;">Bigger</span>
+      </button>
+    </div>
+    
     <header>
-      <h1>藥物使用史</h1>
-      <p>請提供患者的抗骨吸收藥物或抗血管新生藥物使用情況</p>
+      <h1 class="zh-text">藥物使用史</h1>
+      <h1 class="en-text" style="display: none;">Medication History</h1>
+      <p class="zh-text subtitle">請提供患者的抗骨吸收藥物或抗血管新生藥物使用情況</p>
+      <p class="en-text subtitle" style="display: none;">Please provide information about the patient's use of antiresorptive or antiangiogenic medications</p>
     </header>
 
     <main>
       <form id="medication-form" class="assessment-form">
         <div class="form-group">
-          <label>患者是否曾使用抗骨吸收藥物或抗血管新生藥物？</label>
+          <label class="zh-text">患者是否曾使用抗骨吸收藥物或抗血管新生藥物？</label>
+          <label class="en-text" style="display: none;">Has the patient ever used antiresorptive or antiangiogenic medications?</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="hasAntiresorptiveMed" value="yes" required>
-              <span>是</span>
+              <input type="radio" name="hasAntiresorptiveMed" value="current" required>
+              <span class="zh-text">曾經使用 或 正在使用</span>
+              <span class="en-text" style="display: none;">Previously used or currently using</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="hasAntiresorptiveMed" value="no">
-              <span>否</span>
+              <input type="radio" name="hasAntiresorptiveMed" value="future">
+              <span class="zh-text">即將開始使用</span>
+              <span class="en-text" style="display: none;">Will begin using soon</span>
             </label>
           </div>
         </div>
 
         <div id="medication-details" style="display: none;">
+          <!-- New medication selection with grid layout -->
           <div class="form-group">
-            <label for="medicationType">藥物類型</label>
-            <select id="medicationType" name="medicationType" required>
-              <option value="">請選擇藥物類型</option>
-              <option value="Antiresorptive">抗骨吸收藥物</option>
-              <option value="Antiangiogenic">抗血管新生藥物</option>
-              <option value="Both">兩種都有</option>
-            </select>
-          </div>
-          
-          <div id="antiresorptive-details" style="display: none;">
-            <div class="form-group">
-              <label for="medicationSubType">抗骨吸收藥物類型</label>
-              <select id="medicationSubType" name="medicationSubType">
-                <option value="">請選擇藥物類型</option>
-                <option value="Bisphosphonate">雙磷酸鹽類 (Bisphosphonate)</option>
-                <option value="RANKL">RANKL抑制劑 (Denosumab)</option>
-              </select>
-            </div>
+            <label class="zh-text">請選擇使用的藥物</label>
+            <label class="en-text" style="display: none;">Please select the medication used</label>
             
-            <div class="form-group" id="bisphosphonate-drugs" style="display: none;">
-              <label for="drugName">藥物名稱</label>
-              <select id="drugName" name="drugName">
-                <option value="">請選擇藥物名稱</option>
-                <option value="Alendronate">Alendronate (Fosamax)</option>
-                <option value="Risedronate">Risedronate (Actonel)</option>
-                <option value="Ibandronate">Ibandronate (Boniva)</option>
-                <option value="Zoledronate">Zoledronate (Zometa, Reclast)</option>
-                <option value="Pamidronate">Pamidronate (Aredia)</option>
-                <option value="Other">其他</option>
-              </select>
-            </div>
-            
-            <div class="form-group" id="rankl-drugs" style="display: none;">
-              <label for="drugName-rankl">藥物名稱</label>
-              <select id="drugName-rankl" name="drugName">
-                <option value="">請選擇藥物名稱</option>
-                <option value="Denosumab">Denosumab (Prolia, Xgeva)</option>
-                <option value="Other">其他</option>
-              </select>
-            </div>
-          </div>
-          
-          <div id="antiangiogenic-details" style="display: none;">
-            <div class="form-group">
-              <label for="antiangiogenicDrug">抗血管新生藥物名稱</label>
-              <select id="antiangiogenicDrug" name="drugName">
-                <option value="">請選擇藥物名稱</option>
-                <option value="Bevacizumab">Bevacizumab (Avastin)</option>
-                <option value="Sunitinib">Sunitinib (Sutent)</option>
-                <option value="Sorafenib">Sorafenib (Nexavar)</option>
-                <option value="Other">其他</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="indication">適應症</label>
-            <select id="indication" name="indication">
-              <option value="">請選擇適應症</option>
-              <option value="骨質疏鬆">骨質疏鬆</option>
-              <option value="骨轉移">骨轉移</option>
-              <option value="多發性骨髓瘤">多發性骨髓瘤</option>
-              <option value="其他">其他</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label>開始使用日期</label>
-            <div class="date-inputs">
-              <div>
-                <label for="startYear">年</label>
-                <select id="startYear" name="startYear">
-                  <option value="">請選擇年份</option>
-                </select>
-              </div>
-              <div>
-                <label for="startMonth">月</label>
-                <select id="startMonth" name="startMonth">
-                  <option value="">請選擇月份</option>
-                  <option value="1">1月</option>
-                  <option value="2">2月</option>
-                  <option value="3">3月</option>
-                  <option value="4">4月</option>
-                  <option value="5">5月</option>
-                  <option value="6">6月</option>
-                  <option value="7">7月</option>
-                  <option value="8">8月</option>
-                  <option value="9">9月</option>
-                  <option value="10">10月</option>
-                  <option value="11">11月</option>
-                  <option value="12">12月</option>
-                </select>
+            <!-- Bisphosphonates Group -->
+            <div class="medication-group">
+              <h3 class="zh-text">雙磷酸鹽類藥物</h3>
+              <h3 class="en-text" style="display: none;">Bisphosphonate Medications</h3>
+              <div class="medications-grid">
+                <div class="medication-card" data-name="Alendronate (Fosamax)" data-route="口服">
+                  <h4>Alendronate (Fosamax)</h4>
+                  <span class="zh-text route-badge">口服</span>
+                  <span class="en-text route-badge" style="display: none;">Oral</span>
+                </div>
+                <div class="medication-card" data-name="Risedronate (Actonel)" data-route="口服">
+                  <h4>Risedronate (Actonel)</h4>
+                  <span class="zh-text route-badge">口服</span>
+                  <span class="en-text route-badge" style="display: none;">Oral</span>
+                </div>
+                <div class="medication-card" data-name="Ibandronate (Boniva)" data-route="注射">
+                  <h4>Ibandronate (Boniva)</h4>
+                  <span class="zh-text route-badge">注射</span>
+                  <span class="en-text route-badge" style="display: none;">Injection</span>
+                </div>
+                <div class="medication-card" data-name="Zoledronate (Zometa, Reclast)" data-route="注射">
+                  <h4>Zoledronate (Zometa, Reclast)</h4>
+                  <span class="zh-text route-badge">注射</span>
+                  <span class="en-text route-badge" style="display: none;">Injection</span>
+                </div>
               </div>
             </div>
-          </div>
-          
-          <div class="form-group">
-            <label>是否已停止使用？</label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="isStopped" value="yes">
-                <span>是</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="isStopped" value="no">
-                <span>否</span>
-              </label>
+            
+            <!-- Monoclonal Antibodies Group -->
+            <div class="medication-group">
+              <h3 class="zh-text">單株抗體藥物</h3>
+              <h3 class="en-text" style="display: none;">Monoclonal Antibody Medications</h3>
+              <div class="medications-grid">
+                <div class="medication-card" data-name="Denosumab (Prolia/Xgeva)" data-route="注射">
+                  <h4>Denosumab (Prolia/Xgeva)</h4>
+                  <span class="zh-text route-badge">注射</span>
+                  <span class="en-text route-badge" style="display: none;">Injection</span>
+                </div>
+              </div>
             </div>
+            
+            <!-- Other Osteoporosis Medications Group -->
+            <div class="medication-group">
+              <h3 class="zh-text">其他骨質疏鬆藥物</h3>
+              <h3 class="en-text" style="display: none;">Other Osteoporosis Medications</h3>
+              <div class="medications-grid">
+                <div class="medication-card" data-name="Bevacizumab (Avastin)" data-route="注射">
+                  <h4>Bevacizumab (Avastin)</h4>
+                  <span class="zh-text route-badge">注射</span>
+                  <span class="en-text route-badge" style="display: none;">Injection</span>
+                </div>
+                <div class="medication-card" data-name="Sunitinib (Sutent)" data-route="口服">
+                  <h4>Sunitinib (Sutent)</h4>
+                  <span class="zh-text route-badge">口服</span>
+                  <span class="en-text route-badge" style="display: none;">Oral</span>
+                </div>
+                <div class="medication-card" data-name="Cabozantinib (Cabometyx)" data-route="口服">
+                  <h4>Cabozantinib (Cabometyx)</h4>
+                  <span class="zh-text route-badge">口服</span>
+                  <span class="en-text route-badge" style="display: none;">Oral</span>
+                </div>
+              </div>
+            </div>
+            <div id="medication-error" class="error-message" style="display: none;"></div>
           </div>
           
-          <div id="stop-date" style="display: none;">
+          <div id="medication-details-section" style="display: none;">
+            <!-- Indication -->
             <div class="form-group">
-              <label>停止使用日期</label>
-              <div class="date-inputs">
-                <div>
-                  <label for="stopYear">年</label>
+              <label class="zh-text">使用原因</label>
+              <label class="en-text" style="display: none;">Reason for Use</label>
+              <div class="reason-buttons">
+                <button type="button" class="reason-btn" data-reason="骨質疏鬆">
+                  <span class="zh-text">骨質疏鬆</span>
+                  <span class="en-text" style="display: none;">Osteoporosis</span>
+                </button>
+                <button type="button" class="reason-btn" data-reason="多發性骨髓瘤">
+                  <span class="zh-text">多發性骨髓瘤</span>
+                  <span class="en-text" style="display: none;">Multiple Myeloma</span>
+                </button>
+                <button type="button" class="reason-btn" data-reason="骨轉移">
+                  <span class="zh-text">骨轉移</span>
+                  <span class="en-text" style="display: none;">Bone Metastasis</span>
+                </button>
+                <button type="button" class="reason-btn" data-reason="其他">
+                  <span class="zh-text">其他</span>
+                  <span class="en-text" style="display: none;">Other</span>
+                </button>
+              </div>
+              <div id="indication-error" class="error-message" style="display: none;"></div>
+            </div>
+            
+            <!-- Start Date -->
+            <div class="form-group">
+              <label class="start-date-label zh-text">開始使用的時間</label>
+              <label class="start-date-label en-text" style="display: none;">Start Date</label>
+              <div class="date-row">
+                <div class="date-field">
+                  <select id="startYear" name="startYear" required>
+                    <option value="" class="zh-text">年份</option>
+                    <option value="" class="en-text" style="display: none;">Year</option>
+                  </select>
+                </div>
+                <div class="date-field">
+                  <select id="startMonth" name="startMonth" required>
+                    <option value="" class="zh-text">月份</option>
+                    <option value="" class="en-text" style="display: none;">Month</option>
+                    <option value="1" class="zh-text">1月</option>
+                    <option value="1" class="en-text" style="display: none;">January</option>
+                    <option value="2" class="zh-text">2月</option>
+                    <option value="2" class="en-text" style="display: none;">February</option>
+                    <option value="3" class="zh-text">3月</option>
+                    <option value="3" class="en-text" style="display: none;">March</option>
+                    <option value="4" class="zh-text">4月</option>
+                    <option value="4" class="en-text" style="display: none;">April</option>
+                    <option value="5" class="zh-text">5月</option>
+                    <option value="5" class="en-text" style="display: none;">May</option>
+                    <option value="6" class="zh-text">6月</option>
+                    <option value="6" class="en-text" style="display: none;">June</option>
+                    <option value="7" class="zh-text">7月</option>
+                    <option value="7" class="en-text" style="display: none;">July</option>
+                    <option value="8" class="zh-text">8月</option>
+                    <option value="8" class="en-text" style="display: none;">August</option>
+                    <option value="9" class="zh-text">9月</option>
+                    <option value="9" class="en-text" style="display: none;">September</option>
+                    <option value="10" class="zh-text">10月</option>
+                    <option value="10" class="en-text" style="display: none;">October</option>
+                    <option value="11" class="zh-text">11月</option>
+                    <option value="11" class="en-text" style="display: none;">November</option>
+                    <option value="12" class="zh-text">12月</option>
+                    <option value="12" class="en-text" style="display: none;">December</option>
+                  </select>
+                </div>
+              </div>
+              <div id="start-date-error" class="error-message" style="display: none;"></div>
+            </div>
+            
+            <!-- Frequency -->
+            <div class="form-group">
+              <label class="frequency-label zh-text">使用頻率</label>
+              <label class="frequency-label en-text" style="display: none;">Frequency</label>
+              <div class="frequency-buttons">
+                <button type="button" class="frequency-btn" data-frequency="每天">
+                  <span class="zh-text">每天</span>
+                  <span class="en-text" style="display: none;">Daily</span>
+                </button>
+                <button type="button" class="frequency-btn" data-frequency="每個月">
+                  <span class="zh-text">每個月</span>
+                  <span class="en-text" style="display: none;">Monthly</span>
+                </button>
+                <button type="button" class="frequency-btn" data-frequency="每半年">
+                  <span class="zh-text">每半年</span>
+                  <span class="en-text" style="display: none;">Every 6 months</span>
+                </button>
+              </div>
+              <div id="frequency-error" class="error-message" style="display: none;"></div>
+            </div>
+            
+            <!-- Current Status -->
+            <div class="form-group">
+              <label class="zh-text">目前用藥狀態</label>
+              <label class="en-text" style="display: none;">Current Medication Status</label>
+              <div class="status-buttons">
+                <button type="button" class="status-btn active" data-status="continuing">
+                  <span class="zh-text">持續服用</span>
+                  <span class="en-text" style="display: none;">Continuing</span>
+                </button>
+                <button type="button" class="status-btn" data-status="stopped">
+                  <span class="zh-text">已停藥</span>
+                  <span class="en-text" style="display: none;">Discontinued</span>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Stop Date (initially hidden) -->
+            <div id="stop-date" class="form-group" style="display: none;">
+              <label class="zh-text">停藥時間</label>
+              <label class="en-text" style="display: none;">Discontinuation Date</label>
+              <div class="date-row">
+                <div class="date-field">
                   <select id="stopYear" name="stopYear">
-                    <option value="">請選擇年份</option>
+                    <option value="" class="zh-text">年份</option>
+                    <option value="" class="en-text" style="display: none;">Year</option>
                   </select>
                 </div>
-                <div>
-                  <label for="stopMonth">月</label>
+                <div class="date-field">
                   <select id="stopMonth" name="stopMonth">
-                    <option value="">請選擇月份</option>
-                    <option value="1">1月</option>
-                    <option value="2">2月</option>
-                    <option value="3">3月</option>
-                    <option value="4">4月</option>
-                    <option value="5">5月</option>
-                    <option value="6">6月</option>
-                    <option value="7">7月</option>
-                    <option value="8">8月</option>
-                    <option value="9">9月</option>
-                    <option value="10">10月</option>
-                    <option value="11">11月</option>
-                    <option value="12">12月</option>
+                    <option value="" class="zh-text">月份</option>
+                    <option value="" class="en-text" style="display: none;">Month</option>
+                    <option value="1" class="zh-text">1月</option>
+                    <option value="1" class="en-text" style="display: none;">January</option>
+                    <option value="2" class="zh-text">2月</option>
+                    <option value="2" class="en-text" style="display: none;">February</option>
+                    <option value="3" class="zh-text">3月</option>
+                    <option value="3" class="en-text" style="display: none;">March</option>
+                    <option value="4" class="zh-text">4月</option>
+                    <option value="4" class="en-text" style="display: none;">April</option>
+                    <option value="5" class="zh-text">5月</option>
+                    <option value="5" class="en-text" style="display: none;">May</option>
+                    <option value="6" class="zh-text">6月</option>
+                    <option value="6" class="en-text" style="display: none;">June</option>
+                    <option value="7" class="zh-text">7月</option>
+                    <option value="7" class="en-text" style="display: none;">July</option>
+                    <option value="8" class="zh-text">8月</option>
+                    <option value="8" class="en-text" style="display: none;">August</option>
+                    <option value="9" class="zh-text">9月</option>
+                    <option value="9" class="en-text" style="display: none;">September</option>
+                    <option value="10" class="zh-text">10月</option>
+                    <option value="10" class="en-text" style="display: none;">October</option>
+                    <option value="11" class="zh-text">11月</option>
+                    <option value="11" class="en-text" style="display: none;">November</option>
+                    <option value="12" class="zh-text">12月</option>
+                    <option value="12" class="en-text" style="display: none;">December</option>
                   </select>
                 </div>
               </div>
+              <div id="date-error" class="error-message" style="display: none;"></div>
             </div>
           </div>
         </div>
 
         <div class="form-navigation">
-          <a href="patient-info.html" class="btn btn-secondary">上一步</a>
-          <button type="button" id="next-btn" class="btn btn-primary">下一步</button>
+          <a href="patient-info.html" class="btn btn-secondary zh-text">上一步</a>
+          <a href="patient-info.html" class="btn btn-secondary en-text" style="display: none;">Back</a>
+          
+          <button type="button" id="add-medication-btn" class="btn btn-outline-primary zh-text">再加一種藥物</button>
+          <button type="button" id="add-medication-btn-en" class="btn btn-outline-primary en-text" style="display: none;">Add Another Medication</button>
+          
+          <button type="button" id="next-btn" class="btn btn-primary zh-text">添加完成 送出</button>
+          <button type="button" id="next-btn-en" class="btn btn-primary en-text" style="display: none;">Finish Adding</button>
         </div>
       </form>
     </main>
 
     <footer>
-      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="zh-text">版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="en-text" style="display: none;">Version 1.0.0 | <a href="about.html">About this tool</a></p>
     </footer>
   </div>
 
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Populate year dropdowns
+      // Language display functionality
+      const zhTexts = document.querySelectorAll('.zh-text');
+      const enTexts = document.querySelectorAll('.en-text');
+      
+      function applyLanguagePreference() {
+        // Get stored language preference
+        const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+        
+        // Show/hide elements based on language
+        if (storedLang === 'en') {
+          zhTexts.forEach(el => el.style.display = 'none');
+          enTexts.forEach(el => el.style.display = 'block');
+        } else {
+          zhTexts.forEach(el => el.style.display = 'block');
+          enTexts.forEach(el => el.style.display = 'none');
+        }
+      }
+      
+      // Apply language preference when page loads
+      applyLanguagePreference();
+      
+      // Load patient data from localStorage
+      if (localStorage.getItem('patientData')) {
+        try {
+          const patientInfo = JSON.parse(localStorage.getItem('patientData'));
+          console.log("Found patient data in localStorage:", patientInfo);
+          
+          // Merge patient info with patientData object, preserving any existing medication data
+          const medications = patientData.medications || [];
+          
+          // Copy all properties from patientInfo to patientData
+          Object.assign(patientData, patientInfo);
+          
+          // Make sure we don't overwrite any existing medications
+          if (medications.length > 0) {
+            patientData.medications = medications;
+          }
+          
+          console.log("Updated patientData with patient info:", patientData);
+        } catch (e) {
+          console.error("Error loading patient data from localStorage:", e);
+        }
+      } else {
+        console.log("No patient data found in localStorage");
+      }
+      
+      // Load stored medication data from localStorage if it exists
+      if (localStorage.getItem('patientMedicationData')) {
+        try {
+          const storedData = JSON.parse(localStorage.getItem('patientMedicationData'));
+          console.log("Found stored medication data:", storedData);
+          
+          // Copy medications array if it exists
+          if (storedData.medications && storedData.medications.length > 0) {
+            patientData.medications = storedData.medications;
+            patientData.hasAntiresorptiveMed = true;
+            
+            console.log("Loaded medications from localStorage:", patientData.medications);
+          }
+        } catch (e) {
+          console.error("Error loading medication data from localStorage:", e);
+        }
+      }
+      
+      // Font size selection functionality
+      const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+      const container = document.querySelector('.container');
+      
+      function setFontSize(size) {
+        // Remove all font size classes
+        container.classList.remove('normal-font', 'big-font', 'bigger-font');
+        
+        // Add the selected font size class
+        container.classList.add(`${size}-font`);
+        
+        // Update active button
+        fontSizeBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.size === size) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Store preference
+        localStorage.setItem('fontSize', size);
+        
+        // Ensure language display is maintained
+        applyLanguagePreference();
+      }
+      
+      fontSizeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const size = this.dataset.size;
+          setFontSize(size);
+        });
+      });
+      
+      // Set initial font size based on stored preferences
+      const storedFontSize = localStorage.getItem('fontSize') || 'normal';
+      setFontSize(storedFontSize);
+      
+      // Populate year dropdowns for medication dates
       const currentYear = new Date().getFullYear();
       const startYearSelect = document.getElementById('startYear');
       const stopYearSelect = document.getElementById('stopYear');
       
+      // Add options for the last 30 years
       for (let year = currentYear; year >= currentYear - 30; year--) {
         const startOption = document.createElement('option');
         startOption.value = year;
         startOption.textContent = year;
+        startOption.classList.add(localStorage.getItem('preferredLanguage') === 'en' ? 'en-text' : 'zh-text');
         startYearSelect.appendChild(startOption);
         
         const stopOption = document.createElement('option');
         stopOption.value = year;
         stopOption.textContent = year;
+        stopOption.classList.add(localStorage.getItem('preferredLanguage') === 'en' ? 'en-text' : 'zh-text');
         stopYearSelect.appendChild(stopOption);
+      }
+      
+      // Set default value for hasAntiresorptiveMed to true
+      if (patientData.hasAntiresorptiveMed === false) {
+        patientData.hasAntiresorptiveMed = true;
+        patientData.drugName = '';
+        patientData.administrationRoute = '';
+        patientData.indication = '';
+        patientData.startYear = '';
+        patientData.startMonth = '';
+        patientData.frequency = '';
+        patientData.isStopped = false;
+        patientData.stopYear = '';
+        patientData.stopMonth = '';
       }
       
       // Handle medication radio buttons
       const hasAntiresorptiveMedRadios = document.querySelectorAll('input[name="hasAntiresorptiveMed"]');
       const medicationDetails = document.getElementById('medication-details');
+      const medicationStatus = document.querySelector('.form-group:has(.status-buttons)');
+      
+      // Select the first option by default
+      document.querySelector('input[name="hasAntiresorptiveMed"][value="current"]').checked = true;
+      medicationDetails.style.display = 'block';
       
       hasAntiresorptiveMedRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-          medicationDetails.style.display = this.value === 'yes' ? 'block' : 'none';
+          // Always show medication details for both options
+          medicationDetails.style.display = 'block';
+          patientData.hasAntiresorptiveMed = true;
+          
+          // Update UI based on selection
+          if (this.value === 'future') {
+            // Update labels for future use
+            updateLabelsForFutureUse();
+            
+            // Hide medication status section
+            document.querySelector('.form-group:has(.status-buttons)').style.display = 'none';
+            
+            // Set isStopped to false for future use
+            patientData.isStopped = false;
+            
+            // Hide stop date section
+            document.getElementById('stop-date').style.display = 'none';
+          } else {
+            // Restore labels for current/past use
+            updateLabelsForCurrentUse();
+            
+            // Show medication status section
+            document.querySelector('.form-group:has(.status-buttons)').style.display = 'block';
+          }
         });
       });
       
-      // Handle medication type changes
-      const medicationTypeSelect = document.getElementById('medicationType');
-      const antiresorptiveDetails = document.getElementById('antiresorptive-details');
-      const antiangiogenicDetails = document.getElementById('antiangiogenic-details');
+      function updateLabelsForFutureUse() {
+        const route = patientData.administrationRoute || '注射';
+        const startDateLabel = document.querySelector('.start-date-label.zh-text');
+        const startDateLabelEn = document.querySelector('.start-date-label.en-text');
+        
+        if (route === '口服') {
+          startDateLabel.textContent = '即將開始吃藥的時間';
+          startDateLabelEn.textContent = 'Planned Start Date of Oral Medication';
+        } else {
+          startDateLabel.textContent = '即將開始注射的時間';
+          startDateLabelEn.textContent = 'Planned Start Date of Injection';
+        }
+      }
       
-      medicationTypeSelect.addEventListener('change', function() {
-        const value = this.value;
-        antiresorptiveDetails.style.display = (value === 'Antiresorptive' || value === 'Both') ? 'block' : 'none';
-        antiangiogenicDetails.style.display = (value === 'Antiangiogenic' || value === 'Both') ? 'block' : 'none';
+      function updateLabelsForCurrentUse() {
+        const route = patientData.administrationRoute || '注射';
+        const startDateLabel = document.querySelector('.start-date-label.zh-text');
+        const startDateLabelEn = document.querySelector('.start-date-label.en-text');
+        
+        if (route === '口服') {
+          startDateLabel.textContent = '開始吃藥的時間';
+          startDateLabelEn.textContent = 'Start Date of Oral Medication';
+        } else {
+          startDateLabel.textContent = '開始注射的時間';
+          startDateLabelEn.textContent = 'Start Date of Injection';
+        }
+      }
+      
+      // Medication card selection
+      const medicationCards = document.querySelectorAll('.medication-card');
+      const medicationDetailsSection = document.getElementById('medication-details-section');
+      
+      medicationCards.forEach(card => {
+        card.addEventListener('click', function() {
+          // Deselect all cards
+          medicationCards.forEach(c => c.classList.remove('selected'));
+          
+          // Select this card
+          this.classList.add('selected');
+          
+          // Hide any previous medication error
+          if (document.getElementById('medication-error')) {
+            document.getElementById('medication-error').style.display = 'none';
+          }
+          
+          // Update patient data
+          patientData.drugName = this.dataset.name;
+          patientData.administrationRoute = this.dataset.route;
+          console.log(`Selected medication: ${patientData.drugName}, route: ${patientData.administrationRoute}`);
+          
+          // Show medication details section
+          medicationDetailsSection.style.display = 'block';
+          
+          // Update labels based on administration route and current/future use
+          const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
+          if (isFutureUse) {
+            updateLabelsForFutureUse();
+          } else {
+            updateLabelsForRoute(this.dataset.route);
+          }
+        });
       });
       
-      // Handle medication subtype changes
-      const medicationSubTypeSelect = document.getElementById('medicationSubType');
-      const bisphosphonateDrugs = document.getElementById('bisphosphonate-drugs');
-      const ranklDrugs = document.getElementById('rankl-drugs');
+      function updateLabelsForRoute(route) {
+        const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
+        const startDateLabel = document.querySelector('.start-date-label.zh-text');
+        const startDateLabelEn = document.querySelector('.start-date-label.en-text');
+        const frequencyLabel = document.querySelector('.frequency-label.zh-text');
+        const frequencyLabelEn = document.querySelector('.frequency-label.en-text');
+        
+        if (route === '口服') {
+          startDateLabel.textContent = isFutureUse ? '即將開始吃藥的時間' : '開始吃藥的時間';
+          startDateLabelEn.textContent = isFutureUse ? 'Planned Start Date of Oral Medication' : 'Start Date of Oral Medication';
+          frequencyLabel.textContent = '多久吃一次';
+          frequencyLabelEn.textContent = 'How Often to Take';
+        } else {
+          startDateLabel.textContent = isFutureUse ? '即將開始注射的時間' : '開始注射的時間';
+          startDateLabelEn.textContent = isFutureUse ? 'Planned Start Date of Injection' : 'Start Date of Injection';
+          frequencyLabel.textContent = '多久注射一次';
+          frequencyLabelEn.textContent = 'How Often to Inject';
+        }
+      }
       
-      medicationSubTypeSelect.addEventListener('change', function() {
-        const value = this.value;
-        bisphosphonateDrugs.style.display = value === 'Bisphosphonate' ? 'block' : 'none';
-        ranklDrugs.style.display = value === 'RANKL' ? 'block' : 'none';
+      // Reason button selection
+      const reasonButtons = document.querySelectorAll('.reason-btn');
+      reasonButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          reasonButtons.forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          patientData.indication = this.dataset.reason;
+        });
       });
       
-      // Handle "is stopped" radio buttons
-      const isStoppedRadios = document.querySelectorAll('input[name="isStopped"]');
+      // Frequency button selection
+      const frequencyButtons = document.querySelectorAll('.frequency-btn');
+      frequencyButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          frequencyButtons.forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          patientData.frequency = this.dataset.frequency;
+        });
+      });
+      
+      // Status button selection
+      const statusButtons = document.querySelectorAll('.status-btn');
       const stopDateSection = document.getElementById('stop-date');
       
-      isStoppedRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-          stopDateSection.style.display = this.value === 'yes' ? 'block' : 'none';
+      statusButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          statusButtons.forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          
+          patientData.isStopped = this.dataset.status === 'stopped';
+          stopDateSection.style.display = patientData.isStopped ? 'block' : 'none';
+          
+          // Clear validation error when changing status
+          document.getElementById('date-error').style.display = 'none';
+          
+          // Reset stop date fields if continuing
+          if (!patientData.isStopped) {
+            patientData.stopYear = '';
+            patientData.stopMonth = '';
+            document.getElementById('stopYear').value = '';
+            document.getElementById('stopMonth').value = '';
+          }
         });
       });
       
-      // Handle form submission
-      const nextBtn = document.getElementById('next-btn');
-      const form = document.getElementById('medication-form');
-      
-      nextBtn.addEventListener('click', function() {
-        if (validateMedicationForm()) {
-          saveMedicationInfo();
-          window.location.href = 'risk-assessment.html';
-        }
-      });
-      
-      function validateMedicationForm() {
-        const hasAntiresorptiveMed = form.querySelector('input[name="hasAntiresorptiveMed"]:checked');
-        if (!hasAntiresorptiveMed) {
-          alert('請選擇患者是否曾使用抗骨吸收藥物或抗血管新生藥物');
+      // Date validation function
+      function validateStopDate(year, month) {
+        const dateError = document.getElementById('date-error');
+        
+        if (!patientData.startYear || !patientData.startMonth) {
+          dateError.textContent = localStorage.getItem('preferredLanguage') === 'en' 
+            ? 'Please select start date first' 
+            : '請先選擇開始用藥時間';
+          dateError.style.display = 'block';
           return false;
         }
         
-        if (hasAntiresorptiveMed.value === 'yes') {
-          const medicationType = medicationTypeSelect.value;
-          if (!medicationType) {
-            alert('請選擇藥物類型');
-            return false;
-          }
-          
-          if (medicationType === 'Antiresorptive' || medicationType === 'Both') {
-            const subType = medicationSubTypeSelect.value;
-            if (!subType) {
-              alert('請選擇抗骨吸收藥物類型');
-              return false;
-            }
-            
-            let drugName;
-            if (subType === 'Bisphosphonate') {
-              drugName = document.getElementById('drugName').value;
-            } else if (subType === 'RANKL') {
-              drugName = document.getElementById('drugName-rankl').value;
-            }
-            
-            if (!drugName) {
-              alert('請選擇藥物名稱');
-              return false;
-            }
-          }
-          
-          if (medicationType === 'Antiangiogenic' || medicationType === 'Both') {
-            const antiangiogenicDrug = document.getElementById('antiangiogenicDrug').value;
-            if (!antiangiogenicDrug) {
-              alert('請選擇抗血管新生藥物名稱');
-              return false;
-            }
-          }
-          
-          const indication = document.getElementById('indication').value;
-          if (!indication) {
-            alert('請選擇適應症');
-            return false;
-          }
-          
-          const startYear = document.getElementById('startYear').value;
-          const startMonth = document.getElementById('startMonth').value;
-          if (!startYear || !startMonth) {
-            alert('請選擇開始使用日期');
-            return false;
-          }
-          
-          const isStopped = form.querySelector('input[name="isStopped"]:checked');
-          if (!isStopped) {
-            alert('請選擇是否已停止使用');
-            return false;
-          }
-          
-          if (isStopped.value === 'yes') {
-            const stopYear = document.getElementById('stopYear').value;
-            const stopMonth = document.getElementById('stopMonth').value;
-            if (!stopYear || !stopMonth) {
-              alert('請選擇停止使用日期');
-              return false;
-            }
-          }
+        const startDate = new Date(
+          parseInt(patientData.startYear),
+          parseInt(patientData.startMonth) - 1
+        );
+        
+        const stopDate = new Date(
+          parseInt(year),
+          parseInt(month) - 1
+        );
+        
+        if (stopDate < startDate) {
+          dateError.textContent = localStorage.getItem('preferredLanguage') === 'en' 
+            ? 'Stop date cannot be earlier than start date' 
+            : '停藥時間不能早於開始用藥時間';
+          dateError.style.display = 'block';
+          return false;
         }
         
+        dateError.style.display = 'none';
         return true;
       }
       
-      function saveMedicationInfo() {
-        // Update patientData object
-        patientData.hasAntiresorptiveMed = form.querySelector('input[name="hasAntiresorptiveMed"]:checked').value === 'yes';
+      // Handle date selection
+      document.getElementById('startYear').addEventListener('change', function() {
+        patientData.startYear = this.value;
+        
+        // If stop date is set, validate it
+        if (patientData.isStopped && patientData.stopYear && patientData.stopMonth) {
+          validateStopDate(patientData.stopYear, patientData.stopMonth);
+        }
+      });
+      
+      document.getElementById('startMonth').addEventListener('change', function() {
+        patientData.startMonth = this.value;
+        
+        // If stop date is set, validate it
+        if (patientData.isStopped && patientData.stopYear && patientData.stopMonth) {
+          validateStopDate(patientData.stopYear, patientData.stopMonth);
+        }
+      });
+      
+      document.getElementById('stopYear').addEventListener('change', function() {
+        if (this.value && patientData.stopMonth) {
+          if (validateStopDate(this.value, patientData.stopMonth)) {
+            patientData.stopYear = this.value;
+          }
+        } else {
+          patientData.stopYear = this.value;
+        }
+      });
+      
+      document.getElementById('stopMonth').addEventListener('change', function() {
+        if (this.value && patientData.stopYear) {
+          if (validateStopDate(patientData.stopYear, this.value)) {
+            patientData.stopMonth = this.value;
+          }
+        } else {
+          patientData.stopMonth = this.value;
+        }
+      });
+      
+      // Validate all medication fields
+      function validateMedicationFields() {
+        console.log("Starting validation for medication fields");
+        console.log("Current patientData:", JSON.stringify(patientData, null, 2));
         
         if (patientData.hasAntiresorptiveMed) {
-          patientData.medicationType = medicationTypeSelect.value;
+          let isValid = true;
+          const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
+          console.log("Future use mode:", isFutureUse);
           
-          if (patientData.medicationType === 'Antiresorptive' || patientData.medicationType === 'Both') {
-            patientData.medicationSubType = medicationSubTypeSelect.value;
+          // Clear all previous error messages
+          const errorElements = document.querySelectorAll('.error-message');
+          errorElements.forEach(el => {
+            el.style.display = 'none';
+            el.textContent = '';
+          });
+          
+          // Check medication selection
+          if (!patientData.drugName) {
+            const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+              ? 'Please select a medication' 
+              : '請選擇使用的藥物';
+            console.log("Error: No medication selected");
             
-            if (patientData.medicationSubType === 'Bisphosphonate') {
-              patientData.drugName = document.getElementById('drugName').value;
-            } else if (patientData.medicationSubType === 'RANKL') {
-              patientData.drugName = document.getElementById('drugName-rankl').value;
+            // Check if the error element exists
+            let errorElement = document.getElementById('medication-error');
+            if (!errorElement) {
+              console.log("Creating missing medication-error element");
+              errorElement = document.createElement('div');
+              errorElement.id = 'medication-error';
+              errorElement.className = 'error-message';
+              // Find the right place to insert it
+              const medicationGroups = document.querySelector('.medication-group');
+              if (medicationGroups) {
+                medicationGroups.parentNode.appendChild(errorElement);
+              }
             }
-          } else if (patientData.medicationType === 'Antiangiogenic') {
-            patientData.drugName = document.getElementById('antiangiogenicDrug').value;
+            
+            errorElement.textContent = errorMsg;
+            errorElement.style.display = 'block';
+            isValid = false;
           }
           
-          patientData.indication = document.getElementById('indication').value;
-          patientData.startYear = document.getElementById('startYear').value;
-          patientData.startMonth = document.getElementById('startMonth').value;
-          
-          patientData.isStopped = form.querySelector('input[name="isStopped"]:checked').value === 'yes';
-          
-          if (patientData.isStopped) {
-            patientData.stopYear = document.getElementById('stopYear').value;
-            patientData.stopMonth = document.getElementById('stopMonth').value;
+          if (patientData.drugName) {
+            // Only check these if a medication is selected
+            if (!patientData.indication) {
+              const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+                ? 'Please select a reason for use' 
+                : '請選擇使用原因';
+              console.log("Error: No indication selected");
+              
+              // Check if the error element exists
+              let errorElement = document.getElementById('indication-error');
+              if (!errorElement) {
+                console.log("Creating missing indication-error element");
+                errorElement = document.createElement('div');
+                errorElement.id = 'indication-error';
+                errorElement.className = 'error-message';
+                // Find the right place to insert it
+                const reasonButtons = document.querySelector('.reason-buttons');
+                if (reasonButtons) {
+                  reasonButtons.parentNode.appendChild(errorElement);
+                }
+              }
+              
+              errorElement.textContent = errorMsg;
+              errorElement.style.display = 'block';
+              isValid = false;
+            }
+            
+            if (!patientData.startYear || !patientData.startMonth) {
+              const message = isFutureUse 
+                ? (localStorage.getItem('preferredLanguage') === 'en' 
+                    ? `Please select the planned start date` 
+                    : `請選擇即將開始${patientData.administrationRoute === '口服' ? '吃藥' : '注射'}的時間`)
+                : (localStorage.getItem('preferredLanguage') === 'en' 
+                    ? `Please select the start date` 
+                    : `請選擇開始${patientData.administrationRoute === '口服' ? '吃藥' : '注射'}的時間`);
+              console.log("Error: Missing start date");
+              
+              // Check if the error element exists
+              let errorElement = document.getElementById('start-date-error');
+              if (!errorElement) {
+                console.log("Creating missing start-date-error element");
+                errorElement = document.createElement('div');
+                errorElement.id = 'start-date-error';
+                errorElement.className = 'error-message';
+                // Find the right place to insert it
+                const startDateRow = document.querySelector('.date-row');
+                if (startDateRow) {
+                  startDateRow.parentNode.appendChild(errorElement);
+                }
+              }
+              
+              errorElement.textContent = message;
+              errorElement.style.display = 'block';
+              isValid = false;
+            }
+            
+            if (!patientData.frequency) {
+              const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+                ? `Please select frequency` 
+                : `請選擇${patientData.administrationRoute === '口服' ? '吃藥' : '注射'}頻率`;
+              console.log("Error: No frequency selected");
+              
+              // Check if the error element exists
+              let errorElement = document.getElementById('frequency-error');
+              if (!errorElement) {
+                console.log("Creating missing frequency-error element");
+                errorElement = document.createElement('div');
+                errorElement.id = 'frequency-error';
+                errorElement.className = 'error-message';
+                // Find the right place to insert it
+                const frequencyButtons = document.querySelector('.frequency-buttons');
+                if (frequencyButtons) {
+                  frequencyButtons.parentNode.appendChild(errorElement);
+                }
+              }
+              
+              errorElement.textContent = errorMsg;
+              errorElement.style.display = 'block';
+              isValid = false;
+            }
+            
+            // Check medication status only for current/past use
+            if (!isFutureUse && patientData.isStopped) {
+              if (!patientData.stopYear || !patientData.stopMonth) {
+                const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+                  ? 'Please select the stop date' 
+                  : '請選擇停藥時間';
+                console.log("Error: Missing stop date");
+                
+                // Check if the error element exists
+                let errorElement = document.getElementById('date-error');
+                if (!errorElement) {
+                  console.log("Creating missing date-error element");
+                  errorElement = document.createElement('div');
+                  errorElement.id = 'date-error';
+                  errorElement.className = 'error-message';
+                  // Find the right place to insert it
+                  const stopDateSection = document.getElementById('stop-date');
+                  if (stopDateSection) {
+                    stopDateSection.appendChild(errorElement);
+                  }
+                }
+                
+                errorElement.textContent = errorMsg;
+                errorElement.style.display = 'block';
+                isValid = false;
+              } else {
+                // Validate stop date is after start date
+                const startDate = new Date(
+                  parseInt(patientData.startYear),
+                  parseInt(patientData.startMonth) - 1
+                );
+                const stopDate = new Date(
+                  parseInt(patientData.stopYear),
+                  parseInt(patientData.stopMonth) - 1
+                );
+                
+                if (stopDate < startDate) {
+                  const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+                    ? 'Stop date cannot be earlier than start date' 
+                    : '停藥時間不能早於開始用藥時間';
+                  console.log("Error: Stop date before start date");
+                  document.getElementById('date-error').textContent = errorMsg;
+                  document.getElementById('date-error').style.display = 'block';
+                  isValid = false;
+                }
+              }
+            }
           }
+          
+          console.log("Validation result:", isValid ? "PASS" : "FAIL");
+          return isValid;
+        }
+        return true;
+      }
+      
+      // Handle add medication button click
+      const addMedicationBtn = document.getElementById('add-medication-btn');
+      const addMedicationBtnEn = document.getElementById('add-medication-btn-en');
+      
+      function handleAddMedication() {
+        console.log("handleAddMedication called");
+        console.log("Current patientData before adding medication:", JSON.stringify(patientData, null, 2));
+        
+        // Store current medication data
+        if (validateMedicationFields()) {
+          // Create a multi-medication array if it doesn't exist
+          if (!patientData.medications) {
+            patientData.medications = [];
+            console.log("Created new medications array");
+          }
+          
+          // Save current medication to array
+          const newMedication = {
+            drugName: patientData.drugName,
+            administrationRoute: patientData.administrationRoute,
+            indication: patientData.indication,
+            startYear: patientData.startYear,
+            startMonth: patientData.startMonth,
+            frequency: patientData.frequency,
+            isStopped: patientData.isStopped,
+            stopYear: patientData.stopYear,
+            stopMonth: patientData.stopMonth
+          };
+          
+          patientData.medications.push(newMedication);
+          console.log("Added new medication to array:", newMedication);
+          console.log("Updated medications array:", patientData.medications);
+          
+          // Save to localStorage for persistence
+          try {
+            localStorage.setItem('patientMedicationData', JSON.stringify(patientData));
+            console.log("Saved updated patientData to localStorage");
+          } catch (e) {
+            console.error("Error saving to localStorage:", e);
+          }
+          
+          // Reset current form for new medication
+          resetMedicationForm();
+          
+          // Show a confirmation message
+          const message = localStorage.getItem('preferredLanguage') === 'en' 
+            ? `Added ${patientData.medications.length} medication(s). You can now add another.`
+            : `已新增 ${patientData.medications.length} 種藥物。您現在可以新增另一種。`;
+          
+          alert(message);
+        }
+      }
+      
+      // Function to reset the medication form
+      function resetMedicationForm() {
+        // Reset medication card selection
+        medicationCards.forEach(card => card.classList.remove('selected'));
+        
+        // Reset reason buttons
+        reasonButtons.forEach(btn => btn.classList.remove('selected'));
+        
+        // Reset frequency buttons
+        frequencyButtons.forEach(btn => btn.classList.remove('selected'));
+        
+        // Reset status buttons
+        const continuingBtn = Array.from(statusButtons).find(btn => btn.dataset.status === 'continuing');
+        if (continuingBtn) {
+          statusButtons.forEach(btn => btn.classList.remove('selected'));
+          continuingBtn.classList.add('selected');
         }
         
-        console.log('Medication info saved:', patientData);
+        // Reset date fields
+        document.getElementById('startYear').value = '';
+        document.getElementById('startMonth').value = '';
+        document.getElementById('stopYear').value = '';
+        document.getElementById('stopMonth').value = '';
+        
+        // Hide medication details section
+        medicationDetailsSection.style.display = 'none';
+        
+        // Hide stop date section
+        document.getElementById('stop-date').style.display = 'none';
+        
+        // Reset patient data fields (keep the medications array)
+        patientData.drugName = '';
+        patientData.administrationRoute = '';
+        patientData.indication = '';
+        patientData.startYear = '';
+        patientData.startMonth = '';
+        patientData.frequency = '';
+        patientData.isStopped = false;
+        patientData.stopYear = '';
+        patientData.stopMonth = '';
+      }
+      
+      addMedicationBtn.addEventListener('click', handleAddMedication);
+      addMedicationBtnEn.addEventListener('click', handleAddMedication);
+      
+      // Handle form submission
+      const nextBtn = document.getElementById('next-btn');
+      const nextBtnEn = document.getElementById('next-btn-en');
+      
+      // Update the next button handler to include multiple medications
+      function handleSubmit() {
+        console.log("Handle submit clicked");
+        
+        // First check if localStorage is available
+        let storageAvailable = false;
+        try {
+          const test = 'test';
+          localStorage.setItem(test, test);
+          localStorage.removeItem(test);
+          storageAvailable = true;
+          console.log("localStorage is available");
+        } catch (e) {
+          console.error("localStorage is NOT available:", e);
+          alert("Your browser doesn't support or is blocking local storage. Your data may not be saved between pages.");
+        }
+        
+        // Check if any medication has been selected
+        if (!patientData.drugName && (!patientData.medications || patientData.medications.length === 0)) {
+          // No medication selected and no medications in array
+          const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+            ? 'Please select at least one medication' 
+            : '請至少選擇一種藥物';
+          console.log("Error: No medication selected");
+          
+          // Check if the error element exists
+          let errorElement = document.getElementById('medication-error');
+          if (!errorElement) {
+            console.log("Creating missing medication-error element");
+            errorElement = document.createElement('div');
+            errorElement.id = 'medication-error';
+            errorElement.className = 'error-message';
+            // Find the right place to insert it
+            const medicationGroups = document.querySelector('.medication-group');
+            if (medicationGroups) {
+              medicationGroups.parentNode.appendChild(errorElement);
+            }
+          }
+          
+          errorElement.textContent = errorMsg;
+          errorElement.style.display = 'block';
+          return;
+        }
+        
+        if (validateMedicationFields()) {
+          console.log("Form validated successfully");
+          
+          // Make sure we're correctly marking the user as having antiresorptive medications
+          patientData.hasAntiresorptiveMed = true;
+          
+          // If there are medications in the array and current form has data
+          if (patientData.medications && patientData.medications.length > 0 && patientData.drugName) {
+            console.log("Adding current medication to existing array");
+            // Add the current medication to the array
+            patientData.medications.push({
+              drugName: patientData.drugName,
+              administrationRoute: patientData.administrationRoute,
+              indication: patientData.indication,
+              startYear: patientData.startYear,
+              startMonth: patientData.startMonth,
+              frequency: patientData.frequency,
+              isStopped: patientData.isStopped,
+              stopYear: patientData.stopYear,
+              stopMonth: patientData.stopMonth
+            });
+          } 
+          // If there are no medications in the array but current form has data
+          else if ((!patientData.medications || patientData.medications.length === 0) && patientData.drugName) {
+            console.log("Creating new medications array with current medication");
+            // Create medications array and add current medication
+            patientData.medications = [{
+              drugName: patientData.drugName,
+              administrationRoute: patientData.administrationRoute,
+              indication: patientData.indication,
+              startYear: patientData.startYear,
+              startMonth: patientData.startMonth,
+              frequency: patientData.frequency,
+              isStopped: patientData.isStopped,
+              stopYear: patientData.stopYear,
+              stopMonth: patientData.stopMonth
+            }];
+          }
+          
+          console.log('Complete medication data saved:', JSON.stringify(patientData, null, 2));
+          
+          // Check if user selected "即將開始使用" (will begin using)
+          const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
+          
+          // Save to multiple storage mechanisms for reliability
+          if (storageAvailable) {
+            try {
+              // Clear any potentially conflicting data
+              localStorage.removeItem('patientMedicationData');
+              
+              // Make sure to preserve original patient information
+              // Get the patient info from localStorage if available
+              if (localStorage.getItem('patientData')) {
+                try {
+                  const patientInfo = JSON.parse(localStorage.getItem('patientData'));
+                  // Make sure we don't lose any personal info fields when saving
+                  if (patientInfo.name) patientData.name = patientInfo.name;
+                  if (patientInfo.age) patientData.age = patientInfo.age;
+                  if (patientInfo.gender) patientData.gender = patientInfo.gender;
+                  if (patientInfo.height) patientData.height = patientInfo.height;
+                  if (patientInfo.weight) patientData.weight = patientInfo.weight;
+                  if (patientInfo.birthYear) patientData.birthYear = patientInfo.birthYear;
+                  if (patientInfo.birthMonth) patientData.birthMonth = patientInfo.birthMonth;
+                  if (patientInfo.birthDay) patientData.birthDay = patientInfo.birthDay;
+                  
+                  // These might have been set in patient info form
+                  if (patientInfo.hasCancer !== undefined) patientData.hasCancer = patientInfo.hasCancer;
+                  if (patientInfo.hasRadiotherapy !== undefined) patientData.hasRadiotherapy = patientInfo.hasRadiotherapy;
+                  if (patientInfo.systemicDiseases && patientInfo.systemicDiseases.length > 0) patientData.systemicDiseases = patientInfo.systemicDiseases;
+                  
+                  console.log("Preserved patient info for localStorage save");
+                } catch (e) {
+                  console.error("Error loading patient info for preservation:", e);
+                }
+              }
+              
+              // Save with stringification
+              const dataString = JSON.stringify(patientData);
+              localStorage.setItem('patientMedicationData', dataString);
+              
+              // Verify save worked
+              const savedData = localStorage.getItem('patientMedicationData');
+              if (savedData) {
+                console.log('Verified data was saved to localStorage:', savedData.substring(0, 100) + '...');
+              } else {
+                console.error('Failed to verify saved data!');
+              }
+            } catch (e) {
+              console.error('Error saving patient data to localStorage:', e);
+              alert('There was an error saving your data. Please try again or contact support.');
+              return; // Don't proceed to next page if save failed
+            }
+          }
+          
+          // Also save data to sessionStorage as backup
+          try {
+            sessionStorage.setItem('patientMedicationData', JSON.stringify(patientData));
+            console.log('Patient data saved to sessionStorage as backup');
+          } catch (e) {
+            console.error('Error saving to sessionStorage:', e);
+          }
+          
+          // Create a hidden form to POST the data when redirecting (another backup method)
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = isFutureUse ? 'oral-hygiene-instruction.html' : 'medication-summary.html';
+          form.style.display = 'none';
+          
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = 'patientMedicationData';
+          input.value = JSON.stringify(patientData);
+          form.appendChild(input);
+          
+          document.body.appendChild(form);
+          
+          // Finally redirect
+          if (isFutureUse) {
+            // Option 1: form submit with data
+            form.submit();
+            
+            // Option 2: direct redirect (backup)
+            // setTimeout(() => { window.location.href = 'oral-hygiene-instruction.html'; }, 200);
+          } else {
+            // Option 1: form submit with data
+            form.submit();
+            
+            // Option 2: direct redirect (backup)
+            // setTimeout(() => { window.location.href = 'medication-summary.html'; }, 200);
+          }
+        }
+      }
+      
+      nextBtn.addEventListener('click', handleSubmit);
+      nextBtnEn.addEventListener('click', handleSubmit);
+      
+      // If there's existing medication data, pre-select the options
+      if (patientData.hasAntiresorptiveMed) {
+        // Show medication details
+        medicationDetails.style.display = 'block';
+        
+        // Check if we're in future use mode from previous state
+        const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
+        if (isFutureUse) {
+          updateLabelsForFutureUse();
+          document.querySelector('.form-group:has(.status-buttons)').style.display = 'none';
+        }
+        
+        // Select the medication card if drug name exists
+        if (patientData.drugName) {
+          const medicationCard = Array.from(medicationCards).find(
+            card => card.dataset.name === patientData.drugName
+          );
+          
+          if (medicationCard) {
+            medicationCard.classList.add('selected');
+            medicationDetailsSection.style.display = 'block';
+            updateLabelsForRoute(patientData.administrationRoute);
+          }
+          
+          // Select reason button
+          if (patientData.indication) {
+            const reasonBtn = Array.from(reasonButtons).find(
+              btn => btn.dataset.reason === patientData.indication
+            );
+            if (reasonBtn) reasonBtn.classList.add('selected');
+          }
+          
+          // Select frequency button
+          if (patientData.frequency) {
+            const frequencyBtn = Array.from(frequencyButtons).find(
+              btn => btn.dataset.frequency === patientData.frequency
+            );
+            if (frequencyBtn) frequencyBtn.classList.add('selected');
+          }
+          
+          // Set dates
+          if (patientData.startYear) document.getElementById('startYear').value = patientData.startYear;
+          if (patientData.startMonth) document.getElementById('startMonth').value = patientData.startMonth;
+          
+          // Set medication status
+          if (patientData.isStopped) {
+            const stoppedBtn = Array.from(statusButtons).find(
+              btn => btn.dataset.status === 'stopped'
+            );
+            if (stoppedBtn) {
+              stoppedBtn.classList.add('selected');
+              Array.from(statusButtons).find(btn => btn.dataset.status === 'continuing').classList.remove('selected');
+            }
+            stopDateSection.style.display = 'block';
+            
+            // Set stop dates
+            if (patientData.stopYear) document.getElementById('stopYear').value = patientData.stopYear;
+            if (patientData.stopMonth) document.getElementById('stopMonth').value = patientData.stopMonth;
+          }
+        }
       }
     });
   </script>

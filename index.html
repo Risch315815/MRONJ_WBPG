@@ -5,31 +5,235 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MRONJ風險評估 - 藥物相關性顎骨壞死</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .language-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    
+    .lang-tab {
+      padding: 10px 24px;
+      margin: 0 5px;
+      font-size: 25px;
+      border-radius: 5px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .lang-tab.active {
+      background-color: #007AFF;
+      color: white;
+    }
+    
+    .lang-tab:not(.active) {
+      background-color: #f8f9fa;
+      color: #212529;
+      border: 1px solid #dee2e6;
+    }
+    
+    .font-size-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+    
+    .font-size-btn {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      color: #212529;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .font-size-btn.active {
+      background-color: #007AFF;
+      color: white;
+      border-color: #007AFF;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 16px;
+    }
+    
+    .normal-font .introduction p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .big-font .introduction p,
+    .big-font .subtitle {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+    
+    .bigger-font .introduction p,
+    .bigger-font .subtitle {
+      font-size: 24px;
+      line-height: 2;
+    }
+    
+    .big-font h1 {
+      font-size: 32px;
+    }
+    
+    .bigger-font h1 {
+      font-size: 36px;
+    }
+    
+    .big-font .btn {
+      font-size: 20px;
+    }
+    
+    .bigger-font .btn {
+      font-size: 24px;
+    }
+    
+    .font-size-btn[data-size="normal"] {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="big"] {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="bigger"] {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container normal-font">
+    <div class="language-selector">
+      <button class="lang-tab active" data-lang="zh">中文</button>
+      <button class="lang-tab" data-lang="en">English</button>
+    </div>
+    
+    <div class="font-size-selector">
+      <button class="font-size-btn active" data-size="normal">
+        <span class="zh-text">正常</span>
+        <span class="en-text" style="display: none;">Normal</span>
+      </button>
+      <button class="font-size-btn" data-size="big">
+        <span class="zh-text">大</span>
+        <span class="en-text" style="display: none;">Big</span>
+      </button>
+      <button class="font-size-btn" data-size="bigger">
+        <span class="zh-text">特大</span>
+        <span class="en-text" style="display: none;">Bigger</span>
+      </button>
+    </div>
+    
     <header>
-      <h1>MRONJ風險評估</h1>
-      <p>藥物相關性顎骨壞死 (Medication-Related Osteonecrosis of the Jaw)</p>
+      <h1>- MRONJ風險評估 -</h1>
+      <h1>- Risk Assessment for MRONJ -</h1>
+      <p class="zh-text subtitle">藥物相關性顎骨壞死 (Medication-Related Osteonecrosis of the Jaw)</p>
+      <p class="en-text subtitle" style="display: none;">Medication-Related Osteonecrosis of the Jaw (MRONJ)</p>
     </header>
 
     <main class="home-content">
       <div class="introduction">
-        <p>本應用程式用於評估患者發生藥物相關性顎骨壞死(MRONJ)的風險。</p>
-        <p>透過收集患者的用藥史和相關病史，我們可以為牙科治療提供風險評估和建議。</p>
-        <p>在繼續之前，請確認您同意提供相關個人資訊用於風險評估。</p>
+        <p class="zh-text">本網頁是關於抗骨質吸收藥物使用者在牙科治療後發生藥物相關性顎骨壞死(MRONJ)的風險。</p>
+        <p class="en-text" style="display: none;">This webpage about risk assessment of anti-resorptive medication users developing MRONJ after dental treatment.</p>
+        
+        <p class="zh-text">透過收集患者的用藥史和相關病史，我們可以提供個人化衛生教育。</p>
+        <p class="en-text" style="display: none;">We provide personalized oral hygiene instruction based on the patient's medication history.</p>
+        
+        <p class="zh-text">請注意：本網站的風險評估結果僅供參考，應根據醫療專業人員的判斷制定治療計畫。</p>
+        <p class="en-text" style="display: none;">Please note: The risk assessment results from this website are for reference only. Treatment plans should be based on the judgment of healthcare professionals.</p>
       </div>
 
       <div class="start-button-container">
-        <a href="consent.html" class="btn btn-primary">開始評估</a>
+        <a href="consent.html" class="btn btn-primary zh-text">下一頁</a>
+        <a href="consent.html" class="btn btn-primary en-text" style="display: none;">Next Page</a>
       </div>
     </main>
 
     <footer>
-      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="zh-text">版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="en-text" style="display: none;">Version 1.0.0 | <a href="about.html">About this tool</a></p>
     </footer>
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Language selection functionality
+      const langTabs = document.querySelectorAll('.lang-tab');
+      const zhTexts = document.querySelectorAll('.zh-text');
+      const enTexts = document.querySelectorAll('.en-text');
+      
+      function setLanguage(lang) {
+        // Store the selected language preference
+        localStorage.setItem('preferredLanguage', lang);
+        
+        // Update active tab
+        langTabs.forEach(t => t.classList.remove('active'));
+        document.querySelector(`.lang-tab[data-lang="${lang}"]`).classList.add('active');
+        
+        // Show/hide elements based on language
+        if (lang === 'en') {
+          zhTexts.forEach(el => el.style.display = 'none');
+          enTexts.forEach(el => el.style.display = 'block');
+        } else {
+          zhTexts.forEach(el => el.style.display = 'block');
+          enTexts.forEach(el => el.style.display = 'none');
+        }
+      }
+      
+      langTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const lang = this.dataset.lang;
+          setLanguage(lang);
+        });
+      });
+      
+      // Set initial language based on stored preference or default to Chinese
+      const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+      setLanguage(storedLang);
+      
+      // Font size selection functionality
+      const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+      const container = document.querySelector('.container');
+      
+      // Check if a font size preference was previously set
+      const storedFontSize = localStorage.getItem('fontSize') || 'normal';
+      setFontSize(storedFontSize);
+      
+      function setFontSize(size) {
+        // Remove all font size classes
+        container.classList.remove('normal-font', 'big-font', 'bigger-font');
+        
+        // Add the selected font size class
+        container.classList.add(`${size}-font`);
+        
+        // Update active button
+        fontSizeBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.size === size) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Store preference
+        localStorage.setItem('fontSize', size);
+      }
+      
+      fontSizeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const size = this.dataset.size;
+          setFontSize(size);
+        });
+      });
+    });
+  </script>
 </body>
 </html> 

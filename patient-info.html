@@ -5,158 +5,644 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>基本資料 - MRONJ風險評估</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .font-size-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+      margin-top: 20px;
+    }
+    
+    .font-size-btn {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      color: #212529;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .font-size-btn.active {
+      background-color: #007AFF;
+      color: white;
+      border-color: #007AFF;
+    }
+    
+    .font-size-btn[data-size="normal"] {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="big"] {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .font-size-btn[data-size="bigger"] {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 16px;
+    }
+    
+    .date-row {
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    
+    .date-field {
+      margin-right: 10px;
+    }
+    
+    .date-field select {
+      min-width: 100px;
+      padding: 8px 10px;
+    }
+    
+    #birthYear, #birthYear-en {
+      min-width: 120px;
+    }
+    
+    #birthMonth, #birthMonth-en {
+      min-width: 150px;
+    }
+    
+    #birthDay, #birthDay-en {
+      min-width: 80px;
+    }
+    
+    .calculated-value {
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    
+    .normal-font .assessment-form label,
+    .normal-font .assessment-form input,
+    .normal-font .assessment-form select,
+    .normal-font .assessment-form span,
+    .normal-font .assessment-form p,
+    .normal-font .calculated-value {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .big-font .assessment-form label,
+    .big-font .assessment-form input,
+    .big-font .assessment-form select,
+    .big-font .assessment-form span,
+    .big-font .assessment-form p,
+    .big-font .subtitle,
+    .big-font .calculated-value {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+    
+    .bigger-font .assessment-form label,
+    .bigger-font .assessment-form input,
+    .bigger-font .assessment-form select,
+    .bigger-font .assessment-form span,
+    .bigger-font .assessment-form p,
+    .bigger-font .subtitle,
+    .bigger-font .calculated-value {
+      font-size: 24px;
+      line-height: 2;
+    }
+    
+    .big-font h1, .big-font h2 {
+      font-size: 32px;
+    }
+    
+    .bigger-font h1, .bigger-font h2 {
+      font-size: 36px;
+    }
+    
+    .big-font .btn {
+      font-size: 20px;
+    }
+    
+    .bigger-font .btn {
+      font-size: 24px;
+    }
+    
+    /* Adjust input field sizes for better usability */
+    .big-font input[type="text"],
+    .big-font input[type="number"] {
+      padding: 12px;
+      height: 48px;
+    }
+    
+    .bigger-font input[type="text"],
+    .bigger-font input[type="number"] {
+      padding: 15px;
+      height: 56px;
+    }
+    
+    .section-divider {
+      border-top: 1px solid #ccc;
+      margin: 30px 0;
+    }
+    
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    .info-note {
+      background-color: #f8f9fa;
+      border-left: 3px solid #007AFF;
+      padding: 10px 15px;
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #666;
+    }
+    
+    .big-font .info-note {
+      font-size: 18px;
+    }
+    
+    .bigger-font .info-note {
+      font-size: 22px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container normal-font">
+    <div class="font-size-selector">
+      <button class="font-size-btn active" data-size="normal">
+        <span class="zh-text">正常</span>
+        <span class="en-text" style="display: none;">Normal</span>
+      </button>
+      <button class="font-size-btn" data-size="big">
+        <span class="zh-text">大</span>
+        <span class="en-text" style="display: none;">Big</span>
+      </button>
+      <button class="font-size-btn" data-size="bigger">
+        <span class="zh-text">特大</span>
+        <span class="en-text" style="display: none;">Bigger</span>
+      </button>
+    </div>
+    
     <header>
-      <h1>患者基本資料</h1>
-      <p>請填寫患者的基本資料以進行風險評估</p>
+      <h1 class="zh-text">基本資料</h1>
+      <h1 class="en-text" style="display: none;">Patient Information</h1>
+      <p class="zh-text subtitle">請填寫基本資料以進行風險評估</p>
+      <p class="en-text subtitle" style="display: none;">Please fill in the patient's basic information for risk assessment</p>
     </header>
 
     <main>
       <form id="patient-info-form" class="assessment-form">
+        <!-- Section 1: Basic Information -->
+        <div class="section-title zh-text">基本資料</div>
+        <div class="section-title en-text" style="display: none;">Basic Information</div>
+        
         <div class="form-group">
-          <label for="name">姓名</label>
-          <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
+          <label for="name" class="zh-text">姓名</label>
+          <label for="name" class="en-text" style="display: none;">Name</label>
+          <input type="text" id="name" name="name" placeholder="請輸入姓名" required class="zh-text">
+          <input type="text" id="name-en" name="name" placeholder="Enter name" required class="en-text" style="display: none;">
         </div>
 
         <div class="form-group">
-          <label for="age">年齡</label>
-          <input type="number" id="age" name="age" min="1" max="120" placeholder="請輸入年齡" required>
+          <label for="birthYear" class="zh-text">生日</label>
+          <label for="birthYear" class="en-text" style="display: none;">Date of Birth</label>
+          
+          <div class="date-row">
+            <div class="date-field">
+              <select id="birthYear" name="birthYear" required class="zh-text">
+                <option value="">年</option>
+              </select>
+              <select id="birthYear-en" name="birthYear" required class="en-text" style="display: none;">
+                <option value="">Year</option>
+              </select>
+            </div>
+            
+            <div class="date-field">
+              <select id="birthMonth" name="birthMonth" required class="zh-text">
+                <option value="">月</option>
+                <option value="1">1月</option>
+                <option value="2">2月</option>
+                <option value="3">3月</option>
+                <option value="4">4月</option>
+                <option value="5">5月</option>
+                <option value="6">6月</option>
+                <option value="7">7月</option>
+                <option value="8">8月</option>
+                <option value="9">9月</option>
+                <option value="10">10月</option>
+                <option value="11">11月</option>
+                <option value="12">12月</option>
+              </select>
+              <select id="birthMonth-en" name="birthMonth" required class="en-text" style="display: none;">
+                <option value="">Month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+            
+            <div class="date-field">
+              <select id="birthDay" name="birthDay" required class="zh-text">
+                <option value="">日</option>
+              </select>
+              <select id="birthDay-en" name="birthDay" required class="en-text" style="display: none;">
+                <option value="">Day</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="zh-text">年齡</label>
+          <label class="en-text" style="display: none;">Age</label>
+          <div id="calculatedAge" class="calculated-value zh-text">--</div>
+          <div id="calculatedAge-en" class="calculated-value en-text" style="display: none;">--</div>
         </div>
 
         <div class="form-group">
-          <label>性別</label>
+          <label class="zh-text">性別</label>
+          <label class="en-text" style="display: none;">Gender</label>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="gender" value="male" required>
-              <span>男</span>
+              <span class="zh-text">男</span>
+              <span class="en-text" style="display: none;">Male</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="gender" value="female">
-              <span>女</span>
+              <span class="zh-text">女</span>
+              <span class="en-text" style="display: none;">Female</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="gender" value="other">
-              <span>其他</span>
+              <span class="zh-text">其他</span>
+              <span class="en-text" style="display: none;">Other</span>
             </label>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="height">身高 (cm)</label>
-          <input type="number" id="height" name="height" min="50" max="250" placeholder="請輸入身高" required>
+          <label for="height" class="zh-text">身高 (cm)</label>
+          <label for="height" class="en-text" style="display: none;">Height (cm)</label>
+          <select id="height" name="height" required class="zh-text">
+            <option value="">請選擇身高</option>
+          </select>
+          <select id="height-en" name="height" required class="en-text" style="display: none;">
+            <option value="">Select Height</option>
+          </select>
         </div>
 
         <div class="form-group">
-          <label for="weight">體重 (kg)</label>
-          <input type="number" id="weight" name="weight" min="1" max="500" placeholder="請輸入體重" required>
+          <label for="weight" class="zh-text">體重 (kg)</label>
+          <label for="weight" class="en-text" style="display: none;">Weight (kg)</label>
+          <select id="weight" name="weight" required class="zh-text">
+            <option value="">請選擇體重</option>
+          </select>
+          <select id="weight-en" name="weight" required class="en-text" style="display: none;">
+            <option value="">Select Weight</option>
+          </select>
         </div>
-
+        
+        <div class="section-divider"></div>
+        
+        <!-- Section 2: Cancer and Radiotherapy History -->
+        <div class="section-title zh-text">癌症和放射治療史</div>
+        <div class="section-title en-text" style="display: none;">Cancer and Radiotherapy History</div>
+        
         <div class="form-group">
-          <label>是否罹患癌症？</label>
+          <label class="zh-text">是否罹患癌症？</label>
+          <label class="en-text" style="display: none;">Has the patient been diagnosed with cancer?</label>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="hasCancer" value="yes" required>
-              <span>是</span>
+              <span class="zh-text">是</span>
+              <span class="en-text" style="display: none;">Yes</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="hasCancer" value="no">
-              <span>否</span>
+              <span class="zh-text">否</span>
+              <span class="en-text" style="display: none;">No</span>
             </label>
           </div>
         </div>
 
         <div class="form-group">
-          <label>是否曾接受頭頸部放射治療？</label>
+          <label class="zh-text">是否曾接受頭頸部放射治療？</label>
+          <label class="en-text" style="display: none;">Has the patient received head and neck radiotherapy?</label>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="hasRadiotherapy" value="yes" required>
-              <span>是</span>
+              <span class="zh-text">是</span>
+              <span class="en-text" style="display: none;">Yes</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="hasRadiotherapy" value="no">
-              <span>否</span>
+              <span class="zh-text">否</span>
+              <span class="en-text" style="display: none;">No</span>
             </label>
           </div>
+          <div class="info-note zh-text">備註：若患者曾罹患癌症或接受頭頸部放射治療，顎骨壞死可能由不同於MRONJ的機制所導致，且風險較高，評估方式將有所不同。此資訊將在評估結果中提供。</div>
+          <div class="info-note en-text" style="display: none;">Note: If the patient has had cancer or received head and neck radiotherapy, osteonecrosis of the jaw may occur through different mechanisms than MRONJ, with a higher risk. The assessment approach will be different. This information will be provided in the assessment results.</div>
         </div>
-
+        
+        <div class="section-divider"></div>
+        
+        <!-- Section 3: Systemic Diseases -->
+        <div class="section-title zh-text">系統性疾病</div>
+        <div class="section-title en-text" style="display: none;">Systemic Diseases</div>
+        
         <div class="form-group">
-          <label>請勾選患者的系統性疾病（可複選）</label>
+          <label class="zh-text">請勾選患者的系統性疾病（可複選）</label>
+          <label class="en-text" style="display: none;">Please check the patient's systemic diseases (multiple selection allowed)</label>
           <div class="checkbox-group">
             <label class="checkbox-option">
               <input type="checkbox" name="systemicDiseases" value="糖尿病">
-              <span>糖尿病</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="systemicDiseases" value="高血壓">
-              <span>高血壓</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="systemicDiseases" value="心臟病">
-              <span>心臟病</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="systemicDiseases" value="類風濕性關節炎">
-              <span>類風濕性關節炎</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="systemicDiseases" value="洗腎">
-              <span>洗腎</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="systemicDiseases" value="貧血">
-              <span>貧血</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="systemicDiseases" value="免疫系統疾病">
-              <span>免疫系統疾病</span>
+              <span class="zh-text">控制不佳之糖尿病 (HbA1c > 7%)</span>
+              <span class="en-text" style="display: none;">Uncontrolled Diabetes (HbA1c > 7%)</span>
             </label>
             <label class="checkbox-option">
               <input type="checkbox" name="systemicDiseases" value="抽菸">
-              <span>抽菸</span>
+              <span class="zh-text">大量抽菸 (每天超過10支菸)</span>
+              <span class="en-text" style="display: none;">Heavy Smoking (more than 10 Cigarettes per Day)</span>
             </label>
             <label class="checkbox-option">
-              <input type="checkbox" name="systemicDiseases" value="長期使用類固醇">
-              <span>長期使用類固醇</span>
+              <input type="checkbox" name="systemicDiseases" value="口腔問題">
+              <span class="zh-text">有牙周病或自發性牙痛</span>
+              <span class="en-text" style="display: none;">Periodontal Disease or Spontaneous Tooth Pain</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="貧血">
+              <span class="zh-text">貧血 (血色素 < 10 g/dL)</span>
+              <span class="en-text" style="display: none;">Anemia (Hemoglobin < 10 g/dL)</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="洗腎">
+              <span class="zh-text">洗腎</span>
+              <span class="en-text" style="display: none;">Hemodialysis</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" name="systemicDiseases" value="免疫系統疾病">
+              <span class="zh-text">長期使用類固醇</span>
+              <span class="en-text" style="display: none;">Long-term Steroid Use</span>
             </label>
             <label class="checkbox-option">
               <input type="checkbox" name="systemicDiseases" value="凝血功能異常">
-              <span>凝血功能異常</span>
+              <span class="zh-text">凝血功能異常/使用抗凝血劑(如:保栓通)</span>
+              <span class="en-text" style="display: none;">Coagulation Disorder/Anticoagulant Use (e.g., Plavix®)</span>
             </label>
           </div>
         </div>
 
         <div class="form-navigation">
-          <a href="consent.html" class="btn btn-secondary">上一步</a>
-          <button type="button" id="next-btn" class="btn btn-primary">下一步</button>
+          <a href="consent.html" class="btn btn-secondary zh-text">上一步</a>
+          <a href="consent.html" class="btn btn-secondary en-text" style="display: none;">Back</a>
+          <button type="button" id="next-btn" class="btn btn-primary zh-text">下一步</button>
+          <button type="button" id="next-btn-en" class="btn btn-primary en-text" style="display: none;">Next</button>
         </div>
       </form>
     </main>
 
     <footer>
-      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="zh-text">版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+      <p class="en-text" style="display: none;">Version 1.0.0 | <a href="about.html">About this tool</a></p>
     </footer>
   </div>
 
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Language display functionality
+      const zhTexts = document.querySelectorAll('.zh-text');
+      const enTexts = document.querySelectorAll('.en-text');
+      
+      function applyLanguagePreference() {
+        // Get stored language preference
+        const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+        
+        // Show/hide elements based on language
+        if (storedLang === 'en') {
+          zhTexts.forEach(el => el.style.display = 'none');
+          enTexts.forEach(el => el.style.display = 'block');
+        } else {
+          zhTexts.forEach(el => el.style.display = 'block');
+          enTexts.forEach(el => el.style.display = 'none');
+        }
+      }
+      
+      // Apply language preference when page loads
+      applyLanguagePreference();
+      
+      // Populate birth year dropdowns
+      const currentYear = new Date().getFullYear();
+      const birthYearSelect = document.getElementById('birthYear');
+      const birthYearSelectEn = document.getElementById('birthYear-en');
+      
+      // Add options for the last 120 years
+      for (let year = currentYear; year >= currentYear - 120; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        birthYearSelect.appendChild(option);
+        
+        const optionEn = document.createElement('option');
+        optionEn.value = year;
+        optionEn.textContent = year;
+        birthYearSelectEn.appendChild(optionEn);
+      }
+      
+      // Function to update days based on month and year
+      function updateDays() {
+        const year = parseInt(document.getElementById('birthYear').value) || parseInt(document.getElementById('birthYear-en').value) || new Date().getFullYear();
+        const month = parseInt(document.getElementById('birthMonth').value) || parseInt(document.getElementById('birthMonth-en').value) || 1;
+        
+        const birthDaySelect = document.getElementById('birthDay');
+        const birthDaySelectEn = document.getElementById('birthDay-en');
+        
+        // Clear existing options except the placeholder
+        while (birthDaySelect.options.length > 1) {
+          birthDaySelect.remove(1);
+        }
+        while (birthDaySelectEn.options.length > 1) {
+          birthDaySelectEn.remove(1);
+        }
+        
+        // Calculate days in the selected month
+        const daysInMonth = new Date(year, month, 0).getDate();
+        
+        // Add day options
+        for (let day = 1; day <= daysInMonth; day++) {
+          const option = document.createElement('option');
+          option.value = day;
+          option.textContent = day;
+          birthDaySelect.appendChild(option);
+          
+          const optionEn = document.createElement('option');
+          optionEn.value = day;
+          optionEn.textContent = day;
+          birthDaySelectEn.appendChild(optionEn);
+        }
+        
+        // Calculate and display age
+        calculateAge();
+      }
+      
+      // Add event listeners to update days when month or year changes
+      document.getElementById('birthYear').addEventListener('change', updateDays);
+      document.getElementById('birthYear-en').addEventListener('change', updateDays);
+      document.getElementById('birthMonth').addEventListener('change', updateDays);
+      document.getElementById('birthMonth-en').addEventListener('change', updateDays);
+      
+      // Function to calculate age based on birth date
+      function calculateAge() {
+        const birthYear = parseInt(document.getElementById('birthYear').value) || parseInt(document.getElementById('birthYear-en').value);
+        const birthMonth = parseInt(document.getElementById('birthMonth').value) || parseInt(document.getElementById('birthMonth-en').value);
+        const birthDay = parseInt(document.getElementById('birthDay').value) || parseInt(document.getElementById('birthDay-en').value);
+        
+        // Only calculate if all values are selected
+        if (birthYear && birthMonth && birthDay) {
+          const today = new Date();
+          const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+          
+          let age = today.getFullYear() - birthDate.getFullYear();
+          const monthDiff = today.getMonth() - birthDate.getMonth();
+          
+          // Adjust age if birthday hasn't occurred yet this year
+          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+          
+          // Display the calculated age
+          document.getElementById('calculatedAge').textContent = age + ' 歲';
+          document.getElementById('calculatedAge-en').textContent = age + ' years old';
+        } else {
+          // Reset if incomplete
+          document.getElementById('calculatedAge').textContent = '--';
+          document.getElementById('calculatedAge-en').textContent = '--';
+        }
+      }
+      
+      // Add event listeners to calculate age when birth date changes
+      document.getElementById('birthDay').addEventListener('change', calculateAge);
+      document.getElementById('birthDay-en').addEventListener('change', calculateAge);
+      
+      // Populate height dropdown (140cm to 220cm)
+      const heightSelect = document.getElementById('height');
+      const heightSelectEn = document.getElementById('height-en');
+      
+      for (let height = 140; height <= 220; height++) {
+        const option = document.createElement('option');
+        option.value = height;
+        option.textContent = height + ' cm';
+        heightSelect.appendChild(option);
+        
+        const optionEn = document.createElement('option');
+        optionEn.value = height;
+        optionEn.textContent = height + ' cm';
+        heightSelectEn.appendChild(optionEn);
+      }
+      
+      // Populate weight dropdown (30kg to 150kg)
+      const weightSelect = document.getElementById('weight');
+      const weightSelectEn = document.getElementById('weight-en');
+      
+      for (let weight = 30; weight <= 150; weight++) {
+        const option = document.createElement('option');
+        option.value = weight;
+        option.textContent = weight + ' kg';
+        weightSelect.appendChild(option);
+        
+        const optionEn = document.createElement('option');
+        optionEn.value = weight;
+        optionEn.textContent = weight + ' kg';
+        weightSelectEn.appendChild(optionEn);
+      }
+      
+      // Initialize days dropdown
+      updateDays();
+      
+      // Font size selection functionality
+      const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+      const container = document.querySelector('.container');
+      
+      function setFontSize(size) {
+        // Remove all font size classes
+        container.classList.remove('normal-font', 'big-font', 'bigger-font');
+        
+        // Add the selected font size class
+        container.classList.add(`${size}-font`);
+        
+        // Update active button
+        fontSizeBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.size === size) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Store preference
+        localStorage.setItem('fontSize', size);
+        
+        // Ensure language display is maintained
+        applyLanguagePreference();
+      }
+      
+      fontSizeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const size = this.dataset.size;
+          setFontSize(size);
+        });
+      });
+      
+      // Set initial font size based on stored preferences
+      const storedFontSize = localStorage.getItem('fontSize') || 'normal';
+      setFontSize(storedFontSize);
+      
+      // Original form handling code
       const nextBtn = document.getElementById('next-btn');
+      const nextBtnEn = document.getElementById('next-btn-en');
       const form = document.getElementById('patient-info-form');
       
-      nextBtn.addEventListener('click', function() {
+      function handleNextClick() {
         if (validateForm(form)) {
           savePatientInfo();
           window.location.href = 'medication-history.html';
         }
-      });
+      }
+      
+      nextBtn.addEventListener('click', handleNextClick);
+      nextBtnEn.addEventListener('click', handleNextClick);
       
       function validateForm(form) {
         const requiredInputs = form.querySelectorAll('[required]');
         let isValid = true;
+        const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+        
+        // Clear previous error messages
+        const errorMessages = form.querySelectorAll('.error-message');
+        errorMessages.forEach(msg => msg.remove());
         
         requiredInputs.forEach(input => {
+          // Skip if the input is not visible due to language settings
+          if (input.classList.contains('zh-text') && storedLang === 'en') return;
+          if (input.classList.contains('en-text') && storedLang === 'zh') return;
+          
           if (input.type === 'radio') {
             const name = input.name;
             if (!form.querySelector(`input[name="${name}"]:checked`)) {
@@ -170,15 +656,12 @@
               if (label) {
                 label.classList.add('invalid');
                 // Add error message if not exists
-                let errorSpan = label.nextElementSibling;
-                if (!errorSpan || !errorSpan.classList.contains('error-message')) {
-                  errorSpan = document.createElement('span');
-                  errorSpan.classList.add('error-message');
-                  errorSpan.style.color = 'red';
-                  errorSpan.style.fontSize = '14px';
-                  errorSpan.textContent = '請選擇一個選項';
-                  label.parentNode.insertBefore(errorSpan, label.nextSibling);
-                }
+                let errorSpan = document.createElement('span');
+                errorSpan.classList.add('error-message');
+                errorSpan.style.color = 'red';
+                errorSpan.style.fontSize = '14px';
+                errorSpan.textContent = storedLang === 'en' ? 'Please select an option' : '請選擇一個選項';
+                label.parentNode.insertBefore(errorSpan, label.nextSibling);
               }
             }
           } else if (!input.value.trim()) {
@@ -186,23 +669,14 @@
             input.classList.add('invalid');
             
             // Add error message if not exists
-            let errorSpan = input.nextElementSibling;
-            if (!errorSpan || !errorSpan.classList.contains('error-message')) {
-              errorSpan = document.createElement('span');
-              errorSpan.classList.add('error-message');
-              errorSpan.style.color = 'red';
-              errorSpan.style.fontSize = '14px';
-              errorSpan.textContent = '此欄位必填';
-              input.parentNode.insertBefore(errorSpan, input.nextSibling);
-            }
+            let errorSpan = document.createElement('span');
+            errorSpan.classList.add('error-message');
+            errorSpan.style.color = 'red';
+            errorSpan.style.fontSize = '14px';
+            errorSpan.textContent = storedLang === 'en' ? 'This field is required' : '此欄位必填';
+            input.parentNode.insertBefore(errorSpan, input.nextSibling);
           } else {
             input.classList.remove('invalid');
-            
-            // Remove error message if exists
-            let errorSpan = input.nextElementSibling;
-            if (errorSpan && errorSpan.classList.contains('error-message')) {
-              errorSpan.remove();
-            }
           }
         });
         
@@ -210,28 +684,59 @@
       }
       
       function savePatientInfo() {
-        // Get form data
-        const formData = new FormData(form);
+        // Get form data for visible elements only
+        const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+        patientData.systemicDiseases = []; // Reset to avoid duplicates
         
-        // Update patientData object
-        for (const [key, value] of formData.entries()) {
-          if (key === 'systemicDiseases') {
-            if (!patientData[key]) {
-              patientData[key] = [];
-            }
-            if (!patientData[key].includes(value)) {
-              patientData[key].push(value);
-            }
-          } else {
-            patientData[key] = value;
-          }
+        // Handle name field (use the visible one based on language)
+        if (storedLang === 'en') {
+          patientData.name = document.getElementById('name-en').value;
+        } else {
+          patientData.name = document.getElementById('name').value;
         }
         
-        // Handle radio buttons special cases
+        // Handle birth date fields
+        patientData.birthYear = document.getElementById('birthYear').value || document.getElementById('birthYear-en').value;
+        patientData.birthMonth = document.getElementById('birthMonth').value || document.getElementById('birthMonth-en').value;
+        patientData.birthDay = document.getElementById('birthDay').value || document.getElementById('birthDay-en').value;
+        
+        // Store calculated age
+        const calculatedAgeText = storedLang === 'en' ? 
+          document.getElementById('calculatedAge-en').textContent : 
+          document.getElementById('calculatedAge').textContent;
+        patientData.age = parseInt(calculatedAgeText) || '';
+        
+        // Handle height field
+        patientData.height = document.getElementById('height').value || document.getElementById('height-en').value;
+        
+        // Handle weight field
+        patientData.weight = document.getElementById('weight').value || document.getElementById('weight-en').value;
+        
+        // Handle radio buttons and checkboxes
+        patientData.gender = form.querySelector('input[name="gender"]:checked').value;
         patientData.hasCancer = form.querySelector('input[name="hasCancer"]:checked').value === 'yes';
         patientData.hasRadiotherapy = form.querySelector('input[name="hasRadiotherapy"]:checked').value === 'yes';
         
+        // Handle systemic diseases checkboxes
+        const checkedDiseases = form.querySelectorAll('input[name="systemicDiseases"]:checked');
+        checkedDiseases.forEach(checkbox => {
+          // Find the matching text span based on the current language
+          const textSpan = checkbox.nextElementSibling.classList.contains(storedLang === 'en' ? 'en-text' : 'zh-text') 
+            ? checkbox.nextElementSibling 
+            : checkbox.nextElementSibling.nextElementSibling;
+          
+          patientData.systemicDiseases.push(textSpan.textContent);
+        });
+        
         console.log('Patient info saved:', patientData);
+        
+        // Save complete patient information to localStorage
+        try {
+          localStorage.setItem('patientData', JSON.stringify(patientData));
+          console.log('Patient data saved to localStorage:', JSON.stringify(patientData, null, 2));
+        } catch (e) {
+          console.error('Error saving patient data to localStorage:', e);
+        }
       }
     });
   </script>
