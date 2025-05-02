@@ -327,7 +327,7 @@
         <div class="section-title en-text" style="display: none;">Cancer and Radiotherapy History</div>
         
         <div class="form-group">
-          <label class="zh-text">是否罹患癌症？</label>
+          <label class="zh-text">癌症是否轉移至顎骨？</label>
           <label class="en-text" style="display: none;">Has the patient been diagnosed with cancer?</label>
           <div class="radio-group">
             <label class="radio-option">
@@ -358,8 +358,6 @@
               <span class="en-text" style="display: none;">No</span>
             </label>
           </div>
-          <div class="info-note zh-text">備註：若患者曾罹患癌症或接受頭頸部放射治療，顎骨壞死可能由不同於MRONJ的機制所導致，且風險較高，評估方式將有所不同。此資訊將在評估結果中提供。</div>
-          <div class="info-note en-text" style="display: none;">Note: If the patient has had cancer or received head and neck radiotherapy, osteonecrosis of the jaw may occur through different mechanisms than MRONJ, with a higher risk. The assessment approach will be different. This information will be provided in the assessment results.</div>
         </div>
         
         <div class="section-divider"></div>
@@ -622,7 +620,17 @@
       function handleNextClick() {
         if (validateForm(form)) {
           savePatientInfo();
-          window.location.href = 'medication-history.html';
+          
+          // Check if patient has cancer or radiotherapy
+          const hasCancer = form.querySelector('input[name="hasCancer"]:checked').value === 'yes';
+          const hasRadiotherapy = form.querySelector('input[name="hasRadiotherapy"]:checked').value === 'yes';
+          
+          // Redirect based on conditions
+          if (hasCancer || hasRadiotherapy) {
+            window.location.href = 'special-case.html';
+          } else {
+            window.location.href = 'medication-history.html';
+          }
         }
       }
       

@@ -108,8 +108,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Add clear data button if it doesn't exist
-  if (!document.getElementById('clear-data-btn')) {
+  // Add clear data button if it doesn't exist and we're not on excluded pages
+  if (!document.getElementById('clear-data-btn') && 
+      !window.location.pathname.includes('risk-assessment') &&
+      !window.location.pathname.includes('index') &&
+      !window.location.pathname.includes('consent')) {
     const clearButton = document.createElement('button');
     clearButton.id = 'clear-data-btn';
     clearButton.className = 'btn btn-danger';
