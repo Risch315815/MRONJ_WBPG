@@ -5,12 +5,168 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>風險評估結果 - MRONJ風險評估</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    @media print {
+      body {
+        padding: 20px;
+        font-family: "Microsoft JhengHei", sans-serif;
+      }
+      
+      .no-print {
+        display: none !important;
+      }
+      
+      .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .assessment-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+      }
+      
+      .risk-badge {
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-weight: bold;
+      }
+      
+      .risk-badge.high-risk {
+        background-color: #FF3B30 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .risk-badge.medium-risk {
+        background-color: #FF9500 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .risk-badge.low-risk {
+        background-color: #34C759 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .summary-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      
+      .summary-item {
+        margin-bottom: 10px;
+      }
+      
+      .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+      .page-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+      }
+      
+      .disclaimer {
+        margin-top: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 12px;
+        page-break-inside: avoid;
+      }
+    }
+    
+    .assessment-card {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .risk-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 15px;
+      color: white;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    
+    .risk-badge.high-risk {
+      background-color: #FF3B30;
+    }
+    
+    .risk-badge.medium-risk {
+      background-color: #FF9500;
+    }
+    
+    .risk-badge.low-risk {
+      background-color: #34C759;
+    }
+    
+    .summary-section {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .summary-item {
+      margin-bottom: 10px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 12px 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      min-width: 150px;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .btn-primary {
+      background-color: #007AFF;
+      color: white;
+    }
+    
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>風險評估結果</h1>
+    <header class="page-header">
+      <h1>MRONJ風險評估結果</h1>
       <p>根據提供的資訊，以下是不同牙科治療的MRONJ風險評估</p>
+      <p class="evaluation-date">評估日期：<span id="current-date"></span></p>
     </header>
 
     <main>
@@ -24,20 +180,31 @@
         <div class="loading">計算風險中...</div>
       </div>
 
-      <div class="action-buttons">
+      <div class="disclaimer">
+        <p><strong>免責聲明：</strong></p>
+        <p>本評估結果僅供參考，不構成醫療建議。最終治療決策應由醫療專業人員與患者共同討論後決定。</p>
+        <p>評估內容依據：AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>
+      </div>
+
+      <div class="action-buttons no-print">
         <button id="print-btn" class="btn btn-primary">列印評估報告</button>
         <a href="index.html" class="btn btn-secondary">返回首頁</a>
       </div>
     </main>
 
-    <footer>
-      <p>版本 1.0.0 | <a href="about.html">關於此工具</a></p>
+    <footer class="page-footer">
+      <p>MRONJ風險評估工具 | 版本 1.0.0</p>
     </footer>
   </div>
 
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Set current date
+      const today = new Date();
+      const formattedDate = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;
+      document.getElementById('current-date').textContent = formattedDate;
+      
       // Check if patient data exists
       if (!patientData || !patientData.name) {
         alert('無法取得患者資料，請從頭開始填寫評估表');
@@ -145,14 +312,6 @@
         
         resultsContainer.appendChild(card);
       });
-      
-      // Add disclaimer
-      const disclaimer = document.createElement('div');
-      disclaimer.className = 'disclaimer';
-      disclaimer.innerHTML = `
-        <p><strong>免責聲明:</strong> 本評估僅供參考，不構成醫療建議或替代專業醫療評估。最終治療決策應由醫療專業人員與患者共同決定。</p>
-      `;
-      resultsContainer.appendChild(disclaimer);
     }
   </script>
 </body>
