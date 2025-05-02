@@ -203,6 +203,13 @@
     </header>
 
     <main class="page-content">
+      <!-- Add patient info section -->
+      <div id="patient-info-section" class="instruction-section" style="margin-bottom: 30px;">
+        <h2 class="zh-text">病患資料</h2>
+        <h2 class="en-text" style="display: none;">Patient Information</h2>
+        <div id="patient-details"></div>
+      </div>
+
       <div class="instruction-section">
         <h2 class="zh-text">拔除不可修復的牙齒</h2>
         <h2 class="en-text" style="display: none;">Extraction of Non-Restorable Teeth</h2>
@@ -388,31 +395,16 @@
       const storedFontSize = localStorage.getItem('fontSize') || 'normal';
       setFontSize(storedFontSize);
 
-      // PDF generation functionality
-      function generatePDF() {
-        // Create a new div for PDF content
-        const pdfContent = document.createElement('div');
-        pdfContent.style.padding = '20px';
-        pdfContent.style.maxWidth = '800px';
-        pdfContent.style.margin = '0 auto';
-        
-        // Add patient information section
-        const patientInfo = document.createElement('div');
-        patientInfo.style.marginBottom = '30px';
-        patientInfo.style.padding = '15px';
-        patientInfo.style.backgroundColor = '#f8f9fa';
-        patientInfo.style.borderRadius = '10px';
-        
+      // Display patient information on page load
+      function displayPatientInfo() {
+        const patientDetails = document.getElementById('patient-details');
         const today = new Date();
         const dateStr = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;
-        
-        // Get stored language preference
         const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
         
         let patientHTML = '';
         if (storedLang === 'zh') {
           patientHTML = `
-            <h2 style="margin-bottom: 15px;">病患資料</h2>
             <p><strong>評估日期：</strong>${dateStr}</p>
             <p><strong>姓名：</strong>${patientData.name || '--'}</p>
             <p><strong>年齡：</strong>${patientData.age || '--'} 歲</p>
@@ -429,7 +421,6 @@
           }
         } else {
           patientHTML = `
-            <h2 style="margin-bottom: 15px;">Patient Information</h2>
             <p><strong>Assessment Date: </strong>${dateStr}</p>
             <p><strong>Name: </strong>${patientData.name || '--'}</p>
             <p><strong>Age: </strong>${patientData.age || '--'} years old</p>
@@ -446,14 +437,16 @@
           }
         }
         
-        patientInfo.innerHTML = patientHTML;
-        
-        // Add the existing content
+        patientDetails.innerHTML = patientHTML;
+      }
+
+      // Call displayPatientInfo on page load
+      displayPatientInfo();
+
+      // PDF generation functionality
+      function generatePDF() {
+        // Get the entire page content including patient info
         const content = document.querySelector('.page-content').cloneNode(true);
-        
-        // Combine everything
-        pdfContent.appendChild(patientInfo);
-        pdfContent.appendChild(content);
         
         // Configure PDF options
         const opt = {
@@ -465,7 +458,7 @@
         };
 
         // Generate PDF
-        html2pdf().set(opt).from(pdfContent).save().then(function() {
+        html2pdf().set(opt).from(content).save().then(function() {
           // After PDF is generated, redirect to risk assessment page
           window.location.href = 'risk-assessment.html';
         });
@@ -474,6 +467,20 @@
       // Add click event listeners to the save buttons
       document.getElementById('save-pdf-btn').addEventListener('click', generatePDF);
       document.getElementById('save-pdf-btn-en').addEventListener('click', generatePDF);
+
+      // Update patient info when language changes
+      const languageObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.attributeName === 'style') {
+            displayPatientInfo();
+          }
+        });
+      });
+
+      // Observe language changes
+      document.querySelectorAll('.zh-text, .en-text').forEach(function(element) {
+        languageObserver.observe(element, { attributes: true });
+      });
     });
   </script>
 </body>
