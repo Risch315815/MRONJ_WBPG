@@ -33,49 +33,6 @@ let patientData = {
   medications: []
 };
 
-// Function to clear all stored patient data
-function clearAllPatientData() {
-  // Clear localStorage
-  localStorage.removeItem('patientData');
-  localStorage.removeItem('patientMedicationData');
-  
-  // Clear sessionStorage
-  sessionStorage.removeItem('patientMedicationData');
-  
-  // Reset patientData object
-  patientData = {
-    name: '',
-    birthYear: '',
-    birthMonth: '',
-    birthDay: '',
-    age: '',
-    gender: '',
-    height: '',
-    weight: '',
-    hasCancer: false,
-    hasRadiotherapy: false,
-    systemicDiseases: [],
-    hasAntiresorptiveMed: false,
-    medicationType: '',
-    medicationSubType: '',
-    drugName: '',
-    administrationRoute: '',
-    indication: '',
-    startYear: '',
-    startMonth: '',
-    frequency: '',
-    isStopped: false,
-    stopYear: '',
-    stopMonth: '',
-    medications: []
-  };
-  
-  console.log('All patient data has been cleared');
-  
-  // Reload the page to reflect the changes
-  window.location.reload();
-}
-
 // Initialize the application when DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Check if there's stored patient data in localStorage
@@ -106,33 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (e) {
       console.error('Error loading stored medication data:', e);
     }
-  }
-  
-  // Add clear data button if it doesn't exist
-  if (!document.getElementById('clear-data-btn')) {
-    const clearButton = document.createElement('button');
-    clearButton.id = 'clear-data-btn';
-    clearButton.className = 'btn btn-danger';
-    clearButton.style.position = 'fixed';
-    clearButton.style.bottom = '20px';
-    clearButton.style.right = '20px';
-    clearButton.style.zIndex = '1000';
-    clearButton.onclick = clearAllPatientData;
-    
-    // Add text in both languages
-    const zhText = document.createElement('span');
-    zhText.className = 'zh-text';
-    zhText.textContent = '清除所有資料';
-    
-    const enText = document.createElement('span');
-    enText.className = 'en-text';
-    enText.textContent = 'Clear All Data';
-    enText.style.display = 'none';
-    
-    clearButton.appendChild(zhText);
-    clearButton.appendChild(enText);
-    
-    document.body.appendChild(clearButton);
   }
 
   // Initialize any components that need setup

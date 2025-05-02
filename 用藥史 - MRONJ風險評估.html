@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
+<html lang="zh-TW"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>用藥史 - MRONJ風險評估</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="%E7%94%A8%E8%97%A5%E5%8F%B2%20-%20MRONJ%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0_files/style.css">
   <style>
     .font-size-selector {
       display: flex;
@@ -295,74 +295,74 @@
   <div class="container normal-font">
     <div class="font-size-selector">
       <button class="font-size-btn active" data-size="normal">
-        <span class="zh-text">正常</span>
+        <span class="zh-text" style="display: block;">正常</span>
         <span class="en-text" style="display: none;">Normal</span>
       </button>
       <button class="font-size-btn" data-size="big">
-        <span class="zh-text">大</span>
+        <span class="zh-text" style="display: block;">大</span>
         <span class="en-text" style="display: none;">Big</span>
       </button>
       <button class="font-size-btn" data-size="bigger">
-        <span class="zh-text">特大</span>
+        <span class="zh-text" style="display: block;">特大</span>
         <span class="en-text" style="display: none;">Bigger</span>
       </button>
     </div>
     
     <header>
-      <h1 class="zh-text">藥物使用史</h1>
+      <h1 class="zh-text" style="display: block;">藥物使用史</h1>
       <h1 class="en-text" style="display: none;">Medication History</h1>
-      <p class="zh-text subtitle">請提供患者的抗骨吸收藥物或抗血管新生藥物使用情況</p>
+      <p class="zh-text subtitle" style="display: block;">請提供患者的抗骨吸收藥物或抗血管新生藥物使用情況</p>
       <p class="en-text subtitle" style="display: none;">Please provide information about the patient's use of antiresorptive or antiangiogenic medications</p>
     </header>
 
     <main>
       <form id="medication-form" class="assessment-form">
         <div class="form-group">
-          <label class="zh-text">患者是否曾使用抗骨吸收藥物或抗血管新生藥物？</label>
+          <label class="zh-text" style="display: block;">患者是否曾使用抗骨吸收藥物或抗血管新生藥物？</label>
           <label class="en-text" style="display: none;">Has the patient ever used antiresorptive or antiangiogenic medications?</label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="hasAntiresorptiveMed" value="current" required>
-              <span class="zh-text">曾經使用 或 正在使用</span>
+              <input type="radio" name="hasAntiresorptiveMed" value="current" required="" checked="checked">
+              <span class="zh-text" style="display: block;">曾經使用 或 正在使用</span>
               <span class="en-text" style="display: none;">Previously used or currently using</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="hasAntiresorptiveMed" value="future">
-              <span class="zh-text">即將開始使用</span>
+              <span class="zh-text" style="display: block;">即將開始使用</span>
               <span class="en-text" style="display: none;">Will begin using soon</span>
             </label>
           </div>
         </div>
 
-        <div id="medication-details" style="display: none;">
+        <div id="medication-details" style="display: block;">
           <!-- New medication selection with grid layout -->
           <div class="form-group">
-            <label class="zh-text">請選擇使用的藥物</label>
+            <label class="zh-text" style="display: block;">請選擇使用的藥物</label>
             <label class="en-text" style="display: none;">Please select the medication used</label>
             
             <!-- Bisphosphonates Group -->
             <div class="medication-group">
-              <h3 class="zh-text">雙磷酸鹽類藥物</h3>
+              <h3 class="zh-text" style="display: block;">雙磷酸鹽類藥物</h3>
               <h3 class="en-text" style="display: none;">Bisphosphonate Medications</h3>
               <div class="medications-grid">
                 <div class="medication-card" data-name="Alendronate (Fosamax)" data-route="口服">
                   <h4>Alendronate (Fosamax)</h4>
-                  <span class="zh-text route-badge">口服</span>
+                  <span class="zh-text route-badge" style="display: block;">口服</span>
                   <span class="en-text route-badge" style="display: none;">Oral</span>
                 </div>
                 <div class="medication-card" data-name="Risedronate (Actonel)" data-route="口服">
                   <h4>Risedronate (Actonel)</h4>
-                  <span class="zh-text route-badge">口服</span>
+                  <span class="zh-text route-badge" style="display: block;">口服</span>
                   <span class="en-text route-badge" style="display: none;">Oral</span>
                 </div>
                 <div class="medication-card" data-name="Ibandronate (Boniva)" data-route="注射">
                   <h4>Ibandronate (Boniva)</h4>
-                  <span class="zh-text route-badge">注射</span>
+                  <span class="zh-text route-badge" style="display: block;">注射</span>
                   <span class="en-text route-badge" style="display: none;">Injection</span>
                 </div>
                 <div class="medication-card" data-name="Zoledronate (Zometa, Reclast)" data-route="注射">
                   <h4>Zoledronate (Zometa, Reclast)</h4>
-                  <span class="zh-text route-badge">注射</span>
+                  <span class="zh-text route-badge" style="display: block;">注射</span>
                   <span class="en-text route-badge" style="display: none;">Injection</span>
                 </div>
               </div>
@@ -370,12 +370,12 @@
             
             <!-- Monoclonal Antibodies Group -->
             <div class="medication-group">
-              <h3 class="zh-text">單株抗體藥物</h3>
+              <h3 class="zh-text" style="display: block;">單株抗體藥物</h3>
               <h3 class="en-text" style="display: none;">Monoclonal Antibody Medications</h3>
               <div class="medications-grid">
                 <div class="medication-card" data-name="Denosumab (Prolia/Xgeva)" data-route="注射">
                   <h4>Denosumab (Prolia/Xgeva)</h4>
-                  <span class="zh-text route-badge">注射</span>
+                  <span class="zh-text route-badge" style="display: block;">注射</span>
                   <span class="en-text route-badge" style="display: none;">Injection</span>
                 </div>
               </div>
@@ -383,22 +383,22 @@
             
             <!-- Other Osteoporosis Medications Group -->
             <div class="medication-group">
-              <h3 class="zh-text">其他骨質疏鬆藥物</h3>
+              <h3 class="zh-text" style="display: block;">其他骨質疏鬆藥物</h3>
               <h3 class="en-text" style="display: none;">Other Osteoporosis Medications</h3>
               <div class="medications-grid">
                 <div class="medication-card" data-name="Bevacizumab (Avastin)" data-route="注射">
                   <h4>Bevacizumab (Avastin)</h4>
-                  <span class="zh-text route-badge">注射</span>
+                  <span class="zh-text route-badge" style="display: block;">注射</span>
                   <span class="en-text route-badge" style="display: none;">Injection</span>
                 </div>
                 <div class="medication-card" data-name="Sunitinib (Sutent)" data-route="口服">
                   <h4>Sunitinib (Sutent)</h4>
-                  <span class="zh-text route-badge">口服</span>
+                  <span class="zh-text route-badge" style="display: block;">口服</span>
                   <span class="en-text route-badge" style="display: none;">Oral</span>
                 </div>
                 <div class="medication-card" data-name="Cabozantinib (Cabometyx)" data-route="口服">
                   <h4>Cabozantinib (Cabometyx)</h4>
-                  <span class="zh-text route-badge">口服</span>
+                  <span class="zh-text route-badge" style="display: block;">口服</span>
                   <span class="en-text route-badge" style="display: none;">Oral</span>
                 </div>
               </div>
@@ -409,23 +409,23 @@
           <div id="medication-details-section" style="display: none;">
             <!-- Indication -->
             <div class="form-group">
-              <label class="zh-text">使用原因</label>
+              <label class="zh-text" style="display: block;">使用原因</label>
               <label class="en-text" style="display: none;">Reason for Use</label>
               <div class="reason-buttons">
                 <button type="button" class="reason-btn" data-reason="骨質疏鬆">
-                  <span class="zh-text">骨質疏鬆</span>
+                  <span class="zh-text" style="display: block;">骨質疏鬆</span>
                   <span class="en-text" style="display: none;">Osteoporosis</span>
                 </button>
                 <button type="button" class="reason-btn" data-reason="多發性骨髓瘤">
-                  <span class="zh-text">多發性骨髓瘤</span>
+                  <span class="zh-text" style="display: block;">多發性骨髓瘤</span>
                   <span class="en-text" style="display: none;">Multiple Myeloma</span>
                 </button>
                 <button type="button" class="reason-btn" data-reason="骨轉移">
-                  <span class="zh-text">骨轉移</span>
+                  <span class="zh-text" style="display: block;">骨轉移</span>
                   <span class="en-text" style="display: none;">Bone Metastasis</span>
                 </button>
                 <button type="button" class="reason-btn" data-reason="其他">
-                  <span class="zh-text">其他</span>
+                  <span class="zh-text" style="display: block;">其他</span>
                   <span class="en-text" style="display: none;">Other</span>
                 </button>
               </div>
@@ -434,42 +434,42 @@
             
             <!-- Start Date -->
             <div class="form-group">
-              <label class="start-date-label zh-text">開始使用的時間</label>
+              <label class="start-date-label zh-text" style="display: block;">開始使用的時間</label>
               <label class="start-date-label en-text" style="display: none;">Start Date</label>
               <div class="date-row">
                 <div class="date-field">
-                  <select id="startYear" name="startYear" required>
-                    <option value="" class="zh-text">年份</option>
+                  <select id="startYear" name="startYear" required="">
+                    <option value="" class="zh-text" style="display: block;" selected="selected">年份</option>
                     <option value="" class="en-text" style="display: none;">Year</option>
-                  </select>
+                  <option value="2025" class="zh-text">2025</option><option value="2024" class="zh-text">2024</option><option value="2023" class="zh-text">2023</option><option value="2022" class="zh-text">2022</option><option value="2021" class="zh-text">2021</option><option value="2020" class="zh-text">2020</option><option value="2019" class="zh-text">2019</option><option value="2018" class="zh-text">2018</option><option value="2017" class="zh-text">2017</option><option value="2016" class="zh-text">2016</option><option value="2015" class="zh-text">2015</option><option value="2014" class="zh-text">2014</option><option value="2013" class="zh-text">2013</option><option value="2012" class="zh-text">2012</option><option value="2011" class="zh-text">2011</option><option value="2010" class="zh-text">2010</option><option value="2009" class="zh-text">2009</option><option value="2008" class="zh-text">2008</option><option value="2007" class="zh-text">2007</option><option value="2006" class="zh-text">2006</option><option value="2005" class="zh-text">2005</option><option value="2004" class="zh-text">2004</option><option value="2003" class="zh-text">2003</option><option value="2002" class="zh-text">2002</option><option value="2001" class="zh-text">2001</option><option value="2000" class="zh-text">2000</option><option value="1999" class="zh-text">1999</option><option value="1998" class="zh-text">1998</option><option value="1997" class="zh-text">1997</option><option value="1996" class="zh-text">1996</option><option value="1995" class="zh-text">1995</option></select>
                 </div>
                 <div class="date-field">
-                  <select id="startMonth" name="startMonth" required>
-                    <option value="" class="zh-text">月份</option>
+                  <select id="startMonth" name="startMonth" required="">
+                    <option value="" class="zh-text" style="display: block;" selected="selected">月份</option>
                     <option value="" class="en-text" style="display: none;">Month</option>
-                    <option value="1" class="zh-text">1月</option>
+                    <option value="1" class="zh-text" style="display: block;">1月</option>
                     <option value="1" class="en-text" style="display: none;">January</option>
-                    <option value="2" class="zh-text">2月</option>
+                    <option value="2" class="zh-text" style="display: block;">2月</option>
                     <option value="2" class="en-text" style="display: none;">February</option>
-                    <option value="3" class="zh-text">3月</option>
+                    <option value="3" class="zh-text" style="display: block;">3月</option>
                     <option value="3" class="en-text" style="display: none;">March</option>
-                    <option value="4" class="zh-text">4月</option>
+                    <option value="4" class="zh-text" style="display: block;">4月</option>
                     <option value="4" class="en-text" style="display: none;">April</option>
-                    <option value="5" class="zh-text">5月</option>
+                    <option value="5" class="zh-text" style="display: block;">5月</option>
                     <option value="5" class="en-text" style="display: none;">May</option>
-                    <option value="6" class="zh-text">6月</option>
+                    <option value="6" class="zh-text" style="display: block;">6月</option>
                     <option value="6" class="en-text" style="display: none;">June</option>
-                    <option value="7" class="zh-text">7月</option>
+                    <option value="7" class="zh-text" style="display: block;">7月</option>
                     <option value="7" class="en-text" style="display: none;">July</option>
-                    <option value="8" class="zh-text">8月</option>
+                    <option value="8" class="zh-text" style="display: block;">8月</option>
                     <option value="8" class="en-text" style="display: none;">August</option>
-                    <option value="9" class="zh-text">9月</option>
+                    <option value="9" class="zh-text" style="display: block;">9月</option>
                     <option value="9" class="en-text" style="display: none;">September</option>
-                    <option value="10" class="zh-text">10月</option>
+                    <option value="10" class="zh-text" style="display: block;">10月</option>
                     <option value="10" class="en-text" style="display: none;">October</option>
-                    <option value="11" class="zh-text">11月</option>
+                    <option value="11" class="zh-text" style="display: block;">11月</option>
                     <option value="11" class="en-text" style="display: none;">November</option>
-                    <option value="12" class="zh-text">12月</option>
+                    <option value="12" class="zh-text" style="display: block;">12月</option>
                     <option value="12" class="en-text" style="display: none;">December</option>
                   </select>
                 </div>
@@ -479,19 +479,19 @@
             
             <!-- Frequency -->
             <div class="form-group">
-              <label class="frequency-label zh-text">使用頻率</label>
+              <label class="frequency-label zh-text" style="display: block;">使用頻率</label>
               <label class="frequency-label en-text" style="display: none;">Frequency</label>
               <div class="frequency-buttons">
                 <button type="button" class="frequency-btn" data-frequency="每天">
-                  <span class="zh-text">每天</span>
+                  <span class="zh-text" style="display: block;">每天</span>
                   <span class="en-text" style="display: none;">Daily</span>
                 </button>
                 <button type="button" class="frequency-btn" data-frequency="每個月">
-                  <span class="zh-text">每個月</span>
+                  <span class="zh-text" style="display: block;">每個月</span>
                   <span class="en-text" style="display: none;">Monthly</span>
                 </button>
                 <button type="button" class="frequency-btn" data-frequency="每半年">
-                  <span class="zh-text">每半年</span>
+                  <span class="zh-text" style="display: block;">每半年</span>
                   <span class="en-text" style="display: none;">Every 6 months</span>
                 </button>
               </div>
@@ -500,15 +500,15 @@
             
             <!-- Current Status -->
             <div class="form-group">
-              <label class="zh-text">目前用藥狀態</label>
+              <label class="zh-text" style="display: block;">目前用藥狀態</label>
               <label class="en-text" style="display: none;">Current Medication Status</label>
               <div class="status-buttons">
                 <button type="button" class="status-btn active" data-status="continuing">
-                  <span class="zh-text">持續服用</span>
+                  <span class="zh-text" style="display: block;">持續服用</span>
                   <span class="en-text" style="display: none;">Continuing</span>
                 </button>
                 <button type="button" class="status-btn" data-status="stopped">
-                  <span class="zh-text">已停藥</span>
+                  <span class="zh-text" style="display: block;">已停藥</span>
                   <span class="en-text" style="display: none;">Discontinued</span>
                 </button>
               </div>
@@ -516,42 +516,42 @@
             
             <!-- Stop Date (initially hidden) -->
             <div id="stop-date" class="form-group" style="display: none;">
-              <label class="zh-text">停藥時間</label>
+              <label class="zh-text" style="display: block;">停藥時間</label>
               <label class="en-text" style="display: none;">Discontinuation Date</label>
               <div class="date-row">
                 <div class="date-field">
                   <select id="stopYear" name="stopYear">
-                    <option value="" class="zh-text">年份</option>
+                    <option value="" class="zh-text" style="display: block;" selected="selected">年份</option>
                     <option value="" class="en-text" style="display: none;">Year</option>
-                  </select>
+                  <option value="2025" class="zh-text">2025</option><option value="2024" class="zh-text">2024</option><option value="2023" class="zh-text">2023</option><option value="2022" class="zh-text">2022</option><option value="2021" class="zh-text">2021</option><option value="2020" class="zh-text">2020</option><option value="2019" class="zh-text">2019</option><option value="2018" class="zh-text">2018</option><option value="2017" class="zh-text">2017</option><option value="2016" class="zh-text">2016</option><option value="2015" class="zh-text">2015</option><option value="2014" class="zh-text">2014</option><option value="2013" class="zh-text">2013</option><option value="2012" class="zh-text">2012</option><option value="2011" class="zh-text">2011</option><option value="2010" class="zh-text">2010</option><option value="2009" class="zh-text">2009</option><option value="2008" class="zh-text">2008</option><option value="2007" class="zh-text">2007</option><option value="2006" class="zh-text">2006</option><option value="2005" class="zh-text">2005</option><option value="2004" class="zh-text">2004</option><option value="2003" class="zh-text">2003</option><option value="2002" class="zh-text">2002</option><option value="2001" class="zh-text">2001</option><option value="2000" class="zh-text">2000</option><option value="1999" class="zh-text">1999</option><option value="1998" class="zh-text">1998</option><option value="1997" class="zh-text">1997</option><option value="1996" class="zh-text">1996</option><option value="1995" class="zh-text">1995</option></select>
                 </div>
                 <div class="date-field">
                   <select id="stopMonth" name="stopMonth">
-                    <option value="" class="zh-text">月份</option>
+                    <option value="" class="zh-text" style="display: block;" selected="selected">月份</option>
                     <option value="" class="en-text" style="display: none;">Month</option>
-                    <option value="1" class="zh-text">1月</option>
+                    <option value="1" class="zh-text" style="display: block;">1月</option>
                     <option value="1" class="en-text" style="display: none;">January</option>
-                    <option value="2" class="zh-text">2月</option>
+                    <option value="2" class="zh-text" style="display: block;">2月</option>
                     <option value="2" class="en-text" style="display: none;">February</option>
-                    <option value="3" class="zh-text">3月</option>
+                    <option value="3" class="zh-text" style="display: block;">3月</option>
                     <option value="3" class="en-text" style="display: none;">March</option>
-                    <option value="4" class="zh-text">4月</option>
+                    <option value="4" class="zh-text" style="display: block;">4月</option>
                     <option value="4" class="en-text" style="display: none;">April</option>
-                    <option value="5" class="zh-text">5月</option>
+                    <option value="5" class="zh-text" style="display: block;">5月</option>
                     <option value="5" class="en-text" style="display: none;">May</option>
-                    <option value="6" class="zh-text">6月</option>
+                    <option value="6" class="zh-text" style="display: block;">6月</option>
                     <option value="6" class="en-text" style="display: none;">June</option>
-                    <option value="7" class="zh-text">7月</option>
+                    <option value="7" class="zh-text" style="display: block;">7月</option>
                     <option value="7" class="en-text" style="display: none;">July</option>
-                    <option value="8" class="zh-text">8月</option>
+                    <option value="8" class="zh-text" style="display: block;">8月</option>
                     <option value="8" class="en-text" style="display: none;">August</option>
-                    <option value="9" class="zh-text">9月</option>
+                    <option value="9" class="zh-text" style="display: block;">9月</option>
                     <option value="9" class="en-text" style="display: none;">September</option>
-                    <option value="10" class="zh-text">10月</option>
+                    <option value="10" class="zh-text" style="display: block;">10月</option>
                     <option value="10" class="en-text" style="display: none;">October</option>
-                    <option value="11" class="zh-text">11月</option>
+                    <option value="11" class="zh-text" style="display: block;">11月</option>
                     <option value="11" class="en-text" style="display: none;">November</option>
-                    <option value="12" class="zh-text">12月</option>
+                    <option value="12" class="zh-text" style="display: block;">12月</option>
                     <option value="12" class="en-text" style="display: none;">December</option>
                   </select>
                 </div>
@@ -562,25 +562,25 @@
         </div>
 
         <div class="form-navigation">
-          <a href="patient-info.html" class="btn btn-secondary zh-text">上一步</a>
-          <a href="patient-info.html" class="btn btn-secondary en-text" style="display: none;">Back</a>
+          <a href="file:///D:/Coding/MRONJ_WBPG/patient-info.html" class="btn btn-secondary zh-text" style="display: block;">上一步</a>
+          <a href="file:///D:/Coding/MRONJ_WBPG/patient-info.html" class="btn btn-secondary en-text" style="display: none;">Back</a>
           
-          <button type="button" id="add-medication-btn" class="btn btn-outline-primary zh-text">再加一種藥物</button>
+          <button type="button" id="add-medication-btn" class="btn btn-outline-primary zh-text" style="display: block;">再加一種藥物</button>
           <button type="button" id="add-medication-btn-en" class="btn btn-outline-primary en-text" style="display: none;">Add Another Medication</button>
           
-          <button type="button" id="next-btn" class="btn btn-primary zh-text">添加完成 送出</button>
+          <button type="button" id="next-btn" class="btn btn-primary zh-text" style="display: block;">添加完成 送出</button>
           <button type="button" id="next-btn-en" class="btn btn-primary en-text" style="display: none;">Finish Adding</button>
         </div>
       </form>
     </main>
 
     <footer>
-      <p class="zh-text">版本 1.0.0 | <a href="about.html">關於此工具</a></p>
-      <p class="en-text" style="display: none;">Version 1.0.0 | <a href="about.html">About this tool</a></p>
+      <p class="zh-text" style="display: block;">版本 1.0.0 | <a href="file:///D:/Coding/MRONJ_WBPG/about.html">關於此工具</a></p>
+      <p class="en-text" style="display: none;">Version 1.0.0 | <a href="file:///D:/Coding/MRONJ_WBPG/about.html">About this tool</a></p>
     </footer>
   </div>
 
-  <script src="assets/js/main.js"></script>
+  <script src="%E7%94%A8%E8%97%A5%E5%8F%B2%20-%20MRONJ%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0_files/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Language display functionality
@@ -1469,5 +1469,5 @@
       }
     });
   </script>
-</body>
-</html> 
+
+ </body></html>
