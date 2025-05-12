@@ -543,9 +543,16 @@
 
       // PDF generation functionality
       function generatePDF() {
-        // Create a new container for PDF content
+        // Create a new container specifically for PDF content
         const pdfContainer = document.createElement('div');
         pdfContainer.className = 'pdf-content';
+        
+        // Create a document structure that ensures content starts from the top
+        const contentWrapper = document.createElement('div');
+        contentWrapper.className = 'pdf-wrapper';
+        contentWrapper.style.padding = '0';
+        contentWrapper.style.margin = '0';
+        pdfContainer.appendChild(contentWrapper);
         
         // Add title 
         const titleElement = document.createElement('h1');
@@ -553,8 +560,10 @@
         titleElement.style.color = '#007AFF';
         titleElement.style.textAlign = 'center';
         titleElement.style.fontSize = '24px';
+        titleElement.style.marginTop = '0';
+        titleElement.style.paddingTop = '0';
         titleElement.style.marginBottom = '20px';
-        pdfContainer.appendChild(titleElement);
+        contentWrapper.appendChild(titleElement);
         
         // Add subtitle
         const subtitleElement = document.createElement('p');
@@ -562,22 +571,36 @@
         subtitleElement.style.color = '#666';
         subtitleElement.style.textAlign = 'center';
         subtitleElement.style.fontSize = '16px';
-        subtitleElement.style.marginBottom = '30px';
-        pdfContainer.appendChild(subtitleElement);
+        subtitleElement.style.marginBottom = '20px';
+        contentWrapper.appendChild(subtitleElement);
         
-        // Copy patient info section
-        const patientInfo = document.getElementById('patient-info-section').cloneNode(true);
-        pdfContainer.appendChild(patientInfo);
+        // Create patient info section (don't clone to avoid extra margins)
+        const patientSection = document.createElement('div');
+        patientSection.className = 'instruction-section patient-info-section';
         
-        // Copy all instruction sections
+        // Add patient info header
+        const patientHeader = document.createElement('h2');
+        patientHeader.textContent = '病患資料';
+        patientHeader.style.color = '#007AFF';
+        patientHeader.style.fontSize = '22px';
+        patientHeader.style.marginTop = '0';
+        patientHeader.style.marginBottom = '15px';
+        patientSection.appendChild(patientHeader);
+        
+        // Get patient details and add them to section
+        const patientDetails = document.getElementById('patient-details').cloneNode(true);
+        patientSection.appendChild(patientDetails);
+        contentWrapper.appendChild(patientSection);
+        
+        // Copy all instruction sections but create optimized versions
         const instructionSections = document.querySelectorAll('.instruction-section:not(#patient-info-section)');
         instructionSections.forEach(section => {
-          pdfContainer.appendChild(section.cloneNode(true));
+          contentWrapper.appendChild(section.cloneNode(true));
         });
         
         // Copy important note
         const importantNote = document.querySelector('.important-note').cloneNode(true);
-        pdfContainer.appendChild(importantNote);
+        contentWrapper.appendChild(importantNote);
         
         // Add reference footer
         const referenceElement = document.createElement('div');
@@ -586,7 +609,7 @@
         referenceElement.style.color = '#666';
         referenceElement.style.fontSize = '14px';
         referenceElement.innerHTML = '<p>內容參考：AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>';
-        pdfContainer.appendChild(referenceElement);
+        contentWrapper.appendChild(referenceElement);
         
         // Add page footer with MRONJ branding
         const footerElement = document.createElement('div');
@@ -595,21 +618,32 @@
         footerElement.style.textAlign = 'right';
         footerElement.style.fontSize = '10px';
         footerElement.style.color = '#666';
-        footerElement.style.marginTop = '20px';
-        pdfContainer.appendChild(footerElement);
+        footerElement.style.marginTop = '10px';
+        contentWrapper.appendChild(footerElement);
         
         // Apply styling for PDF
         const styleOptimizer = document.createElement('style');
         styleOptimizer.textContent = `
+          @page {
+            margin: 0;
+            padding: 0;
+          }
+          
           .pdf-content {
             font-family: "Microsoft JhengHei", Arial, sans-serif;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             max-width: 100%;
           }
           
+          .pdf-wrapper {
+            padding: 10px 15px;
+            margin: 0;
+          }
+          
           .instruction-section {
-            margin-bottom: 30px;
-            padding: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
             background-color: #f8f9fa;
             border-radius: 10px;
             border-left: 4px solid #007AFF;
@@ -653,7 +687,7 @@
             background-color: #ffe8e8;
             border-left: 4px solid #ff3b30;
             padding: 15px;
-            margin: 30px 0;
+            margin: 20px 0;
             border-radius: 10px;
             page-break-inside: avoid;
           }
@@ -681,7 +715,7 @@
         
         // Configure PDF options
         const opt = {
-          margin: [15, 15, 20, 15], // top, right, bottom, left margins in mm
+          margin: [5, 5, 5, 5], // top, right, bottom, left margins in mm (minimal margins)
           filename: `MRONJ_口腔衛生指導_${patientData.name || 'patient'}.pdf`,
           image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { 
@@ -704,10 +738,21 @@
         };
 
         // Generate PDF
-        html2pdf().from(pdfContainer).set(opt).save().catch(error => {
-          console.error('PDF generation error:', error);
-          alert('PDF生成過程中出現錯誤，請重試');
-        });
+        html2pdf()
+          .from(pdfContainer)
+          .set(opt)
+          .toPdf()
+          .get('pdf')
+          .then((pdf) => {
+            // Ensure content is positioned at the top of the page
+            pdf.internal.write(0, 'Tw');
+            return pdf;
+          })
+          .save()
+          .catch(error => {
+            console.error('PDF generation error:', error);
+            alert('PDF生成過程中出現錯誤，請重試');
+          });
       }
 
       // Add click event listeners to the save buttons
