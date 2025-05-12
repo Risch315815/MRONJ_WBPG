@@ -703,22 +703,22 @@
         const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
         startYearSelect.innerHTML = ''; // Clear existing options
         
+        // Always add placeholder option
+        const placeholderOption = document.createElement('option');
+        placeholderOption.value = '';
+        placeholderOption.textContent = '年份';
+        placeholderOption.classList.add('zh-text');
+        startYearSelect.appendChild(placeholderOption);
+        
+        // Add English version of placeholder
+        const placeholderOptionEn = document.createElement('option');
+        placeholderOptionEn.value = '';
+        placeholderOptionEn.textContent = 'Year';
+        placeholderOptionEn.classList.add('en-text');
+        placeholderOptionEn.style.display = 'none';
+        startYearSelect.appendChild(placeholderOptionEn);
+        
         if (isFutureUse) {
-          // Add placeholder option for future use
-          const placeholderOption = document.createElement('option');
-          placeholderOption.value = '';
-          placeholderOption.textContent = '年份';
-          placeholderOption.classList.add('zh-text');
-          startYearSelect.appendChild(placeholderOption);
-          
-          // Add English version of placeholder
-          const placeholderOptionEn = document.createElement('option');
-          placeholderOptionEn.value = '';
-          placeholderOptionEn.textContent = 'Year';
-          placeholderOptionEn.classList.add('en-text');
-          placeholderOptionEn.style.display = 'none';
-          startYearSelect.appendChild(placeholderOptionEn);
-          
           // For future use: current year to current year + 5
           for (let year = currentYear; year <= currentYear + 5; year++) {
             const startOption = document.createElement('option');
@@ -727,9 +727,6 @@
             startOption.classList.add(localStorage.getItem('preferredLanguage') === 'en' ? 'en-text' : 'zh-text');
             startYearSelect.appendChild(startOption);
           }
-          
-          // Select placeholder by default
-          startYearSelect.value = '';
         } else {
           // For current/past use: last 30 years
           for (let year = currentYear; year >= currentYear - 30; year--) {
@@ -740,6 +737,8 @@
             startYearSelect.appendChild(startOption);
           }
         }
+        // Always select placeholder by default
+        startYearSelect.value = '';
       }
 
       // Initial population of start year options
