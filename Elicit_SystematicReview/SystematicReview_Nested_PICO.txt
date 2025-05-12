@@ -8,16 +8,19 @@ between patient who has taken anti-resorptive medication and patient who has not
 2. Cancer patient, excluding osteoporosis patients
 
 
-//I: History of anti-resorptive medication use, including 
+//I: History of anti-resorptive medication use, only for  
 -
-1-1. Bisphosphonate medication (Oral: alendronate(Fosamax), risedronate(Actonel) //Parenteral: zoledronate(Boniva), etc )
+1-1-1. Oral Bisphosphonate medication (alendronate(Fosamax), risedronate(Actonel), etc )
+1-1-2. Parenteral Bisphosphonate medication (zoledronate(Boniva), etc )
 1-2. Denosumab(Prolia)
 1-3. Monoclonal antibody (Romosozumab)
 -
-2-1. Bisphosphonate medication (Parenteral: zoledronate(Zometa), etc)
+2-1. Bisphosphonate medication (Parenteral: zoledronate(Zometa/Reclast), etc)
 2-2. Denosumab(Xegva)
 
 
 //C: no history of anti-resorptive medication use 
 
-//O: incidence of Medication-Related Osteonecrosis of Jaw after invasive dental procedure (including teeth extraction, periodontal surgery, implant insertion, removable prosthesis, etc)
+//O: incidence of Medication-Related Osteonecrosis of Jaw
+1. with no invasive dental treatment
+2. after invasive dental procedure (including teeth extraction, periodontal surgery, implant insertion, removable prosthesis, etc)

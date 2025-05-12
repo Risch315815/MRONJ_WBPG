@@ -1085,6 +1085,46 @@
               errorElement.style.display = 'block';
               isValid = false;
             }
+            // For future use, validate that the date is not in the past
+            else if (isFutureUse) {
+              const startYear = parseInt(patientData.startYear);
+              const startMonth = parseInt(patientData.startMonth);
+              const currentDate = new Date();
+              const currentYear = currentDate.getFullYear();
+              const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-based
+              
+              // If date is valid (same month/year or later), clear any existing error
+              if (startYear > currentYear || (startYear === currentYear && startMonth >= currentMonth)) {
+                const errorElement = document.getElementById('start-date-error');
+                if (errorElement) {
+                  errorElement.style.display = 'none';
+                }
+              }
+              // Otherwise show error but don't use alert (the validateFutureStartDate function will handle the alert)
+              else {
+                const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+                  ? 'Start date cannot be earlier than current date' 
+                  : '開始使用日期不能早於現在';
+                console.log("Error: Start date is in the past");
+                
+                let errorElement = document.getElementById('start-date-error');
+                if (!errorElement) {
+                  console.log("Creating missing start-date-error element");
+                  errorElement = document.createElement('div');
+                  errorElement.id = 'start-date-error';
+                  errorElement.className = 'error-message';
+                  // Find the right place to insert it
+                  const startDateRow = document.querySelector('.date-row');
+                  if (startDateRow) {
+                    startDateRow.parentNode.appendChild(errorElement);
+                  }
+                }
+                
+                errorElement.textContent = errorMsg;
+                errorElement.style.display = 'block';
+                isValid = false;
+              }
+            }
             
             if (!patientData.frequency) {
               const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
