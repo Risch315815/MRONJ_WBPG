@@ -1,6 +1,7 @@
 I would like to make a systematic review or meta analysis 
 regarding the risk of Medication-Related Osteonecrosis of Jaw after dental treatment 
 between patient who has taken anti-resorptive medication and patient who has not taken such medication. 
+Using a PICO search model.
 
 --------------------------------------
 //P: Regardless of age and sex, 
@@ -10,8 +11,8 @@ between patient who has taken anti-resorptive medication and patient who has not
 
 //I: History of anti-resorptive medication use, only for  
 -
-1-1-1. Oral Bisphosphonate medication (alendronate(Fosamax), risedronate(Actonel), etc )
-1-1-2. Parenteral Bisphosphonate medication (zoledronate(Boniva), etc )
+1-1-1. Orally-administered Bisphosphonate medication (alendronate(Fosamax), risedronate(Actonel), etc )
+1-1-2. Parenterally-administered Bisphosphonate medication (zoledronate(Boniva), etc )
 1-2. Denosumab(Prolia)
 1-3. Monoclonal antibody (Romosozumab)
 -

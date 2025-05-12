@@ -227,41 +227,73 @@
     
     function displayPatientSummary() {
       const summaryContainer = document.getElementById('patient-info-summary');
-      
+      // Calculate BMI if height and weight are available
+      let bmi = '';
+      if (patientData.height && patientData.weight) {
+        const heightInMeters = patientData.height / 100;
+        bmi = (patientData.weight / (heightInMeters * heightInMeters)).toFixed(1);
+      }
       // Create summary HTML
       let summaryHTML = `
-        <div class="summary-item"><strong>姓名:</strong> ${patientData.name}</div>
-        <div class="summary-item"><strong>年齡:</strong> ${patientData.age}</div>
+        <div class="summary-item"><strong>姓名:</strong> ${patientData.name || '--'}</div>
+        <div class="summary-item"><strong>年齡:</strong> ${patientData.age || '--'}</div>
         <div class="summary-item"><strong>性別:</strong> ${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</div>
+        <div class="summary-item"><strong>身高:</strong> ${patientData.height ? patientData.height + ' cm' : '--'}</div>
+        <div class="summary-item"><strong>體重:</strong> ${patientData.weight ? patientData.weight + ' kg' : '--'}</div>
+        <div class="summary-item"><strong>BMI:</strong> ${bmi ? bmi : '--'}</div>
       `;
-      
-      if (patientData.hasAntiresorptiveMed) {
+      // Add medication info
+      if (patientData.hasAntiresorptiveMed && patientData.medications && patientData.medications.length > 0) {
+        patientData.medications.forEach((med, idx) => {
+          // Calculate duration
+          let duration = '';
+          if (med.startYear && med.startMonth) {
+            const start = new Date(med.startYear, med.startMonth - 1);
+            const end = med.isStopped && med.stopYear && med.stopMonth ? new Date(med.stopYear, med.stopMonth - 1) : new Date();
+            const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+            duration = `約${months}個月`;
+          }
+          summaryHTML += `
+            <div class="summary-item" style="margin-top:10px;"><strong>藥物 ${patientData.medications.length > 1 ? idx + 1 : ''}:</strong></div>
+            <div class="summary-item">${med.drugName || '--'}</div>
+            <div class="summary-item">${med.indication || '--'} | ${med.administrationRoute || '--'} | ${med.frequency || '--'}</div>
+            <div class="summary-item">開始: ${med.startYear || '--'}年${med.startMonth || '--'}月</div>
+            <div class="summary-item">${med.isStopped ? `停止: ${med.stopYear || '--'}年${med.stopMonth || '--'}月` : '<span style="color: #007AFF;">持續使用中</span>'}</div>
+            <div class="summary-item">使用期間: ${duration || '--'}</div>
+          `;
+        });
+      } else if (patientData.hasAntiresorptiveMed) {
+        // Single medication (legacy fields)
+        let duration = '';
+        if (patientData.startYear && patientData.startMonth) {
+          const start = new Date(patientData.startYear, patientData.startMonth - 1);
+          const end = patientData.isStopped && patientData.stopYear && patientData.stopMonth ? new Date(patientData.stopYear, patientData.stopMonth - 1) : new Date();
+          const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+          duration = `約${months}個月`;
+        }
         summaryHTML += `
-          <div class="summary-item"><strong>用藥情況:</strong> 使用抗骨吸收或抗血管新生藥物</div>
-          <div class="summary-item"><strong>藥物名稱:</strong> ${patientData.drugName || '未提供'}</div>
-          <div class="summary-item"><strong>適應症:</strong> ${patientData.indication || '未提供'}</div>
+          <div class="summary-item" style="margin-top:10px;"><strong>藥物:</strong></div>
+          <div class="summary-item">藥物名稱: ${patientData.drugName || '--'}</div>
+          <div class="summary-item">使用原因: ${patientData.indication || '--'}</div>
+          <div class="summary-item">給藥途徑: ${patientData.administrationRoute || '--'}</div>
+          <div class="summary-item">使用頻率: ${patientData.frequency || '--'}</div>
+          <div class="summary-item">開始時間: ${patientData.startYear || '--'}年${patientData.startMonth || '--'}月</div>
+          <div class="summary-item">${patientData.isStopped ? `停止: ${patientData.stopYear || '--'}年${patientData.stopMonth || '--'}月` : '<span style=\"color: #007AFF;\">持續使用中</span>'}</div>
+          <div class="summary-item">使用期間: ${duration || '--'}</div>
         `;
-        
-        // Calculate medication duration
-        const medicationDuration = calculateMedicationDuration();
-        summaryHTML += `<div class="summary-item"><strong>用藥時間:</strong> ${medicationDuration} 個月</div>`;
       } else {
         summaryHTML += `<div class="summary-item"><strong>用藥情況:</strong> 未使用相關藥物</div>`;
       }
-      
       // Add risk factors if any
       if (patientData.systemicDiseases && patientData.systemicDiseases.length > 0) {
         summaryHTML += `<div class="summary-item"><strong>系統性疾病:</strong> ${patientData.systemicDiseases.join(', ')}</div>`;
       }
-      
       if (patientData.hasCancer) {
         summaryHTML += `<div class="summary-item"><strong>癌症:</strong> 是</div>`;
       }
-      
       if (patientData.hasRadiotherapy) {
         summaryHTML += `<div class="summary-item"><strong>頭頸部放射治療:</strong> 是</div>`;
       }
-      
       summaryContainer.innerHTML = summaryHTML;
     }
     
