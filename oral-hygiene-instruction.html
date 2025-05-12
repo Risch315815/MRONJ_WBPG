@@ -448,36 +448,68 @@
         // Clone the content we want to convert to PDF
         const content = document.querySelector('.page-content').cloneNode(true);
         
-        // Apply styling optimizations for PDF generation
+        // Apply styling optimizations for PDF generation to match 風險評估結果 style
         const styleOptimizer = document.createElement('style');
         styleOptimizer.textContent = `
           body {
-            font-family: "Arial", "Microsoft JhengHei", sans-serif;
+            font-family: sans-serif;
+            padding: 20px;
           }
-          .page-content {
-            padding: 0;
-            margin: 0;
+          h1 {
+            color: #007AFF;
+            text-align: center;
+          }
+          .section {
+            margin: 20px 0;
           }
           .instruction-section {
-            page-break-inside: avoid;
-            margin-bottom: 20px;
-          }
-          .important-note {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
             page-break-inside: avoid;
           }
           #patient-info-section {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            page-break-inside: avoid;
+          }
+          .important-note {
+            background-color: #ffe8e8;
+            border-left: 4px solid #ff3b30;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
             page-break-inside: avoid;
           }
           .action-buttons, footer {
             display: none;
           }
           h2 {
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 20px;
+            color: #007AFF;
+            margin-top: 10px;
+            margin-bottom: 15px;
           }
           p, li {
-            line-height: 1.5;
+            margin: 5px 0;
+            text-align: justify;
+            line-height: 1.6;
+          }
+          .priority-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: white;
+          }
+          .high-priority {
+            background-color: #ff3b30;
+          }
+          .medium-priority {
+            background-color: #ff9500;
           }
         `;
         content.appendChild(styleOptimizer);
@@ -490,34 +522,25 @@
         
         // Configure PDF options
         const opt = {
-          margin: [20, 20, 20, 20], // top, right, bottom, left margins in mm
+          margin: [20, 15, 20, 15], // top, right, bottom, left margins in mm
           filename: `MRONJ_oral_hygiene_instructions_${patientData.name || 'patient'}.pdf`,
-          image: { type: 'jpeg', quality: 1.0 },
+          image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { 
             scale: 2,
             useCORS: true,
             letterRendering: true,
-            logging: false,
-            removeContainer: true
+            logging: false
           },
           jsPDF: { 
             unit: 'mm', 
             format: 'a4', 
-            orientation: 'portrait',
-            compress: true,
-            precision: 2
+            orientation: 'portrait'
           },
-          pagebreak: { mode: 'avoid-all', before: '.page-break', avoid: '.avoid-break' }
+          pagebreak: { mode: 'avoid-all' }
         };
 
-        // Show loading indicator or notification
-        alert('正在產生PDF，請稍候...');
-
-        // Generate PDF
-        html2pdf().set(opt).from(content).save().then(() => {
-          // Success notification
-          alert('PDF已儲存成功！');
-        }).catch(error => {
+        // Generate PDF without alerts
+        html2pdf().set(opt).from(content).save().catch(error => {
           console.error('PDF generation error:', error);
           alert('PDF生成過程中出現錯誤，請重試');
         });
