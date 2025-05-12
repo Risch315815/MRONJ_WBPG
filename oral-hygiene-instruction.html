@@ -401,40 +401,138 @@
         const today = new Date();
         const dateStr = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;
         const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
+        const isZh = storedLang === 'zh';
         
+        // Calculate BMI if height and weight are available
+        let bmi = '';
+        if (patientData.height && patientData.weight) {
+          const heightInMeters = patientData.height / 100;
+          bmi = (patientData.weight / (heightInMeters * heightInMeters)).toFixed(1);
+        }
+        
+        // Format systemic conditions
+        let systemicConditions = '';
+        if (patientData.systemicDiseases && patientData.systemicDiseases.length > 0) {
+          systemicConditions = patientData.systemicDiseases.join(', ');
+        }
+        
+        // Get basic patient info with language-specific labels
+        const patientBasicInfo = {
+          assessmentDate: { 
+            zh: `<p><strong>評估日期：</strong>${dateStr}</p>`,
+            en: `<p><strong>Assessment Date: </strong>${dateStr}</p>`
+          },
+          name: {
+            zh: `<p><strong>姓名：</strong>${patientData.name || '--'}</p>`,
+            en: `<p><strong>Name: </strong>${patientData.name || '--'}</p>`
+          },
+          age: {
+            zh: `<p><strong>年齡：</strong>${patientData.age || '--'} 歲</p>`,
+            en: `<p><strong>Age: </strong>${patientData.age || '--'} years old</p>`
+          },
+          gender: {
+            zh: `<p><strong>性別：</strong>${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</p>`,
+            en: `<p><strong>Gender: </strong>${patientData.gender === 'male' ? 'Male' : patientData.gender === 'female' ? 'Female' : 'Other'}</p>`
+          },
+          height: {
+            zh: `<p><strong>身高：</strong>${patientData.height || '--'} 公分</p>`,
+            en: `<p><strong>Height: </strong>${patientData.height || '--'} cm</p>`
+          },
+          weight: {
+            zh: `<p><strong>體重：</strong>${patientData.weight || '--'} 公斤</p>`,
+            en: `<p><strong>Weight: </strong>${patientData.weight || '--'} kg</p>`
+          },
+          bmi: bmi ? {
+            zh: `<p><strong>BMI：</strong>${bmi}</p>`,
+            en: `<p><strong>BMI: </strong>${bmi}</p>`
+          } : null,
+          systemicConditions: {
+            zh: `<p><strong>全身性疾病：</strong>${systemicConditions || '--'}</p>`,
+            en: `<p><strong>Systemic Conditions: </strong>${systemicConditions || '--'}</p>`
+          },
+          cancer: {
+            zh: `<p><strong>癌症：</strong>${patientData.hasCancer ? '是' : '否'}</p>`,
+            en: `<p><strong>Cancer: </strong>${patientData.hasCancer ? 'Yes' : 'No'}</p>`
+          },
+          radiotherapy: {
+            zh: `<p><strong>放射治療：</strong>${patientData.hasRadiotherapy ? '是' : '否'}</p>`,
+            en: `<p><strong>Radiotherapy: </strong>${patientData.hasRadiotherapy ? 'Yes' : 'No'}</p>`
+          }
+        };
+        
+        // Build HTML for basic patient info
         let patientHTML = '';
-        if (storedLang === 'zh') {
-          patientHTML = `
-            <p><strong>評估日期：</strong>${dateStr}</p>
-            <p><strong>姓名：</strong>${patientData.name || '--'}</p>
-            <p><strong>年齡：</strong>${patientData.age || '--'} 歲</p>
-            <p><strong>性別：</strong>${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</p>
-          `;
-
-          if (patientData.hasAntiresorptiveMed) {
-            patientHTML += `
-              <p><strong>預計使用藥物：</strong>${patientData.drugName || '--'}</p>
-              <p><strong>使用原因：</strong>${patientData.indication || '--'}</p>
-              <p><strong>給藥途徑：</strong>${patientData.administrationRoute || '--'}</p>
-              <p><strong>使用頻率：</strong>${patientData.frequency || '--'}</p>
-            `;
+        Object.values(patientBasicInfo).forEach(item => {
+          if (item) {
+            patientHTML += isZh ? item.zh : item.en;
           }
-        } else {
-          patientHTML = `
-            <p><strong>Assessment Date: </strong>${dateStr}</p>
-            <p><strong>Name: </strong>${patientData.name || '--'}</p>
-            <p><strong>Age: </strong>${patientData.age || '--'} years old</p>
-            <p><strong>Gender: </strong>${patientData.gender === 'male' ? 'Male' : patientData.gender === 'female' ? 'Female' : 'Other'}</p>
-          `;
-
-          if (patientData.hasAntiresorptiveMed) {
-            patientHTML += `
-              <p><strong>Planned Medication: </strong>${patientData.drugName || '--'}</p>
-              <p><strong>Indication: </strong>${patientData.indication || '--'}</p>
-              <p><strong>Administration Route: </strong>${patientData.administrationRoute || '--'}</p>
-              <p><strong>Frequency: </strong>${patientData.frequency || '--'}</p>
-            `;
-          }
+        });
+        
+        // Get medication info
+        const medicationArray = [];
+        
+        // Check if medications exist in array format
+        if (patientData.medications && patientData.medications.length > 0) {
+          medicationArray.push(...patientData.medications);
+        } 
+        // Check if single medication exists as direct properties
+        else if (patientData.hasAntiresorptiveMed && patientData.drugName) {
+          medicationArray.push({
+            drugName: patientData.drugName,
+            indication: patientData.indication,
+            administrationRoute: patientData.administrationRoute,
+            frequency: patientData.frequency,
+            startYear: patientData.startYear,
+            startMonth: patientData.startMonth,
+            isStopped: patientData.isStopped,
+            stopYear: patientData.stopYear,
+            stopMonth: patientData.stopMonth
+          });
+        }
+        
+        // Add medication section if we have medications
+        if (medicationArray.length > 0) {
+          // Add section header
+          patientHTML += isZh 
+            ? `<h3 style="margin-top: 15px; color: #007AFF;">藥物資訊</h3>` 
+            : `<h3 style="margin-top: 15px; color: #007AFF;">Medication Information</h3>`;
+          
+          // Add each medication
+          medicationArray.forEach((med, index) => {
+            const medNumber = medicationArray.length > 1 ? `(${index + 1}) ` : '';
+            const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]')?.checked;
+            
+            // Determine if it's future medication based on possible indicators
+            const isPlannedMed = (
+              isFutureUse || 
+              (med.startYear && new Date(`${med.startYear}-${med.startMonth || 1}`) > new Date())
+            );
+            
+            // Create medication HTML
+            patientHTML += `<div style="margin-top: 10px;">`; 
+            
+            if (isZh) {
+              patientHTML += `
+                <p><strong>${medNumber}${isPlannedMed ? '即將使用藥物名稱' : '藥物名稱'}：</strong>${med.drugName || '--'}</p>
+                <p><strong>使用原因：</strong>${med.indication || '--'}</p>
+                <p><strong>給藥途徑：</strong>${med.administrationRoute || '--'}</p>
+                <p><strong>使用頻率：</strong>${med.frequency || '--'}</p>
+                <p><strong>${isPlannedMed ? '即將開始時間' : '開始時間'}：</strong>${med.startYear || '--'}年${med.startMonth || '--'}月</p>
+                ${(!isPlannedMed && med.isStopped) ? `<p><strong>停藥時間：</strong>${med.stopYear || '--'}年${med.stopMonth || '--'}月</p>` : ''}
+              `;
+            } else {
+              patientHTML += `
+                <p><strong>${medNumber}${isPlannedMed ? 'Future Medication' : 'Medication'}: </strong>${med.drugName || '--'}</p>
+                <p><strong>Indication: </strong>${med.indication || '--'}</p>
+                <p><strong>Administration Route: </strong>${med.administrationRoute || '--'}</p>
+                <p><strong>Frequency: </strong>${med.frequency || '--'}</p>
+                <p><strong>${isPlannedMed ? 'Future Start Date' : 'Start Date'}: </strong>${med.startYear || '--'}-${med.startMonth || '--'}</p>
+                ${(!isPlannedMed && med.isStopped) ? `<p><strong>Stop Date: </strong>${med.stopYear || '--'}-${med.stopMonth || '--'}</p>` : ''}
+              `;
+            }
+            
+            patientHTML += `</div>`;
+          });
         }
         
         patientDetails.innerHTML = patientHTML;
@@ -445,20 +543,68 @@
 
       // PDF generation functionality
       function generatePDF() {
-        // Clone the content we want to convert to PDF
-        const content = document.querySelector('.page-content').cloneNode(true);
+        // Create a new container for PDF content
+        const pdfContainer = document.createElement('div');
+        pdfContainer.className = 'pdf-content';
         
-        // Add title at the top
-        const titleDiv = document.createElement('div');
-        titleDiv.innerHTML = `<h1 style="color: #007AFF; text-align: center; margin-bottom: 20px; font-size: 24px;">開始使用抗骨質再吸收藥物前的口腔評估建議</h1>`;
-        content.insertBefore(titleDiv, content.firstChild);
+        // Add title 
+        const titleElement = document.createElement('h1');
+        titleElement.textContent = '開始使用抗骨質再吸收藥物前的口腔評估建議';
+        titleElement.style.color = '#007AFF';
+        titleElement.style.textAlign = 'center';
+        titleElement.style.fontSize = '24px';
+        titleElement.style.marginBottom = '20px';
+        pdfContainer.appendChild(titleElement);
         
-        // Apply styling optimizations for PDF generation to match HTML style
+        // Add subtitle
+        const subtitleElement = document.createElement('p');
+        subtitleElement.textContent = '根據2022年美國口腔顎面外科學會(AAOMS)指南，在開始抗骨質再吸收藥物治療前，建議您進行以下口腔評估和治療';
+        subtitleElement.style.color = '#666';
+        subtitleElement.style.textAlign = 'center';
+        subtitleElement.style.fontSize = '16px';
+        subtitleElement.style.marginBottom = '30px';
+        pdfContainer.appendChild(subtitleElement);
+        
+        // Copy patient info section
+        const patientInfo = document.getElementById('patient-info-section').cloneNode(true);
+        pdfContainer.appendChild(patientInfo);
+        
+        // Copy all instruction sections
+        const instructionSections = document.querySelectorAll('.instruction-section:not(#patient-info-section)');
+        instructionSections.forEach(section => {
+          pdfContainer.appendChild(section.cloneNode(true));
+        });
+        
+        // Copy important note
+        const importantNote = document.querySelector('.important-note').cloneNode(true);
+        pdfContainer.appendChild(importantNote);
+        
+        // Add reference footer
+        const referenceElement = document.createElement('div');
+        referenceElement.style.textAlign = 'right';
+        referenceElement.style.margin = '20px 0';
+        referenceElement.style.color = '#666';
+        referenceElement.style.fontSize = '14px';
+        referenceElement.innerHTML = '<p>內容參考：AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>';
+        pdfContainer.appendChild(referenceElement);
+        
+        // Add page footer with MRONJ branding
+        const footerElement = document.createElement('div');
+        footerElement.className = 'pdf-footer';
+        footerElement.innerHTML = '<p>MRONJ口腔衛生指導 | 評估日期: ' + new Date().toLocaleDateString('zh-TW') + '</p>';
+        footerElement.style.textAlign = 'right';
+        footerElement.style.fontSize = '10px';
+        footerElement.style.color = '#666';
+        footerElement.style.marginTop = '20px';
+        pdfContainer.appendChild(footerElement);
+        
+        // Apply styling for PDF
         const styleOptimizer = document.createElement('style');
         styleOptimizer.textContent = `
-          body {
+          .pdf-content {
             font-family: "Microsoft JhengHei", Arial, sans-serif;
             padding: 20px;
+            max-width: 100%;
           }
           
           .instruction-section {
@@ -517,60 +663,21 @@
             color: #ff3b30;
           }
           
-          #patient-info-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #007AFF;
-            page-break-inside: avoid;
-          }
-          
           p, li {
             font-size: 16px;
             line-height: 1.6;
           }
           
-          h1 {
-            color: #007AFF;
-            text-align: center;
-            font-size: 24px;
-          }
-          
-          h2 {
-            color: #007AFF;
-            font-size: 22px;
-          }
-          
-          .action-buttons, footer, .font-size-selector {
+          .font-size-selector, .action-buttons, footer {
             display: none;
           }
           
-          /* Add page number */
-          .pdf-footer {
-            position: fixed;
-            bottom: -15mm;
-            width: 100%;
-            text-align: center;
-            font-size: 10px;
-            color: #666;
+          html, body {
+            margin: 0;
+            padding: 0;
           }
         `;
-        content.appendChild(styleOptimizer);
-        
-        // Remove elements not needed in PDF
-        const elementsToRemove = content.querySelectorAll('.action-buttons, footer, .font-size-selector');
-        elementsToRemove.forEach(el => {
-          if (el) el.remove();
-        });
-        
-        // Add footer with page numbers
-        const footer = document.createElement('div');
-        footer.className = 'pdf-footer';
-        footer.innerHTML = `
-          <p>MRONJ口腔衛生指導 | 評估日期: ${new Date().toLocaleDateString('zh-TW')}</p>
-        `;
-        content.appendChild(footer);
+        pdfContainer.appendChild(styleOptimizer);
         
         // Configure PDF options
         const opt = {
@@ -581,20 +688,23 @@
             scale: 2,
             useCORS: true,
             letterRendering: true,
-            logging: false
+            allowTaint: true,
+            backgroundColor: '#ffffff'
           },
           jsPDF: { 
             unit: 'mm', 
             format: 'a4', 
-            orientation: 'portrait'
+            orientation: 'portrait',
+            compress: true
           },
           pagebreak: { 
-            mode: 'avoid-all' 
+            mode: 'avoid-all',
+            before: '.page-break'
           }
         };
 
-        // Generate PDF without alerts
-        html2pdf().set(opt).from(content).save().catch(error => {
+        // Generate PDF
+        html2pdf().from(pdfContainer).set(opt).save().catch(error => {
           console.error('PDF generation error:', error);
           alert('PDF生成過程中出現錯誤，請重試');
         });

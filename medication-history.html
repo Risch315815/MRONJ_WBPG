@@ -1278,15 +1278,17 @@
         const startYear = parseInt(year);
         const startMonth = parseInt(month);
         
-        // Compare year and month only
-        if (startYear < currentYear || (startYear === currentYear && startMonth < currentMonth)) {
+        // For future use, the date should be same as current month/year or later
+        // Check if year is in the future, or if it's the same year, check if month is same or later
+        if (startYear > currentYear || (startYear === currentYear && startMonth >= currentMonth)) {
+          return true; // Valid future date
+        } else {
           const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
             ? 'Start date cannot be earlier than current date' 
             : '開始使用日期不能早於現在';
           alert(errorMsg);
           return false;
         }
-        return true;
       }
 
       // Update handleSubmit function to include future date validation
