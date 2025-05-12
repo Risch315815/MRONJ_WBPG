@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>風險評估結果 - MRONJ風險評估</title>
+  <link rel="stylesheet" href="%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0%E7%B5%90%E6%9E%9C%20-%20MRONJ%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0_files/style.css">
+  <style>
+    @media print {
+      body {
+        padding: 20px;
+        font-family: "Microsoft JhengHei", sans-serif;
+      }
+      
+      .no-print {
+        display: none !important;
+      }
+      
+      .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .assessment-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+      }
+      
+      .risk-badge {
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-weight: bold;
+      }
+      
+      .risk-badge.high-risk {
+        background-color: #FF3B30 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .risk-badge.medium-risk {
+        background-color: #FF9500 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .risk-badge.low-risk {
+        background-color: #34C759 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .summary-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      
+      .summary-item {
+        margin-bottom: 10px;
+      }
+      
+      .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+      .page-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+      }
+      
+      .disclaimer {
+        margin-top: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 12px;
+        page-break-inside: avoid;
+      }
+    }
+    
+    .assessment-card {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .risk-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 15px;
+      color: white;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    
+    .risk-badge.high-risk {
+      background-color: #FF3B30;
+    }
+    
+    .risk-badge.medium-risk {
+      background-color: #FF9500;
+    }
+    
+    .risk-badge.low-risk {
+      background-color: #34C759;
+    }
+    
+    .summary-section {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .summary-item {
+      margin-bottom: 10px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 12px 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      min-width: 150px;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .btn-primary {
+      background-color: #007AFF;
+      color: white;
+    }
+    
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+  </style>
+<style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.immersive-translate-attach-loading::after {
+  content: " ";
+
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2000%, -50%);
+  z-index: 100;
+}
+
+.immersive-translate-loading-spinner {
+  vertical-align: middle !important;
+  width: 10px !important;
+  height: 10px !important;
+  display: inline-block !important;
+  margin: 0 4px !important;
+  border: 2px rgba(221, 244, 255, 0.6) solid !important;
+  border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+  animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+}
+
+@-webkit-keyframes immersive-translate-loading-animation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes immersive-translate-loading-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.immersive-translate-input-loading {
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+}
+
+@keyframes immersiveTranslateShadowRolling {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  12% {
+    box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  25% {
+    box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  36% {
+    box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+      100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+      110px 0 var(--loading-color), 100px 0 var(--loading-color);
+  }
+
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+      120px 0 var(--loading-color), 110px 0 var(--loading-color);
+  }
+
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      130px 0 var(--loading-color), 120px 0 var(--loading-color);
+  }
+
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+  }
+
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.immersive-translate-toast {
+  display: flex;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  right: 0;
+  top: 1%;
+  width: fit-content;
+  padding: 12px 20px;
+  margin: auto;
+  overflow: auto;
+  background: #fef6f9;
+  box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+  font-size: 15px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.immersive-translate-toast-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.immersive-translate-toast-hidden {
+  margin: 0 20px 0 72px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.immersive-translate-toast-close {
+  color: #666666;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-toast {
+    top: 0;
+    padding: 12px 0px 0 10px;
+  }
+  .immersive-translate-toast-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .immersive-translate-toast-hidden {
+    margin: 10px auto;
+  }
+}
+
+.immersive-translate-modal {
+  display: none;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+}
+
+.immersive-translate-modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 40px 24px 24px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 270px;
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-content {
+    margin: 50% auto !important;
+  }
+}
+
+.immersive-translate-modal .immersive-translate-modal-content-in-input {
+  max-width: 500px;
+}
+.immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+  text-align: left;
+  max-height: unset;
+}
+
+.immersive-translate-modal-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.immersive-translate-modal-body {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  word-break: break-all;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+.immersive-translate-close {
+  color: #666666;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.immersive-translate-close:hover,
+.immersive-translate-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.immersive-translate-modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.immersive-translate-btn {
+  width: fit-content;
+  color: #fff;
+  background-color: #ea4c89;
+  border: none;
+  font-size: 16px;
+  margin: 0 8px;
+  padding: 9px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.immersive-translate-btn:hover {
+  background-color: #f082ac;
+}
+.immersive-translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.immersive-translate-btn:disabled:hover {
+  background-color: #ea4c89;
+}
+
+.immersive-translate-cancel-btn {
+  /* gray color */
+  background-color: rgb(89, 107, 120);
+}
+
+.immersive-translate-cancel-btn:hover {
+  background-color: hsl(205, 20%, 32%);
+}
+
+.immersive-translate-action-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: 1px solid #ea4c89;
+}
+
+.immersive-translate-btn svg {
+  margin-right: 5px;
+}
+
+.immersive-translate-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #007bff;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-primary-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-modal input[type="radio"] {
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.immersive-translate-modal label {
+  cursor: pointer;
+}
+
+.immersive-translate-close-action {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.imt-image-status {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 16px !important;
+}
+.imt-image-status img,
+.imt-image-status svg,
+.imt-img-loading {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 0 8px 0 !important;
+  min-height: 28px !important;
+  min-width: 28px !important;
+  position: relative !important;
+}
+.imt-img-loading {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+  background-size: 28px 28px;
+  animation: image-loading-rotate 1s linear infinite !important;
+}
+
+.imt-image-status span {
+  color: var(--bg-2, #fff) !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 500 !important;
+  font-family: "PingFang SC", Arial, sans-serif !important;
+}
+
+@keyframes image-loading-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+</style></head>
+<body class="vsc-initialized">
+  <div class="container">
+    <header class="page-header">
+      <h1>MRONJ風險評估結果</h1>
+      <p>根據提供的資訊，以下是不同牙科治療的MRONJ風險評估</p>
+      <p class="evaluation-date">評估日期：<span id="current-date">2025年05月12日</span></p>
+    </header>
+
+    <main>
+      <div id="patient-summary" class="summary-section">
+        <h2>患者資訊摘要</h2>
+        <div id="patient-info-summary">
+        <div class="summary-item"><strong>姓名:</strong> SAA</div>
+        <div class="summary-item"><strong>年齡:</strong> 40</div>
+        <div class="summary-item"><strong>性別:</strong> 男</div>
+      <div class="summary-item"><strong>用藥情況:</strong> 未使用相關藥物</div><div class="summary-item"><strong>系統性疾病:</strong> 控制不佳之糖尿病 (HbA1c &gt; 7%)</div></div>
+      </div>
+
+      <div id="results-container" class="assessment-results"><div class="section-divider" style="border-top: 2px solid rgb(204, 204, 204); margin: 30px 0px;"></div><h2>不同牙科治療的風險評估</h2><div class="assessment-card"><h3 class="procedure-title">非侵入性治療</h3><span class="risk-badge low-risk">低風險</span><p class="recommendation">可進行一般治療。</p></div><div class="assessment-card"><h3 class="procedure-title">根管治療</h3><span class="risk-badge low-risk">低風險</span><p class="recommendation">可進行一般治療。</p></div><div class="assessment-card"><h3 class="procedure-title">拔牙</h3><span class="risk-badge low-risk">低風險</span><p class="recommendation">可進行一般治療。</p></div><div class="assessment-card"><h3 class="procedure-title">牙周手術</h3><span class="risk-badge low-risk">低風險</span><p class="recommendation">可進行一般治療。</p></div><div class="assessment-card"><h3 class="procedure-title">植牙</h3><span class="risk-badge low-risk">低風險</span><p class="recommendation">可進行一般治療。</p></div></div>
+
+      <div class="disclaimer">
+        <p><strong>免責聲明：</strong></p>
+        <p>本評估結果僅供參考，不構成醫療建議。最終治療決策應由醫療專業人員與患者共同討論後決定。</p>
+        <p>評估內容參考 AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>
+      </div>
+
+      <div class="action-buttons no-print">
+        <button id="print-btn" class="btn btn-primary">列印評估報告</button>
+        <a href="https://risch315815.github.io/MRONJ_WBPG/" class="btn btn-secondary">返回首頁</a>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <p>MRONJ風險評估工具 | 版本 1.0.0</p>
+    </footer>
+  </div>
+
+  <script src="%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0%E7%B5%90%E6%9E%9C%20-%20MRONJ%E9%A2%A8%E9%9A%AA%E8%A9%95%E4%BC%B0_files/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set current date
+      const today = new Date();
+      const formattedDate = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;
+      document.getElementById('current-date').textContent = formattedDate;
+      
+      // Check if patient data exists
+      if (!patientData || !patientData.name) {
+        alert('無法取得患者資料，請從頭開始填寫評估表');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Display patient summary
+      displayPatientSummary();
+      
+      // Calculate and display risk assessment
+      const assessments = assessRisk();
+      displayResults(assessments);
+      
+      // Print button event
+      document.getElementById('print-btn').addEventListener('click', function() {
+        window.print();
+      });
+    });
+    
+    function displayPatientSummary() {
+      const summaryContainer = document.getElementById('patient-info-summary');
+      
+      // Create summary HTML
+      let summaryHTML = `
+        <div class="summary-item"><strong>姓名:</strong> ${patientData.name}</div>
+        <div class="summary-item"><strong>年齡:</strong> ${patientData.age}</div>
+        <div class="summary-item"><strong>性別:</strong> ${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</div>
+      `;
+      
+      if (patientData.hasAntiresorptiveMed) {
+        summaryHTML += `
+          <div class="summary-item"><strong>用藥情況:</strong> 使用抗骨吸收或抗血管新生藥物</div>
+          <div class="summary-item"><strong>藥物名稱:</strong> ${patientData.drugName || '未提供'}</div>
+          <div class="summary-item"><strong>適應症:</strong> ${patientData.indication || '未提供'}</div>
+        `;
+        
+        // Calculate medication duration
+        const medicationDuration = calculateMedicationDuration();
+        summaryHTML += `<div class="summary-item"><strong>用藥時間:</strong> ${medicationDuration} 個月</div>`;
+      } else {
+        summaryHTML += `<div class="summary-item"><strong>用藥情況:</strong> 未使用相關藥物</div>`;
+      }
+      
+      // Add risk factors if any
+      if (patientData.systemicDiseases && patientData.systemicDiseases.length > 0) {
+        summaryHTML += `<div class="summary-item"><strong>系統性疾病:</strong> ${patientData.systemicDiseases.join(', ')}</div>`;
+      }
+      
+      if (patientData.hasCancer) {
+        summaryHTML += `<div class="summary-item"><strong>癌症:</strong> 是</div>`;
+      }
+      
+      if (patientData.hasRadiotherapy) {
+        summaryHTML += `<div class="summary-item"><strong>頭頸部放射治療:</strong> 是</div>`;
+      }
+      
+      summaryContainer.innerHTML = summaryHTML;
+    }
+    
+    // Display the risk assessment results
+    function displayResults(assessments) {
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.innerHTML = ''; // Clear loading message
+      
+      // Add a separator
+      const separator = document.createElement('div');
+      separator.className = 'section-divider';
+      separator.style.cssText = 'border-top: 2px solid #ccc; margin: 30px 0;';
+      resultsContainer.appendChild(separator);
+      
+      // Add a title
+      const title = document.createElement('h2');
+      title.textContent = '不同牙科治療的風險評估';
+      resultsContainer.appendChild(title);
+      
+      assessments.forEach(assessment => {
+        const card = document.createElement('div');
+        card.className = 'assessment-card';
+        
+        const procedureTitle = document.createElement('h3');
+        procedureTitle.className = 'procedure-title';
+        procedureTitle.textContent = assessment.procedure;
+        
+        const riskBadge = document.createElement('span');
+        riskBadge.className = 'risk-badge';
+        riskBadge.textContent = assessment.riskLevel;
+        
+        // Set color based on risk level
+        if (assessment.riskLevel === '高風險') {
+          riskBadge.classList.add('high-risk');
+        } else if (assessment.riskLevel === '中度風險') {
+          riskBadge.classList.add('medium-risk');
+        } else {
+          riskBadge.classList.add('low-risk');
+        }
+        
+        const recommendation = document.createElement('p');
+        recommendation.className = 'recommendation';
+        recommendation.textContent = assessment.recommendation;
+        
+        card.appendChild(procedureTitle);
+        card.appendChild(riskBadge);
+        card.appendChild(recommendation);
+        
+        resultsContainer.appendChild(card);
+      });
+    }
+  </script>
+
+ <div id="buffer-extension-hover-container" style="font-family: &quot;Roboto&quot;, sans-serif; display: none; position: absolute; z-index: 8675309; cursor: pointer; width: 67px;"><div id="buffer-extension-button-hover-container" style="position: relative; z-index: 8675309; width: 67px; height: 24px;"><span id="buffer-extension-hover-button" style="width: 67px; height: 24px; background-image: url(&quot;moz-extension://49c5e12a-769a-4463-9634-04f9a1745e17/buffer-hover-button.svg&quot;); background-size: 67px 24px; cursor: pointer; opacity: 0.9; display: block; position: relative; z-index: 8675309;"></span><div id="buffer-extension-button-menu" style="position: relative; z-index: 8675308; width: 140px; height: 94px; display: none; bottom: 94px; right: 75px;"><div style="font-size: 14px; width: 140px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px; background-color: rgba(255, 255, 255, 0.8); border-top-left-radius: 4px; border-top-right-radius: 4px; height: 4px;"></div><div id="buffer-extension-create" class="buffer-extension-hover-button" style="font-size: 14px; width: 140px; height: 28px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px;"><span>Create Post</span></div><div id="buffer-extension-save" class="buffer-extension-hover-button" style="font-size: 14px; width: 140px; height: 28px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px;"><span>Save Idea</span></div><div style="font-size: 14px; width: 140px; display: block; cursor: pointer; padding: 0px 4px; color: rgb(61, 61, 61); line-height: 28px; background-color: rgba(255, 255, 255, 0.8); border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; height: 4px;"></div><style>.buffer-extension-hover-button { background-color:rgba(255, 255, 255, 0.8); } .buffer-extension-hover-button span { display:block; padding: 0 4px; border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; -moz-border-radius: 4px 4px 4px 4px; } .buffer-extension-hover-button:hover span { background-color:#F5F5F5; }</style></div></div></div></body><div id="immersive-translate-popup" style="all: initial"></div></html>

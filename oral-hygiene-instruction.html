@@ -445,22 +445,81 @@
 
       // PDF generation functionality
       function generatePDF() {
-        // Get the entire page content including patient info
+        // Clone the content we want to convert to PDF
         const content = document.querySelector('.page-content').cloneNode(true);
+        
+        // Apply styling optimizations for PDF generation
+        const styleOptimizer = document.createElement('style');
+        styleOptimizer.textContent = `
+          body {
+            font-family: "Arial", "Microsoft JhengHei", sans-serif;
+          }
+          .page-content {
+            padding: 0;
+            margin: 0;
+          }
+          .instruction-section {
+            page-break-inside: avoid;
+            margin-bottom: 20px;
+          }
+          .important-note {
+            page-break-inside: avoid;
+          }
+          #patient-info-section {
+            page-break-inside: avoid;
+          }
+          .action-buttons, footer {
+            display: none;
+          }
+          h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 20px;
+          }
+          p, li {
+            line-height: 1.5;
+          }
+        `;
+        content.appendChild(styleOptimizer);
+        
+        // Remove elements not needed in PDF
+        const actionButtons = content.querySelector('.action-buttons');
+        if (actionButtons) {
+          actionButtons.remove();
+        }
         
         // Configure PDF options
         const opt = {
-          margin: [10, 10],
+          margin: [20, 20, 20, 20], // top, right, bottom, left margins in mm
           filename: `MRONJ_oral_hygiene_instructions_${patientData.name || 'patient'}.pdf`,
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          image: { type: 'jpeg', quality: 1.0 },
+          html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            letterRendering: true,
+            logging: false,
+            removeContainer: true
+          },
+          jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait',
+            compress: true,
+            precision: 2
+          },
+          pagebreak: { mode: 'avoid-all', before: '.page-break', avoid: '.avoid-break' }
         };
 
+        // Show loading indicator or notification
+        alert('正在產生PDF，請稍候...');
+
         // Generate PDF
-        html2pdf().set(opt).from(content).save().then(function() {
-          // After PDF is generated, redirect to risk assessment page
-          window.location.href = 'risk-assessment.html';
+        html2pdf().set(opt).from(content).save().then(() => {
+          // Success notification
+          alert('PDF已儲存成功！');
+        }).catch(error => {
+          console.error('PDF generation error:', error);
+          alert('PDF生成過程中出現錯誤，請重試');
         });
       }
 
