@@ -689,20 +689,51 @@
       const startYearSelect = document.getElementById('startYear');
       const stopYearSelect = document.getElementById('stopYear');
       
-      // Add options for the last 30 years
+      // Add options for the last 30 years for stop date
       for (let year = currentYear; year >= currentYear - 30; year--) {
-        const startOption = document.createElement('option');
-        startOption.value = year;
-        startOption.textContent = year;
-        startOption.classList.add(localStorage.getItem('preferredLanguage') === 'en' ? 'en-text' : 'zh-text');
-        startYearSelect.appendChild(startOption);
-        
         const stopOption = document.createElement('option');
         stopOption.value = year;
         stopOption.textContent = year;
         stopOption.classList.add(localStorage.getItem('preferredLanguage') === 'en' ? 'en-text' : 'zh-text');
         stopYearSelect.appendChild(stopOption);
       }
+
+      // Function to update start year options based on future use
+      function updateStartYearOptions() {
+        const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
+        startYearSelect.innerHTML = ''; // Clear existing options
+        
+        if (isFutureUse) {
+          // For future use: current year to current year + 5
+          for (let year = currentYear; year <= currentYear + 5; year++) {
+            const startOption = document.createElement('option');
+            startOption.value = year;
+            startOption.textContent = year;
+            startOption.classList.add(localStorage.getItem('preferredLanguage') === 'en' ? 'en-text' : 'zh-text');
+            startYearSelect.appendChild(startOption);
+          }
+        } else {
+          // For current/past use: last 30 years
+          for (let year = currentYear; year >= currentYear - 30; year--) {
+            const startOption = document.createElement('option');
+            startOption.value = year;
+            startOption.textContent = year;
+            startOption.classList.add(localStorage.getItem('preferredLanguage') === 'en' ? 'en-text' : 'zh-text');
+            startYearSelect.appendChild(startOption);
+          }
+        }
+      }
+
+      // Initial population of start year options
+      updateStartYearOptions();
+
+      // Update start year options when radio buttons change
+      const hasAntiresorptiveMedRadios = document.querySelectorAll('input[name="hasAntiresorptiveMed"]');
+      hasAntiresorptiveMedRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          updateStartYearOptions();
+        });
+      });
       
       // Set default value for hasAntiresorptiveMed to true
       if (patientData.hasAntiresorptiveMed === false) {
@@ -719,7 +750,6 @@
       }
       
       // Handle medication radio buttons
-      const hasAntiresorptiveMedRadios = document.querySelectorAll('input[name="hasAntiresorptiveMed"]');
       const medicationDetails = document.getElementById('medication-details');
       const medicationStatus = document.querySelector('.form-group:has(.status-buttons)');
       
@@ -1238,7 +1268,22 @@
       const nextBtn = document.getElementById('next-btn');
       const nextBtnEn = document.getElementById('next-btn-en');
       
-      // Update the next button handler to include multiple medications
+      // Function to validate start date for future use
+      function validateFutureStartDate(year, month) {
+        const currentDate = new Date();
+        const startDate = new Date(parseInt(year), parseInt(month) - 1);
+        
+        if (year === currentYear.toString() && startDate < currentDate) {
+          const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
+            ? 'Start date cannot be earlier than current date' 
+            : '開始使用日期不能早於現在';
+          alert(errorMsg);
+          return false;
+        }
+        return true;
+      }
+
+      // Update handleSubmit function to include future date validation
       function handleSubmit() {
         console.log("Handle submit clicked");
         
@@ -1253,6 +1298,16 @@
         } catch (e) {
           console.error("localStorage is NOT available:", e);
           alert("Your browser doesn't support or is blocking local storage. Your data may not be saved between pages.");
+        }
+
+        // Check if this is future use
+        const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
+        
+        // Validate start date for future use
+        if (isFutureUse && patientData.startYear && patientData.startMonth) {
+          if (!validateFutureStartDate(patientData.startYear, patientData.startMonth)) {
+            return; // Stop submission if validation fails
+          }
         }
         
         // Check if any medication has been selected

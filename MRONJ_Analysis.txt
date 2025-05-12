@@ -1,0 +1,29 @@
+Patient or Problem 病人或問題
+Intervention or Indicator 介入或指標 － 某種治療、檢查、危險因子等
+Comparator 比較 － 該治療和什麼相比？
+Outcome 結果 － 您想要達成或避免什麼？
+
+-----------------------------------------------------------------
+I would like to make a systematic review or meta analysis regarding the risk of Medication-Related Osteonecrosis of Jaw after dental treatment between patient who has taken anti-resorptive medication and patient who has not taken such medication.
+
+
+<Osteoporosis>
+P: Osteoporosis patient, regardless of age and sex
+I: History of anti-resorptive medication use, including bisphosphonate medication (regardless of route of administration, including Fosamax, Boniva, Reclast, etc), Monoclonal Antibody Medications (Prolia), and Other Osteoporosis Medications.
+C: no history of anti-resorptive medication use
+O: incidence of Medication-Related Osteonecrosis of Jaw after invasive dental procedure (including teeth extraction, periodontal surgery, implant insertion)
+
+
+<Cancer>
+P: Osteoporosis patient, regardless of age and sex
+I: History of anti-resorptive medication use, including bisphosphonate medication (regardless of route of administration, including Fosamax, Boniva, Reclast, etc), Monoclonal Antibody Medications (Prolia), and Other Osteoporosis Medications.
+C: no history of anti-resorptive medication use
+O: incidence of Medication-Related Osteonecrosis of Jaw after invasive dental procedure (including teeth extraction, periodontal surgery, implant insertion)
+
+
+
+
+
+
+
+
