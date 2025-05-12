@@ -1271,9 +1271,15 @@
       // Function to validate start date for future use
       function validateFutureStartDate(year, month) {
         const currentDate = new Date();
-        const startDate = new Date(parseInt(year), parseInt(month) - 1);
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-based
         
-        if (year === currentYear.toString() && startDate < currentDate) {
+        // Convert to integers for comparison
+        const startYear = parseInt(year);
+        const startMonth = parseInt(month);
+        
+        // Compare year and month only
+        if (startYear < currentYear || (startYear === currentYear && startMonth < currentMonth)) {
           const errorMsg = localStorage.getItem('preferredLanguage') === 'en' 
             ? 'Start date cannot be earlier than current date' 
             : '開始使用日期不能早於現在';
