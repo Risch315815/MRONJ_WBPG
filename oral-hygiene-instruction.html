@@ -546,6 +546,8 @@
         // Create a new container specifically for PDF content
         const pdfContainer = document.createElement('div');
         pdfContainer.className = 'pdf-content';
+        pdfContainer.style.margin = '0';
+        pdfContainer.style.padding = '0';
         
         // Create a document structure that ensures content starts from the top
         const contentWrapper = document.createElement('div');
@@ -560,9 +562,8 @@
         titleElement.style.color = '#007AFF';
         titleElement.style.textAlign = 'center';
         titleElement.style.fontSize = '24px';
-        titleElement.style.marginTop = '0';
-        titleElement.style.paddingTop = '0';
-        titleElement.style.marginBottom = '20px';
+        titleElement.style.margin = '0 0 20px 0';
+        titleElement.style.padding = '0';
         contentWrapper.appendChild(titleElement);
         
         // Add subtitle
@@ -571,20 +572,23 @@
         subtitleElement.style.color = '#666';
         subtitleElement.style.textAlign = 'center';
         subtitleElement.style.fontSize = '16px';
-        subtitleElement.style.marginBottom = '20px';
+        subtitleElement.style.margin = '0 0 20px 0';
+        subtitleElement.style.padding = '0';
         contentWrapper.appendChild(subtitleElement);
         
         // Create patient info section (don't clone to avoid extra margins)
         const patientSection = document.createElement('div');
         patientSection.className = 'instruction-section patient-info-section';
+        patientSection.style.margin = '0 0 20px 0';
+        patientSection.style.padding = '10px';
         
         // Add patient info header
         const patientHeader = document.createElement('h2');
         patientHeader.textContent = '病患資料';
         patientHeader.style.color = '#007AFF';
         patientHeader.style.fontSize = '22px';
-        patientHeader.style.marginTop = '0';
-        patientHeader.style.marginBottom = '15px';
+        patientHeader.style.margin = '0 0 15px 0';
+        patientHeader.style.padding = '0';
         patientSection.appendChild(patientHeader);
         
         // Get patient details and add them to section
@@ -595,17 +599,22 @@
         // Copy all instruction sections but create optimized versions
         const instructionSections = document.querySelectorAll('.instruction-section:not(#patient-info-section)');
         instructionSections.forEach(section => {
-          contentWrapper.appendChild(section.cloneNode(true));
+          const cloned = section.cloneNode(true);
+          cloned.style.margin = '0 0 20px 0';
+          cloned.style.padding = '10px';
+          contentWrapper.appendChild(cloned);
         });
         
         // Copy important note
         const importantNote = document.querySelector('.important-note').cloneNode(true);
+        importantNote.style.margin = '20px 0';
+        importantNote.style.padding = '10px';
         contentWrapper.appendChild(importantNote);
         
         // Add reference footer
         const referenceElement = document.createElement('div');
         referenceElement.style.textAlign = 'right';
-        referenceElement.style.margin = '20px 0';
+        referenceElement.style.margin = '20px 0 0 0';
         referenceElement.style.color = '#666';
         referenceElement.style.fontSize = '14px';
         referenceElement.innerHTML = '<p>內容參考：AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>';
@@ -618,53 +627,40 @@
         footerElement.style.textAlign = 'right';
         footerElement.style.fontSize = '10px';
         footerElement.style.color = '#666';
-        footerElement.style.marginTop = '10px';
+        footerElement.style.margin = '10px 0 0 0';
         contentWrapper.appendChild(footerElement);
         
         // Apply styling for PDF
         const styleOptimizer = document.createElement('style');
         styleOptimizer.textContent = `
           @page {
-            margin: 0;
+            margin: 10px;
             padding: 0;
           }
-          
-          .pdf-content {
-            font-family: "Microsoft JhengHei", Arial, sans-serif;
+          .pdf-content, .pdf-wrapper {
             margin: 0;
             padding: 0;
             max-width: 100%;
           }
-          
-          .pdf-wrapper {
-            padding: 10px 15px;
-            margin: 0;
-          }
-          
-          .instruction-section {
+          .instruction-section, .important-note {
             margin-bottom: 20px;
-            padding: 15px;
+            padding: 10px;
             background-color: #f8f9fa;
             border-radius: 10px;
             border-left: 4px solid #007AFF;
             page-break-inside: avoid;
           }
-          
           .instruction-section h2 {
-            margin-top: 0;
+            margin: 0 0 15px 0;
             color: #007AFF;
             font-size: 22px;
-            margin-bottom: 15px;
           }
-          
           .instruction-list {
             padding-left: 20px;
           }
-          
           .instruction-list li {
             margin-bottom: 10px;
           }
-          
           .priority-tag {
             display: inline-block;
             padding: 5px 10px;
@@ -674,48 +670,24 @@
             margin-right: 10px;
             color: white;
           }
-          
-          .high-priority {
-            background-color: #ff3b30;
-          }
-          
-          .medium-priority {
-            background-color: #ff9500;
-          }
-          
-          .important-note {
-            background-color: #ffe8e8;
-            border-left: 4px solid #ff3b30;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 10px;
-            page-break-inside: avoid;
-          }
-          
+          .high-priority { background-color: #ff3b30; }
+          .medium-priority { background-color: #ff9500; }
           .important-note h3 {
-            margin-top: 0;
+            margin: 0 0 10px 0;
             color: #ff3b30;
           }
-          
           p, li {
             font-size: 16px;
             line-height: 1.6;
           }
-          
-          .font-size-selector, .action-buttons, footer {
-            display: none;
-          }
-          
-          html, body {
-            margin: 0;
-            padding: 0;
-          }
+          .font-size-selector, .action-buttons, footer { display: none; }
+          html, body { margin: 0; padding: 0; }
         `;
         pdfContainer.appendChild(styleOptimizer);
         
         // Configure PDF options
         const opt = {
-          margin: [5, 5, 5, 5], // top, right, bottom, left margins in mm (minimal margins)
+          margin: [2.6, 2.6, 2.6, 2.6], // 10px on all sides (in mm)
           filename: `MRONJ_口腔衛生指導_${patientData.name || 'patient'}.pdf`,
           image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { 
