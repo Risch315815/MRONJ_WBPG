@@ -448,54 +448,43 @@
         // Clone the content we want to convert to PDF
         const content = document.querySelector('.page-content').cloneNode(true);
         
-        // Apply styling optimizations for PDF generation to match 風險評估結果 style
+        // Add title at the top
+        const titleDiv = document.createElement('div');
+        titleDiv.innerHTML = `<h1 style="color: #007AFF; text-align: center; margin-bottom: 20px; font-size: 24px;">開始使用抗骨質再吸收藥物前的口腔評估建議</h1>`;
+        content.insertBefore(titleDiv, content.firstChild);
+        
+        // Apply styling optimizations for PDF generation to match HTML style
         const styleOptimizer = document.createElement('style');
         styleOptimizer.textContent = `
           body {
-            font-family: sans-serif;
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
             padding: 20px;
           }
-          h1 {
-            color: #007AFF;
-            text-align: center;
-          }
-          .section {
-            margin: 20px 0;
-          }
+          
           .instruction-section {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #007AFF;
             page-break-inside: avoid;
           }
-          #patient-info-section {
-            background-color: #f8f8f8;
-            padding: 10px;
-            border-radius: 5px;
-            page-break-inside: avoid;
-          }
-          .important-note {
-            background-color: #ffe8e8;
-            border-left: 4px solid #ff3b30;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            page-break-inside: avoid;
-          }
-          .action-buttons, footer {
-            display: none;
-          }
-          h2 {
+          
+          .instruction-section h2 {
+            margin-top: 0;
             color: #007AFF;
-            margin-top: 10px;
+            font-size: 22px;
             margin-bottom: 15px;
           }
-          p, li {
-            margin: 5px 0;
-            text-align: justify;
-            line-height: 1.6;
+          
+          .instruction-list {
+            padding-left: 20px;
           }
+          
+          .instruction-list li {
+            margin-bottom: 10px;
+          }
+          
           .priority-tag {
             display: inline-block;
             padding: 5px 10px;
@@ -505,25 +494,88 @@
             margin-right: 10px;
             color: white;
           }
+          
           .high-priority {
             background-color: #ff3b30;
           }
+          
           .medium-priority {
             background-color: #ff9500;
+          }
+          
+          .important-note {
+            background-color: #ffe8e8;
+            border-left: 4px solid #ff3b30;
+            padding: 15px;
+            margin: 30px 0;
+            border-radius: 10px;
+            page-break-inside: avoid;
+          }
+          
+          .important-note h3 {
+            margin-top: 0;
+            color: #ff3b30;
+          }
+          
+          #patient-info-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #007AFF;
+            page-break-inside: avoid;
+          }
+          
+          p, li {
+            font-size: 16px;
+            line-height: 1.6;
+          }
+          
+          h1 {
+            color: #007AFF;
+            text-align: center;
+            font-size: 24px;
+          }
+          
+          h2 {
+            color: #007AFF;
+            font-size: 22px;
+          }
+          
+          .action-buttons, footer, .font-size-selector {
+            display: none;
+          }
+          
+          /* Add page number */
+          .pdf-footer {
+            position: fixed;
+            bottom: -15mm;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: #666;
           }
         `;
         content.appendChild(styleOptimizer);
         
         // Remove elements not needed in PDF
-        const actionButtons = content.querySelector('.action-buttons');
-        if (actionButtons) {
-          actionButtons.remove();
-        }
+        const elementsToRemove = content.querySelectorAll('.action-buttons, footer, .font-size-selector');
+        elementsToRemove.forEach(el => {
+          if (el) el.remove();
+        });
+        
+        // Add footer with page numbers
+        const footer = document.createElement('div');
+        footer.className = 'pdf-footer';
+        footer.innerHTML = `
+          <p>MRONJ口腔衛生指導 | 評估日期: ${new Date().toLocaleDateString('zh-TW')}</p>
+        `;
+        content.appendChild(footer);
         
         // Configure PDF options
         const opt = {
-          margin: [20, 15, 20, 15], // top, right, bottom, left margins in mm
-          filename: `MRONJ_oral_hygiene_instructions_${patientData.name || 'patient'}.pdf`,
+          margin: [15, 15, 20, 15], // top, right, bottom, left margins in mm
+          filename: `MRONJ_口腔衛生指導_${patientData.name || 'patient'}.pdf`,
           image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { 
             scale: 2,
@@ -536,7 +588,9 @@
             format: 'a4', 
             orientation: 'portrait'
           },
-          pagebreak: { mode: 'avoid-all' }
+          pagebreak: { 
+            mode: 'avoid-all' 
+          }
         };
 
         // Generate PDF without alerts
