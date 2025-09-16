@@ -67,11 +67,17 @@ class MRONJRiskCalculator {
       }
     };
 
-    // Risk category thresholds based on incidence rates
-    this.riskThresholds = {
-      low: 2.0,      // < 2%
-      medium: 8.0,   // 2-8%
-      high: 8.0      // > 8%
+    // Treatment classification system
+    this.treatmentClassification = {
+      nonInvasive: ['洗牙', '蛀牙填補', '假牙贋復'],
+      semiInvasive: ['根管治療', '牙周深層清潔'],
+      invasive: ['拔牙', '齒槽骨整形術', '牙冠增長術', '植牙']
+    };
+
+    // Semi-invasive treatment special considerations
+    this.semiInvasiveConsiderations = {
+      '根管治療': '應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)',
+      '牙周深層清潔': '建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、牙周雷射治療等等)'
     };
 
     // Data quality indicators - mark which rates are based on limited sources
@@ -170,35 +176,94 @@ class MRONJRiskCalculator {
   }
 
   // Calculate MRONJ risk based on patient data
-  calculateRisk(patientData, invasiveDentalTreatment = false) {
+  calculateRisk(patientData, dentalTreatment = null) {
     const indication = patientData.hasCancer ? 'cancer' : 'osteoporosis';
     const medication = this.normalizeMedication(patientData);
     const administrationRoute = this.normalizeAdministrationRoute(patientData);
     
-    // Get incidence rate
-    const incidence = this.getIncidenceRate(indication, medication, administrationRoute, invasiveDentalTreatment);
+    // Determine treatment invasiveness
+    const treatmentType = this.classifyTreatment(dentalTreatment);
+    const isInvasive = treatmentType === 'invasive';
+    const isSemiInvasive = treatmentType === 'semiInvasive';
+    
+    // Get incidence rate from statistical data
+    const incidence = this.getIncidenceRate(indication, medication, administrationRoute, isInvasive);
     
     // Check if data is based on limited sources
-    const hasLimitedData = this.hasLimitedDataSources(indication, medication, administrationRoute, invasiveDentalTreatment);
+    const hasLimitedData = this.hasLimitedDataSources(indication, medication, administrationRoute, isInvasive);
     
-    // Determine risk category
-    const riskCategory = this.categorizeRisk(incidence);
+    // Determine risk category using rule-based approach
+    const riskCategory = this.determineRiskCategory(indication, medication, administrationRoute, isInvasive);
     
     // Get reference papers
-    const references = this.getReferencePapers(indication, medication, administrationRoute, invasiveDentalTreatment);
+    const references = this.getReferencePapers(indication, medication, administrationRoute, isInvasive);
+    
+    // Get special considerations for semi-invasive treatments
+    const specialConsiderations = isSemiInvasive ? this.semiInvasiveConsiderations[dentalTreatment] : null;
     
     return {
       indication,
       medication,
       administrationRoute,
-      invasiveDentalTreatment,
+      dentalTreatment,
+      treatmentType,
+      isInvasive,
+      isSemiInvasive,
       incidenceRate: incidence,
       hasLimitedData,
       riskCategory,
       references,
       riskLevel: this.getRiskLevel(riskCategory),
-      recommendation: this.getRecommendation(riskCategory, invasiveDentalTreatment)
+      recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations)
     };
+  }
+
+  // Classify dental treatment type
+  classifyTreatment(treatment) {
+    if (!treatment) return 'nonInvasive';
+    
+    if (this.treatmentClassification.nonInvasive.includes(treatment)) {
+      return 'nonInvasive';
+    } else if (this.treatmentClassification.semiInvasive.includes(treatment)) {
+      return 'semiInvasive';
+    } else if (this.treatmentClassification.invasive.includes(treatment)) {
+      return 'invasive';
+    }
+    
+    return 'nonInvasive'; // Default to non-invasive
+  }
+
+  // Determine risk category using rule-based approach
+  determineRiskCategory(indication, medication, administrationRoute, isInvasive) {
+    // Control groups (no medication)
+    if (medication === 'none') {
+      return 'low';
+    }
+    
+    // Romosuzumab for cancer - no data available
+    if (indication === 'cancer' && medication === 'Romosuzumab') {
+      return 'unknown';
+    }
+    
+    // Osteoporosis patients
+    if (indication === 'osteoporosis') {
+      if (isInvasive) {
+        return 'moderate';
+      } else {
+        return 'low';
+      }
+    }
+    
+    // Cancer patients
+    if (indication === 'cancer') {
+      if (isInvasive) {
+        return 'high';
+      } else {
+        return 'moderate';
+      }
+    }
+    
+    return 'unknown';
   }
 
   // Normalize medication name for data lookup
@@ -343,7 +408,7 @@ class MRONJRiskCalculator {
   getRiskLevel(category) {
     const levels = {
       low: '低風險',
-      medium: '中度風險',
+      moderate: '中度風險',
       high: '高風險',
       unknown: '資料不足'
     };
@@ -351,13 +416,16 @@ class MRONJRiskCalculator {
   }
 
   // Get recommendation based on risk category
-  getRecommendation(category, invasiveDentalTreatment) {
+  getRecommendation(category, isInvasive, isSemiInvasive, specialConsiderations) {
+    let baseRecommendation = '';
+    
+    // Base recommendations
     const recommendations = {
       low: {
         true: '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。',
         false: '可進行治療，建議定期追蹤。'
       },
-      medium: {
+      moderate: {
         true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。',
         false: '建議定期追蹤，如有牙科治療需求請先諮詢醫師。'
       },
@@ -371,7 +439,14 @@ class MRONJRiskCalculator {
       }
     };
     
-    return recommendations[category][invasiveDentalTreatment] || '請諮詢專業醫師。';
+    baseRecommendation = recommendations[category][isInvasive] || '請諮詢專業醫師。';
+    
+    // Add special considerations for semi-invasive treatments
+    if (isSemiInvasive && specialConsiderations) {
+      baseRecommendation += `\n\n特別注意事項：${specialConsiderations}`;
+    }
+    
+    return baseRecommendation;
   }
 
   // Get reference papers for the specific condition
@@ -413,19 +488,27 @@ class MRONJRiskCalculator {
   // Generate comprehensive risk assessment for all procedures
   assessAllProcedures(patientData) {
     const procedures = [
-      { name: '非侵入性治療', invasive: false },
-      { name: '根管治療', invasive: true },
-      { name: '拔牙', invasive: true },
-      { name: '牙周手術', invasive: true },
-      { name: '植牙', invasive: true }
+      { name: '洗牙', treatment: '洗牙' },
+      { name: '蛀牙填補', treatment: '蛀牙填補' },
+      { name: '假牙贋復', treatment: '假牙贋復' },
+      { name: '根管治療', treatment: '根管治療' },
+      { name: '牙周深層清潔', treatment: '牙周深層清潔' },
+      { name: '拔牙', treatment: '拔牙' },
+      { name: '齒槽骨整形術', treatment: '齒槽骨整形術' },
+      { name: '牙冠增長術', treatment: '牙冠增長術' },
+      { name: '植牙', treatment: '植牙' }
     ];
     
     const assessments = [];
     
     procedures.forEach(procedure => {
-      const assessment = this.calculateRisk(patientData, procedure.invasive);
+      const assessment = this.calculateRisk(patientData, procedure.treatment);
       assessments.push({
         procedure: procedure.name,
+        treatment: procedure.treatment,
+        treatmentType: assessment.treatmentType,
+        isInvasive: assessment.isInvasive,
+        isSemiInvasive: assessment.isSemiInvasive,
         riskLevel: assessment.riskLevel,
         incidenceRate: assessment.incidenceRate,
         recommendation: assessment.recommendation,
