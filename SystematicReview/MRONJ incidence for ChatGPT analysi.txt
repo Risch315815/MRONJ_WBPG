@@ -1,0 +1,68 @@
+MRONJ incidence for ChatGPT analysis:
+
+{("indication": "osteoporosis", "antiresorptive medication": False, "medication type": "N/A", "Administration route": "N/A", "invasive dental treatment": False): ("MRONJ incidence": "0.04%")},  
+
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "bisphosphonate OR Denosumab OR Romosozumab", "Administration route": "oral OR IV", "invasive dental treatment": False): ("MRONJ incidence": "0.20%")}, 
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "bisphosphonate", "Administration route": "oral OR IV", "invasive dental treatment": False): ("MRONJ incidence": "0.21%")}, 
+{("indication": "osteoporosis", "antiresorptive edication": True, "medication type": "bisphosphonate", "Administration route": "oral", "invasive dental treatment": False): ("MRONJ incidence": "0.21%")}, 
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "bisphosphonate", "Administration route": "IV", "invasive dental treatment": False): ("MRONJ incidence": "0.24%")}, 
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "Denosumab", "Administration route": "IV", "invasive dental treatment": False): ("MRONJ incidence": "0.04%")}, --> single research
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "Romosozumab", "Administration route": "IV", "invasive dental treatment": False): ("MRONJ incidence": "0.04%")}, --> single research
+
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "bisphosphonate OR Denosumab OR Romosozumab", "Administration route": "oral OR IV", "invasive dental treatment": True): ("MRONJ incidence": "1.48%")}, 
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "bisphosphonate", "Administration route": "oral OR IV", "invasive dental treatment": True): ("MRONJ incidence": "2.50%")}, 
+{("indication": "osteoporosis", "antiresorptive edication": True, "medication type": "bisphosphonate", "Administration route": "oral", "invasive dental treatment": True): ("MRONJ incidence": "1.61%")}, 
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "bisphosphonate", "Administration route": "IV", "invasive dental treatment": True): ("MRONJ incidence": "15.12%")}, --> single research
+{("indication": "osteoporosis", "antiresorptive medication": True, "medication type": "Denosumab", "Administration route": "IV", "invasive dental treatment": True): ("MRONJ incidence": "0.93%")}, 
+
+
+{("indication": "cancer", "antiresorptive medication": False, "medication type": "N/A", "Administration route": "N/A", "invasive dental treatment": False): ("MRONJ incidence": "0.09%")},  
+
+{("indication": "cancer", "antiresorptive medication": True, "medication type": "bisphosphonate OR Denosumab OR Romosozumab", "Administration route": "oral OR IV", "invasive dental treatment": False): ("MRONJ incidence": "1.09%")}, 
+{("indication": "cancer", "antiresorptive medication": True, "medication type": "bisphosphonate", "Administration route": "oral OR IV", "invasive dental treatment": False): ("MRONJ incidence": "0.88%")},
+{("indication": "cancer", "antiresorptive medication": True, "medication type": "Denosumab", "Administration route": "IV", "invasive dental treatment": False): ("MRONJ incidence": "1.74%")},
+
+{("indication": "cancer", "antiresorptive medication": True, "medication type": "bisphosphonate OR Denosumab OR Romosozumab", "Administration route": "oral OR IV", "invasive dental treatment": True): ("MRONJ incidence": "9.92%")}, 
+{("indication": "cancer", "antiresorptive medication": True, "medication type": "bisphosphonate", "Administration route": "oral OR IV", "invasive dental treatment": True): ("MRONJ incidence": "9.17%")},
+{("indication": "cancer", "antiresorptive medication": True, "medication type": "Denosumab", "Administration route": "IV", "invasive dental treatment": True): ("MRONJ incidence": "12.56%")},
+
+-----------------------------------------------------------------------------------
+Quantifying MRONJ Risk Before and After Invasive Dental Procedures for Antiresorptive Medication-Treated Patients: A Meta-analysis-Informed Web Platform
+
+
+Background
+Medication-related osteonecrosis of the jaw (MRONJ) is uncommon, yet its pain and repeat interventions can erode patient–clinician trust. Many people on anti-resorptives are unaware that invasive dental treatment markedly raises risk, while dentists face time pressure verifying medications and tailoring counselling. We built an evidence-based web platform that retrieves medication history, quantifies individualized risk, and provides patient-friendly oral-hygiene instructions.
+
+Methods
+We meta-analysed MRONJ incidence by indication (osteoporosis, cancer), drug class, administration route, and presence/absence of invasive dental treatment. Homogeneous datasets were pooled with fixed-effects models; heterogeneous groups were summarised as weighted proportions. These tables drive the platform’s risk display, which lists implicated drugs, records individual use, stratifies risk by planned procedure, and generates bilingual PDFs as educational materials.
+
+Results
+Across both indications, MRONJ showed an order-of-magnitude rise from no medication to medication only, then to medication with invasive dental treatment  (osteoporosis: 0.04% to 0.20% to 1.48%; cancer: 0.09% to 1.09% to 9.92%). Incidence estimates were broadly homogeneous across medication-type subgroups, except for three single-study subgroups, which were interpreted cautiously. These gradients are embedded in the service’s risk-warning system to foreground the step-change in risk during consent for invasive procedures.
+
+Conclusion
+MRONJ risk increases sharply when invasive dental treatment is performed in patients with anti-resorptive exposure, with consistent patterns across indications. By operationalizing these pooled figures into a chair-side risk-warning and education workflow, the MRONJ Risk Evaluation Service supports rapid medication identification, procedure-specific counselling, and clearer informed consent. Ongoing updates will refine estimates for single-study subgroups as new evidence emerges.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

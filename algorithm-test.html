@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRONJ風險算法測試</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .test-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .test-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+    }
+    
+    .test-case {
+      background: white;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .test-case h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    
+    .test-input {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    
+    .test-result {
+      background: #e8f5e8;
+      padding: 15px;
+      border-radius: 5px;
+      border-left: 4px solid #4caf50;
+    }
+    
+    .risk-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      color: white;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    
+    .risk-badge.low {
+      background-color: #4caf50;
+    }
+    
+    .risk-badge.medium {
+      background-color: #ff9800;
+    }
+    
+    .risk-badge.high {
+      background-color: #f44336;
+    }
+    
+    .incidence-rate {
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+    
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #007AFF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-button">← 返回首頁</a>
+  
+  <div class="test-container">
+    <div class="test-header">
+      <h1>MRONJ風險算法測試</h1>
+      <p>測試基於統計分析的風險評估算法</p>
+    </div>
+    
+    <div id="testResults">
+      <div class="loading">載入測試中...</div>
+    </div>
+  </div>
+
+  <script src="assets/js/mronj-risk-algorithm.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const calculator = new MRONJRiskCalculator();
+      const testResults = document.getElementById('testResults');
+      
+      // Test cases based on your statistical analysis
+      const testCases = [
+        {
+          name: '骨質疏鬆症 - 口服Alendronate (非侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Alendronate',
+            administrationRoute: 'oral'
+          },
+          invasive: false,
+          expectedIncidence: 0.24
+        },
+        {
+          name: '骨質疏鬆症 - 口服Alendronate (侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Alendronate',
+            administrationRoute: 'oral'
+          },
+          invasive: true,
+          expectedIncidence: 4.97,
+          expectedLimitedData: true
+        },
+        {
+          name: '骨質疏鬆症 - 靜脈Zoledronate (非侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Zoledronate',
+            administrationRoute: 'IV'
+          },
+          invasive: false,
+          expectedIncidence: 0.02
+        },
+        {
+          name: '骨質疏鬆症 - 靜脈Zoledronate (侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Zoledronate',
+            administrationRoute: 'IV'
+          },
+          invasive: true,
+          expectedIncidence: 15.12,
+          expectedLimitedData: true
+        },
+        {
+          name: '骨質疏鬆症 - Denosumab (非侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Denosumab',
+            administrationRoute: 'SC'
+          },
+          invasive: false,
+          expectedIncidence: 0.04
+        },
+        {
+          name: '骨質疏鬆症 - Denosumab (侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Denosumab',
+            administrationRoute: 'SC'
+          },
+          invasive: true,
+          expectedIncidence: 0.93
+        },
+        {
+          name: '癌症 - 靜脈Zoledronate (非侵入性)',
+          patientData: {
+            hasCancer: true,
+            hasAntiresorptiveMed: true,
+            drugName: 'Zoledronate',
+            administrationRoute: 'IV'
+          },
+          invasive: false,
+          expectedIncidence: 1.21
+        },
+        {
+          name: '癌症 - 靜脈Zoledronate (侵入性)',
+          patientData: {
+            hasCancer: true,
+            hasAntiresorptiveMed: true,
+            drugName: 'Zoledronate',
+            administrationRoute: 'IV'
+          },
+          invasive: true,
+          expectedIncidence: 10.81
+        },
+        {
+          name: '癌症 - Denosumab (非侵入性)',
+          patientData: {
+            hasCancer: true,
+            hasAntiresorptiveMed: true,
+            drugName: 'Denosumab',
+            administrationRoute: 'SC'
+          },
+          invasive: false,
+          expectedIncidence: 1.74
+        },
+        {
+          name: '癌症 - Denosumab (侵入性)',
+          patientData: {
+            hasCancer: true,
+            hasAntiresorptiveMed: true,
+            drugName: 'Denosumab',
+            administrationRoute: 'SC'
+          },
+          invasive: true,
+          expectedIncidence: 12.56
+        },
+        {
+          name: '骨質疏鬆症 - 口服Risedronate (侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Risedronate',
+            administrationRoute: 'oral'
+          },
+          invasive: true,
+          expectedIncidence: 'N/A'
+        },
+        {
+          name: '骨質疏鬆症 - 靜脈Pamidronate (侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Pamidronate',
+            administrationRoute: 'IV'
+          },
+          invasive: true,
+          expectedIncidence: 'N/A'
+        },
+        {
+          name: '骨質疏鬆症 - 口服Risedronate (侵入性)',
+          patientData: {
+            hasCancer: false,
+            hasAntiresorptiveMed: true,
+            drugName: 'Risedronate',
+            administrationRoute: 'oral'
+          },
+          invasive: true,
+          expectedIncidence: 0,
+          expectedLimitedData: false
+        }
+      ];
+      
+      let html = '';
+      
+      testCases.forEach((testCase, index) => {
+        try {
+          const result = calculator.calculateRisk(testCase.patientData, testCase.invasive);
+          const isCorrect = result.incidenceRate === 'N/A' ? 
+            testCase.expectedIncidence === 'N/A' : 
+            Math.abs(result.incidenceRate - testCase.expectedIncidence) < 0.01;
+          
+          const isLimitedDataCorrect = testCase.expectedLimitedData === undefined ? 
+            !result.hasLimitedData : 
+            result.hasLimitedData === testCase.expectedLimitedData;
+          
+          html += `
+            <div class="test-case">
+              <h3>測試案例 ${index + 1}: ${testCase.name}</h3>
+              
+              <div class="test-input">
+                <strong>輸入參數:</strong><br>
+                適應症: ${testCase.patientData.hasCancer ? '癌症' : '骨質疏鬆症'}<br>
+                藥物: ${testCase.patientData.drugName}<br>
+                給藥途徑: ${testCase.patientData.administrationRoute}<br>
+                侵入性治療: ${testCase.invasive ? '是' : '否'}<br>
+                預期發生率: ${testCase.expectedIncidence}%
+              </div>
+              
+              <div class="test-result">
+                <strong>算法結果:</strong><br>
+                <span class="risk-badge ${result.riskCategory}">${result.riskLevel}</span>
+                <div class="incidence-rate">計算發生率: ${result.incidenceRate === 'N/A' ? '<span style="color: #6c757d; font-style: italic;">資料不足</span>' : result.incidenceRate + '%' + (result.hasLimitedData ? ' <span style="color: #ff9800; font-weight: bold;">**</span>' : '')}</div>
+                ${result.hasLimitedData ? '<div style="color: #ff9800; font-size: 0.9em; margin-top: 5px;"><strong>⚠️ 基於有限資料</strong></div>' : ''}
+                <div style="color: ${isCorrect && isLimitedDataCorrect ? '#4caf50' : '#f44336'}; font-weight: bold;">
+                  ${isCorrect && isLimitedDataCorrect ? '✓ 測試通過' : '✗ 測試失敗'}
+                </div>
+                ${!isLimitedDataCorrect ? '<div style="color: #f44336; font-size: 0.9em; margin-top: 5px;">⚠️ 有限資料標記不正確</div>' : ''}
+                <div style="margin-top: 10px;">
+                  <strong>建議:</strong> ${result.recommendation}
+                </div>
+                <div style="margin-top: 10px;">
+                  <strong>參考文獻:</strong> ${result.references.length}篇
+                </div>
+              </div>
+            </div>
+          `;
+        } catch (error) {
+          html += `
+            <div class="test-case">
+              <h3>測試案例 ${index + 1}: ${testCase.name}</h3>
+              <div class="test-result" style="background: #ffebee; border-left-color: #f44336;">
+                <strong>錯誤:</strong> ${error.message}
+              </div>
+            </div>
+          `;
+        }
+      });
+      
+      testResults.innerHTML = html;
+    });
+  </script>
+</body>
+</html>

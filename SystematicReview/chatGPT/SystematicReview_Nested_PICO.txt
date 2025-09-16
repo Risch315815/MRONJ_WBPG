@@ -1,0 +1,172 @@
+@Original Question
+
+I would like to make a systematic review or meta analysis 
+regarding the risk of Medication-Related Osteonecrosis of Jaw after dental treatment 
+between patient who has taken anti-resorptive medication and patient who has not taken such medication. 
+Using a PICO search model.
+--> I would like to compare the incidence of MRONJ between these groups, with the hope of building an algorithm to predict the incidence of MRONJ based on the kind of medication the patient is taking and the indication for the medication. 
+
+--------------------------------------
+//P: Regardless of age and sex, 
+1. Osteoporosis patients, excluding cancer patients
+2. Cancer patient, excluding osteoporosis patients
+
+
+//I: History of anti-resorptive medication use, only for  
+-
+1-1-1. Orally-administered Bisphosphonate medication for osteoporosis (alendronate(Fosamax), risedronate(Actonel), etc )
+1-1-2. Parenterally-administered Bisphosphonate medication for osteoporosis (zoledronate(Boniva), etc )
+1-2. Denosumab for osteoporosis (Prolia)
+1-3. Monoclonal antibody for osteoporosis (Romosozumab)
+-
+2-1. Bisphosphonate medication for cancer (Parenteral: zoledronate(Zometa/Reclast), etc)
+2-2. Denosumab for cancer (Xegva)
+
+
+//C: no history of anti-resorptive medication use 
+
+//O: incidence of Medication-Related Osteonecrosis of Jaw
+1. with no invasive dental treatment
+2. after invasive dental procedure (including teeth extraction, periodontal surgery, implant insertion, removable prosthesis, etc)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@Screening
+
+- population, age: age of subject must be over 18 years old
+- population, indication: the research must specify that its subject is chosen from patients taking medication for osteoporosis, excluding cancer patient, excluding research with mixed population
+- subject size: must include over 100 subjects in the final statistical data
+- control group: no MRONJ medication history
+- intervention type: oral bisphosphonate medication (excluding intravenous, excluding non-bisphosphonate) for osteoporosis treatment
+- study design: prospective/retrospective cohort study, case-control study, or randomized controlled trial, excluding case report/series
+- diagnostic standards for MRONJ
+- procedure documentation: MRONJ incidence following clearly documented invasive dental procedures (including dental extraction, dental surgery, implant surgery, periodontal surgery, removable prosthesis, etc)
+- MRONJ latency: document the time interval between [start of medication to dental procedure], and [dental procedure to MRONJ incidence].
+- MRONJ incidence, and have a follow up period at least 6 months
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@Example
+
+I would like to make a meta analysis 
+regarding the risk of Medication-Related Osteonecrosis of Jaw after dental treatment 
+between patient who has taken anti-resorptive medication and patient who has not taken such medication. 
+Using a PICO search model.
+--> I would like to compare the incidence of MRONJ between these groups, with the hope of building an algorithm to predict the incidence of MRONJ based on the kind of medication the patient is taking and the indication for the medication. 
+
+--------------------------------------
+//P: Regardless of age and sex, osteoporosis patients, excluding cancer patients
+//I: History of anti-resorptive medication use, only for orally-administered (excluding parenterally-administered) Bisphosphonate medication for osteoporosis (alendronate(Fosamax), risedronate(Actonel), etc )
+//C: no history of anti-resorptive medication use 
+//O: incidence of Medication-Related Osteonecrosis of Jaw after invasive dental procedure (including teeth extraction, periodontal surgery, implant insertion, removable prosthesis, etc)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+@ baseline incidence:
+
+There are multiple level of baseline regarding MRONJ incidence:
+
+for Osteoporosis as indication for antiresorptive medication use
+1. incidence of spontaneous osetonecrosis of jaw in subjects with (NO antiresorptive medication history)
+2. incidence of spontaneous osetonecrosis of jaw in subjects with (antiresorptive medication history) AND (NO invasive dental treatment)
+2-1. incidence of spontaneous osetonecrosis of jaw in subjects with (SPECIFIC KIND of antiresorptive medication history) AND (NO invasive dental treatment)
+3. incidence of spontaneous osetonecrosis of jaw in subjects with (antiresorptive medication history) AND (invasive dental treatment)
+3-1. 2-1. incidence of spontaneous osetonecrosis of jaw in subjects with (SPECIFIC KIND of antiresorptive medication history) AND (invasive dental treatment)
+
+as is the same for indication for cancer as indication for antiresorptive medication use
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Five years of denosumab exposure in women with postmenopausal osteoporosis: Results from the first two years of the FREEDOM extension
+- RCT
+- osteoporosis
+- Denosumab: 0.04% (4,549)
+- Control group: 0% (3,383)
+
+
+Osteonecrosis of the Jaw in Older Osteoporosis Patients Treated with Intravenous Bisphosphonates
+- retrospective matched-subject
+- osteoporosis IV BP: 6/2296
+- osteoporosis non-user: 10/6865
+
+Increased incidence of osteonecrosis of the jaw after tooth extraction in patients treated with bisphosphonates: a cohort study.
+- retrospective cohort
+- osteoporosis oral BP: 1/92
+- osteoporosis non-user: 0/74
+
+The Risk of Osteonecrosis of the Jaws in Taiwanese Osteoporotic Patients Treated With Oral Alendronate or Raloxifene
+- electronic medical records
+- osteoporosis oral BP (alendronate): 38/6225
+
+Surgically treated osteonecrosis and osteomyelitis of the jaw and oral cavity in patients highly adherent to alendronate treatment: a nationwide user-only cohort study including over 60,000 alendronate users
+-  Open nationwide register-based cohort study
+- osteoporosis oral BP (alendronate): 107/61990
+
+Incidence of and risk for osteonecrosis of the jaw in Korean osteoporosis patients treated with bisphosphonates: A nationwide cohort-study
+- electronic medical records
+- osteoporosis IV BP: 3/8601
+-- (Ibandronate): 2/4978
+-- (Zoledronate): 0/274
+-- (Pamidronate): 1/1776
+- osteoporosis oral BP: 54/126293
+-- (Alendronate): 31/40,250
+-- (Risedronate): 20/38,189
+-- (Ibandronate ): 3/3983
+- osteoporosis non-user: 55/164871
+
+
+10-Year Institutional Retrospective Case-Control Study of Medication-Related Osteonecrosis of the Jaw
+- retrospective case-control study
+- osteoporosis IV BP: 26/76
+- osteoporosis oral BP: 89/485
+-- (alendronate): 77/357
+-- (residronate): 12/39
+- cancer BP: 56/156
+
+
+Medication-Related Osteonecrosis of the Jaw in Dental Practice: A Retrospective Analysis of Data from the Milan Cohort
+- electronic medical records
+- osteoporosis IV BP: 26/76
+- osteoporosis oral BP: 27/309
+-- (alendronate): 9/168
+-- (Clodronate): 1/95
+-- (Risedronate): 17/46
+- cancer BP: 56/156
+
+Risk Factors Influencing Medication-Related Osteonecrosis of the Jaws (MRONJ) Following Dental Extraction Among Osteoporotic Patients in Taiwan
+- electronic medical records
+- osteoporosis IV BP (Zoledronate): 26/172
+- osteoporosis oral BP (alendronate): 214/519
+- osteoporosis Denosumab: 21/376
+
+Risk factors of osteonecrosis of the jaw after tooth extraction in osteoporotic patients on oral bisphosphonates
+- electronic medical records
+- osteoporosis oral BP + tooth extraction: 11/320
+-- (alendronate): 8/161
+-- (Ibandronate): 1/20
+-- (Risedronate): 0/73
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

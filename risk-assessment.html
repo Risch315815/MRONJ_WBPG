@@ -41,18 +41,28 @@
         background-color: #FF3B30 !important;
         color: white !important;
         -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
       
       .risk-badge.medium-risk {
         background-color: #FF9500 !important;
         color: white !important;
         -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
       
       .risk-badge.low-risk {
         background-color: #34C759 !important;
         color: white !important;
         -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      .risk-badge.unknown-risk {
+        background-color: #6c757d !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
       
       .summary-section {
@@ -118,6 +128,10 @@
     
     .risk-badge.low-risk {
       background-color: #34C759;
+    }
+    
+    .risk-badge.unknown-risk {
+      background-color: #6c757d;
     }
     
     .summary-section {
@@ -197,6 +211,7 @@
     </footer>
   </div>
 
+  <script src="assets/js/mronj-risk-algorithm.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -313,6 +328,27 @@
       title.textContent = '不同牙科治療的風險評估';
       resultsContainer.appendChild(title);
       
+      // Add reference papers link
+      const referenceLink = document.createElement('div');
+      referenceLink.style.cssText = 'text-align: center; margin: 20px 0;';
+      referenceLink.innerHTML = `
+        <a href="reference-papers.html" style="
+          display: inline-block;
+          background: #007AFF;
+          color: white;
+          padding: 12px 24px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-weight: bold;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          transition: all 0.3s ease;
+        " onmouseover="this.style.background='#0056b3'; this.style.transform='translateY(-2px)'" 
+           onmouseout="this.style.background='#007AFF'; this.style.transform='translateY(0)'">
+          查看完整文獻參考資料
+        </a>
+      `;
+      resultsContainer.appendChild(referenceLink);
+      
       assessments.forEach(assessment => {
         const card = document.createElement('div');
         card.className = 'assessment-card';
@@ -330,6 +366,8 @@
           riskBadge.classList.add('high-risk');
         } else if (assessment.riskLevel === '中度風險') {
           riskBadge.classList.add('medium-risk');
+        } else if (assessment.riskLevel === '資料不足') {
+          riskBadge.classList.add('unknown-risk');
         } else {
           riskBadge.classList.add('low-risk');
         }
@@ -338,12 +376,96 @@
         recommendation.className = 'recommendation';
         recommendation.textContent = assessment.recommendation;
         
+        // Add incidence rate if available
+        let incidenceInfo = '';
+        if (assessment.incidenceRate !== undefined) {
+          incidenceInfo = document.createElement('div');
+          incidenceInfo.style.cssText = 'margin: 10px 0; padding: 8px; background: #f8f9fa; border-radius: 5px; font-size: 0.9em;';
+          if (assessment.incidenceRate === 'N/A') {
+            incidenceInfo.innerHTML = `<strong>統計發生率:</strong> <span style="color: #6c757d; font-style: italic;">資料不足</span>`;
+          } else {
+            let rateText = `${assessment.incidenceRate}%`;
+            if (assessment.hasLimitedData) {
+              rateText += ' <span style="color: #ff9800; font-weight: bold;">**</span>';
+            }
+            incidenceInfo.innerHTML = `<strong>統計發生率:</strong> ${rateText}`;
+          }
+        }
+        
+        // Add limited data warning if applicable
+        let limitedDataWarning = '';
+        if (assessment.hasLimitedData) {
+          limitedDataWarning = document.createElement('div');
+          limitedDataWarning.style.cssText = 'margin: 10px 0; padding: 8px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px; font-size: 0.85em; color: #856404;';
+          limitedDataWarning.innerHTML = `
+            <strong>⚠️ 資料限制提醒:</strong> 此發生率基於有限的研究資料，建議謹慎解讀結果並諮詢專業醫師進行進一步評估。
+          `;
+        }
+        
+        // Add reference papers link if available
+        let referenceLink = '';
+        if (assessment.references && assessment.references.length > 0) {
+          const indication = patientData.hasCancer ? 'cancer' : 'osteoporosis';
+          const medication = getMedicationForReference(patientData);
+          const route = getRouteForReference(patientData);
+          const invasive = assessment.invasive ? 'true' : 'false';
+          const patientName = patientData.name || '患者';
+          
+          const referenceUrl = `reference-detail.html?indication=${indication}&medication=${medication}&route=${route}&invasive=${invasive}&name=${encodeURIComponent(patientName)}`;
+          
+          referenceLink = document.createElement('div');
+          referenceLink.style.cssText = 'margin: 10px 0; text-align: right;';
+          referenceLink.innerHTML = `
+            <a href="${referenceUrl}" style="
+              color: #007AFF;
+              text-decoration: none;
+              font-size: 0.9em;
+              font-weight: bold;
+            " onmouseover="this.style.textDecoration='underline'" 
+               onmouseout="this.style.textDecoration='none'">
+              查看相關文獻 (${assessment.references.length}篇)
+            </a>
+          `;
+        }
+        
         card.appendChild(procedureTitle);
         card.appendChild(riskBadge);
+        if (incidenceInfo) card.appendChild(incidenceInfo);
+        if (limitedDataWarning) card.appendChild(limitedDataWarning);
         card.appendChild(recommendation);
+        if (referenceLink) card.appendChild(referenceLink);
         
         resultsContainer.appendChild(card);
       });
+    }
+    
+    // Helper function to get medication for reference URL
+    function getMedicationForReference(patientData) {
+      if (!patientData.hasAntiresorptiveMed) return 'none';
+      
+      const drugName = patientData.drugName ? patientData.drugName.toLowerCase() : '';
+      
+      if (drugName.includes('alendronate') || drugName.includes('fosamax')) return 'bisphosphonate_Alendronate';
+      if (drugName.includes('risedronate') || drugName.includes('actonel')) return 'bisphosphonate_Risedronate';
+      if (drugName.includes('ibandronate') || drugName.includes('boniva')) return 'bisphosphonate_Ibandronate';
+      if (drugName.includes('clodronate')) return 'bisphosphonate_Clodronate';
+      if (drugName.includes('zoledronate') || drugName.includes('zometa') || drugName.includes('reclast')) return 'bisphosphonate_Zoledronate';
+      if (drugName.includes('pamidronate') || drugName.includes('aredia')) return 'bisphosphonate_Pamidronate';
+      if (drugName.includes('denosumab') || drugName.includes('prolia') || drugName.includes('xgeva')) return 'Denosumab';
+      if (drugName.includes('romosozumab') || drugName.includes('evenity')) return 'Romosuzumab';
+      
+      return 'bisphosphonate';
+    }
+    
+    // Helper function to get route for reference URL
+    function getRouteForReference(patientData) {
+      const route = patientData.administrationRoute ? patientData.administrationRoute.toLowerCase() : '';
+      
+      if (route.includes('oral') || route.includes('口服')) return 'oral';
+      if (route.includes('iv') || route.includes('intravenous') || route.includes('靜脈') || 
+          route.includes('sc') || route.includes('subcutaneous') || route.includes('皮下')) return 'IV/SC';
+      
+      return 'not_specific';
     }
   </script>
 </body>

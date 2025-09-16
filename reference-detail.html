@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文獻參考詳情 - MRONJ風險評估</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .reference-detail-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .reference-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    .reference-header h1 {
+      margin: 0 0 15px 0;
+      font-size: 2.2em;
+    }
+    
+    .reference-header p {
+      margin: 0;
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    
+    .patient-info-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .patient-info-card h2 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.4em;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .info-item {
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 5px;
+    }
+    
+    .info-label {
+      font-weight: bold;
+      color: #495057;
+      margin-bottom: 5px;
+    }
+    
+    .info-value {
+      color: #6c757d;
+    }
+    
+    .risk-summary {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .risk-summary h2 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.4em;
+    }
+    
+    .risk-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 25px;
+      color: white;
+      font-weight: bold;
+      margin-right: 15px;
+      font-size: 1.1em;
+    }
+    
+    .risk-badge.low {
+      background: linear-gradient(135deg, #4caf50, #45a049);
+    }
+    
+    .risk-badge.medium {
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+    }
+    
+    .risk-badge.high {
+      background: linear-gradient(135deg, #f44336, #d32f2f);
+    }
+    
+    .incidence-rate {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+    
+    .recommendation {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #2196f3;
+      margin-top: 15px;
+    }
+    
+    .references-section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .references-section h2 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 1.4em;
+    }
+    
+    .paper-item {
+      background: #f8f9fa;
+      margin-bottom: 15px;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #007AFF;
+      transition: all 0.3s ease;
+    }
+    
+    .paper-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .paper-authors {
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+    }
+    
+    .paper-title {
+      font-style: italic;
+      color: #34495e;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    
+    .paper-journal {
+      color: #7f8c8d;
+      margin-bottom: 5px;
+    }
+    
+    .paper-year {
+      color: #95a5a6;
+      font-weight: bold;
+    }
+    
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #007AFF;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .back-button:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #6c757d;
+      font-size: 1.2em;
+    }
+    
+    .error {
+      text-align: center;
+      padding: 40px;
+      color: #dc3545;
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .print-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #28a745;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .print-button:hover {
+      background: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+    
+    @media print {
+      .back-button, .print-button {
+        display: none;
+      }
+      
+      .reference-detail-container {
+        padding: 0;
+      }
+      
+      .reference-header {
+        background: #f8f9fa !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="risk-assessment.html" class="back-button">← 返回風險評估</a>
+  <button class="print-button" onclick="window.print()">列印文獻</button>
+  
+  <div class="reference-detail-container">
+    <div class="reference-header">
+      <h1>MRONJ風險評估文獻參考</h1>
+      <p>基於您的具體情況的相關文獻資料</p>
+    </div>
+    
+    <div id="content">
+      <div class="loading">載入中...</div>
+    </div>
+  </div>
+
+  <script src="assets/js/mronj-risk-algorithm.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const calculator = new MRONJRiskCalculator();
+      const content = document.getElementById('content');
+      
+      // Get parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const indication = urlParams.get('indication') || 'osteoporosis';
+      const medication = urlParams.get('medication') || 'bisphosphonate';
+      const administrationRoute = urlParams.get('route') || 'oral';
+      const invasiveDentalTreatment = urlParams.get('invasive') === 'true';
+      const patientName = urlParams.get('name') || '患者';
+      
+      try {
+        // Calculate risk assessment
+        const assessment = calculator.calculateRisk({
+          hasCancer: indication === 'cancer',
+          hasAntiresorptiveMed: medication !== 'none',
+          drugName: medication,
+          administrationRoute: administrationRoute
+        }, invasiveDentalTreatment);
+        
+        // Generate content
+        generateContent(assessment, patientName);
+        
+      } catch (error) {
+        console.error('Error generating content:', error);
+        content.innerHTML = `
+          <div class="error">
+            <h2>載入錯誤</h2>
+            <p>無法載入文獻資料，請返回重新進行風險評估。</p>
+            <a href="risk-assessment.html" style="color: #007AFF; text-decoration: underline;">返回風險評估</a>
+          </div>
+        `;
+      }
+      
+      function generateContent(assessment, patientName) {
+        const riskBadgeClass = assessment.riskCategory;
+        const riskLevelText = assessment.riskLevel;
+        
+        let html = `
+          <div class="patient-info-card">
+            <h2>患者資訊</h2>
+            <div class="info-grid">
+              <div class="info-item">
+                <div class="info-label">患者姓名</div>
+                <div class="info-value">${patientName}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">適應症</div>
+                <div class="info-value">${assessment.indication === 'cancer' ? '癌症' : '骨質疏鬆症'}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">藥物類型</div>
+                <div class="info-value">${getMedicationDisplayName(assessment.medication)}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">給藥途徑</div>
+                <div class="info-value">${getRouteDisplayName(assessment.administrationRoute)}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">侵入性治療</div>
+                <div class="info-value">${assessment.invasiveDentalTreatment ? '是' : '否'}</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="risk-summary">
+            <h2>風險評估結果</h2>
+            <div>
+              <span class="risk-badge ${riskBadgeClass}">${riskLevelText}</span>
+              <span class="incidence-rate">統計發生率: ${assessment.incidenceRate === 'N/A' ? '<span style="color: #6c757d; font-style: italic;">資料不足</span>' : assessment.incidenceRate + '%' + (assessment.hasLimitedData ? ' <span style="color: #ff9800; font-weight: bold;">**</span>' : '')}</span>
+            </div>
+            ${assessment.hasLimitedData ? `
+              <div style="margin: 15px 0; padding: 10px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px; color: #856404; font-size: 0.9em;">
+                <strong>⚠️ 資料限制提醒:</strong> 此發生率基於有限的研究資料，建議謹慎解讀結果並諮詢專業醫師進行進一步評估。
+              </div>
+            ` : ''}
+            <div class="recommendation">
+              <strong>建議:</strong> ${assessment.recommendation}
+            </div>
+          </div>
+          
+          <div class="references-section">
+            <h2>相關文獻參考</h2>
+            <p style="color: #6c757d; margin-bottom: 20px;">
+              以下文獻為計算此風險等級的依據，基於最新的統計分析結果。
+            </p>
+        `;
+        
+        if (assessment.references && assessment.references.length > 0) {
+          assessment.references.forEach((paper, index) => {
+            html += `
+              <div class="paper-item">
+                <div class="paper-authors">${paper.authors}</div>
+                <div class="paper-title">${paper.title}</div>
+                <div class="paper-journal">${paper.journal}</div>
+                <div class="paper-year">${paper.year}</div>
+              </div>
+            `;
+          });
+        } else {
+          html += `
+            <div style="text-align: center; padding: 40px; color: #6c757d;">
+              <p>暫無特定文獻資料</p>
+              <p>請參考一般性MRONJ風險評估文獻</p>
+            </div>
+          `;
+        }
+        
+        html += `
+          </div>
+          
+          <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+            <p style="color: #6c757d; margin: 0;">
+              <strong>免責聲明:</strong> 本評估結果僅供參考，不構成醫療建議。最終治療決策應由醫療專業人員與患者共同討論後決定。
+            </p>
+          </div>
+        `;
+        
+        content.innerHTML = html;
+      }
+      
+      function getMedicationDisplayName(medication) {
+        const names = {
+          'none': '無',
+          'bisphosphonate': '雙磷酸鹽類',
+          'bisphosphonate_Alendronate': 'Alendronate (Fosamax)',
+          'bisphosphonate_Risedronate': 'Risedronate (Actonel)',
+          'bisphosphonate_Ibandronate': 'Ibandronate (Boniva)',
+          'bisphosphonate_Clodronate': 'Clodronate',
+          'bisphosphonate_Zoledronate': 'Zoledronate (Zometa/Reclast)',
+          'bisphosphonate_Pamidronate': 'Pamidronate (Aredia)',
+          'Denosumab': 'Denosumab (Prolia/Xgeva)',
+          'Romosuzumab': 'Romosuzumab (Evenity)',
+          'not_specific': '未特定'
+        };
+        return names[medication] || medication;
+      }
+      
+      function getRouteDisplayName(route) {
+        const names = {
+          'oral': '口服',
+          'IV/SC': '靜脈/皮下注射',
+          'not_specific': '未特定'
+        };
+        return names[route] || route;
+      }
+    });
+  </script>
+</body>
+</html>

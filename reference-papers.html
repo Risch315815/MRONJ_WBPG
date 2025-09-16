@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文獻參考 - MRONJ風險評估</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .reference-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .reference-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+    }
+    
+    .reference-header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.5em;
+    }
+    
+    .reference-header p {
+      margin: 0;
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+    
+    .risk-category-section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .risk-category-section.low-risk {
+      background: linear-gradient(135deg, #a8e6cf 0%, #7fcdcd 100%);
+      border-left: 5px solid #4caf50;
+    }
+    
+    .risk-category-section.medium-risk {
+      background: linear-gradient(135deg, #ffd3a5 0%, #fd9853 100%);
+      border-left: 5px solid #ff9800;
+    }
+    
+    .risk-category-section.high-risk {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      border-left: 5px solid #f44336;
+    }
+    
+    .category-title {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #333;
+      display: flex;
+      align-items: center;
+    }
+    
+    .risk-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      color: white;
+      font-weight: bold;
+      margin-right: 15px;
+      font-size: 0.6em;
+    }
+    
+    .risk-badge.low {
+      background-color: #4caf50;
+    }
+    
+    .risk-badge.medium {
+      background-color: #ff9800;
+    }
+    
+    .risk-badge.high {
+      background-color: #f44336;
+    }
+    
+    .medication-group {
+      margin-bottom: 30px;
+      padding: 15px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 8px;
+    }
+    
+    .medication-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    
+    .incidence-info {
+      background: rgba(255,255,255,0.9);
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    
+    .paper-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .paper-item {
+      background: white;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    
+    .paper-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .paper-authors {
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+    
+    .paper-title {
+      font-style: italic;
+      color: #34495e;
+      margin-bottom: 5px;
+    }
+    
+    .paper-journal {
+      color: #7f8c8d;
+      font-size: 0.9em;
+    }
+    
+    .paper-year {
+      color: #95a5a6;
+      font-size: 0.9em;
+    }
+    
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #007AFF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+    
+    .search-box {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .search-input {
+      width: 100%;
+      max-width: 500px;
+      padding: 12px 20px;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    
+    .search-input:focus {
+      border-color: #007AFF;
+    }
+    
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .filter-btn {
+      background: #f8f9fa;
+      border: 2px solid #dee2e6;
+      color: #495057;
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn.active {
+      background: #007AFF;
+      color: white;
+      border-color: #007AFF;
+    }
+    
+    .filter-btn:hover {
+      background: #e9ecef;
+    }
+    
+    .filter-btn.active:hover {
+      background: #0056b3;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #6c757d;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <a href="risk-assessment.html" class="back-button">← 返回風險評估</a>
+  
+  <div class="reference-container">
+    <div class="reference-header">
+      <h1>MRONJ風險評估文獻參考</h1>
+      <p>基於統計分析的各類藥物MRONJ發生率參考文獻</p>
+    </div>
+    
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input" placeholder="搜尋文獻作者、標題或期刊...">
+    </div>
+    
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="low">低風險</button>
+      <button class="filter-btn" data-filter="medium">中度風險</button>
+      <button class="filter-btn" data-filter="high">高風險</button>
+    </div>
+    
+    <div id="referenceContent">
+      <!-- Content will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <script src="assets/js/mronj-risk-algorithm.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const calculator = new MRONJRiskCalculator();
+      const referenceContent = document.getElementById('referenceContent');
+      const searchInput = document.getElementById('searchInput');
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      
+      let allReferences = [];
+      let filteredReferences = [];
+      
+      // Generate reference content
+      function generateReferenceContent() {
+        const categories = [
+          {
+            name: '低風險',
+            class: 'low-risk',
+            badge: 'low',
+            threshold: '< 2%',
+            medications: [
+              {
+                name: '骨質疏鬆症 - 口服雙磷酸鹽類',
+                indication: 'osteoporosis',
+                medication: 'bisphosphonate',
+                route: 'oral',
+                invasive: false,
+                incidence: 0.21
+              },
+              {
+                name: '骨質疏鬆症 - 靜脈/皮下雙磷酸鹽類',
+                indication: 'osteoporosis',
+                medication: 'bisphosphonate',
+                route: 'IV/SC',
+                invasive: false,
+                incidence: 0.24
+              },
+              {
+                name: '骨質疏鬆症 - Denosumab',
+                indication: 'osteoporosis',
+                medication: 'Denosumab',
+                route: 'IV/SC',
+                invasive: false,
+                incidence: 0.04
+              },
+              {
+                name: '骨質疏鬆症 - Romosuzumab',
+                indication: 'osteoporosis',
+                medication: 'Romosuzumab',
+                route: 'IV/SC',
+                invasive: false,
+                incidence: 0.04
+              }
+            ]
+          },
+          {
+            name: '中度風險',
+            class: 'medium-risk',
+            badge: 'medium',
+            threshold: '2-8%',
+            medications: [
+              {
+                name: '骨質疏鬆症 - 口服雙磷酸鹽類 (侵入性治療)',
+                indication: 'osteoporosis',
+                medication: 'bisphosphonate',
+                route: 'oral',
+                invasive: true,
+                incidence: 1.61
+              },
+              {
+                name: '骨質疏鬆症 - Denosumab (侵入性治療)',
+                indication: 'osteoporosis',
+                medication: 'Denosumab',
+                route: 'IV/SC',
+                invasive: true,
+                incidence: 0.93
+              },
+              {
+                name: '癌症 - 雙磷酸鹽類',
+                indication: 'cancer',
+                medication: 'bisphosphonate',
+                route: 'IV/SC',
+                invasive: false,
+                incidence: 0.88
+              },
+              {
+                name: '癌症 - Denosumab',
+                indication: 'cancer',
+                medication: 'Denosumab',
+                route: 'IV/SC',
+                invasive: false,
+                incidence: 1.74
+              }
+            ]
+          },
+          {
+            name: '高風險',
+            class: 'high-risk',
+            badge: 'high',
+            threshold: '> 8%',
+            medications: [
+              {
+                name: '骨質疏鬆症 - 靜脈/皮下雙磷酸鹽類 (侵入性治療)',
+                indication: 'osteoporosis',
+                medication: 'bisphosphonate',
+                route: 'IV/SC',
+                invasive: true,
+                incidence: 15.12
+              },
+              {
+                name: '癌症 - 雙磷酸鹽類 (侵入性治療)',
+                indication: 'cancer',
+                medication: 'bisphosphonate',
+                route: 'IV/SC',
+                invasive: true,
+                incidence: 9.17
+              },
+              {
+                name: '癌症 - Denosumab (侵入性治療)',
+                indication: 'cancer',
+                medication: 'Denosumab',
+                route: 'IV/SC',
+                invasive: true,
+                incidence: 12.56
+              }
+            ]
+          }
+        ];
+        
+        let html = '';
+        
+        categories.forEach(category => {
+          html += `
+            <div class="risk-category-section ${category.class}" data-category="${category.badge}">
+              <div class="category-title">
+                <span class="risk-badge ${category.badge}">${category.name}</span>
+                <span>發生率: ${category.threshold}</span>
+              </div>
+          `;
+          
+          category.medications.forEach(med => {
+            const references = calculator.getReferencePapers(
+              med.indication, 
+              med.medication, 
+              med.route, 
+              med.invasive
+            );
+            
+            html += `
+              <div class="medication-group">
+                <div class="medication-title">${med.name}</div>
+                <div class="incidence-info">
+                  統計發生率: ${med.incidence === 'N/A' ? '<span style="color: #6c757d; font-style: italic;">資料不足</span>' : med.incidence + '%'}
+                </div>
+                <ul class="paper-list">
+            `;
+            
+            references.forEach(paper => {
+              allReferences.push({
+                ...paper,
+                category: category.badge,
+                medication: med.name,
+                incidence: med.incidence
+              });
+              
+              html += `
+                <li class="paper-item">
+                  <div class="paper-authors">${paper.authors}</div>
+                  <div class="paper-title">${paper.title}</div>
+                  <div class="paper-journal">${paper.journal}</div>
+                  <div class="paper-year">${paper.year}</div>
+                </li>
+              `;
+            });
+            
+            html += `
+                </ul>
+              </div>
+            `;
+          });
+          
+          html += '</div>';
+        });
+        
+        referenceContent.innerHTML = html;
+        filteredReferences = [...allReferences];
+      }
+      
+      // Filter functionality
+      function filterReferences(filter) {
+        const sections = document.querySelectorAll('.risk-category-section');
+        
+        sections.forEach(section => {
+          if (filter === 'all' || section.dataset.category === filter) {
+            section.style.display = 'block';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+        
+        // Update filter buttons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.filter === filter) {
+            btn.classList.add('active');
+          }
+        });
+      }
+      
+      // Search functionality
+      function searchReferences(query) {
+        const sections = document.querySelectorAll('.risk-category-section');
+        const queryLower = query.toLowerCase();
+        
+        sections.forEach(section => {
+          const paperItems = section.querySelectorAll('.paper-item');
+          let hasVisiblePapers = false;
+          
+          paperItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(queryLower)) {
+              item.style.display = 'block';
+              hasVisiblePapers = true;
+            } else {
+              item.style.display = 'none';
+            }
+          });
+          
+          // Show/hide medication groups based on visible papers
+          const medicationGroups = section.querySelectorAll('.medication-group');
+          medicationGroups.forEach(group => {
+            const visiblePapers = group.querySelectorAll('.paper-item[style*="block"], .paper-item:not([style*="none"])');
+            if (visiblePapers.length > 0) {
+              group.style.display = 'block';
+              hasVisiblePapers = true;
+            } else {
+              group.style.display = 'none';
+            }
+          });
+          
+          section.style.display = hasVisiblePapers ? 'block' : 'none';
+        });
+      }
+      
+      // Event listeners
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          filterReferences(this.dataset.filter);
+        });
+      });
+      
+      searchInput.addEventListener('input', function() {
+        searchReferences(this.value);
+      });
+      
+      // Initialize
+      generateReferenceContent();
+    });
+  </script>
+</body>
+</html>

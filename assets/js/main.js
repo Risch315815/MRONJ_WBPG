@@ -259,18 +259,24 @@ function saveFormData(formId) {
   console.log('Form data saved:', patientData);
 }
 
-// Calculate MRONJ risk
+// Calculate MRONJ risk using enhanced algorithm
 function assessRisk() {
   // Define dental procedures to assess
   const procedures = [
-    '非侵入性治療', // Non-invasive (cleaning, filling)
-    '根管治療',     // Root canal treatment
-    '拔牙',         // Extraction
-    '牙周手術',     // Periodontal surgery
-    '植牙'          // Implant
+    { name: '非侵入性治療', invasive: false }, // Non-invasive (cleaning, filling)
+    { name: '根管治療', invasive: true },     // Root canal treatment
+    { name: '拔牙', invasive: true },         // Extraction
+    { name: '牙周手術', invasive: true },     // Periodontal surgery
+    { name: '植牙', invasive: true }          // Implant
   ];
   
   const assessments = [];
+  
+  // Initialize risk calculator if available
+  let riskCalculator = null;
+  if (typeof MRONJRiskCalculator !== 'undefined') {
+    riskCalculator = new MRONJRiskCalculator();
+  }
   
   // Calculate medication duration in months
   const medicationDuration = calculateMedicationDuration();
@@ -285,37 +291,81 @@ function assessRisk() {
   procedures.forEach(procedure => {
     let riskLevel = '低風險'; // Default is low risk
     let recommendation = '';
+    let incidenceRate = 0.04; // Default baseline
+    let references = [];
+    let riskCategory = 'low';
     
-    // Base risk assessment on medication type, duration, and risk factors
-    if (patientData.hasAntiresorptiveMed) {
-      if (procedure === '非侵入性治療') {
-        riskLevel = '低風險';
-        recommendation = '可進行治療，建議定期追蹤。';
-      } else {
-        // For invasive procedures
-        if (medicationDuration > 36 || hasHighRiskFactors) {
-          riskLevel = '高風險';
-          recommendation = '建議轉診至醫學中心進行評估。需要特殊處理及術後密切追蹤。';
-        } else if (medicationDuration > 12) {
-          riskLevel = '中度風險';
-          recommendation = '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。';
-        } else {
-          riskLevel = '低風險';
-          recommendation = '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。';
-        }
+    // Use enhanced algorithm if available
+    if (riskCalculator && patientData.hasAntiresorptiveMed) {
+      try {
+        const assessment = riskCalculator.calculateRisk(patientData, procedure.invasive);
+        riskLevel = assessment.riskLevel;
+        recommendation = assessment.recommendation;
+        incidenceRate = assessment.incidenceRate;
+        references = assessment.references;
+        riskCategory = assessment.riskCategory;
+      } catch (error) {
+        console.error('Error using enhanced risk calculator:', error);
+        // Fall back to original logic
+        riskLevel = getFallbackRiskLevel(procedure, medicationDuration, hasHighRiskFactors);
+        recommendation = getFallbackRecommendation(riskLevel, procedure.invasive);
       }
+    } else if (patientData.hasAntiresorptiveMed) {
+      // Fallback to original logic
+      riskLevel = getFallbackRiskLevel(procedure, medicationDuration, hasHighRiskFactors);
+      recommendation = getFallbackRecommendation(riskLevel, procedure.invasive);
     } else {
       recommendation = '可進行一般治療。';
     }
     
     assessments.push({
-      procedure,
+      procedure: procedure.name,
       riskLevel,
-      recommendation
+      recommendation,
+      incidenceRate,
+      references,
+      riskCategory,
+      invasive: procedure.invasive
     });
   });
   
   return assessments;
+}
+
+// Fallback risk level calculation (original logic)
+function getFallbackRiskLevel(procedure, medicationDuration, hasHighRiskFactors) {
+  if (procedure.name === '非侵入性治療') {
+    return '低風險';
+  } else {
+    // For invasive procedures
+    if (medicationDuration > 36 || hasHighRiskFactors) {
+      return '高風險';
+    } else if (medicationDuration > 12) {
+      return '中度風險';
+    } else {
+      return '低風險';
+    }
+  }
+}
+
+// Fallback recommendation generation
+function getFallbackRecommendation(riskLevel, isInvasive) {
+  const recommendations = {
+    '低風險': {
+      true: '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。',
+      false: '可進行治療，建議定期追蹤。'
+    },
+    '中度風險': {
+      true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。',
+      false: '建議定期追蹤，如有牙科治療需求請先諮詢醫師。'
+    },
+    '高風險': {
+      true: '建議轉診至醫學中心進行評估。需要特殊處理及術後密切追蹤。',
+      false: '建議密切追蹤，避免侵入性牙科治療。'
+    }
+  };
+  
+  return recommendations[riskLevel][isInvasive] || '請諮詢專業醫師。';
 }
 
 // Calculate medication duration in months

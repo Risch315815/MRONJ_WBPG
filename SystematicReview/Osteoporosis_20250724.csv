@@ -1,0 +1,122 @@
+﻿Indication,Medication,Administration,"Invasive dental 
+treatment",Summary,Specific,Author,Year,"MRONJ 
+case (n)","Subject
+number (n)","Percentage
+(%)",,PMID,"Study 
+type",Full name
+none,none,none,none,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+osteoporosis,none,none,none,,,Yamazaki,2017,0,74,0,,28892457,RCT,Romosozumab or Alendronate for Fracture Prevention in Women with Osteoporosis
+,,,,,,Baillargeon,2011,10,6865,0.15,,,,
+,,,,,,McClung,2017,0,202,0,,28361029,retrospective cohort,Risk factors of osteonecrosis of the jaw after tooth extraction in osteoporotic patients on oral bisphosphonates
+,,,,,,Lyles,2007,0,1057,0,,17878149,RCT,Zoledronic acid and clinical fractures and mortality after hip fracture
+,,,,,,Grbic,2025,1,3852,0.03,,0,"retrospective cohort, 
+multi-centered",A multicenter retrospective study of the risk factors associated with medication-related osteonecrosis of the jaw after tooth extraction in patients receiving oral bisphosphonate therapy: can primary wound closure and a drug holiday really prevent MRONJ?
+,,,,,,Kim,2010,55,164871,0.03,,21037195,"RCT, 
+multi-centered",The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid
+,,,,,,Papapoulos,2012,0,3383,0,,22113951,RCT,Five years of denosumab exposure in women with postmenopausal osteoporosis: Results from the first two years of the FREEDOM extension
+,,,,,,,,,,,,,,
+,,,,no AR + no dental extraction,,,,66,180304,0.04,,,,
+,,,,,,,,,,,,,,
+osteoporosis,bisphosphonate,oral,none,,mixed,Yamazaki,2017,1,92,1.09,,28892457,RCT,Romosozumab or Alendronate for Fracture Prevention in Women with Osteoporosis
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,Alendronate,Chiu,2014,38,6225,0.61,,24758181,retrospective cohort,The Risk of Osteonecrosis of the Jaws in Taiwanese Osteoporotic Patients Treated With Oral Alendronate or Raloxifene
+,,,,,,Eiken,2017,107,61990,0.17,,28664276,retrospective cohort,"Surgically treated osteonecrosis and osteomyelitis of the jaw and oral cavity in patients highly adherent to alendronate treatment: a nationwide user-only cohort study including over 60,000 alendronate users"
+,,,,,,Orwoll,2010,0,148,0,,0,"retrospective cohort, 
+matched-subject",10-Year Institutional Retrospective Case-Control Study of Medication-Related Osteonecrosis of the Jaw
+,,,,,,Kim,2010,31,40250,0.08,,21037195,"RCT, 
+multi-centered",The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid
+,,,,,,Mirelli,2022,9,168,5.36,,35621542,retrospective cohort,Medication-Related Osteonecrosis of the Jaw in Dental Practice: A Retrospective Analysis of Data from the Milan Cohort
+,,,,,,Mahvar,2017,77,357,21.57,,28361029,retrospective cohort,Risk factors of osteonecrosis of the jaw after tooth extraction in osteoporotic patients on oral bisphosphonates
+,,,,,,Saag,2022,1,2014,0.05,,34787342,retrospective cohort,Risk of Osteonecrosis of the Jaw Under Denosumab Compared to Bisphosphonates in Patients With Osteoporosis
+,,,,,,,,,,,,,,
+,,,,oral Alandronate + no Tx,,,,263,111152,0.24,,,,
+,,,,,Risedronate,Reid,2022,0,417,0,,34787342,retrospective cohort,Risk of Osteonecrosis of the Jaw Under Denosumab Compared to Bisphosphonates in Patients With Osteoporosis
+,,,,,,Kim,2010,20,38189,0.05,,21037195,"RCT, 
+multi-centered",The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid
+,,,,,,Mirelli,2022,17,46,36.96,,35621542,retrospective cohort,Medication-Related Osteonecrosis of the Jaw in Dental Practice: A Retrospective Analysis of Data from the Milan Cohort
+,,,,,,Mahvar,2017,12,39,30.77,,28361029,retrospective cohort,Risk factors of osteonecrosis of the jaw after tooth extraction in osteoporotic patients on oral bisphosphonates
+,,,,,,,,,,,,,,
+,,,,oral Risedronate + no Tx,,,,49,38691,0.13,,,,
+,,,,,Ibandronate,Kim,2010,3,3983,0.08,,21037195,"RCT, 
+multi-centered",The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid
+,,,,,,,,,,,,,,
+,,,,oral Ibandronate + no Tx,,,,3,3983,0.08,,,,
+,,,,,Clodronate,Mirelli,2022,1,95,1.05,,35621542,retrospective cohort,Medication-Related Osteonecrosis of the Jaw in Dental Practice: A Retrospective Analysis of Data from the Milan Cohort
+,,,,,,,,,,,,,,
+,,,,oral Clodronate + no Tx,,,,1,95,1.05,,,,
+,,,,oral BP + no Tx,,,,317,154013,0.21,,,,
+,,IV/SC,,,mixed,Baillargeon,2011,6,2296,0.26,,,,
+,,,,,,Mirelli,2022,26,76,34.21,,35621542,retrospective cohort,Medication-Related Osteonecrosis of the Jaw in Dental Practice: A Retrospective Analysis of Data from the Milan Cohort
+,,,,,,Mahvar,2017,26,76,34.21,,28361029,retrospective cohort,Risk factors of osteonecrosis of the jaw after tooth extraction in osteoporotic patients on oral bisphosphonates
+,,,,,,,,,,,,,,
+,,,,,Zoledronate,Orwoll,2023,0,153,0,,0,"retrospective cohort, 
+matched-subject",10-Year Institutional Retrospective Case-Control Study of Medication-Related Osteonecrosis of the Jaw
+,,,,,,McClung,2017,0,379,0,,28361029,retrospective cohort,Risk factors of osteonecrosis of the jaw after tooth extraction in osteoporotic patients on oral bisphosphonates
+,,,,,,Reid,2022,0,416,0,,34787342,retrospective cohort,Risk of Osteonecrosis of the Jaw Under Denosumab Compared to Bisphosphonates in Patients With Osteoporosis
+,,,,,,Lyles,2007,0,1054,0,,17878149,RCT,Zoledronic acid and clinical fractures and mortality after hip fracture
+,,,,,,Grbic,2025,1,3862,0.03,,0,"retrospective cohort, 
+multi-centered",A multicenter retrospective study of the risk factors associated with medication-related osteonecrosis of the jaw after tooth extraction in patients receiving oral bisphosphonate therapy: can primary wound closure and a drug holiday really prevent MRONJ?
+,,,,,,Kim,2010,0,274,0,,21037195,"RCT, 
+multi-centered",The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid
+,,,,,,,,,,,,,,
+,,,,IV Zoledronate + no Tx,,,,1,6138,0.02,,,,
+,,,,,Ibandronate,Kim,2010,2,4978,0.04,,21037195,"RCT, 
+multi-centered",The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid
+,,,,,,,,,,,,,,
+,,,,IV Ibandronate + no Tx,,,,2,4978,0.04,,,,
+,,,,,Pamidronate,Kim,2010,1,1776,0.06,,21037195,"RCT, 
+multi-centered",The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid
+,,,,,,,,,,,,,,
+,,,,IV Pamidronate + no Tx,,,,1,1776,0.06,,,,
+,,,,IV BP + no Tx,,,,62,15340,0.4,,,,
+,Denosumab,IV/SC,,,,Papapoulos,2012,2,4549,0.04,,22113951,RCT,Five years of denosumab exposure in women with postmenopausal osteoporosis: Results from the first two years of the FREEDOM extension
+,,,,,,,,,,,,,,
+,,,,Denosuab + no Tx,,,,2,4549,0.04,,,,
+,,,,,,Saag,2022,1,2404,0.04,,34787342,retrospective cohort,Risk of Osteonecrosis of the Jaw Under Denosumab Compared to Bisphosphonates in Patients With Osteoporosis
+,Romosuzumab,,,,,,,,,,,,,
+,,,,Romosuzumab + no Tx,,,,1,2404,0.04,,,,
+,,,,,,,,,,,,,,
+none,none,none,YES,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+osteoporosis,none,none,YES,,,Watts,2019,2,1731,0.12,,30759221,RCT,Invasive Oral Procedures and Events in Postmenopausal Women With Osteoporosis Treated With Denosumab for Up to 10 Years
+,,,,,,Colella,2011,0,299,0,,21954448,"retrospective cohort, 
+matched-subject",Osteonecrosis of the Jaw in Older Osteoporosis Patients Treated with Intravenous Bisphosphonates
+,,,,,,,,,,,,,,
+,,,,No AR + dental extraction,,,,2,2030,0.1,,,,
+,,,,,,,,,,,,,,
+osteoporosis,bisphosphonate,oral,YES,,mixed,Fujimori,2025,30,1763,1.7,,0,"retrospective cohort, 
+multi-centered",A multicenter retrospective study of the risk factors associated with medication-related osteonecrosis of the jaw after tooth extraction in patients receiving oral bisphosphonate therapy: can primary wound closure and a drug holiday really prevent MRONJ?
+,,,,,,Kang,2020,0,406,0,,32158685,retrospective cohort,The effect of bisphosphonate discontinuation on the incidence  of postoperative medication-related osteonecrosis of the jaw after tooth extraction
+,,,,,,,,,,,,,,
+,,,,,Alendronate,Jeong,2025,8,161,4.97,,0,"retrospective cohort, 
+multi-centered",A multicenter retrospective study of the risk factors associated with medication-related osteonecrosis of the jaw after tooth extraction in patients receiving oral bisphosphonate therapy: can primary wound closure and a drug holiday really prevent MRONJ?
+,,,,,,Wei,2025,214,519,41.23,,39611589,retrospective cohort,Risk Factors Influencing Medication-Related Osteonecrosis of the Jaws (MRONJ) Following Dental Extraction Among Osteoporotic Patients in Taiwan
+,,,,,,,,,,,,,,
+,,,,,Risedronate,Jeong,2025,0,73,0,,0,"retrospective cohort, 
+multi-centered",A multicenter retrospective study of the risk factors associated with medication-related osteonecrosis of the jaw after tooth extraction in patients receiving oral bisphosphonate therapy: can primary wound closure and a drug holiday really prevent MRONJ?
+,,,,,,,,,,,,,,
+,,,,,Ibandronate,Jeong,2025,1,20,5,,0,"retrospective cohort, 
+multi-centered",A multicenter retrospective study of the risk factors associated with medication-related osteonecrosis of the jaw after tooth extraction in patients receiving oral bisphosphonate therapy: can primary wound closure and a drug holiday really prevent MRONJ?
+,,,,,,,,,,,,,,
+,,,,oral BP + dental extraction,,,,253,2942,8.6,,,,
+,,,,remove Wei,,,,39,2423,1.61,,,,
+,,IV/SC,,,Zoledronate,Wei,2025,26,172,15.12,,39611589,retrospective cohort,Risk Factors Influencing Medication-Related Osteonecrosis of the Jaws (MRONJ) Following Dental Extraction Among Osteoporotic Patients in Taiwan
+,,,,,,,,,,,,,,
+,,,,"IV BP(Zoledronate) 
++ dental extraction",,,,26,172,15.12,,,,
+,Denosumab,,,,,Everts-Graber ,2017,3,420,0.71,,28664276,retrospective cohort,"Surgically treated osteonecrosis and osteomyelitis of the jaw and oral cavity in patients highly adherent to alendronate treatment: a nationwide user-only cohort study including over 60,000 alendronate users"
+,,,,,,Watts,2019,11,3591,0.31,,30759221,RCT,Invasive Oral Procedures and Events in Postmenopausal Women With Osteoporosis Treated With Denosumab for Up to 10 Years
+,,,,,,Wei,2025,21,376,5.59,,39611589,retrospective cohort,Risk Factors Influencing Medication-Related Osteonecrosis of the Jaws (MRONJ) Following Dental Extraction Among Osteoporotic Patients in Taiwan
+,,,,,,Colella,2011,10,427,2.34,,21954448,"retrospective cohort, 
+matched-subject",Osteonecrosis of the Jaw in Older Osteoporosis Patients Treated with Intravenous Bisphosphonates
+,,,,,,,,,,,,,,
+,,,,Denosumab + dental extraction,,,,45,4814,0.93,,,,
+,Romosuzumab,,,,,,,,,,,,,
+,,,,Romosuzumab + dental extraction,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,

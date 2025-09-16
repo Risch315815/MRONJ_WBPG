@@ -1,0 +1,79 @@
+I have finished calculating the incidence rate of each [indication, type of drug, administration route] for antiresorptive medication. I want to do the following:
+
+1. build an algorithm for calculating the risk category (low, medium, high) for MRONJ incidence.
+
+the incidence rate is as follow: (%)
+{indication: osteoporosis, medication: none, administration_route: none, invasive_dental_treatment: none}=0.04
+
+{indication: osteoporosis, medication: bisphosphonate, administration_route: not_specific, invasive_dental_treatment: none}=0.21
+
+{indication: osteoporosis, medication: bisphosphonate, administration_route: oral, invasive_dental_treatment: none}=0.21
+{indication: osteoporosis, medication: bisphosphonate_Alandronate, administration_route: oral, invasive_dental_treatment: none}=0.24
+{indication: osteoporosis, medication: bisphosphonate_Risedronate, administration_route: oral, invasive_dental_treatment: none}=0.13
+{indication: osteoporosis, medication: bisphosphonate_Ibandronate, administration_route: oral, invasive_dental_treatment: none}=0.08
+{indication: osteoporosis, medication: bisphosphonate_Clodronate, administration_route: oral, invasive_dental_treatment: none}=1.05
+
+{indication: osteoporosis, medication: bisphosphonate, administration_route: IV/SC, invasive_dental_treatment: none}=0.24
+{indication: osteoporosis, medication: bisphosphonate_Zoledronate, administration_route: IV/SC, invasive_dental_treatment: none}=0.02
+{indication: osteoporosis, medication: bisphosphonate_Ibandronate, administration_route: IV/SC, invasive_dental_treatment: none}=0.04
+{indication: osteoporosis, medication: bisphosphonate_Pamidronate, administration_route: IV/SC, invasive_dental_treatment: none}=0.06
+
+{indication: osteoporosis, medication: Denosumab, administration_route: IV/SC, invasive_dental_treatment: none}=0.04
+
+{indication: osteoporosis, medication: Romosuzumab, administration_route: IV/SC, invasive_dental_treatment: none}=0.04
+
+{indication: osteoporosis, medication: not_specific, administration_route: IV/SC, invasive_dental_treatment: none}=0.20
+
+---
+{indication: osteoporosis, medication: none, administration_route: none, invasive_dental_treatment: YES}=0.10
+
+{indication: osteoporosis, medication: bisphosphonate, administration_route: not_specific, invasive_dental_treatment: YES}=2.50
+
+{indication: osteoporosis, medication: bisphosphonate, administration_route: oral, invasive_dental_treatment: YES}=1.61
+{indication: osteoporosis, medication: bisphosphonate_Alendronate, administration_route: oral, invasive_dental_treatment: YES}=4.97**
+{indication: osteoporosis, medication: bisphosphonate_Risedronate, administration_route: oral, invasive_dental_treatment: YES}=0**
+{indication: osteoporosis, medication: bisphosphonate_Ibandronate, administration_route: oral, invasive_dental_treatment: YES}=5**
+
+{indication: osteoporosis, medication: bisphosphonate, administration_route: IV/SC, invasive_dental_treatment: YES}=15.12**
+{indication: osteoporosis, medication: bisphosphonate_Zoledronate, administration_route: IV/SC, invasive_dental_treatment: YES}=15.12**
+
+{indication: osteoporosis, medication: Denosumab, administration_route: IV/SC, invasive_dental_treatment: YES}=0.93
+
+{indication: osteoporosis, medication: not_specific, administration_route: not_specific, invasive_dental_treatment: YES}=1.48
+
+-------------
+
+{indication: cancer, medication: none, administration_route: none, invasive_dental_treatment: none}=0.09
+
+{indication: cancer, medication: bisphosphonate, administration_route: not_specific, invasive_dental_treatment: none}=0.88
+
+{indication: cancer, medication: bisphosphonate_Ibandronate, administration_route: not_specific, invasive_dental_treatment: none}=0.39
+{indication: cancer, medication: bisphosphonate_Clodronate, administration_route: not_specific, invasive_dental_treatment: none}=0.16
+{indication: cancer, medication: bisphosphonate_Zoledronate, administration_route: not_specific, invasive_dental_treatment: none}=1.21
+
+{indication: cancer, medication: Denosumab, administration_route: IV/SC, invasive_dental_treatment: none}=1.74
+
+{indication: cancer, medication: not_specific, administration_route: not_specific, invasive_dental_treatment: none}=1.09
+
+---
+
+{indication: cancer, medication: bisphosphonate, administration_route: not_specific, invasive_dental_treatment: YES}=9.17
+{indication: cancer, medication: bisphosphonate_Zoledronate, administration_route: IV/SC, invasive_dental_treatment: YES}=10.81
+
+{indication: cancer, medication: Denosumab, administration_route: IV/SC, invasive_dental_treatment: YES}=12.56
+
+{indication: cancer, medication: not_specific, administration_route: not_specific, invasive_dental_treatment: YES}=9.92
+
+------------------------------------------------------------------------------------------------
+
+2. I have a list of referenced paper related to each  [indication, type of drug, administration route]. I would like to make a set of webpages to display them, such that after the risk evaluation is complete, we can refer the users to the specific page displaying the referenced paper used to calculate the risk incidence for MRONJ under their circumstances
+
+
+
+
+
+
+
+
+
+
