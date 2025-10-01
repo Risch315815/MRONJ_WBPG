@@ -1,6 +1,8 @@
 I have finished calculating the incidence rate of each [indication, type of drug, administration route] for antiresorptive medication. I want to do the following:
 
-1. build an algorithm for calculating the risk category (low, medium, high) for MRONJ incidence.
+----------------------------------------------------------------------
+
+@1. build an algorithm for calculating the risk category (low, medium, high) for MRONJ incidence.
 
 the incidence rate is as follow: (%)
 {indication: osteoporosis, medication: none, administration_route: none, invasive_dental_treatment: none}=0.04
@@ -66,7 +68,53 @@ the incidence rate is as follow: (%)
 
 ------------------------------------------------------------------------------------------------
 
-2. I have a list of referenced paper related to each  [indication, type of drug, administration route]. I would like to make a set of webpages to display them, such that after the risk evaluation is complete, we can refer the users to the specific page displaying the referenced paper used to calculate the risk incidence for MRONJ under their circumstances
+@2. I have a list of referenced paper related to each  [indication, type of drug, administration route]. I would like to make a set of webpages to display them, such that after the risk evaluation is complete, we can refer the users to the specific page displaying the referenced paper used to calculate the risk incidence for MRONJ under their circumstances
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+
+@3. please help me modify the risk level of different condition:
+
+# I plan to set the threshold of low-moderate-high risk of ONJ/osteomyelitis at low-(~1%)-moderate-(~5%)-high
+
+- for osteoporosis:
+
+{indication: osteoporosis, medication: bisphosphonate/Denosumab/Romosuzumab, administration_route: oral/IV/SC, invasive_dental_treatment: none}=low
+
+{indication: osteoporosis, medication: bisphosphonatebisphosphonate/Denosumab/Romosuzumab, administration_route: oral/IV/SC, invasive_dental_treatment: YES}=moderate
+
+also, please show the underlying risk of ONJ/osteomyelitis for osteoporotic patient without medication as control group:
+{indication: osteoporosis, medication: none, administration_route: none, invasive_dental_treatment: not_specific}=low
+
+- for cancer:
+
+{indication: cancer, medication: bisphosphonate/Denosumab, administration_route: oral/IV/SC, invasive_dental_treatment: none}=moderate
+
+{indication: cancer, medication: bisphosphonate/Denosumab, administration_route: oral/IV/SC, invasive_dental_treatment: YES}=high
+
+I could not find research data for Romosuzumab-treated cancer patient, so please mark their risk level as N/A
+{indication: cancer, medication: Romosuzumab, administration_route: IV/SC, invasive_dental_treatment: none/YES}=N/A
+
+also, please show the underlying risk of ONJ/osteomyelitis for cancer patient without medication as control group:
+{indication: cancer, medication: none, administration_route: none, invasive_dental_treatment: not_specific}=low
+
+- definition for non-invasive / invasive dental treatment:
+-- non-invasive: [洗牙, 蛀牙填補, 假牙贋復]
+-- semi-invasive: [根管治療, 牙周深層清潔]: 根管治療 has the risk of pushing gutta-percha or sealer out of the apical foramen; 牙周深層清潔 usually cause pocket tissue trauma; therefore, if non-invasive has the risk level of 低風險, semi-invasive treatment should have the risk level of 低風險*，and we should inform the patient with these messages:
+[根管治療]: 應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)
+[牙周深層清潔]: 建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、牙周雷射治療等等)
+-- invasive: [拔牙, 齒槽骨整形術, 牙冠增長術, 植牙]
+
+
+
+
+
+
 
 
 

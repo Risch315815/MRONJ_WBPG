@@ -186,17 +186,20 @@ class MRONJRiskCalculator {
     const isInvasive = treatmentType === 'invasive';
     const isSemiInvasive = treatmentType === 'semiInvasive';
     
+    // For semi-invasive treatments, use non-invasive risk level (same as non-invasive)
+    const riskAssessmentInvasiveness = isSemiInvasive ? false : isInvasive;
+    
     // Get incidence rate from statistical data
-    const incidence = this.getIncidenceRate(indication, medication, administrationRoute, isInvasive);
+    const incidence = this.getIncidenceRate(indication, medication, administrationRoute, riskAssessmentInvasiveness);
     
     // Check if data is based on limited sources
-    const hasLimitedData = this.hasLimitedDataSources(indication, medication, administrationRoute, isInvasive);
+    const hasLimitedData = this.hasLimitedDataSources(indication, medication, administrationRoute, riskAssessmentInvasiveness);
     
     // Determine risk category using rule-based approach
-    const riskCategory = this.determineRiskCategory(indication, medication, administrationRoute, isInvasive);
+    const riskCategory = this.determineRiskCategory(indication, medication, administrationRoute, riskAssessmentInvasiveness);
     
     // Get reference papers
-    const references = this.getReferencePapers(indication, medication, administrationRoute, isInvasive);
+    const references = this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
     
     // Get special considerations for semi-invasive treatments
     const specialConsiderations = isSemiInvasive ? this.semiInvasiveConsiderations[dentalTreatment] : null;
@@ -235,12 +238,12 @@ class MRONJRiskCalculator {
 
   // Determine risk category using rule-based approach
   determineRiskCategory(indication, medication, administrationRoute, isInvasive) {
-    // Control groups (no medication)
+    // Control groups (no medication) - underlying risk
     if (medication === 'none') {
       return 'low';
     }
     
-    // Romosuzumab for cancer - no data available
+    // Romosuzumab for cancer - no research data available
     if (indication === 'cancer' && medication === 'Romosuzumab') {
       return 'unknown';
     }
@@ -410,7 +413,8 @@ class MRONJRiskCalculator {
       low: '低風險',
       moderate: '中度風險',
       high: '高風險',
-      unknown: '資料不足'
+      unknown: '資料不足',
+      'N/A': '資料不足'
     };
     return levels[category] || '未知風險';
   }
@@ -436,6 +440,10 @@ class MRONJRiskCalculator {
       unknown: {
         true: '缺乏足夠資料進行風險評估。建議轉診至醫學中心進行專業評估，並密切追蹤。',
         false: '缺乏足夠資料進行風險評估。建議諮詢專業醫師並定期追蹤。'
+      },
+      'N/A': {
+        true: '缺乏足夠研究資料進行風險評估。建議轉診至醫學中心進行專業評估，並密切追蹤。',
+        false: '缺乏足夠研究資料進行風險評估。建議諮詢專業醫師並定期追蹤。'
       }
     };
     
