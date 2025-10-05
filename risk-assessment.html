@@ -44,8 +44,22 @@
         print-color-adjust: exact;
       }
       
+      .risk-badge.midhigh-risk {
+        background-color: #FF7043 !important; /* between medium (orange) and high (red) */
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
       .risk-badge.medium-risk {
         background-color: #FF9500 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      .risk-badge.midlow-risk {
+        background-color: #8BC34A !important; /* between low (green) and medium (orange) */
         color: white !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
@@ -121,9 +135,16 @@
     .risk-badge.high-risk {
       background-color: #FF3B30;
     }
+    .risk-badge.midhigh-risk {
+      background-color: #FF7043;
+    }
     
     .risk-badge.medium-risk {
       background-color: #FF9500;
+    }
+    
+    .risk-badge.midlow-risk {
+      background-color: #8BC34A;
     }
     
     .risk-badge.low-risk {

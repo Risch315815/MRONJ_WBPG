@@ -554,11 +554,15 @@ function displayResults(assessments) {
     riskBadge.className = 'risk-badge';
     riskBadge.textContent = assessment.riskLevel;
     
-    // Set color based on risk level
+    // Set color based on risk level (includes mid-low and mid-high)
     if (assessment.riskLevel === '高風險') {
       riskBadge.classList.add('high-risk');
+    } else if (assessment.riskLevel === '中高風險') {
+      riskBadge.classList.add('midhigh-risk');
     } else if (assessment.riskLevel === '中度風險') {
       riskBadge.classList.add('medium-risk');
+    } else if (assessment.riskLevel === '中低風險') {
+      riskBadge.classList.add('midlow-risk');
     } else {
       riskBadge.classList.add('low-risk');
     }
