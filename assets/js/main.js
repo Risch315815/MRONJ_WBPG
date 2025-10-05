@@ -100,7 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
       // If medications exist in stored data, use them
       if (storedMedData.medications && storedMedData.medications.length > 0) {
         patientData.medications = storedMedData.medications;
+        patientData.hasAntiresorptiveMed = true; // CRITICAL: Set this flag!
         console.log('Loaded medications from localStorage');
+        console.log('Updated patientData:', patientData);
       }
     } catch (e) {
       console.error('Error loading stored medication data:', e);

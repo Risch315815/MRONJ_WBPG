@@ -259,6 +259,9 @@
         <div class="summary-item"><strong>BMI:</strong> ${bmi ? bmi : '--'}</div>
       `;
       // Add medication info
+      console.log('Patient data for summary:', patientData);
+      console.log('hasAntiresorptiveMed:', patientData.hasAntiresorptiveMed);
+      console.log('medications:', patientData.medications);
       if (patientData.hasAntiresorptiveMed && patientData.medications && patientData.medications.length > 0) {
         patientData.medications.forEach((med, idx) => {
           // Calculate duration
