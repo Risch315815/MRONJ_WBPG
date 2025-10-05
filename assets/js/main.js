@@ -260,13 +260,26 @@ function saveFormData(formId) {
 
 // Calculate MRONJ risk using enhanced algorithm
 function assessRisk() {
-  // Define dental procedures to assess
-  const procedures = [
-    { name: '非侵入性治療', invasive: false }, // Non-invasive (cleaning, filling)
-    { name: '根管治療', invasive: true },     // Root canal treatment
-    { name: '拔牙', invasive: true },         // Extraction
-    { name: '牙周手術', invasive: true },     // Periodontal surgery
-    { name: '植牙', invasive: true }          // Implant
+  // Define treatment categories to assess (new 3-category system)
+  const treatmentCategories = [
+    { 
+      name: '非侵入性治療', 
+      description: '洗牙、蛀牙填補、假牙贋復等',
+      invasiveness: 'nonInvasive',
+      showIncidenceRate: true
+    },
+    { 
+      name: '半侵入性治療', 
+      description: '根管治療、牙周深層清潔等',
+      invasiveness: 'semiInvasive',
+      showIncidenceRate: false
+    },
+    { 
+      name: '侵入性治療', 
+      description: '拔牙、齒槽骨整形術、牙冠增長術、植牙等',
+      invasiveness: 'invasive',
+      showIncidenceRate: true
+    }
   ];
   
   const assessments = [];
@@ -304,52 +317,65 @@ function assessRisk() {
     algorithmPatientData.stopMonth = firstMedication.stopMonth;
   }
   
-  procedures.forEach(procedure => {
-    let riskLevel = '低風險'; // Default is low risk
+  treatmentCategories.forEach(category => {
+    let riskLevel = '資料不足'; // Default when no data available
     let recommendation = '';
-    let incidenceRate = 0.04; // Default baseline
+    let incidenceRate = null; // Will be set based on showIncidenceRate
+    let generalIncidenceRate = null;
     let references = [];
-    let riskCategory = 'low';
+    let riskCategory = 'unknown';
+    let hasLimitedData = false;
     
     // Use enhanced algorithm if available
     if (riskCalculator && algorithmPatientData.hasAntiresorptiveMed) {
       try {
-        // Map procedure names to treatment names for the algorithm
-        let treatmentName = null;
-        if (procedure.name === '根管治療') treatmentName = '根管治療';
-        else if (procedure.name === '拔牙') treatmentName = '拔牙';
-        else if (procedure.name === '牙周手術') treatmentName = '牙周深層清潔'; // Map to semi-invasive equivalent
-        else if (procedure.name === '植牙') treatmentName = '植牙';
-        // For non-invasive treatments, we don't need a specific treatment name
+        // Use the new calculateRiskForAllCategories approach
+        const allCategoryResults = riskCalculator.calculateRisk(algorithmPatientData);
         
-        const assessment = riskCalculator.calculateRisk(algorithmPatientData, treatmentName);
-        riskLevel = assessment.riskLevel;
-        recommendation = assessment.recommendation;
-        incidenceRate = assessment.incidenceRate;
-        references = assessment.references;
-        riskCategory = assessment.riskCategory;
+        // Find the result for this specific category
+        const categoryResult = allCategoryResults.find(result => 
+          result.invasiveness === category.invasiveness
+        );
+        
+        if (categoryResult) {
+          riskLevel = categoryResult.riskLevel;
+          recommendation = categoryResult.recommendation;
+          incidenceRate = categoryResult.incidenceRate;
+          generalIncidenceRate = categoryResult.generalIncidenceRate;
+          references = categoryResult.references;
+          riskCategory = categoryResult.riskCategory;
+          hasLimitedData = categoryResult.hasLimitedData;
+        }
       } catch (error) {
         console.error('Error using enhanced risk calculator:', error);
         // Fall back to original logic
-        riskLevel = getFallbackRiskLevel(procedure, medicationDuration, hasHighRiskFactors);
-        recommendation = getFallbackRecommendation(riskLevel, procedure.invasive);
+        const isInvasive = category.invasiveness === 'invasive';
+        riskLevel = getFallbackRiskLevel({ name: category.name, invasive: isInvasive }, medicationDuration, hasHighRiskFactors);
+        recommendation = getFallbackRecommendation(riskLevel, isInvasive);
       }
     } else if (patientData.hasAntiresorptiveMed) {
       // Fallback to original logic
-      riskLevel = getFallbackRiskLevel(procedure, medicationDuration, hasHighRiskFactors);
-      recommendation = getFallbackRecommendation(riskLevel, procedure.invasive);
+      const isInvasive = category.invasiveness === 'invasive';
+      riskLevel = getFallbackRiskLevel({ name: category.name, invasive: isInvasive }, medicationDuration, hasHighRiskFactors);
+      recommendation = getFallbackRecommendation(riskLevel, isInvasive);
     } else {
-      recommendation = '可進行一般治療。';
+      // No medications - should show unknown risk
+      riskLevel = '資料不足';
+      recommendation = '資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。';
     }
     
     assessments.push({
-      procedure: procedure.name,
+      procedure: category.name,
+      categoryDescription: category.description,
+      invasiveness: category.invasiveness,
       riskLevel,
       recommendation,
-      incidenceRate,
+      incidenceRate: category.showIncidenceRate ? incidenceRate : null,
+      generalIncidenceRate: category.showIncidenceRate ? generalIncidenceRate : null,
+      showIncidenceRate: category.showIncidenceRate,
       references,
       riskCategory,
-      invasive: procedure.invasive
+      hasLimitedData
     });
   });
   
@@ -358,18 +384,9 @@ function assessRisk() {
 
 // Fallback risk level calculation (original logic)
 function getFallbackRiskLevel(procedure, medicationDuration, hasHighRiskFactors) {
-  if (procedure.name === '非侵入性治療') {
-    return '低風險';
-  } else {
-    // For invasive procedures
-    if (medicationDuration > 36 || hasHighRiskFactors) {
-      return '高風險';
-    } else if (medicationDuration > 12) {
-      return '中度風險';
-    } else {
-      return '低風險';
-    }
-  }
+  // If we're using fallback, it means we don't have reliable data
+  // So we should indicate insufficient data rather than guess
+  return '資料不足';
 }
 
 // Fallback recommendation generation
@@ -379,13 +396,25 @@ function getFallbackRecommendation(riskLevel, isInvasive) {
       true: '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。',
       false: '可進行治療，建議定期追蹤。'
     },
+    '中低風險': {
+      true: '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。',
+      false: '可進行治療，建議定期追蹤。'
+    },
     '中度風險': {
+      true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。',
+      false: '建議定期追蹤，如有牙科治療需求請先諮詢醫師。'
+    },
+    '中高風險': {
       true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。',
       false: '建議定期追蹤，如有牙科治療需求請先諮詢醫師。'
     },
     '高風險': {
       true: '建議轉診至醫學中心進行評估。需要特殊處理及術後密切追蹤。',
       false: '建議密切追蹤，避免侵入性牙科治療。'
+    },
+    '資料不足': {
+      true: '資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。',
+      false: '資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。'
     }
   };
   
