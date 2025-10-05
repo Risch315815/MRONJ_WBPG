@@ -311,6 +311,18 @@ function assessRisk() {
     algorithmPatientData.drugName = firstMedication.drugName;
     algorithmPatientData.administrationRoute = firstMedication.administrationRoute;
     algorithmPatientData.indication = firstMedication.indication;
+    // Ensure hasCancer reflects indication if not already true
+    if (!algorithmPatientData.hasCancer) {
+      const reasonLower = (firstMedication.indication || '').toLowerCase();
+      const isCancerReason =
+        reasonLower.includes('多發性骨髓瘤') ||
+        reasonLower.includes('骨轉移') ||
+        reasonLower.includes('multiple myeloma') ||
+        reasonLower.includes('bone metastasis');
+      if (isCancerReason) {
+        algorithmPatientData.hasCancer = true;
+      }
+    }
     algorithmPatientData.frequency = firstMedication.frequency;
     algorithmPatientData.startYear = firstMedication.startYear;
     algorithmPatientData.startMonth = firstMedication.startMonth;
@@ -333,22 +345,76 @@ function assessRisk() {
     // Use enhanced algorithm if available
     if (riskCalculator && algorithmPatientData.hasAntiresorptiveMed) {
       try {
-        // Use the new calculateRiskForAllCategories approach
-        const allCategoryResults = riskCalculator.calculateRisk(algorithmPatientData);
-        
-        // Find the result for this specific category
-        const categoryResult = allCategoryResults.find(result => 
-          result.invasiveness === category.invasiveness
-        );
-        
-        if (categoryResult) {
-          riskLevel = categoryResult.riskLevel;
-          recommendation = categoryResult.recommendation;
-          incidenceRate = categoryResult.incidenceRate;
-          generalIncidenceRate = categoryResult.generalIncidenceRate;
-          references = categoryResult.references;
-          riskCategory = categoryResult.riskCategory;
-          hasLimitedData = categoryResult.hasLimitedData;
+        // If multiple medications exist, compute per-medication and choose the highest
+        if (patientData.medications && patientData.medications.length > 0) {
+          const riskLevelPriority = {
+            '高風險': 6,
+            '中高風險': 5,
+            '中度風險': 4,
+            '中低風險': 3,
+            '低風險': 2,
+            '資料不足': 1
+          };
+
+          let best = null;
+
+          patientData.medications.forEach(med => {
+            const medPatient = { ...patientData };
+            medPatient.drugName = med.drugName;
+            medPatient.administrationRoute = med.administrationRoute;
+            medPatient.indication = med.indication;
+            medPatient.frequency = med.frequency;
+            medPatient.startYear = med.startYear;
+            medPatient.startMonth = med.startMonth;
+            medPatient.isStopped = med.isStopped;
+            medPatient.stopYear = med.stopYear;
+            medPatient.stopMonth = med.stopMonth;
+            // Derive hasCancer from indication if not true already
+            if (!medPatient.hasCancer) {
+              const reasonLower = (med.indication || '').toLowerCase();
+              const isCancerReason =
+                reasonLower.includes('多發性骨髓瘤') ||
+                reasonLower.includes('骨轉移') ||
+                reasonLower.includes('multiple myeloma') ||
+                reasonLower.includes('bone metastasis');
+              if (isCancerReason) medPatient.hasCancer = true;
+            }
+
+            const results = riskCalculator.calculateRisk(medPatient);
+            const catRes = results.find(r => r.invasiveness === category.invasiveness);
+            if (!catRes) return;
+
+            // Compute score (limited data loses priority)
+            const priority = (riskLevelPriority[catRes.riskLevel] || 0) - (catRes.hasLimitedData ? 0.5 : 0);
+
+            if (!best || priority > best.priority ||
+                (priority === best.priority && (Number(catRes.incidenceRate || 0) > Number(best.incidenceRate || 0)))) {
+              best = { ...catRes, priority };
+            }
+          });
+
+          if (best) {
+            riskLevel = best.riskLevel;
+            recommendation = best.recommendation;
+            incidenceRate = best.incidenceRate;
+            generalIncidenceRate = best.generalIncidenceRate;
+            references = best.references;
+            riskCategory = best.riskCategory;
+            hasLimitedData = best.hasLimitedData;
+          }
+        } else {
+          // Single-medication legacy path
+          const allCategoryResults = riskCalculator.calculateRisk(algorithmPatientData);
+          const categoryResult = allCategoryResults.find(result => result.invasiveness === category.invasiveness);
+          if (categoryResult) {
+            riskLevel = categoryResult.riskLevel;
+            recommendation = categoryResult.recommendation;
+            incidenceRate = categoryResult.incidenceRate;
+            generalIncidenceRate = categoryResult.generalIncidenceRate;
+            references = categoryResult.references;
+            riskCategory = categoryResult.riskCategory;
+            hasLimitedData = categoryResult.hasLimitedData;
+          }
         }
       } catch (error) {
         console.error('Error using enhanced risk calculator:', error);
