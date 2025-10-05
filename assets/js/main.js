@@ -315,6 +315,8 @@ function assessRisk() {
     algorithmPatientData.isStopped = firstMedication.isStopped;
     algorithmPatientData.stopYear = firstMedication.stopYear;
     algorithmPatientData.stopMonth = firstMedication.stopMonth;
+    algorithmPatientData.hasAntiresorptiveMed = true; // CRITICAL: Set this to true!
+    console.log('Algorithm patient data prepared:', algorithmPatientData);
   }
   
   treatmentCategories.forEach(category => {
