@@ -893,6 +893,14 @@
           reasonButtons.forEach(b => b.classList.remove('selected'));
           this.classList.add('selected');
           patientData.indication = this.dataset.reason;
+          // Map indication to hasCancer flag for downstream algorithm
+          const reasonLower = (this.dataset.reason || '').toLowerCase();
+          // Cancer-related reasons (zh/en)
+          const isCancer = reasonLower.includes('多發性骨髓瘤') ||
+                           reasonLower.includes('骨轉移') ||
+                           reasonLower.includes('multiple myeloma') ||
+                           reasonLower.includes('bone metastasis');
+          patientData.hasCancer = isCancer;
         });
       });
       
