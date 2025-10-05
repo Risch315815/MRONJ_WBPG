@@ -287,6 +287,23 @@ function assessRisk() {
     patientData.systemicDiseases.includes('糖尿病') ||
     patientData.systemicDiseases.includes('洗腎');
   
+  // Prepare patient data for algorithm (handle both old and new medication structures)
+  let algorithmPatientData = { ...patientData };
+  
+  // If we have medications array, use the first medication for the algorithm
+  if (patientData.medications && patientData.medications.length > 0) {
+    const firstMedication = patientData.medications[0];
+    algorithmPatientData.drugName = firstMedication.drugName;
+    algorithmPatientData.administrationRoute = firstMedication.administrationRoute;
+    algorithmPatientData.indication = firstMedication.indication;
+    algorithmPatientData.frequency = firstMedication.frequency;
+    algorithmPatientData.startYear = firstMedication.startYear;
+    algorithmPatientData.startMonth = firstMedication.startMonth;
+    algorithmPatientData.isStopped = firstMedication.isStopped;
+    algorithmPatientData.stopYear = firstMedication.stopYear;
+    algorithmPatientData.stopMonth = firstMedication.stopMonth;
+  }
+  
   procedures.forEach(procedure => {
     let riskLevel = '低風險'; // Default is low risk
     let recommendation = '';
@@ -295,9 +312,17 @@ function assessRisk() {
     let riskCategory = 'low';
     
     // Use enhanced algorithm if available
-    if (riskCalculator && patientData.hasAntiresorptiveMed) {
+    if (riskCalculator && algorithmPatientData.hasAntiresorptiveMed) {
       try {
-        const assessment = riskCalculator.calculateRisk(patientData, procedure.invasive);
+        // Map procedure names to treatment names for the algorithm
+        let treatmentName = null;
+        if (procedure.name === '根管治療') treatmentName = '根管治療';
+        else if (procedure.name === '拔牙') treatmentName = '拔牙';
+        else if (procedure.name === '牙周手術') treatmentName = '牙周深層清潔'; // Map to semi-invasive equivalent
+        else if (procedure.name === '植牙') treatmentName = '植牙';
+        // For non-invasive treatments, we don't need a specific treatment name
+        
+        const assessment = riskCalculator.calculateRisk(algorithmPatientData, treatmentName);
         riskLevel = assessment.riskLevel;
         recommendation = assessment.recommendation;
         incidenceRate = assessment.incidenceRate;
