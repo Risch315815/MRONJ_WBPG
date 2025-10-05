@@ -25,7 +25,6 @@ export default function MedicationHistory() {
       updatePatientInfo({
         hasAntiresorptiveMed: true,
         medicationType: '',
-        medicationSubType: '',
         drugName: '',
         administrationRoute: '',
         indication: '',

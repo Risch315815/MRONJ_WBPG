@@ -19,8 +19,6 @@ let patientData = {
   
   // Medication Information
   hasAntiresorptiveMed: false,
-  medicationType: '',
-  medicationSubType: '',
   drugName: '',
   administrationRoute: '',
   indication: '',
@@ -44,6 +42,7 @@ function clearAllPatientData() {
   
   // Reset patientData object
   patientData = {
+    // Personal Information
     name: '',
     birthYear: '',
     birthMonth: '',
@@ -52,12 +51,12 @@ function clearAllPatientData() {
     gender: '',
     height: '',
     weight: '',
+    // Medical History
     hasCancer: false,
     hasRadiotherapy: false,
     systemicDiseases: [],
     hasAntiresorptiveMed: false,
-    medicationType: '',
-    medicationSubType: '',
+    // Medication Information
     drugName: '',
     administrationRoute: '',
     indication: '',

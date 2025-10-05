@@ -7,12 +7,6 @@ export type MedicationType =
   | 'Both'            // 兩者皆是
   | '';
 
-export type SubType = 
-  | 'Bisphosphonates-IV'     // 靜脈注射型雙磷酸鹽類
-  | 'Bisphosphonates-Oral'   // 口服型雙磷酸鹽類
-  | 'RANK-L Inhibitors'      // RANK-L抑制劑
-  | 'Antiangiogenic Agents'  // 抗血管新生藥物
-  | '';
 
 export type DrugName = 
   // Bisphosphonates - IV
@@ -58,7 +52,6 @@ export interface PatientData {
   // Updated Medication History
   hasAntiresorptiveMed: boolean;
   medicationType: MedicationType;
-  medicationSubType: SubType;
   drugName: DrugName;
   administrationRoute: '口服' | '注射' | '';
   indication: '骨質疏鬆' | '多發性骨髓瘤' | '骨轉移' | '其他' | '';
@@ -101,7 +94,6 @@ const initialState: PatientData = {
   otherConditions: '',
   hasAntiresorptiveMed: false,
   medicationType: '',
-  medicationSubType: '',
   drugName: '',
   administrationRoute: '',
   indication: '',

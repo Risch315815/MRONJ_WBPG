@@ -6,29 +6,29 @@ class MRONJRiskCalculator {
     // Risk incidence data from statistical analysis
     this.incidenceData = {
       osteoporosis: {
-        none: { none: { none: 0.04, YES: 0.10 } },
-        bisphosphonate: {
+        none: { none: { none: 0.04, YES: 'N/A' } },
+        Bisphosphonate: {
           not_specific: { none: 0.21, YES: 2.50 },
           oral: { none: 0.21, YES: 1.61 },
           'IV/SC': { none: 0.24, YES: 15.12 }
         },
-        bisphosphonate_Alendronate: {
+        Alendronate: {
           oral: { none: 0.24, YES: 4.97 }
         },
-        bisphosphonate_Risedronate: {
-          oral: { none: 0.13, YES: 0 }
+        Risedronate: {
+          oral: { none: 0.13, YES: 'N/A' }
         },
-        bisphosphonate_Ibandronate: {
+        Ibandronate: {
           oral: { none: 0.08, YES: 5 },
           'IV/SC': { none: 0.04, YES: 'N/A' }
         },
-        bisphosphonate_Clodronate: {
+        Clodronate: {
           oral: { none: 1.05, YES: 'N/A' }
         },
-        bisphosphonate_Zoledronate: {
+        Zoledronate: {
           'IV/SC': { none: 0.02, YES: 15.12 }
         },
-        bisphosphonate_Pamidronate: {
+        Pamidronate: {
           'IV/SC': { none: 0.06, YES: 'N/A' }
         },
         Denosumab: {
@@ -38,28 +38,34 @@ class MRONJRiskCalculator {
           'IV/SC': { none: 0.04, YES: 'N/A' }
         },
         not_specific: {
-          'IV/SC': { none: 0.20, YES: 'N/A' },
-          not_specific: { YES: 1.48 }
+          not_specific: { none: 0.20, YES: 1.48 }
         }
       },
       cancer: {
         none: { none: { none: 0.09, YES: 'N/A' } },
-        bisphosphonate: {
-          not_specific: { none: 0.88, YES: 9.17 },
-          'IV/SC': { YES: 'N/A' }
+        Bisphosphonate: {
+          not_specific: { none: 0.88, YES: 9.17 }
         },
-        bisphosphonate_Ibandronate: {
+        Ibandronate: {
           not_specific: { none: 0.39, YES: 'N/A' }
         },
-        bisphosphonate_Clodronate: {
+        Clodronate: {
           not_specific: { none: 0.16, YES: 'N/A' }
         },
-        bisphosphonate_Zoledronate: {
-          not_specific: { none: 1.21, YES: 'N/A' },
-          'IV/SC': { YES: 10.81 }
+        Zoledronate: {
+          not_specific: { none: 1.21, YES: 'N/A' }
         },
         Denosumab: {
           'IV/SC': { none: 1.74, YES: 12.56 }
+        },
+        Bevacizumab: {
+          'IV/SC': { none: 0.5, YES: 'N/A' }
+        },
+        Sunitinib: {
+          oral: { none: 0.3, YES: 'N/A' }
+        },
+        Cabozantinib: {
+          oral: { none: 0.2, YES: 'N/A' }
         },
         not_specific: {
           not_specific: { none: 1.09, YES: 9.92 }
@@ -77,22 +83,22 @@ class MRONJRiskCalculator {
     // Semi-invasive treatment special considerations
     this.semiInvasiveConsiderations = {
       '根管治療': '應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)',
-      '牙周深層清潔': '建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、牙周雷射治療等等)'
+      '牙周深層清潔': '建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、雷射牙周治療等等)'
     };
 
     // Data quality indicators - mark which rates are based on limited sources
     this.limitedDataSources = {
       osteoporosis: {
-        bisphosphonate_Alendronate: {
+        Alendronate: {
           oral: { YES: true }  // 4.97** - limited sources
         },
-        bisphosphonate_Ibandronate: {
+        Ibandronate: {
           oral: { YES: true }  // 5** - limited sources
         },
-        bisphosphonate: {
+        Bisphosphonate: {
           'IV/SC': { YES: true }  // 15.12** - limited sources
         },
-        bisphosphonate_Zoledronate: {
+        Zoledronate: {
           'IV/SC': { YES: true }  // 15.12** - limited sources
         }
       },
@@ -101,102 +107,49 @@ class MRONJRiskCalculator {
       }
     };
 
-    // Reference papers mapping
-    this.referencePapers = {
-      osteoporosis: {
-        bisphosphonate: {
-          oral: {
-            none: [
-              { authors: "Lo JC, et al.", year: 2010, title: "Prevalence of osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "J Oral Maxillofac Surg" },
-              { authors: "Sedghizadeh PP, et al.", year: 2009, title: "Oral bisphosphonate use and the prevalence of osteonecrosis of the jaw", journal: "J Am Dent Assoc" },
-              { authors: "Hellstein JW, et al.", year: 2011, title: "Managing the care of patients receiving antiresorptive therapy for prevention and treatment of osteoporosis", journal: "J Am Dent Assoc" }
-            ],
-            YES: [
-              { authors: "Smith J, et al.", year: 2018, title: "Risk factors for osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "Oral Surg Oral Med Oral Pathol Oral Radiol" },
-              { authors: "Mavrokokki T, et al.", year: 2007, title: "What every dentist should know about bisphosphonates and osteonecrosis", journal: "Aust Dent J" }
-            ]
-          },
-          'IV/SC': {
-            none: [
-              { authors: "Grbic JT, et al.", year: 2010, title: "Incidence of osteonecrosis of the jaw in women with postmenopausal osteoporosis in the health outcomes and reduced incidence with zoledronic acid once yearly pivotal fracture trial", journal: "J Am Dent Assoc" },
-              { authors: "Khan AA, et al.", year: 2015, title: "Diagnosis and management of osteonecrosis of the jaw: a systematic review and international consensus", journal: "J Bone Miner Res" }
-            ],
-            YES: [
-              { authors: "AAOMS Position Paper", year: 2022, title: "American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaw", journal: "J Oral Maxillofac Surg" }
-            ]
-          }
-        },
-        Denosumab: {
-          'IV/SC': {
-            none: [
-              { authors: "Cummings SR, et al.", year: 2009, title: "Denosumab for prevention of fractures in postmenopausal women with osteoporosis", journal: "N Engl J Med" },
-              { authors: "Khan AA, et al.", year: 2017, title: "Diagnosis and management of osteonecrosis of the jaw: a systematic review and international consensus", journal: "J Bone Miner Res" }
-            ],
-            YES: [
-              { authors: "Patel R, et al.", year: 2022, title: "Denosumab and osteonecrosis of the jaw: a systematic analysis of events reported in clinical trials", journal: "J Bone Miner Res" }
-            ]
-          }
-        },
-        Romosuzumab: {
-          'IV/SC': {
-            none: [
-              { authors: "Hadaya D, et al.", year: 2019, title: "Romosozumab and osteonecrosis of the jaw: a systematic review", journal: "J Bone Miner Res" },
-              { authors: "AAOMS Position Paper", year: 2022, title: "American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaw", journal: "J Oral Maxillofac Surg" }
-            ]
-          }
-        }
-      },
-      cancer: {
-        bisphosphonate: {
-          'IV/SC': {
-            none: [
-              { authors: "Saad F, et al.", year: 2012, title: "Incidence, risk factors and management of osteonecrosis of the jaw in patients with bone metastases treated with zoledronic acid", journal: "J Clin Oncol" },
-              { authors: "Vahtsevanos K, et al.", year: 2009, title: "Bisphosphonate-associated osteonecrosis of the jaw: a review of 35 cases and an assessment of its frequency in multiple myeloma", journal: "Leuk Lymphoma" }
-            ],
-            YES: [
-              { authors: "Thumbigere-Math V, et al.", year: 2012, title: "Bisphosphonate-related osteonecrosis of the jaw: clinical features, risk factors, management, and treatment outcomes of 34 patients", journal: "J Oral Maxillofac Surg" },
-              { authors: "Dimopoulos MA, et al.", year: 2009, title: "Reduction of osteonecrosis of the jaw (ONJ) after implementation of preventive measures in patients with multiple myeloma treated with zoledronic acid", journal: "Ann Oncol" }
-            ]
-          }
-        },
-        Denosumab: {
-          'IV/SC': {
-            none: [
-              { authors: "Johnson K, et al.", year: 2019, title: "Denosumab and osteonecrosis of the jaw: a systematic review and meta-analysis", journal: "J Bone Miner Res" },
-              { authors: "Stopeck AT, et al.", year: 2016, title: "Denosumab compared with zoledronic acid for the treatment of bone metastases in patients with advanced breast cancer: a randomized, double-blind study", journal: "J Clin Oncol" }
-            ],
-            YES: [
-              { authors: "Limones A, et al.", year: 2020, title: "Medication-related osteonecrosis of the jaws (MRONJ) in cancer patients treated with denosumab VS. zoledronic acid: a systematic review and meta-analysis", journal: "J Bone Miner Res" },
-              { authors: "Saad F, et al.", year: 2021, title: "Incidence of osteonecrosis of the jaw in patients with bone metastases from solid tumors and multiple myeloma treated with denosumab or zoledronic acid", journal: "J Clin Oncol" }
-            ]
-          }
-        }
-      }
-    };
+    // Reference papers are now loaded from external file
+    this.referencePapers = typeof MRONJReferences !== 'undefined' ? MRONJReferences : {};
+    this.generalReferences = typeof MRONJGeneralReferences !== 'undefined' ? MRONJGeneralReferences : {};
   }
 
-  // Calculate MRONJ risk based on patient data
+  // Calculate MRONJ risk - integrated function for both single treatment and all categories
   calculateRisk(patientData, dentalTreatment = null) {
     const indication = patientData.hasCancer ? 'cancer' : 'osteoporosis';
-    const medication = this.normalizeMedication(patientData);
+    const medication = patientData.hasAntiresorptiveMed ? patientData.drugName : 'none';
     const administrationRoute = this.normalizeAdministrationRoute(patientData);
     
-    // Determine treatment invasiveness
-    const treatmentType = this.classifyTreatment(dentalTreatment);
-    const isInvasive = treatmentType === 'invasive';
-    const isSemiInvasive = treatmentType === 'semiInvasive';
+    // If no specific treatment provided, calculate for all categories
+    if (!dentalTreatment) {
+      return this.calculateRiskForAllCategories(patientData, indication, medication, administrationRoute);
+    }
+    
+    // Single treatment calculation
+    const isInvasive = this.treatmentClassification.invasive.includes(dentalTreatment);
+    const isSemiInvasive = this.treatmentClassification.semiInvasive.includes(dentalTreatment);
+    const treatmentType = isInvasive ? 'invasive' : isSemiInvasive ? 'semiInvasive' : 'nonInvasive';
     
     // For semi-invasive treatments, use non-invasive risk level (same as non-invasive)
     const riskAssessmentInvasiveness = isSemiInvasive ? false : isInvasive;
     
     // Get incidence rate from statistical data
-    const incidence = this.getIncidenceRate(indication, medication, administrationRoute, riskAssessmentInvasiveness);
+    const incidenceResult = this.getIncidenceRate(indication, medication, administrationRoute, riskAssessmentInvasiveness);
+    
+    // Handle both single rate and dual rate (specific + general) results
+    let incidence, generalIncidence = null;
+    if (typeof incidenceResult === 'object' && incidenceResult.specific !== undefined) {
+      // Dual rate result for specific bisphosphonates
+      incidence = incidenceResult.specific;
+      generalIncidence = incidenceResult.general;
+    } else {
+      // Single rate result
+      incidence = incidenceResult;
+    }
     
     // Check if data is based on limited sources
     const hasLimitedData = this.hasLimitedDataSources(indication, medication, administrationRoute, riskAssessmentInvasiveness);
     
     // Determine risk category using rule-based approach
-    const riskCategory = this.determineRiskCategory(indication, medication, administrationRoute, riskAssessmentInvasiveness);
+    const riskCategory = this.determineRiskCategory(indication, medication, administrationRoute, riskAssessmentInvasiveness, isSemiInvasive);
     
     // Get reference papers
     const references = this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
@@ -213,6 +166,7 @@ class MRONJRiskCalculator {
       isInvasive,
       isSemiInvasive,
       incidenceRate: incidence,
+      generalIncidenceRate: generalIncidence,
       hasLimitedData,
       riskCategory,
       references,
@@ -221,94 +175,143 @@ class MRONJRiskCalculator {
     };
   }
 
-  // Classify dental treatment type
-  classifyTreatment(treatment) {
-    if (!treatment) return 'nonInvasive';
+  // Helper function for calculating risk for all categories
+  calculateRiskForAllCategories(patientData, indication, medication, administrationRoute) {
+    const treatmentCategories = [
+      { 
+        name: '非侵入性治療', 
+        description: '洗牙、蛀牙填補、假牙贋復等',
+        invasiveness: 'nonInvasive',
+        showIncidenceRate: true
+      },
+      { 
+        name: '半侵入性治療', 
+        description: '根管治療、牙周深層清潔等',
+        invasiveness: 'semiInvasive',
+        showIncidenceRate: false
+      },
+      { 
+        name: '侵入性治療', 
+        description: '拔牙、齒槽骨整形術、牙冠增長術、植牙等',
+        invasiveness: 'invasive',
+        showIncidenceRate: true
+      }
+    ];
     
-    if (this.treatmentClassification.nonInvasive.includes(treatment)) {
-      return 'nonInvasive';
-    } else if (this.treatmentClassification.semiInvasive.includes(treatment)) {
-      return 'semiInvasive';
-    } else if (this.treatmentClassification.invasive.includes(treatment)) {
-      return 'invasive';
-    }
+    const assessments = [];
     
-    return 'nonInvasive'; // Default to non-invasive
+    treatmentCategories.forEach(category => {
+      // Calculate risk based on invasiveness
+      const isInvasive = category.invasiveness === 'invasive';
+      const isSemiInvasive = category.invasiveness === 'semiInvasive';
+      
+      // For semi-invasive treatments, use non-invasive risk level (same as non-invasive)
+      const riskAssessmentInvasiveness = isSemiInvasive ? false : isInvasive;
+      
+      // Get incidence rate from statistical data
+      const incidenceResult = this.getIncidenceRate(indication, medication, administrationRoute, riskAssessmentInvasiveness);
+      
+      // Handle both single rate and dual rate (specific + general) results
+      let incidenceRate = null, generalIncidenceRate = null;
+      if (category.showIncidenceRate) {
+        if (typeof incidenceResult === 'object' && incidenceResult.specific !== undefined) {
+          // Dual rate result for specific bisphosphonates
+          incidenceRate = incidenceResult.specific;
+          generalIncidenceRate = incidenceResult.general;
+        } else {
+          // Single rate result
+          incidenceRate = incidenceResult;
+        }
+      }
+      
+      // Check if data is based on limited sources
+      const hasLimitedData = this.hasLimitedDataSources(indication, medication, administrationRoute, riskAssessmentInvasiveness);
+      
+      // Determine risk category using rule-based approach
+      const riskCategory = this.determineRiskCategory(indication, medication, administrationRoute, riskAssessmentInvasiveness, isSemiInvasive);
+      
+      // Get reference papers
+      const references = this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
+      
+      // Get special considerations for semi-invasive treatments
+      const specialConsiderations = isSemiInvasive ? this.semiInvasiveConsiderations['根管治療'] : null;
+      
+      assessments.push({
+        categoryName: category.name,
+        categoryDescription: category.description,
+        invasiveness: category.invasiveness,
+        isInvasive: isInvasive,
+        isSemiInvasive: isSemiInvasive,
+        riskLevel: this.getRiskLevel(riskCategory),
+        incidenceRate: incidenceRate,
+        generalIncidenceRate: generalIncidenceRate,
+        showIncidenceRate: category.showIncidenceRate,
+        hasLimitedData: hasLimitedData,
+        recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations),
+        references: references,
+        riskCategory: riskCategory
+      });
+    });
+    
+    return assessments;
   }
+
 
   // Determine risk category using rule-based approach
-  determineRiskCategory(indication, medication, administrationRoute, isInvasive) {
-    // Control groups (no medication) - underlying risk
-    if (medication === 'none') {
-      return 'low';
+  // Decision tree: indication → medication → administration route → invasive dental treatment
+  determineRiskCategory(indication, medication, administrationRoute, isInvasive, isSemiInvasive = false) {
+    
+    // 1. INDICATION: Check if patient has cancer or osteoporosis
+    if (indication === 'osteoporosis') {
+      // 2. MEDICATION: Check medication type for osteoporosis patients
+      if (medication === 'none') {
+        // 3. ADMINISTRATION ROUTE: No medication (control group)
+        // 4. INVASIVE DENTAL TREATMENT: Risk based on treatment invasiveness
+          return 'low';
+        }
+      else {
+        // 2. MEDICATION: Has antiresorptive medication
+        // 3. ADMINISTRATION ROUTE: Any route (oral, IV/SC, etc.)
+        // 4. INVASIVE DENTAL TREATMENT: Risk based on treatment invasiveness
+        if (isInvasive) {
+          return 'moderate';
+        } else if (isSemiInvasive) {
+          return 'low-moderate';
+        } else {
+          return 'low';
+        }
+      }
+    } 
+    else if (indication === 'cancer') {
+      // 2. MEDICATION: Check medication type for cancer patients
+      if (medication === 'none') {
+        // 3. ADMINISTRATION ROUTE: No medication (control group)
+        // 4. INVASIVE DENTAL TREATMENT: Risk based on treatment invasiveness
+          return 'low';
+      } 
+      else if (medication === 'Romosuzumab') {
+        // 2. MEDICATION: Romosuzumab - no research data available
+        return 'unknown';
+      } else {
+        // 2. MEDICATION: Has antiresorptive medication (bisphosphonates, denosumab, etc.)
+        // 3. ADMINISTRATION ROUTE: Any route (oral, IV/SC, etc.)
+        // 4. INVASIVE DENTAL TREATMENT: Risk based on treatment invasiveness
+        if (isInvasive) {
+          return 'high';
+        } else if (isSemiInvasive) {
+          return 'moderate-high';
+        } else {
+          return 'moderate';
+        }
+      }
     }
     
-    // Romosuzumab for cancer - no research data available
-    if (indication === 'cancer' && medication === 'Romosuzumab') {
+    // Unknown indication
+    else {
       return 'unknown';
     }
-    
-    // Osteoporosis patients
-    if (indication === 'osteoporosis') {
-      if (isInvasive) {
-        return 'moderate';
-      } else {
-        return 'low';
-      }
-    }
-    
-    // Cancer patients
-    if (indication === 'cancer') {
-      if (isInvasive) {
-        return 'high';
-      } else {
-        return 'moderate';
-      }
-    }
-    
-    return 'unknown';
   }
 
-  // Normalize medication name for data lookup
-  normalizeMedication(patientData) {
-    if (!patientData.hasAntiresorptiveMed) return 'none';
-    
-    const drugName = patientData.drugName ? patientData.drugName.toLowerCase() : '';
-    const medicationType = patientData.medicationType ? patientData.medicationType.toLowerCase() : '';
-    
-    // Check for specific bisphosphonates
-    if (drugName.includes('alendronate') || drugName.includes('fosamax')) {
-      return 'bisphosphonate_Alendronate';
-    }
-    if (drugName.includes('risedronate') || drugName.includes('actonel')) {
-      return 'bisphosphonate_Risedronate';
-    }
-    if (drugName.includes('ibandronate') || drugName.includes('boniva')) {
-      return 'bisphosphonate_Ibandronate';
-    }
-    if (drugName.includes('clodronate')) {
-      return 'bisphosphonate_Clodronate';
-    }
-    if (drugName.includes('zoledronate') || drugName.includes('zometa') || drugName.includes('reclast')) {
-      return 'bisphosphonate_Zoledronate';
-    }
-    if (drugName.includes('pamidronate') || drugName.includes('aredia')) {
-      return 'bisphosphonate_Pamidronate';
-    }
-    if (drugName.includes('denosumab') || drugName.includes('prolia') || drugName.includes('xgeva')) {
-      return 'Denosumab';
-    }
-    if (drugName.includes('romosozumab') || drugName.includes('evenity')) {
-      return 'Romosuzumab';
-    }
-    
-    // Fall back to general categories
-    if (medicationType.includes('bisphosphonate')) {
-      return 'bisphosphonate';
-    }
-    
-    return 'not_specific';
-  }
 
   // Normalize administration route
   normalizeAdministrationRoute(patientData) {
@@ -317,8 +320,8 @@ class MRONJRiskCalculator {
     if (route.includes('oral') || route.includes('口服')) {
       return 'oral';
     }
-    if (route.includes('iv') || route.includes('intravenous') || route.includes('靜脈') || 
-        route.includes('sc') || route.includes('subcutaneous') || route.includes('皮下')) {
+    if (route.includes('injection') || route.includes('注射') || 
+        route.includes('iv') || route.includes('sc')) {
       return 'IV/SC';
     }
     
@@ -329,94 +332,73 @@ class MRONJRiskCalculator {
   getIncidenceRate(indication, medication, administrationRoute, invasiveDentalTreatment) {
     const treatmentKey = invasiveDentalTreatment ? 'YES' : 'none';
     
-    try {
-      // Try specific medication first
-      if (this.incidenceData[indication][medication] && 
-          this.incidenceData[indication][medication][administrationRoute] &&
-          this.incidenceData[indication][medication][administrationRoute][treatmentKey] !== undefined) {
-        const rate = this.incidenceData[indication][medication][administrationRoute][treatmentKey];
-        return rate === 'N/A' ? 'N/A' : rate;
+    // List of specific bisphosphonates that have individual data
+    const specificBisphosphonates = ['Alendronate', 'Risedronate', 'Ibandronate', 'Clodronate', 'Zoledronate', 'Pamidronate'];
+    
+    // For specific bisphosphonates, return both general and specific rates
+    if (specificBisphosphonates.includes(medication)) {
+      const specificRate = this.incidenceData?.[indication]?.[medication]?.[administrationRoute]?.[treatmentKey];
+      const generalRate = this.incidenceData?.[indication]?.['Bisphosphonate']?.[administrationRoute]?.[treatmentKey];
+      
+      // Return object with both rates if specific rate exists and is not 'N/A'
+      if (specificRate !== undefined && specificRate !== 'N/A') {
+        return {
+          specific: specificRate,
+          general: generalRate !== undefined ? generalRate : 'N/A'
+        };
       }
       
-      // Fall back to general bisphosphonate category
-      if (medication.startsWith('bisphosphonate_') && 
-          this.incidenceData[indication]['bisphosphonate'] &&
-          this.incidenceData[indication]['bisphosphonate'][administrationRoute] &&
-          this.incidenceData[indication]['bisphosphonate'][administrationRoute][treatmentKey] !== undefined) {
-        const rate = this.incidenceData[indication]['bisphosphonate'][administrationRoute][treatmentKey];
-        return rate === 'N/A' ? 'N/A' : rate;
+      // If specific rate is 'N/A' or doesn't exist, return general rate
+      if (generalRate !== undefined) {
+        return generalRate;
       }
-      
-      // Fall back to not_specific
-      if (this.incidenceData[indication]['not_specific'] &&
-          this.incidenceData[indication]['not_specific'][administrationRoute] &&
-          this.incidenceData[indication]['not_specific'][administrationRoute][treatmentKey] !== undefined) {
-        const rate = this.incidenceData[indication]['not_specific'][administrationRoute][treatmentKey];
-        return rate === 'N/A' ? 'N/A' : rate;
-      }
-      
-      // Final fallback
-      const rate = this.incidenceData[indication]['none']['none'][treatmentKey];
-      return rate === 'N/A' ? 'N/A' : rate;
-    } catch (error) {
-      console.error('Error getting incidence rate:', error);
-      return 'N/A'; // Return N/A when there's an error
     }
+    
+    // For non-bisphosphonates, direct lookup
+    const rate = this.incidenceData?.[indication]?.[medication]?.[administrationRoute]?.[treatmentKey];
+    
+    if (rate !== undefined) {
+      return rate;
+    }
+    
+    // Final fallback: control group (no medication)
+    return this.incidenceData?.[indication]?.['none']?.['none']?.[treatmentKey] || 'N/A';
   }
 
   // Check if data is based on limited sources
   hasLimitedDataSources(indication, medication, administrationRoute, invasiveDentalTreatment) {
     const treatmentKey = invasiveDentalTreatment ? 'YES' : 'none';
     
-    try {
-      // Check specific medication first
-      if (this.limitedDataSources[indication] && 
-          this.limitedDataSources[indication][medication] &&
-          this.limitedDataSources[indication][medication][administrationRoute] &&
-          this.limitedDataSources[indication][medication][administrationRoute][treatmentKey] !== undefined) {
-        return this.limitedDataSources[indication][medication][administrationRoute][treatmentKey];
+    // Direct lookup: indication -> medication -> route -> treatment
+    const isLimited = this.limitedDataSources?.[indication]?.[medication]?.[administrationRoute]?.[treatmentKey];
+    
+    if (isLimited !== undefined) {
+      return isLimited;
+    }
+    
+    // Fallback: try general bisphosphonate category for specific bisphosphonates
+    if (medication.startsWith('bisphosphonate_')) {
+      const generalLimited = this.limitedDataSources?.[indication]?.['bisphosphonate']?.[administrationRoute]?.[treatmentKey];
+      if (generalLimited !== undefined) {
+        return generalLimited;
       }
-      
-      // Check general bisphosphonate category
-      if (medication.startsWith('bisphosphonate_') && 
-          this.limitedDataSources[indication] &&
-          this.limitedDataSources[indication]['bisphosphonate'] &&
-          this.limitedDataSources[indication]['bisphosphonate'][administrationRoute] &&
-          this.limitedDataSources[indication]['bisphosphonate'][administrationRoute][treatmentKey] !== undefined) {
-        return this.limitedDataSources[indication]['bisphosphonate'][administrationRoute][treatmentKey];
-      }
-      
-      return false;
-    } catch (error) {
-      console.error('Error checking limited data sources:', error);
-      return false;
     }
-  }
-
-  // Categorize risk based on incidence rate
-  categorizeRisk(incidenceRate) {
-    if (incidenceRate === 'N/A') {
-      return 'unknown';
-    }
-    if (incidenceRate < this.riskThresholds.low) {
-      return 'low';
-    } else if (incidenceRate < this.riskThresholds.high) {
-      return 'medium';
-    } else {
-      return 'high';
-    }
+    
+    return false;
   }
 
   // Get risk level in Chinese
   getRiskLevel(category) {
     const levels = {
       low: '低風險',
+      'low-moderate': '中低風險',
       moderate: '中度風險',
+      'moderate-high': '中高風險',
       high: '高風險',
       unknown: '資料不足',
       'N/A': '資料不足'
     };
-    return levels[category] || '未知風險';
+    return levels[category] || '資料不足';
   }
 
   // Get recommendation based on risk category
@@ -429,9 +411,17 @@ class MRONJRiskCalculator {
         true: '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。',
         false: '可進行治療，建議定期追蹤。'
       },
+      'low-moderate': {
+        true: '可進行治療，但需要特別注意風險並簽署同意書。建議術前諮詢原處方醫師，術後密切追蹤。',
+        false: '可進行治療，建議術前諮詢醫師並密切追蹤。'
+      },
       moderate: {
         true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。',
         false: '建議定期追蹤，如有牙科治療需求請先諮詢醫師。'
+      },
+      'moderate-high': {
+        true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後密切追蹤。',
+        false: '建議密切追蹤，如有牙科治療需求請先諮詢醫師。'
       },
       high: {
         true: '建議轉診至醫學中心進行評估。需要特殊處理及術後密切追蹤。',
@@ -461,72 +451,22 @@ class MRONJRiskCalculator {
   getReferencePapers(indication, medication, administrationRoute, invasiveDentalTreatment) {
     const treatmentKey = invasiveDentalTreatment ? 'YES' : 'none';
     
-    try {
-      if (this.referencePapers[indication] && 
-          this.referencePapers[indication][medication] &&
-          this.referencePapers[indication][medication][administrationRoute] &&
-          this.referencePapers[indication][medication][administrationRoute][treatmentKey]) {
-        return this.referencePapers[indication][medication][administrationRoute][treatmentKey];
-      }
-      
-      // Fall back to general references
-      return this.getGeneralReferences(indication, medication);
-    } catch (error) {
-      console.error('Error getting reference papers:', error);
-      return this.getGeneralReferences(indication, medication);
+    // Direct lookup: indication -> medication -> route -> treatment
+    const references = this.referencePapers?.[indication]?.[medication]?.[administrationRoute]?.[treatmentKey];
+    
+    if (references) {
+      return references;
     }
+    
+    // Fall back to general references
+    return this.getGeneralReferences(indication, medication);
   }
 
   // Get general references when specific ones aren't available
   getGeneralReferences(indication, medication) {
-    const generalRefs = {
-      osteoporosis: [
-        { authors: "AAOMS Position Paper", year: 2022, title: "American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaw", journal: "J Oral Maxillofac Surg" },
-        { authors: "Khan AA, et al.", year: 2015, title: "Diagnosis and management of osteonecrosis of the jaw: a systematic review and international consensus", journal: "J Bone Miner Res" }
-      ],
-      cancer: [
-        { authors: "AAOMS Position Paper", year: 2022, title: "American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaw", journal: "J Oral Maxillofac Surg" },
-        { authors: "Limones A, et al.", year: 2020, title: "Medication-related osteonecrosis of the jaws (MRONJ) in cancer patients treated with denosumab VS. zoledronic acid: a systematic review and meta-analysis", journal: "J Bone Miner Res" }
-      ]
-    };
-    
-    return generalRefs[indication] || generalRefs.osteoporosis;
+    return this.generalReferences[indication] || this.generalReferences.osteoporosis;
   }
 
-  // Generate comprehensive risk assessment for all procedures
-  assessAllProcedures(patientData) {
-    const procedures = [
-      { name: '洗牙', treatment: '洗牙' },
-      { name: '蛀牙填補', treatment: '蛀牙填補' },
-      { name: '假牙贋復', treatment: '假牙贋復' },
-      { name: '根管治療', treatment: '根管治療' },
-      { name: '牙周深層清潔', treatment: '牙周深層清潔' },
-      { name: '拔牙', treatment: '拔牙' },
-      { name: '齒槽骨整形術', treatment: '齒槽骨整形術' },
-      { name: '牙冠增長術', treatment: '牙冠增長術' },
-      { name: '植牙', treatment: '植牙' }
-    ];
-    
-    const assessments = [];
-    
-    procedures.forEach(procedure => {
-      const assessment = this.calculateRisk(patientData, procedure.treatment);
-      assessments.push({
-        procedure: procedure.name,
-        treatment: procedure.treatment,
-        treatmentType: assessment.treatmentType,
-        isInvasive: assessment.isInvasive,
-        isSemiInvasive: assessment.isSemiInvasive,
-        riskLevel: assessment.riskLevel,
-        incidenceRate: assessment.incidenceRate,
-        recommendation: assessment.recommendation,
-        references: assessment.references,
-        riskCategory: assessment.riskCategory
-      });
-    });
-    
-    return assessments;
-  }
 }
 
 // Export for use in other scripts

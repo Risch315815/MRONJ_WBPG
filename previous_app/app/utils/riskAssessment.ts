@@ -1,4 +1,4 @@
-import { PatientData, MedicationType, SubType, DrugName } from '../store/patientData';
+import { PatientData, MedicationType, DrugName } from '../store/patientData';
 
 type DentalProcedure = 
   | '非侵入性治療'  // Non-invasive (cleaning, filling)
@@ -40,7 +40,6 @@ interface RiskFactors {
   // Treatment Related
   medicationFactors: {
     type: MedicationType;
-    subType: SubType;
     drugName: DrugName;
     duration: number; // in months
     indication: 'Cancer' | 'Osteoporosis' | 'Other';
@@ -94,7 +93,6 @@ function calculateRiskFactors(patientData: PatientData): RiskFactors {
     },
     medicationFactors: {
       type: patientData.medicationType,
-      subType: patientData.medicationSubType,
       drugName: patientData.drugName,
       duration: calculateMedicationDuration(patientData),
       indication: mapIndication(patientData.indication),
