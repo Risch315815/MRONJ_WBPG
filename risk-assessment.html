@@ -249,6 +249,13 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Helper to (re)apply language visibility for dynamically inserted elements
+      function applyLanguagePreference() {
+        const lang = localStorage.getItem('preferredLanguage') || 'zh';
+        const showZh = lang !== 'en';
+        document.querySelectorAll('.zh-text').forEach(el => { el.style.display = showZh ? '' : 'none'; });
+        document.querySelectorAll('.en-text').forEach(el => { el.style.display = showZh ? 'none' : ''; });
+      }
       // Apply language preference from homepage
       const zhTexts = document.querySelectorAll('.zh-text');
       const enTexts = document.querySelectorAll('.en-text');
@@ -264,6 +271,8 @@
         zhTexts.forEach(text => text.style.display = 'block');
         enTexts.forEach(text => text.style.display = 'none');
       }
+      // Ensure later dynamic content also reflects language
+      const applyLangLater = () => applyLanguagePreference();
       // Set current date
       const today = new Date();
       const formattedDate = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;
@@ -282,11 +291,13 @@
       
       // Display patient summary
       displayPatientSummary();
+      applyLanguagePreference();
       
       // Calculate and display risk assessment
       try {
         const assessments = assessRisk();
         displayResults(assessments);
+        applyLanguagePreference();
       } catch (e) {
         const resultsContainer = document.getElementById('results-container');
         resultsContainer.innerHTML = `<div style="color:#b71c1c;background:#ffebee;padding:12px;border-radius:6px;">Error calculating risk: ${e.message}</div>`;

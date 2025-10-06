@@ -592,10 +592,12 @@
       
       // Display medications when page loads
       displayPatientInfo();
+      applyLanguagePreference();
       
       // Add a small delay to ensure data is loaded
       setTimeout(() => {
         displayMedications();
+        applyLanguagePreference();
       }, 100);
 
     });
