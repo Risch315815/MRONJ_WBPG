@@ -307,6 +307,8 @@
         const heightInMeters = patientData.height / 100;
         bmi = (patientData.weight / (heightInMeters * heightInMeters)).toFixed(1);
       }
+      // Determine language once for the whole function
+      const isEnglish = (localStorage.getItem('preferredLanguage') || 'zh') === 'en';
       // Create summary HTML
       let summaryHTML = `
         <div class="summary-item zh-text"><strong>姓名:</strong> ${patientData.name || '--'}</div>
@@ -326,7 +328,6 @@
       console.log('hasAntiresorptiveMed:', patientData.hasAntiresorptiveMed);
       console.log('medications:', patientData.medications);
       if (patientData.hasAntiresorptiveMed && patientData.medications && patientData.medications.length > 0) {
-        const isEnglish = localStorage.getItem('preferredLanguage') === 'en';
         patientData.medications.forEach((med, idx) => {
           // Calculate duration
           let duration = '';
@@ -352,7 +353,6 @@
           const start = new Date(patientData.startYear, patientData.startMonth - 1);
           const end = patientData.isStopped && patientData.stopYear && patientData.stopMonth ? new Date(patientData.stopYear, patientData.stopMonth - 1) : new Date();
           const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
-          const isEnglish = localStorage.getItem('preferredLanguage') === 'en';
           duration = isEnglish ? `approximately ${months} months` : `約${months}個月`;
         }
         summaryHTML += `
