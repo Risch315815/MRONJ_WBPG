@@ -386,16 +386,20 @@
         riskBadge.className = 'risk-badge';
         riskBadge.textContent = assessment.riskLevel;
         
-        // Set color based on risk level
-        if (assessment.riskLevel === '高風險') {
-          riskBadge.classList.add('high-risk');
-        } else if (assessment.riskLevel === '中度風險') {
-          riskBadge.classList.add('medium-risk');
-        } else if (assessment.riskLevel === '資料不足') {
-          riskBadge.classList.add('unknown-risk');
-        } else {
-          riskBadge.classList.add('low-risk');
-        }
+      // Set color based on risk level (supports mid-low/mid-high)
+      if (assessment.riskLevel === '高風險') {
+        riskBadge.classList.add('high-risk');
+      } else if (assessment.riskLevel === '中高風險') {
+        riskBadge.classList.add('midhigh-risk');
+      } else if (assessment.riskLevel === '中度風險') {
+        riskBadge.classList.add('medium-risk');
+      } else if (assessment.riskLevel === '中低風險') {
+        riskBadge.classList.add('midlow-risk');
+      } else if (assessment.riskLevel === '資料不足') {
+        riskBadge.classList.add('unknown-risk');
+      } else {
+        riskBadge.classList.add('low-risk');
+      }
         
         const recommendation = document.createElement('p');
         recommendation.className = 'recommendation';

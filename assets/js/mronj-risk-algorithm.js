@@ -44,28 +44,30 @@ class MRONJRiskCalculator {
       cancer: {
         none: { none: { none: 0.09, YES: 'N/A' } },
         Bisphosphonate: {
-          not_specific: { none: 0.88, YES: 9.17 }
+          oral: { none: 0.88, YES: 9.17 },
+          'IV/SC': { none: 0.88, YES: 9.17 }
         },
         Ibandronate: {
-          not_specific: { none: 0.39, YES: 'N/A' }
+          oral: { none: 0.39, YES: 'N/A' },
+          'IV/SC': { none: 0.39, YES: 'N/A' }
         },
         Clodronate: {
-          not_specific: { none: 0.16, YES: 'N/A' }
+          oral: { none: 0.16, YES: 'N/A' }
         },
         Zoledronate: {
-          not_specific: { none: 1.21, YES: 'N/A' }
+          'IV/SC': { none: 1.21, YES: 'N/A' }
         },
         Denosumab: {
           'IV/SC': { none: 1.74, YES: 12.56 }
         },
         Bevacizumab: {
-          'IV/SC': { none: 0.5, YES: 'N/A' }
+          'IV/SC': { none: 'N/A', YES: 'N/A' }
         },
         Sunitinib: {
-          oral: { none: 0.3, YES: 'N/A' }
+          oral: { none: 'N/A', YES: 'N/A' }
         },
         Cabozantinib: {
-          oral: { none: 0.2, YES: 'N/A' }
+          oral: { none: 'N/A', YES: 'N/A' }
         },
         not_specific: {
           not_specific: { none: 1.09, YES: 9.92 }
@@ -261,6 +263,15 @@ class MRONJRiskCalculator {
   // Decision tree: indication → medication → administration route → invasive dental treatment
   determineRiskCategory(indication, medication, administrationRoute, isInvasive, isSemiInvasive = false) {
     
+    // Check if medication has insufficient data (N/A rates)
+    const treatmentKey = isInvasive ? 'YES' : 'none';
+    const incidenceRate = this.incidenceData?.[indication]?.[medication]?.[administrationRoute]?.[treatmentKey];
+    
+    // If incidence rate is 'N/A', return unknown risk
+    if (incidenceRate === 'N/A') {
+      return 'unknown';
+    }
+    
     // 1. INDICATION: Check if patient has cancer or osteoporosis
     if (indication === 'osteoporosis') {
       // 2. MEDICATION: Check medication type for osteoporosis patients
@@ -358,7 +369,7 @@ class MRONJRiskCalculator {
     const rate = this.incidenceData?.[indication]?.[medication]?.[administrationRoute]?.[treatmentKey];
     
     if (rate !== undefined) {
-      return rate;
+      return rate; // This will return 'N/A' if the rate is 'N/A'
     }
     
     // Final fallback: control group (no medication)
