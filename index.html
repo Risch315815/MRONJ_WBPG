@@ -166,6 +166,9 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Clear all patient data when entering homepage (without reloading)
+      clearPatientDataForNewSession();
+      
       // Language selection functionality
       const langTabs = document.querySelectorAll('.lang-tab');
       const zhTexts = document.querySelectorAll('.zh-text');

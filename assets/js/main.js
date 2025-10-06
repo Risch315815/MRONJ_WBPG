@@ -75,6 +75,47 @@ function clearAllPatientData() {
   window.location.reload();
 }
 
+// Function to clear patient data for new session (without reloading)
+function clearPatientDataForNewSession() {
+  // Clear localStorage
+  localStorage.removeItem('patientData');
+  localStorage.removeItem('patientMedicationData');
+  
+  // Clear sessionStorage
+  sessionStorage.removeItem('patientMedicationData');
+  
+  // Reset patientData object
+  patientData = {
+    // Personal Information
+    name: '',
+    birthYear: '',
+    birthMonth: '',
+    birthDay: '',
+    age: '',
+    gender: '',
+    height: '',
+    weight: '',
+    // Medical History
+    hasCancer: false,
+    hasRadiotherapy: false,
+    systemicDiseases: [],
+    hasAntiresorptiveMed: false,
+    // Medication Information
+    drugName: '',
+    administrationRoute: '',
+    indication: '',
+    startYear: '',
+    startMonth: '',
+    frequency: '',
+    isStopped: false,
+    stopYear: '',
+    stopMonth: '',
+    medications: []
+  };
+  
+  console.log('Patient data cleared for new session');
+}
+
 // Initialize the application when DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Check if there's stored patient data in localStorage
