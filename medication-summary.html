@@ -207,6 +207,18 @@
         zhTexts.forEach(text => text.style.display = 'block');
         enTexts.forEach(text => text.style.display = 'none');
       }
+
+      // Define helper to (re)apply language visibility elsewhere on the page
+      function applyLanguagePreference() {
+        const lang = localStorage.getItem('preferredLanguage') || 'zh';
+        const showZh = lang !== 'en';
+        document.querySelectorAll('.zh-text').forEach(el => {
+          el.style.display = showZh ? '' : 'none';
+        });
+        document.querySelectorAll('.en-text').forEach(el => {
+          el.style.display = showZh ? 'none' : '';
+        });
+      }
       
       // Font size selection functionality
       const fontSizeBtns = document.querySelectorAll('.font-size-btn');
