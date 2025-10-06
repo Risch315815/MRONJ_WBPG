@@ -320,6 +320,7 @@
       console.log('hasAntiresorptiveMed:', patientData.hasAntiresorptiveMed);
       console.log('medications:', patientData.medications);
       if (patientData.hasAntiresorptiveMed && patientData.medications && patientData.medications.length > 0) {
+        const isEnglish = localStorage.getItem('preferredLanguage') === 'en';
         patientData.medications.forEach((med, idx) => {
           // Calculate duration
           let duration = '';
@@ -327,15 +328,15 @@
             const start = new Date(med.startYear, med.startMonth - 1);
             const end = med.isStopped && med.stopYear && med.stopMonth ? new Date(med.stopYear, med.stopMonth - 1) : new Date();
             const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
-            duration = `約${months}個月`;
+            duration = isEnglish ? `approximately ${months} months` : `約${months}個月`;
           }
           summaryHTML += `
-            <div class="summary-item" style="margin-top:10px;"><strong>藥物 ${patientData.medications.length > 1 ? idx + 1 : ''}:</strong></div>
+            <div class="summary-item" style="margin-top:10px;"><strong>${isEnglish ? 'Medication' : '藥物'} ${patientData.medications.length > 1 ? idx + 1 : ''}:</strong></div>
             <div class="summary-item">${med.drugName || '--'}</div>
             <div class="summary-item">${med.indication || '--'} | ${med.administrationRoute || '--'} | ${med.frequency || '--'}</div>
-            <div class="summary-item">開始: ${med.startYear || '--'}年${med.startMonth || '--'}月</div>
-            <div class="summary-item">${med.isStopped ? `停止: ${med.stopYear || '--'}年${med.stopMonth || '--'}月` : '<span style="color: #007AFF;">持續使用中</span>'}</div>
-            <div class="summary-item">使用期間: ${duration || '--'}</div>
+            <div class="summary-item">${isEnglish ? 'Start:' : '開始:'} ${med.startYear || '--'}${isEnglish ? '' : '年'}${med.startMonth || '--'}${isEnglish ? '' : '月'}</div>
+            <div class="summary-item">${med.isStopped ? (isEnglish ? `End: ${med.stopYear || '--'} ${med.stopMonth || '--'}` : `停止: ${med.stopYear || '--'}年${med.stopMonth || '--'}月`) : `<span style="color: #007AFF;">${isEnglish ? 'Currently Using' : '持續使用中'}</span>`}</div>
+            <div class="summary-item">${isEnglish ? 'Duration:' : '使用期間:'} ${duration || '--'}</div>
           `;
         });
       } else if (patientData.hasAntiresorptiveMed) {
@@ -345,30 +346,33 @@
           const start = new Date(patientData.startYear, patientData.startMonth - 1);
           const end = patientData.isStopped && patientData.stopYear && patientData.stopMonth ? new Date(patientData.stopYear, patientData.stopMonth - 1) : new Date();
           const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
-          duration = `約${months}個月`;
+          const isEnglish = localStorage.getItem('preferredLanguage') === 'en';
+          duration = isEnglish ? `approximately ${months} months` : `約${months}個月`;
         }
         summaryHTML += `
-          <div class="summary-item" style="margin-top:10px;"><strong>藥物:</strong></div>
-          <div class="summary-item">藥物名稱: ${patientData.drugName || '--'}</div>
-          <div class="summary-item">使用原因: ${patientData.indication || '--'}</div>
-          <div class="summary-item">給藥途徑: ${patientData.administrationRoute || '--'}</div>
-          <div class="summary-item">使用頻率: ${patientData.frequency || '--'}</div>
-          <div class="summary-item">開始時間: ${patientData.startYear || '--'}年${patientData.startMonth || '--'}月</div>
-          <div class="summary-item">${patientData.isStopped ? `停止: ${patientData.stopYear || '--'}年${patientData.stopMonth || '--'}月` : '<span style=\"color: #007AFF;\">持續使用中</span>'}</div>
-          <div class="summary-item">使用期間: ${duration || '--'}</div>
+          <div class="summary-item" style="margin-top:10px;"><strong>${isEnglish ? 'Medications:' : '藥物:'}</strong></div>
+          <div class="summary-item">${isEnglish ? 'Drug Name:' : '藥物名稱:'} ${patientData.drugName || '--'}</div>
+          <div class="summary-item">${isEnglish ? 'Indication:' : '使用原因:'} ${patientData.indication || '--'}</div>
+          <div class="summary-item">${isEnglish ? 'Route:' : '給藥途徑:'} ${patientData.administrationRoute || '--'}</div>
+          <div class="summary-item">${isEnglish ? 'Frequency:' : '使用頻率:'} ${patientData.frequency || '--'}</div>
+          <div class="summary-item">${isEnglish ? 'Start Date:' : '開始時間:'} ${patientData.startYear || '--'}${isEnglish ? '' : '年'}${patientData.startMonth || '--'}${isEnglish ? '' : '月'}</div>
+          <div class="summary-item">${patientData.isStopped ? 
+            (isEnglish ? `End: ${patientData.stopYear || '--'} ${patientData.stopMonth || '--'}` : `停止: ${patientData.stopYear || '--'}年${patientData.stopMonth || '--'}月`) : 
+            `<span style="color: #007AFF;">${isEnglish ? 'Currently Using' : '持續使用中'}</span>`}</div>
+          <div class="summary-item">${isEnglish ? 'Duration:' : '使用期間:'} ${duration || '--'}</div>
         `;
       } else {
-        summaryHTML += `<div class="summary-item"><strong>用藥情況:</strong> 未使用相關藥物</div>`;
+        summaryHTML += `<div class="summary-item"><strong>${isEnglish ? 'Medication Status:' : '用藥情況:'}</strong> ${isEnglish ? 'No related medications' : '未使用相關藥物'}</div>`;
       }
       // Add risk factors if any
       if (patientData.systemicDiseases && patientData.systemicDiseases.length > 0) {
-        summaryHTML += `<div class="summary-item"><strong>系統性疾病:</strong> ${patientData.systemicDiseases.join(', ')}</div>`;
+        summaryHTML += `<div class="summary-item"><strong>${isEnglish ? 'Systemic Diseases:' : '系統性疾病:'}</strong> ${patientData.systemicDiseases.join(', ')}</div>`;
       }
       if (patientData.hasCancer) {
-        summaryHTML += `<div class="summary-item"><strong>癌症:</strong> 是</div>`;
+        summaryHTML += `<div class="summary-item"><strong>${isEnglish ? 'Cancer:' : '癌症:'}</strong> ${isEnglish ? 'Yes' : '是'}</div>`;
       }
       if (patientData.hasRadiotherapy) {
-        summaryHTML += `<div class="summary-item"><strong>頭頸部放射治療:</strong> 是</div>`;
+        summaryHTML += `<div class="summary-item"><strong>${isEnglish ? 'Head & Neck Radiotherapy:' : '頭頸部放射治療:'}</strong> ${isEnglish ? 'Yes' : '是'}</div>`;
       }
       summaryContainer.innerHTML = summaryHTML;
     }

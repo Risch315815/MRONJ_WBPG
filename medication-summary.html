@@ -162,7 +162,8 @@
         <h2 class="zh-text" style="font-size: 18px; margin-top: 0;">病患資料</h2>
         <h2 class="en-text" style="font-size: 18px; margin-top: 0; display: none;">Patient Information</h2>
         <div id="patient-info-content">
-          <!-- JavaScript will populate this -->
+          <div class="loading zh-text">載入中...</div>
+          <div class="loading en-text" style="display: none;">Loading...</div>
         </div>
       </div>
 
@@ -264,6 +265,8 @@
         medicationListElement.innerHTML = ''; // Clear loading message
         
         console.log("Starting medication display, current patientData:", patientData);
+        console.log("Global patientData from main.js:", window.patientData);
+        console.log("LocalStorage patientMedicationData:", localStorage.getItem('patientMedicationData'));
         
         // Try to load medication data from multiple sources
         // 0. First check if we need to load patient personal info
@@ -343,7 +346,24 @@
           }
         }
         
+        // Final fallback: try to load medications directly from localStorage
+        if ((!patientData.medications || patientData.medications.length === 0) && localStorage.getItem('patientMedicationData')) {
+          try {
+            const storedMedData = JSON.parse(localStorage.getItem('patientMedicationData'));
+            if (storedMedData.medications && storedMedData.medications.length > 0) {
+              patientData.medications = storedMedData.medications;
+              patientData.hasAntiresorptiveMed = true;
+              console.log('Loaded medications from localStorage fallback:', patientData.medications);
+            }
+          } catch (e) {
+            console.error('Error in fallback medication loading:', e);
+          }
+        }
+        
         // Check if medications exist after trying all sources
+        console.log('Final patientData.medications:', patientData.medications);
+        console.log('Medications length:', patientData.medications ? patientData.medications.length : 'undefined');
+        
         if (!patientData.medications || patientData.medications.length === 0) {
           medicationListElement.innerHTML = '<p class="zh-text">無藥物資料</p><p class="en-text" style="display: none;">No medication data</p>';
           console.log('No medication data found after checking all sources.');
@@ -560,35 +580,12 @@
       
       // Display medications when page loads
       displayPatientInfo();
-      displayMedications();
+      
+      // Add a small delay to ensure data is loaded
+      setTimeout(() => {
+        displayMedications();
+      }, 100);
 
-      // Add debug button functionality
-      document.getElementById('debug-btn').addEventListener('click', function() {
-        const debugInfo = document.getElementById('debug-info');
-        
-        // Toggle visibility
-        if (debugInfo.style.display === 'none') {
-          // Display debug info
-          let debugText = 'PATIENT DATA OBJECT:\n';
-          debugText += JSON.stringify(patientData, null, 2);
-          
-          debugText += '\n\nLOCALSTORAGE DATA:\n';
-          try {
-            const storedData = localStorage.getItem('patientMedicationData');
-            debugText += storedData ? JSON.stringify(JSON.parse(storedData), null, 2) : 'No stored data found';
-          } catch (e) {
-            debugText += 'Error parsing localStorage: ' + e.message;
-          }
-          
-          debugInfo.textContent = debugText;
-          debugInfo.style.display = 'block';
-          this.textContent = 'Hide Debug Info';
-        } else {
-          // Hide debug info
-          debugInfo.style.display = 'none';
-          this.textContent = 'Show Debug Info';
-        }
-      });
     });
   </script>
 </body>
