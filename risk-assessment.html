@@ -249,6 +249,21 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Apply language preference from homepage
+      const zhTexts = document.querySelectorAll('.zh-text');
+      const enTexts = document.querySelectorAll('.en-text');
+      
+      // Get language preference from localStorage (set by homepage)
+      const savedLang = localStorage.getItem('preferredLanguage') || 'zh';
+      
+      // Show/hide text based on saved language preference
+      if (savedLang === 'en') {
+        zhTexts.forEach(text => text.style.display = 'none');
+        enTexts.forEach(text => text.style.display = 'block');
+      } else {
+        zhTexts.forEach(text => text.style.display = 'block');
+        enTexts.forEach(text => text.style.display = 'none');
+      }
       // Set current date
       const today = new Date();
       const formattedDate = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;

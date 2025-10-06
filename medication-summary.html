@@ -178,12 +178,8 @@
         
         <a href="disclaimer.html" class="btn btn-primary zh-text">送出資料</a>
         <a href="disclaimer.html" class="btn btn-primary en-text" style="display: none;">Submit</a>
-        
-        <button id="debug-btn" class="btn" style="background-color: #444; color: white; margin-top: 10px;">Show Debug Info</button>
       </div>
 
-      <div id="debug-info" style="background-color: #f8f8f8; border: 1px solid #ddd; padding: 10px; margin-top: 20px; display: none; white-space: pre-wrap; font-family: monospace; font-size: 12px;">
-      </div>
     </main>
 
     <footer>
@@ -195,26 +191,21 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Language display functionality
+      // Apply language preference from homepage
       const zhTexts = document.querySelectorAll('.zh-text');
       const enTexts = document.querySelectorAll('.en-text');
       
-      function applyLanguagePreference() {
-        // Get stored language preference
-        const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
-        
-        // Show/hide elements based on language
-        if (storedLang === 'en') {
-          zhTexts.forEach(el => el.style.display = 'none');
-          enTexts.forEach(el => el.style.display = 'block');
-        } else {
-          zhTexts.forEach(el => el.style.display = 'block');
-          enTexts.forEach(el => el.style.display = 'none');
-        }
-      }
+      // Get language preference from localStorage (set by homepage)
+      const savedLang = localStorage.getItem('preferredLanguage') || 'zh';
       
-      // Apply language preference when page loads
-      applyLanguagePreference();
+      // Show/hide text based on saved language preference
+      if (savedLang === 'en') {
+        zhTexts.forEach(text => text.style.display = 'none');
+        enTexts.forEach(text => text.style.display = 'block');
+      } else {
+        zhTexts.forEach(text => text.style.display = 'block');
+        enTexts.forEach(text => text.style.display = 'none');
+      }
       
       // Font size selection functionality
       const fontSizeBtns = document.querySelectorAll('.font-size-btn');

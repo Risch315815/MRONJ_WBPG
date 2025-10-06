@@ -150,37 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Add clear data button if it doesn't exist and we're not on excluded pages
-  if (!document.getElementById('clear-data-btn') && 
-      !window.location.pathname.includes('risk-assessment') &&
-      !window.location.pathname.includes('oral-hygiene-instruction') &&
-      !window.location.pathname.includes('consent') &&
-      !window.location.pathname.endsWith('/MRONJ_WBPG/') &&
-      !window.location.pathname.endsWith('/MRONJ_WBPG')) {
-    const clearButton = document.createElement('button');
-    clearButton.id = 'clear-data-btn';
-    clearButton.className = 'btn btn-danger';
-    clearButton.style.position = 'fixed';
-    clearButton.style.bottom = '20px';
-    clearButton.style.right = '20px';
-    clearButton.style.zIndex = '1000';
-    clearButton.onclick = clearAllPatientData;
-    
-    // Add text in both languages
-    const zhText = document.createElement('span');
-    zhText.className = 'zh-text';
-    zhText.textContent = '清除所有資料';
-    
-    const enText = document.createElement('span');
-    enText.className = 'en-text';
-    enText.textContent = 'Clear All Data';
-    enText.style.display = 'none';
-    
-    clearButton.appendChild(zhText);
-    clearButton.appendChild(enText);
-    
-    document.body.appendChild(clearButton);
-  }
+  // Clear data button removed as requested
 
   // Initialize any components that need setup
   initFormNavigation();
