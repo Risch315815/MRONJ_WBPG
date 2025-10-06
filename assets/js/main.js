@@ -307,19 +307,25 @@ function assessRisk() {
   const treatmentCategories = [
     { 
       name: '非侵入性治療', 
-      description: '洗牙、蛀牙填補、假牙贋復等',
+      nameEn: 'Non-Invasive Treatment',
+      description: '洗牙、蛀牙填補、假牙贋復',
+      descriptionEn: 'Scaling, caries fillings, crown and dentures',
       invasiveness: 'nonInvasive',
       showIncidenceRate: true
     },
     { 
-      name: '半侵入性治療', 
-      description: '根管治療、牙周深層清潔等',
+      name: '部分侵入性治療', 
+      nameEn: 'Semi-Invasive Treatment',
+      description: '根管治療、牙齦下牙結石刮除',
+      descriptionEn: 'Root canal treatment, subgingival scaling and root planing',
       invasiveness: 'semiInvasive',
       showIncidenceRate: false
     },
     { 
       name: '侵入性治療', 
-      description: '拔牙、齒槽骨整形術、牙冠增長術、植牙等',
+      nameEn: 'Invasive Treatment',
+      description: '拔牙、齒槽骨整形術、牙冠增長術、植牙',
+      descriptionEn: 'Tooth extraction, alveoloplasty, crown lengthening procedure, dental implant',
       invasiveness: 'invasive',
       showIncidenceRate: true
     }
@@ -398,6 +404,7 @@ function assessRisk() {
           };
 
           let best = null;
+          let highestRiskMedications = []; // Track all medications with highest risk
 
           patientData.medications.forEach(med => {
             const medPatient = { ...patientData };
@@ -430,7 +437,24 @@ function assessRisk() {
 
             if (!best || priority > best.priority ||
                 (priority === best.priority && (Number(catRes.incidenceRate || 0) > Number(best.incidenceRate || 0)))) {
-              best = { ...catRes, priority };
+              best = { 
+                ...catRes, 
+                priority,
+                medication: med.drugName,
+                administrationRoute: med.administrationRoute
+              };
+              // Reset highest risk medications when we find a higher priority
+              if (!best || priority > best.priority) {
+                highestRiskMedications = [];
+              }
+            }
+            
+            // If this medication has the same priority as the best, add it to the list
+            if (best && priority === best.priority) {
+              highestRiskMedications.push({
+                drugName: med.drugName,
+                administrationRoute: med.administrationRoute
+              });
             }
           });
 
@@ -442,6 +466,11 @@ function assessRisk() {
             references = best.references;
             riskCategory = best.riskCategory;
             hasLimitedData = best.hasLimitedData;
+            // Store the medications that contributed to this highest risk
+            algorithmPatientData.highestRiskMedications = highestRiskMedications;
+            // For backward compatibility, still set the primary medication
+            algorithmPatientData.drugName = best.medication;
+            algorithmPatientData.administrationRoute = best.administrationRoute;
           }
         } else {
           // Single-medication legacy path
@@ -477,7 +506,9 @@ function assessRisk() {
     
     assessments.push({
       procedure: category.name,
+      procedureEn: category.nameEn,
       categoryDescription: category.description,
+      categoryDescriptionEn: category.descriptionEn,
       invasiveness: category.invasiveness,
       riskLevel,
       recommendation,
@@ -524,8 +555,8 @@ function getFallbackRecommendation(riskLevel, isInvasive) {
       false: '建議密切追蹤，避免侵入性牙科治療。'
     },
     '資料不足': {
-      true: '資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。',
-      false: '資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。'
+      true: '過去研究資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。',
+      false: '過去研究資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。'
     }
   };
   

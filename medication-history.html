@@ -880,7 +880,7 @@
             document.getElementById('medication-error').style.display = 'none';
           }
           
-          // Update patient data
+          // Update patient data (temporary for form display)
           patientData.drugName = this.dataset.name;
           patientData.administrationRoute = this.dataset.route;
           console.log(`Selected medication: ${patientData.drugName}, route: ${patientData.administrationRoute}`);
@@ -1450,9 +1450,13 @@
           // Make sure we're correctly marking the user as having antiresorptive medications
           patientData.hasAntiresorptiveMed = true;
           
-          // If there are medications in the array and current form has data
-          if (patientData.medications && patientData.medications.length > 0 && patientData.drugName) {
-            console.log("Adding current medication to existing array");
+          // Always add current medication to the medications array
+          if (patientData.drugName) {
+            // Create medications array if it doesn't exist
+            if (!patientData.medications) {
+              patientData.medications = [];
+            }
+            
             // Add the current medication to the array
             patientData.medications.push({
               drugName: patientData.drugName,
@@ -1465,22 +1469,19 @@
               stopYear: patientData.stopYear,
               stopMonth: patientData.stopMonth
             });
-          } 
-          // If there are no medications in the array but current form has data
-          else if ((!patientData.medications || patientData.medications.length === 0) && patientData.drugName) {
-            console.log("Creating new medications array with current medication");
-            // Create medications array and add current medication
-            patientData.medications = [{
-              drugName: patientData.drugName,
-              administrationRoute: patientData.administrationRoute,
-              indication: patientData.indication,
-              startYear: patientData.startYear,
-              startMonth: patientData.startMonth,
-              frequency: patientData.frequency,
-              isStopped: patientData.isStopped,
-              stopYear: patientData.stopYear,
-              stopMonth: patientData.stopMonth
-            }];
+            
+            console.log("Added medication to array:", patientData.medications.length, "medications total");
+            
+            // Clear legacy single-medication fields after saving to array
+            patientData.drugName = '';
+            patientData.administrationRoute = '';
+            patientData.indication = '';
+            patientData.startYear = '';
+            patientData.startMonth = '';
+            patientData.frequency = '';
+            patientData.isStopped = false;
+            patientData.stopYear = '';
+            patientData.stopMonth = '';
           }
           
           console.log('Complete medication data saved:', JSON.stringify(patientData, null, 2));

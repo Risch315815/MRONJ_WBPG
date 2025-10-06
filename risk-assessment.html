@@ -380,7 +380,29 @@
         
         const procedureTitle = document.createElement('h3');
         procedureTitle.className = 'procedure-title';
-        procedureTitle.textContent = assessment.procedure;
+        
+        // Check current language and set appropriate title
+        const isEnglish = document.querySelector('.en-text') && 
+                         window.getComputedStyle(document.querySelector('.en-text')).display !== 'none';
+        
+        if (isEnglish) {
+          procedureTitle.textContent = assessment.procedureEn;
+        } else {
+          procedureTitle.textContent = assessment.procedure;
+        }
+        
+        // Add treatment types description
+        const treatmentTypesDesc = document.createElement('div');
+        treatmentTypesDesc.className = 'treatment-types-desc';
+        treatmentTypesDesc.style.cssText = 'font-size: 0.9em; color: #666; margin: 5px 0 10px 0; font-style: italic;';
+        
+        // Use the same language check variable
+        
+        if (isEnglish) {
+          treatmentTypesDesc.textContent = `Treatment Types: ${assessment.categoryDescriptionEn}`;
+        } else {
+          treatmentTypesDesc.textContent = `治療種類: ${assessment.categoryDescription}`;
+        }
         
         const riskBadge = document.createElement('span');
         riskBadge.className = 'risk-badge';
@@ -407,18 +429,14 @@
         
         // Add incidence rate if available
         let incidenceInfo = '';
-        if (assessment.incidenceRate !== undefined) {
+        if (assessment.incidenceRate !== undefined && assessment.incidenceRate !== null && assessment.incidenceRate !== 'N/A') {
           incidenceInfo = document.createElement('div');
           incidenceInfo.style.cssText = 'margin: 10px 0; padding: 8px; background: #f8f9fa; border-radius: 5px; font-size: 0.9em;';
-          if (assessment.incidenceRate === 'N/A') {
-            incidenceInfo.innerHTML = `<strong>統計發生率:</strong> <span style="color: #6c757d; font-style: italic;">資料不足</span>`;
-          } else {
-            let rateText = `${assessment.incidenceRate}%`;
-            if (assessment.hasLimitedData) {
-              rateText += ' <span style="color: #ff9800; font-weight: bold;">**</span>';
-            }
-            incidenceInfo.innerHTML = `<strong>統計發生率:</strong> ${rateText}`;
+          let rateText = `${assessment.incidenceRate}%`;
+          if (assessment.hasLimitedData) {
+            rateText += ' <span style="color: #ff9800; font-weight: bold;">**</span>';
           }
+          incidenceInfo.innerHTML = `<strong>統計發生率:</strong> ${rateText}`;
         }
         
         // Add limited data warning if applicable
@@ -435,29 +453,69 @@
         let referenceLink = '';
         if (assessment.references && assessment.references.length > 0) {
           const indication = patientData.hasCancer ? 'cancer' : 'osteoporosis';
-          const medication = getMedicationForReference(patientData);
-          const route = getRouteForReference(patientData);
           const invasive = assessment.invasive ? 'true' : 'false';
           const patientName = patientData.name || '患者';
           
-          const referenceUrl = `reference-detail.html?indication=${indication}&medication=${medication}&route=${route}&invasive=${invasive}&name=${encodeURIComponent(patientName)}`;
-          
-          referenceLink = document.createElement('div');
-          referenceLink.style.cssText = 'margin: 10px 0; text-align: right;';
-          referenceLink.innerHTML = `
-            <a href="${referenceUrl}" style="
-              color: #007AFF;
-              text-decoration: none;
-              font-size: 0.9em;
-              font-weight: bold;
-            " onmouseover="this.style.textDecoration='underline'" 
-               onmouseout="this.style.textDecoration='none'">
-              查看相關文獻 (${assessment.references.length}篇)
-            </a>
-          `;
+          // Check if we have multiple medications with same risk level
+          if (patientData.highestRiskMedications && patientData.highestRiskMedications.length > 1) {
+            // Show references for all highest-risk medications
+            referenceLink = document.createElement('div');
+            referenceLink.style.cssText = 'margin: 10px 0; text-align: right;';
+            
+            let referenceLinks = [];
+            patientData.highestRiskMedications.forEach((med, index) => {
+              const medication = med.drugName;
+              const route = med.administrationRoute === '口服' ? 'oral' : 
+                           med.administrationRoute === '注射' ? 'IV/SC' : 
+                           med.administrationRoute;
+              
+              const referenceUrl = `reference-detail.html?indication=${indication}&medication=${medication}&route=${route}&invasive=${invasive}&name=${encodeURIComponent(patientName)}`;
+              
+              referenceLinks.push(`
+                <a href="${referenceUrl}" style="
+                  color: #007AFF;
+                  text-decoration: none;
+                  font-size: 0.9em;
+                  font-weight: bold;
+                  margin-left: 10px;
+                " onmouseover="this.style.textDecoration='underline'" 
+                   onmouseout="this.style.textDecoration='none'">
+                  ${medication} (${route})
+                </a>
+              `);
+            });
+            
+            referenceLink.innerHTML = `
+              <div style="margin-bottom: 5px; font-size: 0.9em; color: #666;">
+                相關文獻 (${assessment.references.length}篇) - 多種藥物同風險等級:
+              </div>
+              ${referenceLinks.join('')}
+            `;
+          } else {
+            // Single medication or primary medication
+            const medication = getMedicationForReference(patientData);
+            const route = getRouteForReference(patientData);
+            
+            const referenceUrl = `reference-detail.html?indication=${indication}&medication=${medication}&route=${route}&invasive=${invasive}&name=${encodeURIComponent(patientName)}`;
+            
+            referenceLink = document.createElement('div');
+            referenceLink.style.cssText = 'margin: 10px 0; text-align: right;';
+            referenceLink.innerHTML = `
+              <a href="${referenceUrl}" style="
+                color: #007AFF;
+                text-decoration: none;
+                font-size: 0.9em;
+                font-weight: bold;
+              " onmouseover="this.style.textDecoration='underline'" 
+                 onmouseout="this.style.textDecoration='none'">
+                查看相關文獻 (${assessment.references.length}篇)
+              </a>
+            `;
+          }
         }
         
         card.appendChild(procedureTitle);
+        card.appendChild(treatmentTypesDesc);
         card.appendChild(riskBadge);
         if (incidenceInfo) card.appendChild(incidenceInfo);
         if (limitedDataWarning) card.appendChild(limitedDataWarning);
@@ -470,31 +528,30 @@
     
     // Helper function to get medication for reference URL
     function getMedicationForReference(patientData) {
-      if (!patientData.hasAntiresorptiveMed) return 'none';
+      if (!patientData.hasAntiresorptiveMed) {
+        return 'none';
+      }
       
-      const drugName = patientData.drugName ? patientData.drugName.toLowerCase() : '';
-      
-      if (drugName.includes('alendronate') || drugName.includes('fosamax')) return 'bisphosphonate_Alendronate';
-      if (drugName.includes('risedronate') || drugName.includes('actonel')) return 'bisphosphonate_Risedronate';
-      if (drugName.includes('ibandronate') || drugName.includes('boniva')) return 'bisphosphonate_Ibandronate';
-      if (drugName.includes('clodronate')) return 'bisphosphonate_Clodronate';
-      if (drugName.includes('zoledronate') || drugName.includes('zometa') || drugName.includes('reclast')) return 'bisphosphonate_Zoledronate';
-      if (drugName.includes('pamidronate') || drugName.includes('aredia')) return 'bisphosphonate_Pamidronate';
-      if (drugName.includes('denosumab') || drugName.includes('prolia') || drugName.includes('xgeva')) return 'Denosumab';
-      if (drugName.includes('romosozumab') || drugName.includes('evenity')) return 'Romosuzumab';
-      
-      return 'bisphosphonate';
+      // Use the medication that contributed to the highest risk assessment
+      // This is set by the algorithm when processing multiple medications
+      return patientData.drugName || 'none';
     }
     
     // Helper function to get route for reference URL
     function getRouteForReference(patientData) {
-      const route = patientData.administrationRoute ? patientData.administrationRoute.toLowerCase() : '';
+      if (!patientData.hasAntiresorptiveMed) {
+        return 'not_specific';
+      }
       
-      if (route.includes('oral') || route.includes('口服')) return 'oral';
-      if (route.includes('iv') || route.includes('intravenous') || route.includes('靜脈') || 
-          route.includes('sc') || route.includes('subcutaneous') || route.includes('皮下')) return 'IV/SC';
+      // Use the administration route from the medication that contributed to highest risk
+      const route = patientData.administrationRoute;
       
-      return 'not_specific';
+      // Map Chinese route names to algorithm format
+      if (route === '口服') return 'oral';
+      if (route === '注射') return 'IV/SC';
+      
+      // Return as-is if already in correct format
+      return route || 'not_specific';
     }
   </script>
 </body>
