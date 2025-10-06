@@ -360,12 +360,12 @@ function assessRisk() {
     algorithmPatientData.indication = firstMedication.indication;
     // Ensure hasCancer reflects indication if not already true
     if (!algorithmPatientData.hasCancer) {
-      const reasonLower = (firstMedication.indication || '').toLowerCase();
-      const isCancerReason =
-        reasonLower.includes('多發性骨髓瘤') ||
-        reasonLower.includes('骨轉移') ||
-        reasonLower.includes('multiple myeloma') ||
-        reasonLower.includes('bone metastasis');
+      const indication = firstMedication.indication || '';
+      const isCancerReason = 
+        indication === '多發性骨髓瘤' ||
+        indication === '骨轉移' ||
+        indication === 'Multiple Myeloma' ||
+        indication === 'Bone Metastasis';
       if (isCancerReason) {
         algorithmPatientData.hasCancer = true;
       }
@@ -405,8 +405,29 @@ function assessRisk() {
 
           let best = null;
           let highestRiskMedications = []; // Track all medications with highest risk
+          let cancerMedications = []; // Track medications with cancer indication
+          let nonCancerMedications = []; // Track medications without cancer indication
 
+          // First pass: Separate medications by cancer indication
           patientData.medications.forEach(med => {
+            const indication = med.indication || '';
+            const isCancerReason = 
+              indication === '多發性骨髓瘤' ||
+              indication === '骨轉移' ||
+              indication === 'Multiple Myeloma' ||
+              indication === 'Bone Metastasis';
+            
+            if (isCancerReason) {
+              cancerMedications.push(med);
+            } else {
+              nonCancerMedications.push(med);
+            }
+          });
+
+          // Process medications with cancer indication first (priority)
+          const medicationsToProcess = [...cancerMedications, ...nonCancerMedications];
+
+          medicationsToProcess.forEach(med => {
             const medPatient = { ...patientData };
             medPatient.drugName = med.drugName;
             medPatient.administrationRoute = med.administrationRoute;
@@ -417,28 +438,54 @@ function assessRisk() {
             medPatient.isStopped = med.isStopped;
             medPatient.stopYear = med.stopYear;
             medPatient.stopMonth = med.stopMonth;
-            // Derive hasCancer from indication if not true already
-            if (!medPatient.hasCancer) {
-              const reasonLower = (med.indication || '').toLowerCase();
-              const isCancerReason =
-                reasonLower.includes('多發性骨髓瘤') ||
-                reasonLower.includes('骨轉移') ||
-                reasonLower.includes('multiple myeloma') ||
-                reasonLower.includes('bone metastasis');
-              if (isCancerReason) medPatient.hasCancer = true;
-            }
+            
+            // Set hasCancer based on indication
+            const indication = med.indication || '';
+            const isCancerReason = 
+              indication === '多發性骨髓瘤' ||
+              indication === '骨轉移' ||
+              indication === 'Multiple Myeloma' ||
+              indication === 'Bone Metastasis';
+            medPatient.hasCancer = isCancerReason;
 
             const results = riskCalculator.calculateRisk(medPatient);
             const catRes = results.find(r => r.invasiveness === category.invasiveness);
             if (!catRes) return;
 
-            // Compute score (limited data loses priority)
-            const priority = (riskLevelPriority[catRes.riskLevel] || 0) - (catRes.hasLimitedData ? 0.5 : 0);
+            // Check for bisphosphonate fallback rule
+            let finalResult = catRes;
+            if (med.drugName !== 'Bisphosphonate' && 
+                (med.drugName === 'Alendronate' || med.drugName === 'Risedronate' || 
+                 med.drugName === 'Ibandronate' || med.drugName === 'Clodronate' || 
+                 med.drugName === 'Zoledronate' || med.drugName === 'Pamidronate')) {
+              
+              // Check if this specific bisphosphonate has 'N/A' incidence rate
+              const specificIncidenceRate = riskCalculator.getIncidenceRate(medPatient.indication, med.drugName, med.administrationRoute, catRes.invasive);
+              if (specificIncidenceRate === 'N/A') {
+                // Try fallback to general Bisphosphonate
+                const fallbackPatient = { ...medPatient };
+                fallbackPatient.drugName = 'Bisphosphonate';
+                const fallbackResults = riskCalculator.calculateRisk(fallbackPatient);
+                const fallbackCatRes = fallbackResults.find(r => r.invasiveness === category.invasiveness);
+                if (fallbackCatRes && fallbackCatRes.incidenceRate !== 'N/A') {
+                  finalResult = fallbackCatRes;
+                  console.log(`Using Bisphosphonate fallback for ${med.drugName} due to N/A incidence rate`);
+                }
+              }
+            }
+
+            // Compute score with cancer priority
+            let priority = (riskLevelPriority[finalResult.riskLevel] || 0) - (finalResult.hasLimitedData ? 0.5 : 0);
+            
+            // Add cancer priority bonus (only if we haven't found a cancer medication yet)
+            if (isCancerReason && (!best || !cancerMedications.some(cmed => cmed.drugName === best.medication))) {
+              priority += 10; // High priority bonus for cancer medications
+            }
 
             if (!best || priority > best.priority ||
-                (priority === best.priority && (Number(catRes.incidenceRate || 0) > Number(best.incidenceRate || 0)))) {
+                (priority === best.priority && (Number(finalResult.incidenceRate || 0) > Number(best.incidenceRate || 0)))) {
               best = { 
-                ...catRes, 
+                ...finalResult, 
                 priority,
                 medication: med.drugName,
                 administrationRoute: med.administrationRoute

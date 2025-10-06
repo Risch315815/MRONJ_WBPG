@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>風險評估結果 - MRONJ風險評估</title>
+  <title class="zh-text">風險評估結果 - MRONJ風險評估</title>
+  <title class="en-text" style="display: none;">Risk Assessment Results - MRONJ Risk Assessment</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     @media print {
@@ -199,36 +200,47 @@
 <body>
   <div class="container">
     <header class="page-header">
-      <h1>MRONJ風險評估結果</h1>
-      <p>根據提供的資訊，以下是不同牙科治療的MRONJ風險評估</p>
-      <p class="evaluation-date">評估日期：<span id="current-date"></span></p>
+      <h1 class="zh-text">MRONJ風險評估結果</h1>
+      <h1 class="en-text" style="display: none;">MRONJ Risk Assessment Results</h1>
+      <p class="zh-text">根據提供的資訊，以下是不同牙科治療的MRONJ風險評估</p>
+      <p class="en-text" style="display: none;">Based on your information, here is the MRONJ risk assessment for different dental treatments</p>
+      <p class="evaluation-date zh-text">評估日期：<span id="current-date"></span></p>
+      <p class="evaluation-date en-text" style="display: none;">Assessment Date: <span id="current-date-en"></span></p>
     </header>
 
     <main>
       <div id="patient-summary" class="summary-section">
-        <h2>患者資訊摘要</h2>
+        <h2 class="zh-text">患者資訊摘要</h2>
+        <h2 class="en-text" style="display: none;">Patient Information Summary</h2>
         <div id="patient-info-summary"></div>
       </div>
 
       <div id="results-container" class="assessment-results">
         <!-- Results will be populated by JavaScript -->
-        <div class="loading">計算風險中...</div>
+        <div class="loading zh-text">計算風險中...</div>
+        <div class="loading en-text" style="display: none;">Calculating risk...</div>
       </div>
 
       <div class="disclaimer">
-        <p><strong>免責聲明：</strong></p>
-        <p>本評估結果僅供參考，不構成醫療建議。最終治療決策應由醫療專業人員與患者共同討論後決定。</p>
-        <p>評估內容參考 AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>
+        <p class="zh-text"><strong>免責聲明：</strong></p>
+        <p class="en-text" style="display: none;"><strong>Disclaimer:</strong></p>
+        <p class="zh-text">本評估結果僅供參考，不構成醫療建議。最終治療決策應由醫療專業人員與患者共同討論後決定。</p>
+        <p class="en-text" style="display: none;">This assessment result is for reference only and does not constitute medical advice. Final treatment decisions should be made after discussion between medical professionals and the patient.</p>
+        <p class="zh-text">評估內容參考 AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>
+        <p class="en-text" style="display: none;">Assessment content references AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>
       </div>
 
       <div class="action-buttons no-print">
-        <button id="print-btn" class="btn btn-primary">列印評估報告</button>
-        <a href="https://risch315815.github.io/MRONJ_WBPG/" class="btn btn-secondary">返回首頁</a>
+        <button id="print-btn" class="btn btn-primary zh-text">列印評估報告</button>
+        <button id="print-btn" class="btn btn-primary en-text" style="display: none;">Print Report</button>
+        <a href="https://risch315815.github.io/MRONJ_WBPG/" class="btn btn-secondary zh-text">返回首頁</a>
+        <a href="https://risch315815.github.io/MRONJ_WBPG/" class="btn btn-secondary en-text" style="display: none;">Return to Homepage</a>
       </div>
     </main>
 
     <footer class="page-footer">
-      <p>MRONJ風險評估工具 | 版本 1.0.0</p>
+      <p class="zh-text">MRONJ風險評估工具 | 版本 1.0.0</p>
+      <p class="en-text" style="display: none;">MRONJ Risk Assessment Tool | Version 1.0.0</p>
     </footer>
   </div>
 
@@ -240,11 +252,15 @@
       // Set current date
       const today = new Date();
       const formattedDate = `${today.getFullYear()}年${(today.getMonth() + 1).toString().padStart(2, '0')}月${today.getDate().toString().padStart(2, '0')}日`;
+      const formattedDateEn = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
       document.getElementById('current-date').textContent = formattedDate;
+      document.getElementById('current-date-en').textContent = formattedDateEn;
       
       // Check if patient data exists
       if (!patientData || !patientData.name) {
-        alert('無法取得患者資料，請從頭開始填寫評估表');
+        const isEnglish = document.querySelector('.en-text') && 
+                         window.getComputedStyle(document.querySelector('.en-text')).display !== 'none';
+        alert(isEnglish ? 'Unable to retrieve patient data, please start the assessment from the beginning' : '無法取得患者資料，請從頭開始填寫評估表');
         window.location.href = 'index.html';
         return;
       }
@@ -272,11 +288,16 @@
       }
       // Create summary HTML
       let summaryHTML = `
-        <div class="summary-item"><strong>姓名:</strong> ${patientData.name || '--'}</div>
-        <div class="summary-item"><strong>年齡:</strong> ${patientData.age || '--'}</div>
-        <div class="summary-item"><strong>性別:</strong> ${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</div>
-        <div class="summary-item"><strong>身高:</strong> ${patientData.height ? patientData.height + ' cm' : '--'}</div>
-        <div class="summary-item"><strong>體重:</strong> ${patientData.weight ? patientData.weight + ' kg' : '--'}</div>
+        <div class="summary-item zh-text"><strong>姓名:</strong> ${patientData.name || '--'}</div>
+        <div class="summary-item en-text" style="display: none;"><strong>Name:</strong> ${patientData.name || '--'}</div>
+        <div class="summary-item zh-text"><strong>年齡:</strong> ${patientData.age || '--'}</div>
+        <div class="summary-item en-text" style="display: none;"><strong>Age:</strong> ${patientData.age || '--'}</div>
+        <div class="summary-item zh-text"><strong>性別:</strong> ${patientData.gender === 'male' ? '男' : patientData.gender === 'female' ? '女' : '其他'}</div>
+        <div class="summary-item en-text" style="display: none;"><strong>Gender:</strong> ${patientData.gender === 'male' ? 'Male' : patientData.gender === 'female' ? 'Female' : 'Other'}</div>
+        <div class="summary-item zh-text"><strong>身高:</strong> ${patientData.height ? patientData.height + ' cm' : '--'}</div>
+        <div class="summary-item en-text" style="display: none;"><strong>Height:</strong> ${patientData.height ? patientData.height + ' cm' : '--'}</div>
+        <div class="summary-item zh-text"><strong>體重:</strong> ${patientData.weight ? patientData.weight + ' kg' : '--'}</div>
+        <div class="summary-item en-text" style="display: none;"><strong>Weight:</strong> ${patientData.weight ? patientData.weight + ' kg' : '--'}</div>
         <div class="summary-item"><strong>BMI:</strong> ${bmi ? bmi : '--'}</div>
       `;
       // Add medication info
