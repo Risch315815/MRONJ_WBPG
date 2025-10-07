@@ -400,6 +400,33 @@
           return;
         }
         
+        // Translation function for medication details
+        function translateMedicationDetails(med) {
+          const indicationTranslations = {
+            '骨質疏鬆': 'Osteoporosis',
+            '多發性骨髓瘤': 'Multiple Myeloma',
+            '骨轉移': 'Bone Metastasis of Cancer',
+            '其他': 'Other'
+          };
+          
+          const routeTranslations = {
+            '口服': 'Oral',
+            '注射': 'Injection'
+          };
+          
+          const frequencyTranslations = {
+            '每天': 'Daily',
+            '每個月': 'Monthly',
+            '每半年': 'Every 6 months'
+          };
+          
+          return {
+            indication: indicationTranslations[med.indication] || med.indication,
+            administrationRoute: routeTranslations[med.administrationRoute] || med.administrationRoute,
+            frequency: frequencyTranslations[med.frequency] || med.frequency
+          };
+        }
+        
         // Display each medication
         patientData.medications.forEach(med => {
           const medicationCard = document.createElement('div');
@@ -433,6 +460,9 @@
             med.stopMonth
           );
           
+          // Get translated values
+          const translated = translateMedicationDetails(med);
+          
           // Create HTML content
           medicationCard.innerHTML = `
             <div class="medication-name">${med.drugName}</div>
@@ -441,7 +471,7 @@
                 ${med.indication} | ${med.administrationRoute} | ${med.frequency}
               </div>
               <div class="detail-item en-text" style="display: none;">
-                ${med.indication} | ${med.administrationRoute} | ${med.frequency}
+                ${translated.indication} | ${translated.administrationRoute} | ${translated.frequency}
               </div>
               <div class="detail-item zh-text">
                 開始: ${med.startYear}年${startMonthName.zh}<br> 
