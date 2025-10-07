@@ -353,6 +353,7 @@ function assessRisk() {
   treatmentCategories.forEach(category => {
     let riskLevel = '資料不足'; // Default when no data available
     let recommendation = '';
+    let recommendationEn = '';
     let incidenceRate = null; // Will be set based on showIncidenceRate
     let generalIncidenceRate = null;
     let references = [];
@@ -478,6 +479,7 @@ function assessRisk() {
           if (best) {
             riskLevel = best.riskLevel;
             recommendation = best.recommendation;
+            recommendationEn = best.recommendationEn || getFallbackRecommendationEn(best.riskLevel, category.invasiveness === 'invasive');
             incidenceRate = best.incidenceRate;
             generalIncidenceRate = best.generalIncidenceRate;
             references = best.references;
@@ -496,6 +498,7 @@ function assessRisk() {
           if (categoryResult) {
             riskLevel = categoryResult.riskLevel;
             recommendation = categoryResult.recommendation;
+            recommendationEn = categoryResult.recommendationEn || getFallbackRecommendationEn(categoryResult.riskLevel, category.invasiveness === 'invasive');
             incidenceRate = categoryResult.incidenceRate;
             generalIncidenceRate = categoryResult.generalIncidenceRate;
             references = categoryResult.references;
@@ -509,16 +512,19 @@ function assessRisk() {
         const isInvasive = category.invasiveness === 'invasive';
         riskLevel = getFallbackRiskLevel({ name: category.name, invasive: isInvasive }, medicationDuration, hasHighRiskFactors);
         recommendation = getFallbackRecommendation(riskLevel, isInvasive);
+        recommendationEn = getFallbackRecommendationEn(riskLevel, isInvasive);
       }
     } else if (patientData.hasAntiresorptiveMed) {
       // Fallback to original logic
       const isInvasive = category.invasiveness === 'invasive';
       riskLevel = getFallbackRiskLevel({ name: category.name, invasive: isInvasive }, medicationDuration, hasHighRiskFactors);
       recommendation = getFallbackRecommendation(riskLevel, isInvasive);
+      recommendationEn = getFallbackRecommendationEn(riskLevel, isInvasive);
     } else {
       // No medications - should show unknown risk
       riskLevel = '資料不足';
       recommendation = '資料不足，無法提供準確的風險評估。建議諮詢專業醫師進行個別評估。';
+      recommendationEn = 'Insufficient data to provide an accurate risk assessment. Please consult a healthcare professional for individualized evaluation.';
     }
     
     assessments.push({
@@ -529,6 +535,7 @@ function assessRisk() {
       invasiveness: category.invasiveness,
       riskLevel,
       recommendation,
+      recommendationEn,
       incidenceRate: category.showIncidenceRate ? incidenceRate : null,
       generalIncidenceRate: category.showIncidenceRate ? generalIncidenceRate : null,
       showIncidenceRate: category.showIncidenceRate,
@@ -578,6 +585,37 @@ function getFallbackRecommendation(riskLevel, isInvasive) {
   };
   
   return recommendations[riskLevel][isInvasive] || '請諮詢專業醫師。';
+}
+
+// Fallback English recommendation generation
+function getFallbackRecommendationEn(riskLevel, isInvasive) {
+  const recommendations = {
+    '低風險': {
+      true: 'Treatment can proceed with informed consent and postoperative follow-up.',
+      false: 'Treatment can proceed; regular follow-up is recommended.'
+    },
+    '中低風險': {
+      true: 'Treatment can proceed with informed consent and postoperative follow-up.',
+      false: 'Treatment can proceed; regular follow-up is recommended.'
+    },
+    '中度風險': {
+      true: 'Consult the prescribing physician to consider temporary drug interruption. Special precautions and postoperative follow-up are required.',
+      false: 'Regular follow-up is recommended. Consult a physician before dental treatment if needed.'
+    },
+    '中高風險': {
+      true: 'Consult the prescribing physician to consider temporary drug interruption. Special precautions and postoperative follow-up are required.',
+      false: 'Regular follow-up is recommended. Consult a physician before dental treatment if needed.'
+    },
+    '高風險': {
+      true: 'Referral to a medical center for evaluation is recommended. Special precautions and close postoperative follow-up are required.',
+      false: 'Close follow-up is recommended; avoid invasive dental procedures.'
+    },
+    '資料不足': {
+      true: 'Insufficient data to provide an accurate risk assessment. Please consult a healthcare professional for individualized evaluation.',
+      false: 'Insufficient data to provide an accurate risk assessment. Please consult a healthcare professional for individualized evaluation.'
+    }
+  };
+  return (recommendations[riskLevel] && recommendations[riskLevel][isInvasive]) || 'Please consult a healthcare professional.';
 }
 
 // Calculate medication duration in months
