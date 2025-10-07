@@ -565,9 +565,9 @@
           limitedDataWarning.innerHTML = warningText;
         }
         
-        // Add reference papers link if available
+        // Add reference papers link if available (skip for semi-invasive treatments)
         let referenceLink = '';
-        if (assessment.references && assessment.references.length > 0) {
+        if (assessment.references && assessment.references.length > 0 && assessment.invasiveness !== 'semiInvasive') {
           const indication = patientData.hasCancer ? 'cancer' : 'osteoporosis';
           const invasive = assessment.invasive ? 'true' : 'false';
           const patientName = patientData.name || '患者';

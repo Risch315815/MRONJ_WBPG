@@ -775,6 +775,9 @@
 
       // Initial population of start year options
       updateStartYearOptions();
+      
+      // Re-apply language preference after populating dropdowns
+      applyLanguagePreference();
 
       // Update start year options when radio buttons change
       const hasAntiresorptiveMedRadios = document.querySelectorAll('input[name="hasAntiresorptiveMed"]');
@@ -885,8 +888,11 @@
           patientData.administrationRoute = this.dataset.route;
           console.log(`Selected medication: ${patientData.drugName}, route: ${patientData.administrationRoute}`);
           
-          // Show medication details section
-          medicationDetailsSection.style.display = 'block';
+        // Show medication details section
+        medicationDetailsSection.style.display = 'block';
+        
+        // Re-apply language preference after showing form
+        applyLanguagePreference();
           
           // Update labels based on administration route and current/future use
           const isFutureUse = document.querySelector('input[name="hasAntiresorptiveMed"][value="future"]').checked;
@@ -1355,6 +1361,9 @@
         patientData.frequency = '';
         patientData.isStopped = false;
         patientData.stopYear = '';
+        
+        // Re-apply language preference after form reset
+        applyLanguagePreference();
         patientData.stopMonth = '';
       }
       

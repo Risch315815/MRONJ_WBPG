@@ -232,8 +232,8 @@ class MRONJRiskCalculator {
       // Determine risk category using rule-based approach
       const riskCategory = this.determineRiskCategory(indication, medication, administrationRoute, riskAssessmentInvasiveness, isSemiInvasive);
       
-      // Get reference papers
-      const references = this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
+      // Get reference papers (skip for semi-invasive treatments)
+      const references = isSemiInvasive ? [] : this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
       
       // Get special considerations for semi-invasive treatments
       const specialConsiderations = isSemiInvasive ? this.semiInvasiveConsiderations['根管治療'] : null;
