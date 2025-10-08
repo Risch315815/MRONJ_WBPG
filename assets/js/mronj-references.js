@@ -1,4 +1,5 @@
 // MRONJ Risk Assessment Reference Papers
+// Updated with latest comprehensive reference data from SystematicReview/Reference20250907.txt
 // Organized by indication, medication, administration route, and treatment invasiveness
 
 const MRONJReferences = {
@@ -6,143 +7,72 @@ const MRONJReferences = {
     none: {
       none: {
         none: [
-          { authors: "Control Group", year: 2022, title: "Baseline MRONJ risk in osteoporosis patients without antiresorptive medication", journal: "Clinical Data" }
+          { authors: "Baillargeon, J., Kuo, Y. F., Lin, Y.-L., Wilkinson, G. S., & Goodwin, J. S.", year: 2011, title: "Osteonecrosis of the Jaw in Older Osteoporosis Patients Treated with Intravenous Bisphosphonates", journal: "The Annals of Pharmacotherapy", doi: "https://doi.org/10.1345/aph.1Q239" },
+          { authors: "Grbic, J. T., Black, D. M., Lyles, K. W., Reid, D. M., Orwoll, E., McClung, M., Bucci-Rechtweg, C., & Su, G.", year: 2010, title: "The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid", journal: "The Journal of the American Dental Association", doi: "https://doi.org/10.14219/jada.archive.2010.0082" },
+          { authors: "Kim, S. H., Lee, Y.-K., Kim, T.-Y., Ha, Y.-C., Jang, S., & Kim, H. Y.", year: 2021, title: "Incidence of and risk for osteonecrosis of the jaw in Korean osteoporosis patients treated with bisphosphonates: A nationwide cohort-study", journal: "Bone", doi: "https://doi.org/10.1016/j.bone.2020.115650" },
+          { authors: "Lyles, K. W., Colón-Emeric, C. S., Magaziner, J. S., Adachi, J. D., Pieper, C. F., Mautalen, C., Hyldstrup, L., Recknor, C., Nordsletten, L., Moore, K. A., Lavecchia, C., Zhang, J., Mesenbrink, P., Hodgson, P. K., Abrams, K., Orloff, J. J., Horowitz, Z., Eriksen, E. F., & Boonen, S.", year: 2007, title: "Zoledronic Acid in Reducing Clinical Fracture and Mortality after Hip Fracture", journal: "The New England Journal of Medicine", doi: "https://doi.org/10.1056/NEJMoa074941" },
+          { authors: "McClung, M., Miller, P., Recknor, C., Mesenbrink, P., Bucci-Rechtweg, C., & Benhamou, C.-L.", year: 2009, title: "Zoledronic Acid for the Prevention of Bone Loss in Postmenopausal Women With Low Bone Mass: A Randomized Controlled Trial", journal: "Obstetrics & Gynecology", doi: "https://doi.org/10.1097/AOG.0b013e3181bdce0a" },
+          { authors: "Papapoulos, S., Chapurlat, R., Libanati, C., Brandi, M. L., Brown, J. P., Czerwiński, E., Krieg, M.-A., Man, Z., Mellström, D., Radominski, S. C., Reginster, J.-Y., Resch, H., Ivorra, J. A. R., Roux, C., Vittinghoff, E., Austin, M., Daizadeh, N., Bradley, M. N., Grauer, A., … Bone, H. G.", year: 2012, title: "Five years of denosumab exposure in women with postmenopausal osteoporosis: Results from the first two years of the FREEDOM extension", journal: "Journal of Bone and Mineral Research", doi: "https://doi.org/10.1002/jbmr.1479" },
+          { authors: "Yamazaki, T., Yamori, M., Ishizaki, T., Asai, K., Goto, K., Takahashi, K., Nakayama, T., & Bessho, K.", year: 2012, title: "Increased incidence of osteonecrosis of the jaw after tooth extraction in patients treated with bisphosphonates: A cohort study", journal: "International Journal of Oral and Maxillofacial Surgery" }
         ],
         YES: [
-          { authors: "Control Group", year: 2022, title: "Baseline MRONJ risk in osteoporosis patients without antiresorptive medication", journal: "Clinical Data" }
+          { authors: "Colella, A., Yu, E., Sambrook, P., Hughes, T., & Goss, A.", year: 2023, title: "What is the Risk of Developing Osteonecrosis Following Dental Extractions for Patients on Denosumab for Osteoporosis?", journal: "Journal of Oral and Maxillofacial Surgery: Official Journal of the American Association of Oral and Maxillofacial Surgeons", doi: "https://doi.org/10.1016/j.joms.2022.10.014" },
+          { authors: "Watts, N. B., Grbic, J. T., Binkley, N., Papapoulos, S., Butler, P. W., Yin, X., Tierney, A., Wagman, R. B., & McClung, M.", year: 2019, title: "Invasive Oral Procedures and Events in Postmenopausal Women With Osteoporosis Treated With Denosumab for Up to 10 Years", journal: "The Journal of Clinical Endocrinology & Metabolism", doi: "https://doi.org/10.1210/jc.2018-01965" }
         ]
       }
     },
     bisphosphonate: {
-      not_specific: {
-        none: [
-          { authors: "Lo JC, et al.", year: 2010, title: "Prevalence of osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "J Oral Maxillofac Surg" },
-          { authors: "Sedghizadeh PP, et al.", year: 2009, title: "Oral bisphosphonate use and the prevalence of osteonecrosis of the jaw", journal: "J Am Dent Assoc" }
-        ],
-        YES: [
-          { authors: "Smith J, et al.", year: 2018, title: "Risk factors for osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "Oral Surg Oral Med Oral Pathol Oral Radiol" },
-          { authors: "Mavrokokki T, et al.", year: 2007, title: "What every dentist should know about bisphosphonates and osteonecrosis", journal: "Aust Dent J" }
-        ]
-      },
       oral: {
         none: [
-          { authors: "Lo JC, et al.", year: 2010, title: "Prevalence of osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "J Oral Maxillofac Surg" },
-          { authors: "Sedghizadeh PP, et al.", year: 2009, title: "Oral bisphosphonate use and the prevalence of osteonecrosis of the jaw", journal: "J Am Dent Assoc" },
-          { authors: "Hellstein JW, et al.", year: 2011, title: "Managing the care of patients receiving antiresorptive therapy for prevention and treatment of osteoporosis", journal: "J Am Dent Assoc" }
+          { authors: "Chiu, W.-Y., Chien, J.-Y., Yang, W.-S., Juang, J.-M. J., Lee, J.-J., & Tsai, K.-S.", year: 2014, title: "The Risk of Osteonecrosis of the Jaws in Taiwanese Osteoporotic Patients Treated With Oral Alendronate or Raloxifene", journal: "The Journal of Clinical Endocrinology & Metabolism", doi: "https://doi.org/10.1210/jc.2013-4119" },
+          { authors: "Eiken, P. A., Prieto-Alhambra, D., Eastell, R., & Abrahamsen, B.", year: 2017, title: "Surgically treated osteonecrosis and osteomyelitis of the jaw and oral cavity in patients highly adherent to alendronate treatment: A nationwide user-only cohort study including over 60,000 alendronate users", journal: "Osteoporosis International: A Journal Established as Result of Cooperation between the European Foundation for Osteoporosis and the National Osteoporosis Foundation of the USA", doi: "https://doi.org/10.1007/s00198-017-4132-y" },
+          { authors: "Kim, S. H., Lee, Y.-K., Kim, T.-Y., Ha, Y.-C., Jang, S., & Kim, H. Y.", year: 2021, title: "Incidence of and risk for osteonecrosis of the jaw in Korean osteoporosis patients treated with bisphosphonates: A nationwide cohort-study", journal: "Bone", doi: "https://doi.org/10.1016/j.bone.2020.115650" },
+          { authors: "Mahvar, P. B., Imran ,Amna, Enciso ,Reyes, Sanapanya ,Andrew, Khalifeh ,Mohammad, Sedghizadeh ,Parish P., & and Henderson, L.", year: 2019, title: "10-Year Institutional Retrospective Case-Control Study of Medication-Related Osteonecrosis of the Jaw", journal: "Journal of the California Dental Association", doi: "https://doi.org/10.1080/19424396.2019.12220864" },
+          { authors: "Mirelli, C., Marino, S., Bovio, A., Pederielli, S., Dall'Agnola, C., Gianni, A. B., & Biagi, R.", year: 2022, title: "Medication-Related Osteonecrosis of the Jaw in Dental Practice: A Retrospective Analysis of Data from the Milan Cohort", journal: "Dentistry Journal", doi: "https://doi.org/10.3390/dj10050089" },
+          { authors: "Orwoll, E. S., Miller, P. D., Adachi, J. D., Brown, J., Adler, R. A., Kendler, D., Bucci-Rechtweg, C., Readie, A., Mesenbrink, P., & Weinstein, R. S.", year: 2010, title: "Efficacy and safety of a once-yearly i.v. Infusion of zoledronic acid 5 mg versus a once-weekly 70-mg oral alendronate in the treatment of male osteoporosis: A randomized, multicenter, double-blind, active-controlled study", journal: "Journal of Bone and Mineral Research", doi: "https://doi.org/10.1002/jbmr.119" },
+          { authors: "Reid, D. M., Devogelaer, J.-P., Saag, K., Roux, C., Lau, C.-S., Reginster, J.-Y., Papanastasiou, P., Ferreira, A., Hartl, F., Fashola, T., Mesenbrink, P., & Sambrook, P. N.", year: 2009, title: "Zoledronic acid and risedronate in the prevention and treatment of glucocorticoid-induced osteoporosis (HORIZON): A multicentre, double-blind, double-dummy, randomised controlled trial", journal: "The Lancet", doi: "https://doi.org/10.1016/S0140-6736(09)60250-6" },
+          { authors: "Saag, K. G., Petersen, J., Brandi, M. L., Karaplis, A. C., Lorentzon, M., Thomas, T., Maddox, J., Fan, M., Meisner, P. D., & Grauer, A.", year: 2017, title: "Romosozumab or Alendronate for Fracture Prevention in Women with Osteoporosis", journal: "New England Journal of Medicine", doi: "https://doi.org/10.1056/NEJMoa1708322" },
+          { authors: "Yamazaki, T., Yamori, M., Ishizaki, T., Asai, K., Goto, K., Takahashi, K., Nakayama, T., & Bessho, K.", year: 2012, title: "Increased incidence of osteonecrosis of the jaw after tooth extraction in patients treated with bisphosphonates: A cohort study", journal: "International Journal of Oral and Maxillofacial Surgery" }
         ],
         YES: [
-          { authors: "Smith J, et al.", year: 2018, title: "Risk factors for osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "Oral Surg Oral Med Oral Pathol Oral Radiol" },
-          { authors: "Mavrokokki T, et al.", year: 2007, title: "What every dentist should know about bisphosphonates and osteonecrosis", journal: "Aust Dent J" }
+          { authors: "Fujimori, M., Toriyabe, Y., Kaku, N., Shimazaki, K., Suzuki, T., Abe, T., Tanimura, A., Kudou, A., Donen, M., Kawaguchi, Y., Sakakibara, N., Nojima, M., & Makino, S.", year: 2025, title: "Multicenter prospective study on the incidence and cure rates of medication-related osteonecrosis of the jaw (complete translation)", journal: "Journal of Oral and Maxillofacial Surgery, Medicine, and Pathology", doi: "https://doi.org/10.1016/j.ajoms.2025.01.011" },
+          { authors: "Jeong, H.-G., Hwang, J. J., Lee, J.-H., Kim, Y. H., Na, J. Y., & Han, S.-S.", year: 2017, title: "Risk factors of osteonecrosis of the jaw after tooth extraction in osteoporotic patients on oral bisphosphonates", journal: "Imaging Science in Dentistry", doi: "https://doi.org/10.5624/isd.2017.47.1.45" },
+          { authors: "Kang, S.-H., Park, S.-J., & Kim, M.-K.", year: 2020, title: "The effect of bisphosphonate discontinuation on the incidence of postoperative medication-related osteonecrosis of the jaw after tooth extraction", journal: "Journal of the Korean Association of Oral and Maxillofacial Surgeons", doi: "https://doi.org/10.5125/jkaoms.2020.46.1.78" }
         ]
       },
       'IV/SC': {
         none: [
-          { authors: "Grbic JT, et al.", year: 2010, title: "Incidence of osteonecrosis of the jaw in women with postmenopausal osteoporosis in the health outcomes and reduced incidence with zoledronic acid once yearly pivotal fracture trial", journal: "J Am Dent Assoc" },
-          { authors: "Khan AA, et al.", year: 2015, title: "Diagnosis and management of osteonecrosis of the jaw: a systematic review and international consensus", journal: "J Bone Miner Res" }
+          { authors: "Baillargeon, J., Kuo, Y. F., Lin, Y.-L., Wilkinson, G. S., & Goodwin, J. S.", year: 2011, title: "Osteonecrosis of the Jaw in Older Osteoporosis Patients Treated with Intravenous Bisphosphonates", journal: "The Annals of Pharmacotherapy", doi: "https://doi.org/10.1345/aph.1Q239" },
+          { authors: "Grbic, J. T., Black, D. M., Lyles, K. W., Reid, D. M., Orwoll, E., McClung, M., Bucci-Rechtweg, C., & Su, G.", year: 2010, title: "The Incidence of Osteonecrosis of the Jaw in Patients Receiving 5 Milligrams of Zoledronic Acid", journal: "The Journal of the American Dental Association", doi: "https://doi.org/10.14219/jada.archive.2010.0082" },
+          { authors: "Kim, S. H., Lee, Y.-K., Kim, T.-Y., Ha, Y.-C., Jang, S., & Kim, H. Y.", year: 2021, title: "Incidence of and risk for osteonecrosis of the jaw in Korean osteoporosis patients treated with bisphosphonates: A nationwide cohort-study", journal: "Bone", doi: "https://doi.org/10.1016/j.bone.2020.115650" },
+          { authors: "Lyles, K. W., Colón-Emeric, C. S., Magaziner, J. S., Adachi, J. D., Pieper, C. F., Mautalen, C., Hyldstrup, L., Recknor, C., Nordsletten, L., Moore, K. A., Lavecchia, C., Zhang, J., Mesenbrink, P., Hodgson, P. K., Abrams, K., Orloff, J. J., Horowitz, Z., Eriksen, E. F., & Boonen, S.", year: 2007, title: "Zoledronic Acid in Reducing Clinical Fracture and Mortality after Hip Fracture", journal: "The New England Journal of Medicine", doi: "https://doi.org/10.1056/NEJMoa074941" },
+          { authors: "McClung, M., Miller, P., Recknor, C., Mesenbrink, P., Bucci-Rechtweg, C., & Benhamou, C.-L.", year: 2009, title: "Zoledronic Acid for the Prevention of Bone Loss in Postmenopausal Women With Low Bone Mass: A Randomized Controlled Trial", journal: "Obstetrics & Gynecology", doi: "https://doi.org/10.1097/AOG.0b013e3181bdce0a" },
+          { authors: "Mirelli, C., Marino, S., Bovio, A., Pederielli, S., Dall'Agnola, C., Gianni, A. B., & Biagi, R.", year: 2022, title: "Medication-Related Osteonecrosis of the Jaw in Dental Practice: A Retrospective Analysis of Data from the Milan Cohort", journal: "Dentistry Journal", doi: "https://doi.org/10.3390/dj10050089" },
+          { authors: "Orwoll, E. S., Miller, P. D., Adachi, J. D., Brown, J., Adler, R. A., Kendler, D., Bucci-Rechtweg, C., Readie, A., Mesenbrink, P., & Weinstein, R. S.", year: 2010, title: "Efficacy and safety of a once-yearly i.v. Infusion of zoledronic acid 5 mg versus a once-weekly 70-mg oral alendronate in the treatment of male osteoporosis: A randomized, multicenter, double-blind, active-controlled study", journal: "Journal of Bone and Mineral Research", doi: "https://doi.org/10.1002/jbmr.119" },
+          { authors: "Reid, D. M., Devogelaer, J.-P., Saag, K., Roux, C., Lau, C.-S., Reginster, J.-Y., Papanastasiou, P., Ferreira, A., Hartl, F., Fashola, T., Mesenbrink, P., & Sambrook, P. N.", year: 2009, title: "Zoledronic acid and risedronate in the prevention and treatment of glucocorticoid-induced osteoporosis (HORIZON): A multicentre, double-blind, double-dummy, randomised controlled trial", journal: "The Lancet", doi: "https://doi.org/10.1016/S0140-6736(09)60250-6" }
         ],
         YES: [
-          { authors: "AAOMS Position Paper", year: 2022, title: "American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaw", journal: "J Oral Maxillofac Surg" }
-        ]
-      }
-    },
-    bisphosphonate_Alendronate: {
-      oral: {
-        none: [
-          { authors: "Lo JC, et al.", year: 2010, title: "Prevalence of osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "J Oral Maxillofac Surg" },
-          { authors: "Sedghizadeh PP, et al.", year: 2009, title: "Oral bisphosphonate use and the prevalence of osteonecrosis of the jaw", journal: "J Am Dent Assoc" }
-        ],
-        YES: [
-          { authors: "Smith J, et al.", year: 2018, title: "Risk factors for osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "Oral Surg Oral Med Oral Pathol Oral Radiol" },
-          { authors: "Mavrokokki T, et al.", year: 2007, title: "What every dentist should know about bisphosphonates and osteonecrosis", journal: "Aust Dent J" }
-        ]
-      }
-    },
-    bisphosphonate_Risedronate: {
-      oral: {
-        none: [
-          { authors: "Lo JC, et al.", year: 2010, title: "Prevalence of osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "J Oral Maxillofac Surg" },
-          { authors: "Sedghizadeh PP, et al.", year: 2009, title: "Oral bisphosphonate use and the prevalence of osteonecrosis of the jaw", journal: "J Am Dent Assoc" }
-        ],
-        YES: [
-          { authors: "Limited Data", year: 2022, title: "Insufficient data for Risedronate invasive procedures", journal: "Clinical Data" }
-        ]
-      }
-    },
-    bisphosphonate_Ibandronate: {
-      oral: {
-        none: [
-          { authors: "Lo JC, et al.", year: 2010, title: "Prevalence of osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "J Oral Maxillofac Surg" }
-        ],
-        YES: [
-          { authors: "Limited Data", year: 2022, title: "Limited data for Ibandronate oral invasive procedures", journal: "Clinical Data" }
-        ]
-      },
-      'IV/SC': {
-        none: [
-          { authors: "Grbic JT, et al.", year: 2010, title: "Incidence of osteonecrosis of the jaw in women with postmenopausal osteoporosis", journal: "J Am Dent Assoc" }
-        ],
-        YES: [
-          { authors: "Limited Data", year: 2022, title: "Insufficient data for Ibandronate IV/SC invasive procedures", journal: "Clinical Data" }
-        ]
-      }
-    },
-    bisphosphonate_Clodronate: {
-      oral: {
-        none: [
-          { authors: "Lo JC, et al.", year: 2010, title: "Prevalence of osteonecrosis of the jaw in patients with oral bisphosphonate exposure", journal: "J Oral Maxillofac Surg" }
-        ],
-        YES: [
-          { authors: "Limited Data", year: 2022, title: "Insufficient data for Clodronate oral invasive procedures", journal: "Clinical Data" }
-        ]
-      }
-    },
-    bisphosphonate_Zoledronate: {
-      'IV/SC': {
-        none: [
-          { authors: "Grbic JT, et al.", year: 2010, title: "Incidence of osteonecrosis of the jaw in women with postmenopausal osteoporosis in the health outcomes and reduced incidence with zoledronic acid once yearly pivotal fracture trial", journal: "J Am Dent Assoc" },
-          { authors: "Khan AA, et al.", year: 2015, title: "Diagnosis and management of osteonecrosis of the jaw: a systematic review and international consensus", journal: "J Bone Miner Res" }
-        ],
-        YES: [
-          { authors: "AAOMS Position Paper", year: 2022, title: "American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaw", journal: "J Oral Maxillofac Surg" }
-        ]
-      }
-    },
-    bisphosphonate_Pamidronate: {
-      'IV/SC': {
-        none: [
-          { authors: "Grbic JT, et al.", year: 2010, title: "Incidence of osteonecrosis of the jaw in women with postmenopausal osteoporosis", journal: "J Am Dent Assoc" }
-        ],
-        YES: [
-          { authors: "Limited Data", year: 2022, title: "Insufficient data for Pamidronate IV/SC invasive procedures", journal: "Clinical Data" }
+          { authors: "Wei, L.-Y., Cheng, Y.-W., Chiu, W.-Y., Kok, S.-H., Chang, H.-H., Cheng, S.-J., & Lee, J.-J.", year: 2025, title: "Risk Factors Influencing Medication-Related Osteonecrosis of the Jaws (MRONJ) Following Dental Extraction Among Osteoporotic Patients in Taiwan", journal: "Head & Neck", doi: "https://doi.org/10.1002/hed.28011" }
         ]
       }
     },
     Denosumab: {
       'IV/SC': {
         none: [
-          { authors: "Cummings SR, et al.", year: 2009, title: "Denosumab for prevention of fractures in postmenopausal women with osteoporosis", journal: "N Engl J Med" },
-          { authors: "Khan AA, et al.", year: 2017, title: "Diagnosis and management of osteonecrosis of the jaw: a systematic review and international consensus", journal: "J Bone Miner Res" }
+          { authors: "Papapoulos, S., Chapurlat, R., Libanati, C., Brandi, M. L., Brown, J. P., Czerwiński, E., Krieg, M.-A., Man, Z., Mellström, D., Radominski, S. C., Reginster, J.-Y., Resch, H., Ivorra, J. A. R., Roux, C., Vittinghoff, E., Austin, M., Daizadeh, N., Bradley, M. N., Grauer, A., … Bone, H. G.", year: 2012, title: "Five years of denosumab exposure in women with postmenopausal osteoporosis: Results from the first two years of the FREEDOM extension", journal: "Journal of Bone and Mineral Research", doi: "https://doi.org/10.1002/jbmr.1479" }
         ],
         YES: [
-          { authors: "Patel R, et al.", year: 2022, title: "Denosumab and osteonecrosis of the jaw: a systematic analysis of events reported in clinical trials", journal: "J Bone Miner Res" }
+          { authors: "Colella, A., Yu, E., Sambrook, P., Hughes, T., & Goss, A.", year: 2023, title: "What is the Risk of Developing Osteonecrosis Following Dental Extractions for Patients on Denosumab for Osteoporosis?", journal: "Journal of Oral and Maxillofacial Surgery: Official Journal of the American Association of Oral and Maxillofacial Surgeons", doi: "https://doi.org/10.1016/j.joms.2022.10.014" },
+          { authors: "Everts-Graber, J., Lehmann, D., Burkard, J.-P., Schaller, B., Gahl, B., Häuselmann, H., Studer, U., Ziswiler, H.-R., Reichenbach, S., & Lehmann, T.", year: 2022, title: "Risk of Osteonecrosis of the Jaw Under Denosumab Compared to Bisphosphonates in Patients With Osteoporosis", journal: "Journal of Bone and Mineral Research", doi: "https://doi.org/10.1002/jbmr.4472" },
+          { authors: "Watts, N. B., Grbic, J. T., Binkley, N., Papapoulos, S., Butler, P. W., Yin, X., Tierney, A., Wagman, R. B., & McClung, M.", year: 2019, title: "Invasive Oral Procedures and Events in Postmenopausal Women With Osteoporosis Treated With Denosumab for Up to 10 Years", journal: "The Journal of Clinical Endocrinology & Metabolism", doi: "https://doi.org/10.1210/jc.2018-01965" },
+          { authors: "Wei, L.-Y., Cheng, Y.-W., Chiu, W.-Y., Kok, S.-H., Chang, H.-H., Cheng, S.-J., & Lee, J.-J.", year: 2025, title: "Risk Factors Influencing Medication-Related Osteonecrosis of the Jaws (MRONJ) Following Dental Extraction Among Osteoporotic Patients in Taiwan", journal: "Head & Neck", doi: "https://doi.org/10.1002/hed.28011" }
         ]
       }
     },
     Romosuzumab: {
       'IV/SC': {
         none: [
-          { authors: "Hadaya D, et al.", year: 2019, title: "Romosozumab and osteonecrosis of the jaw: a systematic review", journal: "J Bone Miner Res" },
-          { authors: "AAOMS Position Paper", year: 2022, title: "American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaw", journal: "J Oral Maxillofac Surg" }
-        ]
-      }
-    },
-    not_specific: {
-      not_specific: {
-        none: [
-          { authors: "General Reference", year: 2022, title: "General MRONJ risk assessment guidelines", journal: "Clinical Guidelines" }
-        ],
-        YES: [
-          { authors: "General Reference", year: 2022, title: "General MRONJ risk assessment guidelines", journal: "Clinical Guidelines" }
+          { authors: "Saag, K. G., Petersen, J., Brandi, M. L., Karaplis, A. C., Lorentzon, M., Thomas, T., Maddox, J., Fan, M., Meisner, P. D., & Grauer, A.", year: 2017, title: "Romosozumab or Alendronate for Fracture Prevention in Women with Osteoporosis", journal: "New England Journal of Medicine", doi: "https://doi.org/10.1056/NEJMoa1708322" }
         ]
       }
     }
@@ -151,94 +81,82 @@ const MRONJReferences = {
     none: {
       none: {
         none: [
-          { authors: "Control Group", year: 2022, title: "Baseline MRONJ risk in cancer patients without antiresorptive medication", journal: "Clinical Data" }
-        ],
-        YES: [
-          { authors: "Control Group", year: 2022, title: "Baseline MRONJ risk in cancer patients without antiresorptive medication", journal: "Clinical Data" }
+          { authors: "Coleman, R., Cameron, D., Dodwell, D., Bell, R., Wilson, C., Rathbone, E., Keane, M., Gil, M., Burkinshaw, R., Grieve, R., Barrett-Lee, P., Ritchie, D., Liversedge, V., Hinsley, S., & Marshall, H.", year: 2014, title: "Adjuvant zoledronic acid in patients with early breast cancer: Final efficacy analysis of the AZURE (BIG 01/04) randomised open-label phase 3 trial", journal: "The Lancet Oncology", doi: "https://doi.org/10.1016/S1470-2045(14)70302-X" },
+          { authors: "Coleman, R. E., Marshall, H., Cameron, D., Dodwell, D., Burkinshaw, R., Keane, M., Gil, M., Houston, S. J., Grieve, R. J., Barrett-Lee, P. J., Ritchie, D., Pugh, J., Gaunt, C., Rea, U., Peterson, J., Davies, C., Hiley, V., Gregory, W., & Bell, R.", year: 2011, title: "Breast-Cancer Adjuvant Therapy with Zoledronic Acid", journal: "New England Journal of Medicine", doi: "https://doi.org/10.1056/NEJMoa1105195" },
+          { authors: "Gnant, M., Mlineritsch, B., Luschin-Ebengreuth, G., Kainberger, F., Kässmann, H., Piswanger-Sölkner, J. C., Seifert, M., Ploner, F., Menzel, C., Dubsky, P., Fitzal, F., Bjelic-Radisic, V., Steger, G., Greil, R., Marth, C., Kubista, E., Samonigg, H., Wohlmuth, P., Mittlböck, M., … Austrian Breast and Colorectal Cancer Study Group (ABCSG).", year: 2008, title: "Adjuvant endocrine therapy plus zoledronic acid in premenopausal women with early-stage breast cancer: 5-year follow-up of the ABCSG-12 bone-mineral density substudy", journal: "The Lancet. Oncology", doi: "https://doi.org/10.1016/S1470-2045(08)70204-3" },
+          { authors: "Gnant, M., Mlineritsch, B., Stoeger, H., Luschin-Ebengreuth, G., Knauer, M., Moik, M., Jakesz, R., Seifert, M., Taucher, S., Bjelic-Radisic, V., Balic, M., Eidtmann, H., Eiermann, W., Steger, G., Kwasny, W., Dubsky, P., Selim, U., Fitzal, F., Hochreiner, G., … Greil, R.", year: 2015, title: "(ABCSG-12)Zoledronic acid combined with adjuvant endocrine therapy of tamoxifen versus anastrozol plus ovarian function suppression in premenopausal early breast cancer: Final analysis of the Austrian Breast and Colorectal Cancer Study Group Trial 12", journal: "Annals of Oncology", doi: "https://doi.org/10.1093/annonc/mdu544" },
+          { authors: "Kamba, T., Kamoto, T., Maruo, S., Kikuchi, T., Shimizu, Y., Namiki, S., Fujimoto, K., Kawanishi, H., Sato, F., Narita, S., Satoh, T., Saito, H., Sugimoto, M., Teishima, J., Masumori, N., Egawa, S., Sakai, H., Okada, Y., Terachi, T., … ZAPCA Study Group.", year: 2017, title: "A phase III multicenter, randomized, controlled study of combined androgen blockade with versus without zoledronic acid in prostate cancer patients with metastatic bone disease: Results of the ZAPCA trial", journal: "International Journal of Clinical Oncology", doi: "https://doi.org/10.1007/s10147-016-1037-2" },
+          { authors: "Meulenbeld, H. J., Van Werkhoven, E. D., Coenen, J. L. L. M., Creemers, G. J., Loosveld, O. J. L., De Jong, P. C., Ten Tije, A. J., Fosså, S. D., Polee, M., Gerritsen, W., Dalesio, O., & De Wit, R.", year: 2012, title: "Randomised phase II/III study of docetaxel with or without risedronate in patients with metastatic Castration Resistant Prostate Cancer (CRPC), the Netherlands Prostate Study (NePro)", journal: "European Journal of Cancer", doi: "https://doi.org/10.1016/j.ejca.2012.05.014" },
+          { authors: "Pan, Y., Jin, H., Chen, W., Yu, Z., Ye, T., Zheng, Y., Weng, Z., & Wang, F.", year: 2014, title: "Docetaxel with or without zoledronic acid for castration-resistant prostate cancer", journal: "International Urology and Nephrology", doi: "https://doi.org/10.1007/s11255-014-0824-9" },
+          { authors: "Paterson, A. H. G., Anderson, S. J., Lembersky, B. C., Fehrenbacher, L., Falkson, C. I., King, K. M., Weir, L. M., Brufsky, A. M., Dakhil, S., Lad, T., Baez-Diaz, L., Gralow, J. R., Robidoux, A., Perez, E. A., Zheng, P., Geyer, C. E., Swain, S. M., Costantino, J. P., Mamounas, E. P., & Wolmark, N.", year: 2012, title: "Oral clodronate for adjuvant treatment of operable breast cancer (National Surgical Adjuvant Breast and Bowel Project protocol B-34): A multicentre, placebo-controlled, randomised trial", journal: "The Lancet. Oncology", doi: "https://doi.org/10.1016/S1470-2045(12)70226-7" },
+          { authors: "Smith, M. R., Halabi, S., Ryan, C. J., Hussain, A., Vogelzang, N., Stadler, W., Hauke, R. J., Monk, J. P., Saylor, P., Bhoopalam, N., Saad, F., Sanford, B., Kelly, W. K., Morris, M., & Small, E. J.", year: 2014, title: "Randomized Controlled Trial of Early Zoledronic Acid in Men With Castration-Sensitive Prostate Cancer and Bone Metastases: Results of CALGB 90202 (Alliance)", journal: "Journal of Clinical Oncology", doi: "https://doi.org/10.1200/JCO.2013.51.6500" },
+          { authors: "Smith, M. R., Saad, F., Coleman, R., Shore, N., Fizazi, K., Tombal, B., Miller, K., Sieber, P., Karsh, L., Damião, R., Tammela, T. L., Egerdie, B., Van Poppel, H., Chin, J., Morote, J., Gómez-Veiga, F., Borkowski, T., Ye, Z., Kupic, A., … Goessl, C.", year: 2012, title: "Denosumab and bone-metastasis-free survival in men with castration-resistant prostate cancer: Results of a phase 3, randomised, placebo-controlled trial", journal: "Lancet (London, England)", doi: "https://doi.org/10.1016/S0140-6736(11)61226-9" },
+          { authors: "Ueno, S., Mizokami, A., Fukagai, T., Fujimoto, N., Oh-Oka, H., Kondo, Y., Arai, G., Ide, H., Horie, S., Ueki, O., Kawaguchi, K., Shimamura, M., Orito, M., Ishida, T., Ikeda, D., & Namiki, M.", year: 2013, title: "Efficacy of Combined Androgen Blockade with Zoledronic Acid Treatment in Prostate Cancer with Bone Metastasis: The ZABTON-PC (Zoledronic Acid/Androgen Blockade Trial on Prostate Cancer) Study", journal: "ANTICANCER RESEARCH" },
+          { authors: "Powles, T. J., McCloskey, E., Paterson, A. H., Ashley, S., Tidy, V. A., Nevantaus, A., Rosenqvist, K., & Kanis, J.", year: 1998, title: "Oral clodronate and reduction in loss of bone mineral density in women with operable primary breast cancer", journal: "Journal of the National Cancer Institute", doi: "https://doi.org/10.1093/jnci/90.9.704" }
         ]
       }
     },
     bisphosphonate: {
-      not_specific: {
-        none: [
-          { authors: "Saad F, et al.", year: 2012, title: "Incidence, risk factors and management of osteonecrosis of the jaw in patients with bone metastases treated with zoledronic acid", journal: "J Clin Oncol" },
-          { authors: "Vahtsevanos K, et al.", year: 2009, title: "Bisphosphonate-associated osteonecrosis of the jaw: a review of 35 cases and an assessment of its frequency in multiple myeloma", journal: "Leuk Lymphoma" }
-        ],
-        YES: [
-          { authors: "Thumbigere-Math V, et al.", year: 2012, title: "Bisphosphonate-related osteonecrosis of the jaw: clinical features, risk factors, management, and treatment outcomes of 34 patients", journal: "J Oral Maxillofac Surg" },
-          { authors: "Dimopoulos MA, et al.", year: 2009, title: "Reduction of osteonecrosis of the jaw (ONJ) after implementation of preventive measures in patients with multiple myeloma treated with zoledronic acid", journal: "Ann Oncol" }
-        ]
-      },
       'IV/SC': {
         none: [
-          { authors: "Saad F, et al.", year: 2012, title: "Incidence, risk factors and management of osteonecrosis of the jaw in patients with bone metastases treated with zoledronic acid", journal: "J Clin Oncol" },
-          { authors: "Vahtsevanos K, et al.", year: 2009, title: "Bisphosphonate-associated osteonecrosis of the jaw: a review of 35 cases and an assessment of its frequency in multiple myeloma", journal: "Leuk Lymphoma" }
+          { authors: "Addison, C. L., Bouganim, N., Hilton, J., Vandermeer, L., Dent, S., Amir, E., Hopkins, S., Kuchuk, I., Segal, R., Song, X., Gertler, S., Mazzarello, S., Dranitsaris, G., Ooi, D., Pond, G., & Clemons, M.", year: 2014, title: "A phase II, multicentre trial evaluating the efficacy of de-escalated bisphosphonate therapy in metastatic breast cancer patients at low-risk of skeletal-related events", journal: "Breast Cancer Research and Treatment", doi: "https://doi.org/10.1007/s10549-014-2906-x" },
+          { authors: "Amadori, D., Aglietta, M., Alessi, B., Gianni, L., Ibrahim, T., Farina, G., Gaion, F., Bertoldo, F., Santini, D., Rondena, R., Bogani, P., & Ripamonti, C. I.", year: 2013, title: "Efficacy and safety of 12-weekly versus 4-weekly zoledronic acid for prolonged treatment of patients with bone metastases from breast cancer (ZOOM): A phase 3, open-label, randomised, non-inferiority trial", journal: "The Lancet. Oncology", doi: "https://doi.org/10.1016/S1470-2045(13)70174-8" },
+          { authors: "Barrett-Lee, P., Casbard, A., Abraham, J., Grieve, R., Wheatley, D., Simmons, P., Coleman, R., Hood, K., Griffiths, G., & Murray, N.", year: 2012, title: "Abstract PD07-09: Zoledronate versus ibandronate comparative evaluation (ZICE) trial - first results of a UK NCRI 1,405 patient phase III trial comparing oral ibandronate versus intravenous zoledronate in the treatment of breast cancer patients with bone metastases", journal: "Cancer Research", doi: "https://doi.org/10.1158/0008-5472.SABCS12-PD07-09" },
+          { authors: "Brufsky, A. M., Harker, W. G., Beck, J. T., Bosserman, L., Vogel, C., Seidler, C., Jin, L., Warsi, G., Argonza-Aviles, E., Hohneker, J., Ericson, S. G., & Perez, E. A.", year: 2012, title: "Final 5-year results of Z-FAST trial: Adjuvant zoledronic acid maintains bone mass in postmenopausal breast cancer patients receiving letrozole", journal: "Cancer", doi: "https://doi.org/10.1002/cncr.26313" },
+          { authors: "Coleman, R., Cameron, D., Dodwell, D., Bell, R., Wilson, C., Rathbone, E., Keane, M., Gil, M., Burkinshaw, R., Grieve, R., Barrett-Lee, P., Ritchie, D., Liversedge, V., Hinsley, S., & Marshall, H.", year: 2014, title: "Adjuvant zoledronic acid in patients with early breast cancer: Final efficacy analysis of the AZURE (BIG 01/04) randomised open-label phase 3 trial", journal: "The Lancet Oncology", doi: "https://doi.org/10.1016/S1470-2045(14)70302-X" },
+          { authors: "Eidtmann, H., de Boer, R., Bundred, N., Llombart-Cussac, A., Davidson, N., Neven, P., von Minckwitz, G., Miller, J., Schenk, N., & Coleman, R.", year: 2010, title: "Efficacy of zoledronic acid in postmenopausal women with early breast cancer receiving adjuvant letrozole: 36-month results of the ZO-FAST Study", journal: "Annals of Oncology: Official Journal of the European Society for Medical Oncology", doi: "https://doi.org/10.1093/annonc/mdq217" },
+          { authors: "Fizazi, K., Carducci, M., Smith, M., Damião, R., Brown, J., Karsh, L., Milecki, P., Shore, N., Rader, M., Wang, H., Jiang, Q., Tadros, S., Dansey, R., & Goessl, C.", year: 2011, title: "Denosumab versus zoledronic acid for treatment of bone metastases in men with castration-resistant prostate cancer: A randomised, double-blind study", journal: "Lancet (London, England)", doi: "https://doi.org/10.1016/S0140-6736(10)62344-6" },
+          { authors: "Gralow, J., Barlow, W. E., Paterson, A. H. G., Lew, D., Stopeck, A., Hayes, D. F., Hershman, D. L., Schubert, M., Clemons, M., Van Poznak, C. H., Dees, E. C., Ingle, J. N., Falkson, C. I., Elias, A. D., Messino, M. J., Margolis, J. H., Dakhil, S. R., Chew, H. K., Livingston, R. B., & Hortobagyi, G. N.", year: 2014, title: "SWOG S0307 phase III trial of bisphosphonates as adjuvant therapy in primary breast cancer: Comparison of toxicities and patient-stated preference for oral versus intravenous delivery", journal: "Journal of Clinical Oncology", doi: "https://doi.org/10.1200/jco.2014.32.15_suppl.558" },
+          { authors: "Henry, D. H., Costa, L., Goldwasser, F., Hirsh, V., Hungria, V., Prausova, J., Scagliotti, G. V., Sleeboom, H., Spencer, A., Vadhan-Raj, S., Von Moos, R., Willenbacher, W., Woll, P. J., Wang, J., Jiang, Q., Jun, S., Dansey, R., & Yeh, H.", year: 2011, title: "Randomized, Double-Blind Study of Denosumab Versus Zoledronic Acid in the Treatment of Bone Metastases in Patients With Advanced Cancer (Excluding Breast and Prostate Cancer) or Multiple Myeloma", journal: "Journal of Clinical Oncology", doi: "https://doi.org/10.1200/JCO.2010.31.3304" },
+          { authors: "Henry, D., Vadhan-Raj, S., Hirsh, V., Von Moos, R., Hungria, V., Costa, L., Woll, P. J., Scagliotti, G., Smith, G., Feng, A., Jun, S., Dansey, R., & Yeh, H.", year: 2014, title: "Delaying skeletal-related events in a randomized phase 3 study of denosumab versus zoledronic acid in patients with advanced cancer: An analysis of data from patients with solid tumors", journal: "Supportive Care in Cancer", doi: "https://doi.org/10.1007/s00520-013-2022-1" },
+          { authors: "Heras, P., Kritikos, K., Hatzopoulos, A., & Georgopoulou, A.-P.", year: 2009, title: "Efficacy of ibandronate for the treatment of skeletal events in patients with metastatic breast cancer", journal: "European Journal of Cancer Care", doi: "https://doi.org/10.1111/j.1365-2354.2008.00980.x" },
+          { authors: "Himelstein, A. L., Foster, J. C., Khatcheressian, J. L., Roberts, J. D., Seisler, D. K., Novotny, P. J., Qin, R., Go, R. S., Grubbs, S. S., O'Connor, T., Velasco, M. R., Weckstein, D., O'Mara, A., Loprinzi, C. L., & Shapiro, C. L.", year: 2017, title: "Effect of Longer-Interval vs Standard Dosing of Zoledronic Acid on Skeletal Events in Patients With Bone Metastases: A Randomized Clinical Trial", journal: "JAMA", doi: "https://doi.org/10.1001/jama.2016.19425" },
+          { authors: "Hortobagyi, G. N., Van Poznak, C., Harker, W. G., Gradishar, W. J., Chew, H., Dakhil, S. R., Haley, B. B., Sauter, N., Mohanlal, R., Zheng, M., & Lipton, A.", year: 2017, title: "Continued Treatment Effect of Zoledronic Acid Dosing Every 12 vs 4 Weeks in Women With Breast Cancer Metastatic to Bone: The OPTIMIZE-2 Randomized Clinical Trial", journal: "JAMA Oncology", doi: "https://doi.org/10.1001/jamaoncol.2016.6316" },
+          { authors: "Kamba, T., Kamoto, T., Maruo, S., Kikuchi, T., Shimizu, Y., Namiki, S., Fujimoto, K., Kawanishi, H., Sato, F., Narita, S., Satoh, T., Saito, H., Sugimoto, M., Teishima, J., Masumori, N., Egawa, S., Sakai, H., Okada, Y., Terachi, T., & Ogawa, O.", year: 2017, title: "A phase III multicenter, randomized, controlled study of combined androgen blockade with versus without zoledronic acid in prostate cancer patients with metastatic bone disease: Results of the ZAPCA trial", journal: "International Journal of Clinical Oncology", doi: "https://doi.org/10.1007/s10147-016-1037-2" },
+          { authors: "Llombart, A., Frassoldati, A., Paija, O., Sleeboom, H. P., Jerusalem, G., Mebis, J., Deleu, I., Miller, J., Schenk, N., & Neven, P.", year: 2012, title: "Immediate Administration of Zoledronic Acid Reduces Aromatase Inhibitor–Associated Bone Loss in Postmenopausal Women With Early Breast Cancer: 12-Month Analysis of the E-ZO-FAST Trial", journal: "Clinical Breast Cancer", doi: "https://doi.org/10.1016/j.clbc.2011.08.002" },
+          { authors: "Meulenbeld, H. J., Van Werkhoven, E. D., Coenen, J. L. L. M., Creemers, G. J., Loosveld, O. J. L., De Jong, P. C., Ten Tije, A. J., Fosså, S. D., Polee, M., Gerritsen, W., Dalesio, O., & De Wit, R.", year: 2012, title: "Randomised phase II/III study of docetaxel with or without risedronate in patients with metastatic Castration Resistant Prostate Cancer (CRPC), the Netherlands Prostate Study (NePro)", journal: "European Journal of Cancer", doi: "https://doi.org/10.1016/j.ejca.2012.05.014" },
+          { authors: "Pan, Y., Jin, H., Chen, W., Yu, Z., Ye, T., Zheng, Y., Weng, Z., & Wang, F.", year: 2014, title: "Docetaxel with or without zoledronic acid for castration-resistant prostate cancer", journal: "International Urology and Nephrology", doi: "https://doi.org/10.1007/s11255-014-0824-9" },
+          { authors: "Paterson, A. H. G., Anderson, S. J., Lembersky, B. C., Fehrenbacher, L., Falkson, C. I., King, K. M., Weir, L. M., Brufsky, A. M., Dakhil, S., Lad, T., Baez-Diaz, L., Gralow, J. R., Robidoux, A., Perez, E. A., Zheng, P., Geyer, C. E., Swain, S. M., Costantino, J. P., Mamounas, E. P., & Wolmark, N.", year: 2012, title: "Oral clodronate for adjuvant treatment of operable breast cancer (National Surgical Adjuvant Breast and Bowel Project protocol B-34): A multicentre, placebo-controlled, randomised trial", journal: "The Lancet. Oncology", doi: "https://doi.org/10.1016/S1470-2045(12)70226-7" },
+          { authors: "Powles, T. J., McCloskey, E., Paterson, A. H., Ashley, S., Tidy, V. A., Nevantaus, A., Rosenqvist, K., & Kanis, J.", year: 1998, title: "Oral clodronate and reduction in loss of bone mineral density in women with operable primary breast cancer", journal: "Journal of the National Cancer Institute", doi: "https://doi.org/10.1093/jnci/90.9.704" },
+          { authors: "Raje, N., Terpos, E., Willenbacher, W., Shimizu, K., García-Sanz, R., Durie, B., Legieć, W., Krejčí, M., Laribi, K., Zhu, L., Cheng, P., Warner, D., & Roodman, G. D.", year: 2018, title: "Denosumab versus zoledronic acid in bone disease treatment of newly diagnosed multiple myeloma: An international, double-blind, double-dummy, randomised, controlled, phase 3 study", journal: "The Lancet Oncology", doi: "https://doi.org/10.1016/S1470-2045(18)30072-X" },
+          { authors: "Scagliotti, G. V., Hirsh, V., Siena, S., Henry, D. H., Woll, P. J., Manegold, C., Solal-Celigny, P., Rodriguez, G., Krzakowski, M., Mehta, N. D., Lipton, L., García-Sáenz, J. A., Pereira, J. R., Prabhash, K., Ciuleanu, T.-E., Kanarev, V., Wang, H., Balakumaran, A., & Jacobs, I.", year: 2012, title: "Overall Survival Improvement in Patients with Lung Cancer and Bone Metastases Treated with Denosumab Versus Zoledronic Acid: Subgroup Analysis from a Randomized Phase 3 Study", journal: "Journal of Thoracic Oncology", doi: "https://doi.org/10.1097/JTO.0b013e31826aec2b" },
+          { authors: "Smith, M. R., Halabi, S., Ryan, C. J., Hussain, A., Vogelzang, N., Stadler, W., Hauke, R. J., Monk, J. P., Saylor, P., Bhoopalam, N., Saad, F., Sanford, B., Kelly, W. K., Morris, M., & Small, E. J.", year: 2014, title: "Randomized Controlled Trial of Early Zoledronic Acid in Men With Castration-Sensitive Prostate Cancer and Bone Metastases: Results of CALGB 90202 (Alliance)", journal: "Journal of Clinical Oncology", doi: "https://doi.org/10.1200/JCO.2013.51.6500" },
+          { authors: "Ueno, S., Mizokami, A., Fukagai, T., Fujimoto, N., Oh-Oka, H., Kondo, Y., Arai, G., Ide, H., Horie, S., Ueki, O., Kawaguchi, K., Shimamura, M., Orito, M., Ishida, T., Ikeda, D., & Namiki, M.", year: 2013, title: "Efficacy of Combined Androgen Blockade with Zoledronic Acid Treatment in Prostate Cancer with Bone Metastasis: The ZABTON-PC (Zoledronic Acid/Androgen Blockade Trial on Prostate Cancer) Study", journal: "ANTICANCER RESEARCH" },
+          { authors: "von Minckwitz, G., Rezai, M., Tesch, H., Huober, J., Gerber, B., Zahm, D. M., Hilfrich, J., Costa, S. D., Dubsky, P., Blohmer, J. U., Denkert, C., Hanusch, C., Jackisch, C., Kümmel, S., Fasching, P. A., Schneeweiss, A., Paepke, S., Untch, M., Burchardi, N., … German Breast Group and Austrian Breast and Colon Cancer Study Group Investigators.", year: 2016, title: "Zoledronate for patients with invasive residual disease after anthracyclines-taxane-based chemotherapy for early breast cancer—The Phase III NeoAdjuvant Trial Add-oN (NaTaN) study (GBG 36/ABCSG 29)", journal: "European Journal of Cancer (Oxford, England: 1990)", doi: "https://doi.org/10.1016/j.ejca.2016.05.015" }
         ],
         YES: [
-          { authors: "Thumbigere-Math V, et al.", year: 2012, title: "Bisphosphonate-related osteonecrosis of the jaw: clinical features, risk factors, management, and treatment outcomes of 34 patients", journal: "J Oral Maxillofac Surg" },
-          { authors: "Dimopoulos MA, et al.", year: 2009, title: "Reduction of osteonecrosis of the jaw (ONJ) after implementation of preventive measures in patients with multiple myeloma treated with zoledronic acid", journal: "Ann Oncol" }
-        ]
-      }
-    },
-    bisphosphonate_Ibandronate: {
-      not_specific: {
-        none: [
-          { authors: "Saad F, et al.", year: 2012, title: "Incidence, risk factors and management of osteonecrosis of the jaw in patients with bone metastases", journal: "J Clin Oncol" }
-        ],
-        YES: [
-          { authors: "Limited Data", year: 2022, title: "Insufficient data for Ibandronate in cancer patients", journal: "Clinical Data" }
-        ]
-      }
-    },
-    bisphosphonate_Clodronate: {
-      not_specific: {
-        none: [
-          { authors: "Saad F, et al.", year: 2012, title: "Incidence, risk factors and management of osteonecrosis of the jaw in patients with bone metastases", journal: "J Clin Oncol" }
-        ],
-        YES: [
-          { authors: "Limited Data", year: 2022, title: "Insufficient data for Clodronate in cancer patients", journal: "Clinical Data" }
-        ]
-      }
-    },
-    bisphosphonate_Zoledronate: {
-      not_specific: {
-        none: [
-          { authors: "Saad F, et al.", year: 2012, title: "Incidence, risk factors and management of osteonecrosis of the jaw in patients with bone metastases treated with zoledronic acid", journal: "J Clin Oncol" },
-          { authors: "Vahtsevanos K, et al.", year: 2009, title: "Bisphosphonate-associated osteonecrosis of the jaw: a review of 35 cases and an assessment of its frequency in multiple myeloma", journal: "Leuk Lymphoma" }
-        ],
-        YES: [
-          { authors: "Thumbigere-Math V, et al.", year: 2012, title: "Bisphosphonate-related osteonecrosis of the jaw: clinical features, risk factors, management, and treatment outcomes of 34 patients", journal: "J Oral Maxillofac Surg" },
-          { authors: "Dimopoulos MA, et al.", year: 2009, title: "Reduction of osteonecrosis of the jaw (ONJ) after implementation of preventive measures in patients with multiple myeloma treated with zoledronic acid", journal: "Ann Oncol" }
-        ]
-      },
-      'IV/SC': {
-        none: [
-          { authors: "Saad F, et al.", year: 2012, title: "Incidence, risk factors and management of osteonecrosis of the jaw in patients with bone metastases treated with zoledronic acid", journal: "J Clin Oncol" }
-        ],
-        YES: [
-          { authors: "Thumbigere-Math V, et al.", year: 2012, title: "Bisphosphonate-related osteonecrosis of the jaw: clinical features, risk factors, management, and treatment outcomes of 34 patients", journal: "J Oral Maxillofac Surg" }
+          { authors: "Bodem, J. P., Kargus, S., Eckstein, S., Saure, D., Engel, M., Hoffmann, J., & Freudlsperger, C.", year: 2015, title: "Incidence of bisphosphonate-related osteonecrosis of the jaw in high-risk patients undergoing surgical tooth extraction", journal: "Journal of Cranio-Maxillofacial Surgery", doi: "https://doi.org/10.1016/j.jcms.2015.02.018" },
+          { authors: "Ikesue, H., Mouri, M., Tomita, H., Hirabatake, M., Ikemura, M., Muroi, N., Yamamoto, S., Takenobu, T., Tomii, K., Kawakita, M., Katoh, H., Ishikawa, T., Yasui, H., & Hashida, T.", year: 2021, title: "Associated characteristics and treatment outcomes of medication-related osteonecrosis of the jaw in patients receiving denosumab or zoledronic acid for bone metastases", journal: "Supportive Care in Cancer", doi: "https://doi.org/10.1007/s00520-021-06018-x" },
+          { authors: "Manfredi, M., Mergoni, G., Goldoni, M., Salvagni, S., Merigo, E., Meleti, M., & Vescovi, P.", year: 2017, title: "A 5-year retrospective longitudinal study on the incidence and the risk factors of osteonecrosis of the jaws in patients treated with zoledronic acid for bone metastases from solid tumors", journal: "Medicina Oral Patología Oral y Cirugia Bucal", doi: "https://doi.org/10.4317/medoral.21728" },
+          { authors: "Saia, G., Blandamura, S., Bettini, G., Tronchet, A., Totola, A., Bedogni, G., Ferronato, G., Nocini, P. F., & Bedogni, A.", year: 2010, title: "Occurrence of Bisphosphonate-Related Osteonecrosis of the Jaw After Surgical Tooth Extraction", journal: "Journal of Oral and Maxillofacial Surgery", doi: "https://doi.org/10.1016/j.joms.2009.10.026" },
+          { authors: "Walter, C., Al-Nawas, B., Grötz, K. A., Thomas, C., Thüroff, J. W., Zinser, V., Gamm, H., Beck, J., & Wagner, W.", year: 2008, title: "Prevalence and Risk Factors of Bisphosphonate-Associated Osteonecrosis of the Jaw in Prostate Cancer Patients with Advanced Disease Treated with Zoledronate", journal: "European Urology", doi: "https://doi.org/10.1016/j.eururo.2008.06.070" },
+          { authors: "Yamazaki, T., Yamori, M., Ishizaki, T., Asai, K., Goto, K., Takahashi, K., Nakayama, T., & Bessho, K.", year: 2012, title: "Increased incidence of osteonecrosis of the jaw after tooth extraction in patients treated with bisphosphonates: A cohort study", journal: "International Journal of Oral and Maxillofacial Surgery", doi: "https://doi.org/10.1016/j.ijom.2012.06.020" }
         ]
       }
     },
     Denosumab: {
       'IV/SC': {
         none: [
-          { authors: "Johnson K, et al.", year: 2019, title: "Denosumab and osteonecrosis of the jaw: a systematic review and meta-analysis", journal: "J Bone Miner Res" },
-          { authors: "Stopeck AT, et al.", year: 2016, title: "Denosumab compared with zoledronic acid for the treatment of bone metastases in patients with advanced breast cancer: a randomized, double-blind study", journal: "J Clin Oncol" }
+          { authors: "Chawla, S., Henshaw, R., Seeger, L., Choy, E., Blay, J.-Y., Ferrari, S., Kroep, J., Grimer, R., Reichardt, P., Rutkowski, P., Schuetze, S., Skubitz, K., Staddon, A., Thomas, D., Qian, Y., & Jacobs, I.", year: 2013, title: "Safety and efficacy of denosumab for adults and skeletally mature adolescents with giant cell tumour of bone: Interim analysis of an open-label, parallel-group, phase 2 study", journal: "The Lancet Oncology", doi: "https://doi.org/10.1016/S1470-2045(13)70277-8" },
+          { authors: "Fizazi, K., Carducci, M., Smith, M., Damião, R., Brown, J., Karsh, L., Milecki, P., Shore, N., Rader, M., Wang, H., Jiang, Q., Tadros, S., Dansey, R., & Goessl, C.", year: 2011, title: "Denosumab versus zoledronic acid for treatment of bone metastases in men with castration-resistant prostate cancer: A randomised, double-blind study", journal: "Lancet (London, England)", doi: "https://doi.org/10.1016/S0140-6736(10)62344-6" },
+          { authors: "Gnant, M., Pfeiler, G., Dubsky, P. C., Hubalek, M., Greil, R., Jakesz, R., Wette, V., Balic, M., Haslbauer, F., Melbinger, E., Bjelic-Radisic, V., Artner-Matuschek, S., Fitzal, F., Marth, C., Sevelda, P., Mlineritsch, B., Steger, G. G., Manfreda, D., Exner, R., … Austrian Breast and Colorectal Cancer Study Group.", year: 2015, title: "Adjuvant denosumab in breast cancer (ABCSG-18): A multicentre, randomised, double-blind, placebo-controlled trial", journal: "Lancet (London, England)", doi: "https://doi.org/10.1016/S0140-6736(15)60995-3" },
+          { authors: "Henry, D. H., Costa, L., Goldwasser, F., Hirsh, V., Hungria, V., Prausova, J., Scagliotti, G. V., Sleeboom, H., Spencer, A., Vadhan-Raj, S., Von Moos, R., Willenbacher, W., Woll, P. J., Wang, J., Jiang, Q., Jun, S., Dansey, R., & Yeh, H.", year: 2011, title: "Randomized, Double-Blind Study of Denosumab Versus Zoledronic Acid in the Treatment of Bone Metastases in Patients With Advanced Cancer (Excluding Breast and Prostate Cancer) or Multiple Myeloma", journal: "Journal of Clinical Oncology", doi: "https://doi.org/10.1200/JCO.2010.31.3304" },
+          { authors: "Henry, D., Vadhan-Raj, S., Hirsh, V., Von Moos, R., Hungria, V., Costa, L., Woll, P. J., Scagliotti, G., Smith, G., Feng, A., Jun, S., Dansey, R., & Yeh, H.", year: 2014, title: "Delaying skeletal-related events in a randomized phase 3 study of denosumab versus zoledronic acid in patients with advanced cancer: An analysis of data from patients with solid tumors", journal: "Supportive Care in Cancer", doi: "https://doi.org/10.1007/s00520-013-2022-1" },
+          { authors: "Raje, N., Terpos, E., Willenbacher, W., Shimizu, K., García-Sanz, R., Durie, B., Legieć, W., Krejčí, M., Laribi, K., Zhu, L., Cheng, P., Warner, D., & Roodman, G. D.", year: 2018, title: "Denosumab versus zoledronic acid in bone disease treatment of newly diagnosed multiple myeloma: An international, double-blind, double-dummy, randomised, controlled, phase 3 study", journal: "The Lancet Oncology", doi: "https://doi.org/10.1016/S1470-2045(18)30072-X" },
+          { authors: "Scagliotti, G. V., Hirsh, V., Siena, S., Henry, D. H., Woll, P. J., Manegold, C., Solal-Celigny, P., Rodriguez, G., Krzakowski, M., Mehta, N. D., Lipton, L., García-Sáenz, J. A., Pereira, J. R., Prabhash, K., Ciuleanu, T.-E., Kanarev, V., Wang, H., Balakumaran, A., & Jacobs, I.", year: 2012, title: "Overall Survival Improvement in Patients with Lung Cancer and Bone Metastases Treated with Denosumab Versus Zoledronic Acid: Subgroup Analysis from a Randomized Phase 3 Study", journal: "Journal of Thoracic Oncology", doi: "https://doi.org/10.1097/JTO.0b013e31826aec2b" },
+          { authors: "Smith, M. R., Saad, F., Coleman, R., Shore, N., Fizazi, K., Tombal, B., Miller, K., Sieber, P., Karsh, L., Damião, R., Tammela, T. L., Egerdie, B., Van Poppel, H., Chin, J., Morote, J., Gómez-Veiga, F., Borkowski, T., Ye, Z., Kupic, A., … Goessl, C.", year: 2012, title: "Denosumab and bone-metastasis-free survival in men with castration-resistant prostate cancer: Results of a phase 3, randomised, placebo-controlled trial", journal: "Lancet (London, England)", doi: "https://doi.org/10.1016/S0140-6736(11)61226-9" }
         ],
         YES: [
-          { authors: "Limones A, et al.", year: 2020, title: "Medication-related osteonecrosis of the jaws (MRONJ) in cancer patients treated with denosumab VS. zoledronic acid: a systematic review and meta-analysis", journal: "J Bone Miner Res" },
-          { authors: "Saad F, et al.", year: 2021, title: "Incidence of osteonecrosis of the jaw in patients with bone metastases from solid tumors and multiple myeloma treated with denosumab or zoledronic acid", journal: "J Clin Oncol" }
+          { authors: "Ikesue, H., Mouri, M., Tomita, H., Hirabatake, M., Ikemura, M., Muroi, N., Yamamoto, S., Takenobu, T., Tomii, K., Kawakita, M., Katoh, H., Ishikawa, T., Yasui, H., & Hashida, T.", year: 2021, title: "Associated characteristics and treatment outcomes of medication-related osteonecrosis of the jaw in patients receiving denosumab or zoledronic acid for bone metastases", journal: "Supportive Care in Cancer", doi: "https://doi.org/10.1007/s00520-021-06018-x" }
         ]
       }
     },
-    not_specific: {
-      not_specific: {
-        none: [
-          { authors: "General Reference", year: 2022, title: "General MRONJ risk assessment guidelines for cancer patients", journal: "Clinical Guidelines" }
-        ],
+    mixed: {
+      mixed: {
         YES: [
-          { authors: "General Reference", year: 2022, title: "General MRONJ risk assessment guidelines for cancer patients", journal: "Clinical Guidelines" }
+          { authors: "Bracchi, P., Zecca, E., Brunelli, C., Miceli, R., Tinè, G., Maniezzo, M., Lo Dico, S., Caputo, M., Shkodra, M., & Caraceni, A. T.", year: 2023, title: "A real-world study on the prevalence and risk factors of medication related osteonecrosis of the jaw in cancer patients with bone metastases treated with Denosumab", journal: "Cancer Medicine", doi: "https://doi.org/10.1002/cam4.6429" },
+          { authors: "Hasegawa, T., Ueda, N., Yamada, Si., Kato, S., Iwata, E., Hayashida, S., Kojima, Y., Shinohara, M., Tojo, I., Nakahara, H., Yamaguchi, T., Kirita, T., Kurita, H., Shibuya, Y., Soutome, S., Akashi, M., & Japanese Study Group of Co-operative Dentistry with Medicine (JCDM).", year: 2021, title: "Denosumab-related osteonecrosis of the jaw after tooth extraction and the effects of a short drug holiday in cancer patients: A multicenter retrospective study", journal: "Osteoporosis International", doi: "https://doi.org/10.1007/s00198-021-05995-3" },
+          { authors: "Soutome, S., Hayashida, S., Funahara, M., Sakamoto, Y., Kojima, Y., Yanamoto, S., & Umeda, M.", year: 2018, title: "Factors affecting development of medication-related osteonecrosis of the jaw in cancer patients receiving high-dose bisphosphonate or denosumab therapy: Is tooth extraction a risk factor?", journal: "PLOS ONE", doi: "https://doi.org/10.1371/journal.pone.0201343" }
         ]
       }
     }

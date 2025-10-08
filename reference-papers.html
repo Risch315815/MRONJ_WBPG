@@ -231,7 +231,7 @@
   <div class="reference-container">
     <div class="reference-header">
       <h1>MRONJ風險評估文獻參考</h1>
-      <p>基於統計分析的各類藥物MRONJ發生率參考文獻</p>
+      <p>基於最新系統性文獻回顧的完整參考資料 (更新至2025年9月)</p>
     </div>
     
     <div class="search-box">
@@ -243,6 +243,7 @@
       <button class="filter-btn" data-filter="low">低風險</button>
       <button class="filter-btn" data-filter="medium">中度風險</button>
       <button class="filter-btn" data-filter="high">高風險</button>
+      <button class="filter-btn" data-filter="comprehensive">完整文獻</button>
     </div>
     
     <div id="referenceContent">
@@ -421,6 +422,7 @@
                   <div class="paper-title">${paper.title}</div>
                   <div class="paper-journal">${paper.journal}</div>
                   <div class="paper-year">${paper.year}</div>
+                  ${paper.doi ? `<div class="paper-doi" style="color: #007AFF; font-size: 0.8em; margin-top: 5px;"><a href="${paper.doi}" target="_blank" style="color: #007AFF; text-decoration: none;">${paper.doi}</a></div>` : ''}
                 </li>
               `;
             });
@@ -434,6 +436,108 @@
           html += '</div>';
         });
         
+        // Add comprehensive reference section
+        html += `
+          <div class="risk-category-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-left: 5px solid #6c757d;">
+            <div class="category-title">
+              <span class="risk-badge" style="background-color: #6c757d;">完整文獻參考</span>
+              <span>基於最新系統性文獻回顧的完整參考資料</span>
+            </div>
+        `;
+        
+        // Add references by indication and medication type
+        const indicationGroups = [
+          { name: '骨質疏鬆症', key: 'osteoporosis', color: '#28a745' },
+          { name: '癌症', key: 'cancer', color: '#dc3545' }
+        ];
+        
+        indicationGroups.forEach(indication => {
+          html += `
+            <div class="medication-group">
+              <div class="medication-title" style="color: ${indication.color}; font-size: 1.6em; margin-bottom: 20px;">
+                ${indication.name}相關文獻
+              </div>
+          `;
+          
+          const indicationData = MRONJReferences[indication.key];
+          if (indicationData) {
+            Object.keys(indicationData).forEach(medication => {
+              if (medication === 'none') return;
+              
+              const medicationData = indicationData[medication];
+              const medicationName = medication === 'bisphosphonate' ? '雙磷酸鹽類' : 
+                                   medication === 'Denosumab' ? 'Denosumab' : 
+                                   medication === 'Romosuzumab' ? 'Romosuzumab' : 
+                                   medication === 'mixed' ? '混合藥物' : medication;
+              
+              html += `
+                <div style="margin-bottom: 25px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 8px;">
+                  <h4 style="color: #495057; margin-bottom: 15px; font-size: 1.2em;">${medicationName}</h4>
+              `;
+              
+              Object.keys(medicationData).forEach(route => {
+                if (route === 'none') return;
+                
+                const routeData = medicationData[route];
+                const routeName = route === 'IV/SC' ? '靜脈/皮下注射' : 
+                                route === 'oral' ? '口服' : 
+                                route === 'mixed' ? '混合給藥途徑' : route;
+                
+                html += `
+                  <div style="margin-bottom: 20px;">
+                    <h5 style="color: #6c757d; margin-bottom: 10px; font-size: 1.1em;">${routeName}</h5>
+                `;
+                
+                Object.keys(routeData).forEach(invasive => {
+                  const invasiveName = invasive === 'none' ? '非侵入性治療' : 
+                                     invasive === 'YES' ? '侵入性治療' : invasive;
+                  const papers = routeData[invasive];
+                  
+                  if (papers && papers.length > 0) {
+                    html += `
+                      <div style="margin-bottom: 15px;">
+                        <h6 style="color: #868e96; margin-bottom: 8px; font-size: 1em;">${invasiveName}</h6>
+                        <ul style="list-style: none; padding: 0;">
+                    `;
+                    
+                    papers.forEach(paper => {
+                      allReferences.push({
+                        ...paper,
+                        category: 'comprehensive',
+                        medication: `${indication.name} - ${medicationName} - ${routeName} - ${invasiveName}`,
+                        incidence: 'N/A'
+                      });
+                      
+                      html += `
+                        <li style="background: white; margin-bottom: 8px; padding: 12px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                          <div style="font-weight: bold; color: #2c3e50; margin-bottom: 4px;">${paper.authors}</div>
+                          <div style="font-style: italic; color: #34495e; margin-bottom: 4px;">${paper.title}</div>
+                          <div style="color: #7f8c8d; font-size: 0.9em; margin-bottom: 4px;">${paper.journal}</div>
+                          <div style="color: #95a5a6; font-size: 0.9em;">${paper.year}</div>
+                          ${paper.doi ? `<div style="color: #007AFF; font-size: 0.8em; margin-top: 4px;"><a href="${paper.doi}" target="_blank" style="color: #007AFF; text-decoration: none;">${paper.doi}</a></div>` : ''}
+                        </li>
+                      `;
+                    });
+                    
+                    html += `
+                        </ul>
+                      </div>
+                    `;
+                  }
+                });
+                
+                html += `</div>`;
+              });
+              
+              html += `</div>`;
+            });
+          }
+          
+          html += `</div>`;
+        });
+        
+        html += `</div>`;
+        
         referenceContent.innerHTML = html;
         filteredReferences = [...allReferences];
       }
@@ -443,10 +547,22 @@
         const sections = document.querySelectorAll('.risk-category-section');
         
         sections.forEach(section => {
-          if (filter === 'all' || section.dataset.category === filter) {
+          if (filter === 'all') {
             section.style.display = 'block';
+          } else if (filter === 'comprehensive') {
+            // Show only comprehensive reference section
+            if (section.querySelector('.risk-badge') && section.querySelector('.risk-badge').textContent.includes('完整文獻參考')) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
           } else {
-            section.style.display = 'none';
+            // Show only risk-based sections
+            if (section.dataset.category === filter) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
           }
         });
         
