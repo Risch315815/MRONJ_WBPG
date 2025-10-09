@@ -6,59 +6,62 @@ class MRONJRiskCalculator {
     // Risk incidence data from statistical analysis
     this.incidenceData = {
       osteoporosis: {
-        none: { none: { none: 0.04, YES: 'N/A' } },
+        none: { none: { none: 0.04, YES: 0.10 } },
         Bisphosphonate: {
-          not_specific: { none: 2.60, YES: 8.42 },
-          oral: { none: 1.56, YES: 2.11 },
-          'IV/SC': { none: 2.28, YES: 15.12 }
+          not_specific: { none: 0.21, YES: 2.50 },
+          oral: { none: 0.21, YES: 1.61 },
+          'IV/SC': { none: 0.24, YES: 15.12 }
         },
         Alendronate: {
-          oral: { none: 0.78, YES: 7.97 }
+          oral: { none: 0.24, YES: 4.97 }
         },
         Risedronate: {
-          oral: { none: 4.20, YES: 'N/A' }
+          oral: { none: 0.13, YES: 'N/A' }
         },
         Ibandronate: {
-          oral: { none: 3.22, YES: 5 },
+          oral: { none: 0.08, YES: 5.00 },
           'IV/SC': { none: 4.85, YES: 'N/A' }
         },
         Clodronate: {
-          oral: { none: 2.28, YES: 'N/A' }
+          oral: { none: 1.05, YES: 'N/A' }
         },
         Zoledronate: {
-          'IV/SC': { none: 1.28, YES: 15.12 }
+          'IV/SC': { none: 0.02, YES: 15.12 }
         },
         Pamidronate: {
           'IV/SC': { none: 0.06, YES: 'N/A' }
         },
         Denosumab: {
-          'IV/SC': { none: 0.01, YES: 1.21 }
+          'IV/SC': { none: 0.04, YES: 0.93 }
         },
         Romosuzumab: {
-          'IV/SC': { none: 0.49, YES: 'N/A' }
+          'IV/SC': { none: 0.04, YES: 'N/A' }
         },
         not_specific: {
           not_specific: { none: 0.20, YES: 1.48 }
         }
       },
       cancer: {
-        none: { none: { none: 0.27, YES: 'N/A' } },
+        none: { none: { none: 0.09, YES: 'N/A' } },
         Bisphosphonate: {
-          oral: { none: 2.74, YES: 12.17 },
-          'IV/SC': { none: 2.74, YES: 12.17 }
+          oral: { none: 0.88, YES: 9.17 },
+          'IV/SC': { none: 0.88, YES: 9.17 }
         },
         Ibandronate: {
-          oral: { none: 1.21, YES: 'N/A' },
-          'IV/SC': { none: 1.21, YES: 'N/A' }
+          oral: { none: 0.39, YES: 'N/A' },
+          'IV/SC': { none: 0.39, YES: 'N/A' }
         },
         Clodronate: {
-          oral: { none: 0.50, YES: 'N/A' }
+          oral: { none: 0.16, YES: 'N/A' }
         },
         Zoledronate: {
-          'IV/SC': { none: 2.42, YES: 'N/A' }
+          'IV/SC': { none: 1.21, YES: 10.81 }
         },
         Denosumab: {
-          'IV/SC': { none: 3.75, YES: 15.60 }
+          'IV/SC': { none: 1.74, YES: 12.56 }
+        },
+        Romosozumab: {
+          'IV/SC': { none: 'N/A', YES: 'N/A' }
         },
         Bevacizumab: {
           'IV/SC': { none: 'N/A', YES: 'N/A' }
@@ -70,7 +73,7 @@ class MRONJRiskCalculator {
           oral: { none: 'N/A', YES: 'N/A' }
         },
         not_specific: {
-          not_specific: { none: 3.34, YES: 12.78 }
+          not_specific: { none: 1.09, YES: 9.92 }
         }
       }
     };

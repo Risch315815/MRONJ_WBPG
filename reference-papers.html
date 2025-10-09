@@ -125,15 +125,16 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
     
-    .paper-authors {
+    .paper-title {
       font-weight: bold;
       color: #2c3e50;
       margin-bottom: 5px;
     }
     
-    .paper-title {
+    .paper-authors {
       font-style: italic;
       color: #34495e;
+      font-size: 0.9em;
       margin-bottom: 5px;
     }
     
@@ -254,6 +255,45 @@
   <script src="assets/js/mronj-references.js"></script>
   <script src="assets/js/mronj-risk-algorithm.js"></script>
   <script>
+    // Function to generate medication names dynamically
+    function generateMedicationName(indication, medication, route, invasive, language = 'zh') {
+      // Indication mapping
+      const indicationMap = {
+        'osteoporosis': { zh: '骨質疏鬆症', en: 'Osteoporosis' },
+        'cancer': { zh: '癌症', en: 'Cancer' }
+      };
+      
+      // Medication mapping
+      const medicationMap = {
+        'bisphosphonate': { zh: '雙磷酸鹽類', en: 'Bisphosphonates' },
+        'Denosumab': { zh: 'Denosumab', en: 'Denosumab' },
+        'Romosuzumab': { zh: 'Romosuzumab', en: 'Romosuzumab' }
+      };
+      
+      // Route mapping
+      const routeMap = {
+        'oral': { zh: '口服', en: 'oral' },
+        'IV/SC': { zh: '注射', en: 'injection' }
+      };
+      
+      // Invasive treatment mapping
+      const invasiveMap = {
+        false: { zh: '無侵入性牙科治療', en: 'no invasive dental treatment' },
+        true: { zh: '侵入性牙科治療', en: 'invasive dental treatment' }
+      };
+      
+      const indicationText = indicationMap[indication]?.[language] || indication;
+      const medicationText = medicationMap[medication]?.[language] || medication;
+      const routeText = routeMap[route]?.[language] || route;
+      const invasiveText = invasiveMap[invasive]?.[language] || '';
+      
+      if (language === 'zh') {
+        return `[${indicationText}] ${medicationText} (${routeText}) + ${invasiveText}`;
+      } else {
+        return `[${indicationText}] ${medicationText} (${routeText}) + ${invasiveText}`;
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       const calculator = new MRONJRiskCalculator();
       const referenceContent = document.getElementById('referenceContent');
@@ -270,10 +310,8 @@
             name: '低風險',
             class: 'low-risk',
             badge: 'low',
-            threshold: '< 2%',
             medications: [
               {
-                name: '骨質疏鬆症 - 口服雙磷酸鹽類',
                 indication: 'osteoporosis',
                 medication: 'bisphosphonate',
                 route: 'oral',
@@ -281,7 +319,6 @@
                 incidence: 0.21
               },
               {
-                name: '骨質疏鬆症 - 靜脈/皮下雙磷酸鹽類',
                 indication: 'osteoporosis',
                 medication: 'bisphosphonate',
                 route: 'IV/SC',
@@ -289,7 +326,6 @@
                 incidence: 0.24
               },
               {
-                name: '骨質疏鬆症 - Denosumab',
                 indication: 'osteoporosis',
                 medication: 'Denosumab',
                 route: 'IV/SC',
@@ -297,7 +333,6 @@
                 incidence: 0.04
               },
               {
-                name: '骨質疏鬆症 - Romosuzumab',
                 indication: 'osteoporosis',
                 medication: 'Romosuzumab',
                 route: 'IV/SC',
@@ -310,10 +345,8 @@
             name: '中度風險',
             class: 'medium-risk',
             badge: 'medium',
-            threshold: '2-8%',
             medications: [
               {
-                name: '骨質疏鬆症 - 口服雙磷酸鹽類 (侵入性治療)',
                 indication: 'osteoporosis',
                 medication: 'bisphosphonate',
                 route: 'oral',
@@ -321,7 +354,6 @@
                 incidence: 1.61
               },
               {
-                name: '骨質疏鬆症 - Denosumab (侵入性治療)',
                 indication: 'osteoporosis',
                 medication: 'Denosumab',
                 route: 'IV/SC',
@@ -329,7 +361,6 @@
                 incidence: 0.93
               },
               {
-                name: '癌症 - 雙磷酸鹽類',
                 indication: 'cancer',
                 medication: 'bisphosphonate',
                 route: 'IV/SC',
@@ -337,7 +368,6 @@
                 incidence: 0.88
               },
               {
-                name: '癌症 - Denosumab',
                 indication: 'cancer',
                 medication: 'Denosumab',
                 route: 'IV/SC',
@@ -350,10 +380,8 @@
             name: '高風險',
             class: 'high-risk',
             badge: 'high',
-            threshold: '> 8%',
             medications: [
               {
-                name: '骨質疏鬆症 - 靜脈/皮下雙磷酸鹽類 (侵入性治療)',
                 indication: 'osteoporosis',
                 medication: 'bisphosphonate',
                 route: 'IV/SC',
@@ -361,7 +389,6 @@
                 incidence: 15.12
               },
               {
-                name: '癌症 - 雙磷酸鹽類 (侵入性治療)',
                 indication: 'cancer',
                 medication: 'bisphosphonate',
                 route: 'IV/SC',
@@ -369,7 +396,6 @@
                 incidence: 9.17
               },
               {
-                name: '癌症 - Denosumab (侵入性治療)',
                 indication: 'cancer',
                 medication: 'Denosumab',
                 route: 'IV/SC',
@@ -387,7 +413,6 @@
             <div class="risk-category-section ${category.class}" data-category="${category.badge}">
               <div class="category-title">
                 <span class="risk-badge ${category.badge}">${category.name}</span>
-                <span>發生率: ${category.threshold}</span>
               </div>
           `;
           
@@ -399,9 +424,12 @@
               med.invasive
             );
             
+            // Generate the medication name dynamically
+            const medicationName = generateMedicationName(med.indication, med.medication, med.route, med.invasive, 'zh');
+            
             html += `
               <div class="medication-group">
-                <div class="medication-title">${med.name}</div>
+                <div class="medication-title">${medicationName}</div>
                 <div class="incidence-info">
                   統計發生率: ${med.incidence === 'N/A' ? '<span style="color: #6c757d; font-style: italic;">資料不足</span>' : med.incidence + '%'}
                 </div>
@@ -412,14 +440,14 @@
               allReferences.push({
                 ...paper,
                 category: category.badge,
-                medication: med.name,
+                medication: medicationName,
                 incidence: med.incidence
               });
               
               html += `
                 <li class="paper-item">
-                  <div class="paper-authors">${paper.authors}</div>
                   <div class="paper-title">${paper.title}</div>
+                  <div class="paper-authors">${paper.authors}</div>
                   <div class="paper-journal">${paper.journal}</div>
                   <div class="paper-year">${paper.year}</div>
                   ${paper.doi ? `<div class="paper-doi" style="color: #007AFF; font-size: 0.8em; margin-top: 5px;"><a href="${paper.doi}" target="_blank" style="color: #007AFF; text-decoration: none;">${paper.doi}</a></div>` : ''}
@@ -510,8 +538,8 @@
                       
                       html += `
                         <li style="background: white; margin-bottom: 8px; padding: 12px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                          <div style="font-weight: bold; color: #2c3e50; margin-bottom: 4px;">${paper.authors}</div>
-                          <div style="font-style: italic; color: #34495e; margin-bottom: 4px;">${paper.title}</div>
+                          <div style="font-weight: bold; color: #2c3e50; margin-bottom: 4px;">${paper.title}</div>
+                          <div style="font-style: italic; color: #34495e; font-size: 0.9em; margin-bottom: 4px;">${paper.authors}</div>
                           <div style="color: #7f8c8d; font-size: 0.9em; margin-bottom: 4px;">${paper.journal}</div>
                           <div style="color: #95a5a6; font-size: 0.9em;">${paper.year}</div>
                           ${paper.doi ? `<div style="color: #007AFF; font-size: 0.8em; margin-top: 4px;"><a href="${paper.doi}" target="_blank" style="color: #007AFF; text-decoration: none;">${paper.doi}</a></div>` : ''}
