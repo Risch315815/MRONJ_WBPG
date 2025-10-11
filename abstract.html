@@ -6,11 +6,35 @@
   <title>研究摘要 - MRONJ風險評估</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
+    .language-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      margin-top: 20px;
+    }
+    
+    .language-btn {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      color: #212529;
+      padding: 8px 20px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .language-btn.active {
+      background-color: #28a745;
+      color: white;
+      border-color: #28a745;
+    }
+    
     .font-size-selector {
       display: flex;
       justify-content: center;
       margin-bottom: 25px;
-      margin-top: 20px;
     }
     
     .font-size-btn {
@@ -145,6 +169,17 @@
 </head>
 <body>
   <div class="container normal-font">
+    <div class="language-selector" style="display: flex; justify-content: center; margin-bottom: 15px;">
+      <button class="language-btn active" data-lang="zh">
+        <span class="zh-text">中文</span>
+        <span class="en-text" style="display: none;">中文</span>
+      </button>
+      <button class="language-btn" data-lang="en">
+        <span class="zh-text">English</span>
+        <span class="en-text" style="display: none;">English</span>
+      </button>
+    </div>
+    
     <div class="font-size-selector">
       <button class="font-size-btn active" data-size="normal">
         <span class="zh-text">正常</span>
@@ -204,15 +239,57 @@
       <div class="section">
         <div class="section-title zh-text">方法</div>
         <div class="section-title en-text" style="display: none;">Method</div>
-        <div class="section-text zh-text">我們進行了MRONJ發生率的統合分析，按適應症（骨質疏鬆症、癌症）、藥物類別（雙磷酸鹽、地諾單抗、羅莫索單抗）、給藥途徑（口服、靜脈/皮下）和侵入性牙科治療的存在進行分層。同質性層使用固定效應模型進行合併；異質性或稀疏層以事件加權比例進行總結。這些數據填充了平台的風險顯示和雙語患者手冊。</div>
-        <div class="section-text en-text" style="display: none;">We performed a meta-analysis of MRONJ incidence stratified by indication (osteoporosis, cancer), drug class (bisphosphonate, denosumab, romosozumab), administration route (oral, IV/SC), and presence of invasive dental treatment. Homogeneous strata were pooled with fixed-effects models; heterogeneous or sparse strata were summarized as event-weighted proportions. These data populate the platform's risk display and bilingual patient handouts.</div>
+        <div class="section-text zh-text">我們進行了MRONJ發生率的統合分析，按以下因素進行分層：<br><br>
+        • 適應症<br>
+        &nbsp;&nbsp;- 骨質疏鬆症<br>
+        &nbsp;&nbsp;- 癌症<br><br>
+        • 藥物類別<br>
+        &nbsp;&nbsp;- 雙磷酸鹽<br>
+        &nbsp;&nbsp;- Denosumab<br>
+        &nbsp;&nbsp;- Romosozumab<br><br>
+        • 給藥途徑<br>
+        &nbsp;&nbsp;- 口服<br>
+        &nbsp;&nbsp;- 靜脈/皮下<br><br>
+        • 侵入性牙科治療之有無<br><br>
+        同質性層使用固定效應模型進行合併；異質性或稀疏層以事件加權比例進行總結。這些數據填充了平台的風險顯示和雙語患者手冊。</div>
+        <div class="section-text en-text" style="display: none;">We performed a meta-analysis of MRONJ incidence stratified by the following factors:<br><br>
+        • Indication<br>
+        &nbsp;&nbsp;- Osteoporosis<br>
+        &nbsp;&nbsp;- Cancer<br><br>
+        • Drug class<br>
+        &nbsp;&nbsp;- Bisphosphonate<br>
+        &nbsp;&nbsp;- Denosumab<br>
+        &nbsp;&nbsp;- Romosozumab<br><br>
+        • Administration route<br>
+        &nbsp;&nbsp;- Oral<br>
+        &nbsp;&nbsp;- IV/SC<br><br>
+        • Presence of invasive dental treatment<br><br>
+        Homogeneous strata were pooled with fixed-effects models; heterogeneous or sparse strata were summarized as event-weighted proportions. These data populate the platform's risk display and bilingual patient handouts.</div>
       </div>
 
       <div class="section">
         <div class="section-title zh-text">結果</div>
         <div class="section-title en-text" style="display: none;">Results</div>
-        <div class="section-text zh-text">在兩種適應症中，發生率從無藥物、僅藥物、到藥物加侵入性牙科治療呈階梯式增加（骨質疏鬆症：0.04% → 0.20% → 1.48%；癌症：0.09% → 1.09% → 9.92%）。各藥物類別的發生率大致一致，除了三個單一研究亞組需要謹慎解釋。這些梯度已嵌入平台的風險評估系統中。</div>
-        <div class="section-text en-text" style="display: none;">Across both indications, incidence increased stepwise from no medication, to medication only, to medication with invasive dental treatment (osteoporosis: 0.04% → 0.20% → 1.48%; cancer: 0.09% → 1.09% → 9.92%). Rates were broadly consistent across drug classes, with the exception of three single-study subgroups, interpreted cautiously. These gradients are embedded in the platform's risk-evaluation system.</div>
+        <div class="section-text zh-text">在兩種適應症中，發生率從無藥物、僅藥物、到藥物加侵入性牙科治療呈階梯式增加：<br><br>
+        • 骨質疏鬆症<br>
+        &nbsp;&nbsp;- 無藥物：0.04%<br>
+        &nbsp;&nbsp;- 僅藥物：0.20%<br>
+        &nbsp;&nbsp;- 藥物 + 侵入性牙科治療：1.48%<br><br>
+        • 癌症<br>
+        &nbsp;&nbsp;- 無藥物：0.09%<br>
+        &nbsp;&nbsp;- 僅藥物：1.09%<br>
+        &nbsp;&nbsp;- 藥物 + 侵入性牙科治療：9.92%<br><br>
+        各藥物類別的發生率大致一致，除了三個僅有單一研究數據的亞組需要謹慎解釋。這些梯度已嵌入平台的風險評估系統中。</div>
+        <div class="section-text en-text" style="display: none;">Across both indications, incidence increased stepwise from no medication, to medication only, to medication with invasive dental treatment:<br><br>
+        • Osteoporosis<br>
+        &nbsp;&nbsp;- No medication: 0.04%<br>
+        &nbsp;&nbsp;- Medication only: 0.20%<br>
+        &nbsp;&nbsp;- Medication + invasive dental treatment: 1.48%<br><br>
+        • Cancer<br>
+        &nbsp;&nbsp;- No medication: 0.09%<br>
+        &nbsp;&nbsp;- Medication only: 1.09%<br>
+        &nbsp;&nbsp;- Medication + invasive dental treatment: 9.92%<br><br>
+        Rates were broadly consistent across drug classes, with the exception of three single-study subgroups, interpreted cautiously. These gradients are embedded in the platform's risk-evaluation system.</div>
       </div>
 
       <div class="section">
@@ -225,8 +302,15 @@
       <div class="section keywords">
         <div class="section-title zh-text">關鍵詞</div>
         <div class="section-title en-text" style="display: none;">Keywords</div>
-        <div class="section-text zh-text">MRONJ、抗骨吸收藥物、拔牙、基於網路的患者教育、個人化牙科諮詢</div>
+        <div class="section-text zh-text">MRONJ、抗骨吸收藥物、拔牙、網頁平台互動式衛生教育、個人化牙科諮詢</div>
         <div class="section-text en-text" style="display: none;">MRONJ, antiresorptive medication, tooth extraction, web-based patient education, personalized dental counseling</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title zh-text">特別感謝</div>
+        <div class="section-title en-text" style="display: none;">Special Thanks</div>
+        <div class="section-text zh-text">特別感謝<b>陽明交通大學牙醫學系</b> <b>林元敏</b>教授 與 <b>林嘉澍</b>教授，在本計畫初始階段的啟發與無比寶貴的建議，以及一路以來的支持與鼓勵。</div>
+        <div class="section-text en-text" style="display: none;">Special thanks to Professor <b>Yuan-Min Lin</b> and <b>Chia-Shu Lin</b> from NYCU College of Dentistry, for your inspiration and fabulous suggestions, along with the ever-lasting support and encouragement.</div>
       </div>
 
       <div class="button-container">
@@ -250,6 +334,7 @@
       // Language display functionality
       const zhTexts = document.querySelectorAll('.zh-text');
       const enTexts = document.querySelectorAll('.en-text');
+      const languageBtns = document.querySelectorAll('.language-btn');
       
       function applyLanguagePreference() {
         const storedLang = localStorage.getItem('preferredLanguage') || 'zh';
@@ -260,7 +345,24 @@
           zhTexts.forEach(el => el.style.display = 'block');
           enTexts.forEach(el => el.style.display = 'none');
         }
+        
+        // Update active language button
+        languageBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.lang === storedLang) {
+            btn.classList.add('active');
+          }
+        });
       }
+      
+      // Language switching functionality
+      languageBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.dataset.lang;
+          localStorage.setItem('preferredLanguage', lang);
+          applyLanguagePreference();
+        });
+      });
       
       // Apply language preference when page loads
       applyLanguagePreference();
