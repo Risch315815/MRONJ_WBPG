@@ -224,6 +224,12 @@
       color: #6c757d;
       font-size: 1.2em;
     }
+    
+    .reference-link:hover {
+      background: #0056b3 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+    }
   </style>
 </head>
 <body>
@@ -255,6 +261,13 @@
   <script src="assets/js/mronj-references.js"></script>
   <script src="assets/js/mronj-risk-algorithm.js"></script>
   <script>
+    // Function to generate individual reference page URLs
+    function generateReferencePageUrl(indication, medication, route, invasive) {
+      const invasiveStr = invasive ? 'invasive' : 'noninvasive';
+      const routeSafe = route.replace('/', '-');
+      return `reference-${indication}-${medication}-${routeSafe}-${invasiveStr}.html`;
+    }
+
     // Function to generate medication names dynamically
     function generateMedicationName(indication, medication, route, invasive, language = 'zh') {
       // Indication mapping
@@ -427,9 +440,17 @@
             // Generate the medication name dynamically
             const medicationName = generateMedicationName(med.indication, med.medication, med.route, med.invasive, 'zh');
             
+            // Generate the reference page URL
+            const referencePageUrl = generateReferencePageUrl(med.indication, med.medication, med.route, med.invasive);
+            
             html += `
               <div class="medication-group">
-                <div class="medication-title">${medicationName}</div>
+                <div class="medication-title" style="display: flex; justify-content: space-between; align-items: center;">
+                  <span>${medicationName}</span>
+                  <a href="${referencePageUrl}" class="reference-link" style="background: #007AFF; color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9em; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    查看詳細文獻
+                  </a>
+                </div>
                 <div class="incidence-info">
                   統計發生率: ${med.incidence === 'N/A' ? '<span style="color: #6c757d; font-style: italic;">資料不足</span>' : med.incidence + '%'}
                 </div>

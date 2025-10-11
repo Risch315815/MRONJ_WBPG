@@ -1,0 +1,25 @@
+Quantifying MRONJ Risk Before and After Invasive Dental Procedures in Antiresorptive Medication-treated Patients: A Meta-analysis-informed Web Platform
+
+
+Chen-Chieh Hsu1, Shyng-Shiou Yuan2, Yen-Yun Wang3
+1 Dental Department, Ideal Dental Clinic, Kaohsiung, Taiwan
+2 Graduate Institute of Medicine, College of Medicine, Kaohsiung Medical University, Kaohsiung, Taiwan
+3 School of Dentistry, College of Dental Medicine, Kaohsiung Medical University, Kaohsiung, Taiwan
+
+
+Introduction
+Medication-related osteonecrosis of the jaw (MRONJ) is uncommon, yet prolonged pain and repeat interventions can undermine patient–clinician trust. Many patients receiving antiresorptive therapy are unaware that invasive dental treatment markedly increases risk, and dentists face time constraints in verifying medications and providing tailored counseling. A concise, evidence-based platform that records antiresorptive exposure and communicates individualized, procedure-specific risk is needed. 
+
+Objective
+To synthesize pooled MRONJ incidence by indication, medication, administration route, and invasiveness of dental treatment. These data would support a web-based, personalized risk-evaluation platform for patient education.
+
+Method
+We performed a meta-analysis of MRONJ incidence stratified by indication (osteoporosis, cancer), drug class (bisphosphonate, denosumab, romosozumab), administration route (oral, IV/SC), and presence of invasive dental treatment. Homogeneous strata were pooled with fixed-effects models; heterogeneous or sparse strata were summarized as event-weighted proportions. These data populate the platform’s risk display and bilingual patient handouts.
+
+Results
+Across both indications, incidence increased stepwise from no medication, to medication only, to medication with invasive dental treatment (osteoporosis: 0.04% → 0.20% → 1.48%; cancer: 0.09% → 1.09% → 9.92%). Rates were broadly consistent across drug classes, with the exception of three single-study subgroups, interpreted cautiously. These gradients are embedded in the platform’s risk-evaluation system.
+
+Conclusion
+MRONJ risk rises by approximately an order of magnitude when invasive dental treatment is performed in patients exposed to antiresorptive medications, across indications and drug classes. Embedding these pooled figures in a chair-side web tool enables rapid medication identification and personalized counseling, supporting informed consent and satisfied treatment.
+
+Keywords: MRONJ, antiresorptive medication, tooth extraction, web-based patient education, personalized dental counseling.
