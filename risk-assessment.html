@@ -656,16 +656,23 @@
       console.log('getMedicationForReference - patientData:', patientData);
       console.log('getMedicationForReference - hasAntiresorptiveMed:', patientData.hasAntiresorptiveMed);
       console.log('getMedicationForReference - drugName:', patientData.drugName);
+      console.log('getMedicationForReference - medications:', patientData.medications);
       
       if (!patientData.hasAntiresorptiveMed) {
         console.log('getMedicationForReference - returning none because hasAntiresorptiveMed is false');
         return 'none';
       }
       
-      // Use the medication that contributed to the highest risk assessment
-      // This is set by the algorithm when processing multiple medications
+      // Check medications array first (for multiple medications)
+      if (patientData.medications && patientData.medications.length > 0) {
+        const medication = patientData.medications[0].drugName;
+        console.log('getMedicationForReference - returning medication from medications array:', medication);
+        return medication;
+      }
+      
+      // Fallback to legacy drugName field
       const medication = patientData.drugName || 'none';
-      console.log('getMedicationForReference - returning medication:', medication);
+      console.log('getMedicationForReference - returning medication from legacy field:', medication);
       return medication;
     }
     
@@ -675,8 +682,22 @@
         return 'not_specific';
       }
       
-      // Use the administration route from the medication that contributed to highest risk
+      // Check medications array first (for multiple medications)
+      if (patientData.medications && patientData.medications.length > 0) {
+        const route = patientData.medications[0].administrationRoute;
+        console.log('getRouteForReference - route from medications array:', route);
+        
+        // Map Chinese route names to algorithm format
+        if (route === '口服') return 'oral';
+        if (route === '注射') return 'IV/SC';
+        
+        // Return as-is if already in correct format
+        return route || 'not_specific';
+      }
+      
+      // Fallback to legacy administrationRoute field
       const route = patientData.administrationRoute;
+      console.log('getRouteForReference - route from legacy field:', route);
       
       // Map Chinese route names to algorithm format
       if (route === '口服') return 'oral';
