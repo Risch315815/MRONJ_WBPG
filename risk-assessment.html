@@ -585,7 +585,8 @@
                            med.administrationRoute === '注射' ? 'IV/SC' : 
                            med.administrationRoute;
               
-              const referenceUrl = `reference-detail.html?indication=${indication}&medication=${medication}&route=${route}&invasive=${invasive}&name=${encodeURIComponent(patientName)}`;
+              const referenceFileName = getReferenceFileName(indication, medication, route, invasive === 'true');
+              const referenceUrl = `${referenceFileName}?name=${encodeURIComponent(patientName)}`;
               
               referenceLinks.push(`
                 <a href="${referenceUrl}" style="
@@ -615,7 +616,8 @@
             const medication = getMedicationForReference(patientData);
             const route = getRouteForReference(patientData);
             
-            const referenceUrl = `reference-detail.html?indication=${indication}&medication=${medication}&route=${route}&invasive=${invasive}&name=${encodeURIComponent(patientName)}`;
+            const referenceFileName = getReferenceFileName(indication, medication, route, invasive === 'true');
+            const referenceUrl = `${referenceFileName}?name=${encodeURIComponent(patientName)}`;
             
             referenceLink = document.createElement('div');
             referenceLink.style.cssText = 'margin: 10px 0; text-align: right;';
@@ -674,6 +676,44 @@
       
       // Return as-is if already in correct format
       return route || 'not_specific';
+    }
+    
+    // Helper function to generate the correct reference file name
+    function getReferenceFileName(indication, medication, route, invasive) {
+      // Handle special cases for medication names
+      let medicationKey = medication;
+      
+      // Map specific bisphosphonates to general bisphosphonate category for file naming
+      const specificBisphosphonates = ['Alendronate', 'Risedronate', 'Ibandronate', 'Clodronate', 'Zoledronate', 'Pamidronate'];
+      if (specificBisphosphonates.includes(medication)) {
+        medicationKey = 'bisphosphonate';
+      }
+      
+      // Handle Romosuzumab vs Romosozumab naming inconsistency
+      if (medication === 'Romosozumab') {
+        medicationKey = 'Romosuzumab';
+      }
+      
+      // Map route names to file naming convention
+      let routeKey = route;
+      if (route === 'oral') {
+        routeKey = 'oral';
+      } else if (route === 'IV/SC') {
+        routeKey = 'IV-SC';
+      } else {
+        routeKey = 'not_specific';
+      }
+      
+      // Map invasive status to file naming convention
+      const invasiveKey = invasive ? 'invasive' : 'noninvasive';
+      
+      // Generate the file name
+      if (medicationKey === 'none') {
+        // For no medication cases, use a general reference
+        return 'reference-papers.html';
+      }
+      
+      return `reference-${indication}-${medicationKey}-${routeKey}-${invasiveKey}.html`;
     }
   </script>
 </body>
