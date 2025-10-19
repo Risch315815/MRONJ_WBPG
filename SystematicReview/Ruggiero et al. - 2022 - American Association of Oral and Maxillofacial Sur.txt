@@ -1,0 +1,2216 @@
+American Association of Oral and
+Maxillofacial Surgeons’ Position Paper
+on Medication-Related Osteonecrosis
+of the Jaws—2022 Update
+Salvatore L. Ruggiero, DMD, MD,* Thomas B. Dodson, DMD, MPH,y
+Tara Aghaloo, DDS, MD, PhD,z Eric R. Carlson, DMD, MD, EdM,x
+Brent B. Ward, DDS, MD,k and Deepak Kademani, DMD, MD{
+Strategies for management of patients with, or at risk for, medication-related osteonecrosis of the jaws
+(MRONJ) – formerly referred to as bisphosphonate-related osteonecrosis of the jaws (BRONJ)—were set
+forth in the American Association of Oral and Maxillofacial Surgeons (AAOMS) position papers in 2007,
+2009 and 2014. The position papers were developed by a committee appointed by the AAOMS Board
+of Trustees and comprising clinicians with extensive experience in caring for these patients, as well as clinical and basic science researchers. The knowledge base and experience in addressing MRONJ continues to
+evolve and expand, necessitating modifications and refinements to the previous position papers. Three
+members of the AAOMS Committee on Oral, Head, and Neck Oncologic and Reconstructive Surgery (COHNORS) and three authors of the 2014 position paper were appointed to serve as a working group to analyze
+the current literature and revise the guidance as indicated to reflect current knowledge in this field. This
+update contains revisions to diagnosis and management strategies and highlights the current research status. AAOMS maintains that it is vitally important for this information to be disseminated to other relevant
+healthcare professionals and organizations.
+Ó 2022 American Association of Oral and Maxillofacial Surgeons
+J Oral Maxillofac Surg 80:920-943, 2022
+Medications prescribed for dental and medical conditions have potential side effects that warrant a riskbenefit discussion. Where therapeutic margins are
+
+wide and complications are readily corrected, decisions are implemented in a straightforward fashion.
+Where therapeutic margins are wide but
+
+*Clinical Professor, Division of Oral and Maxillofacial Surgery,
+
+Private practice, Minnesota Oral and Facial Surgery and Minnesota
+
+Stony Brook School of Dental Medicine, Hofstra North Shore-LIJ
+
+Head and Neck Surgery, Minneapolis, Minn.
+
+School of Medicine, New York Center for Orthognathic and
+
+Conflict of Interest Disclosures: Dr Ruggiero serves as a consul-
+
+Maxillofacial Surgery, Lake Success, NY.
+
+tant for Amgen. Dr Dodson serves as a consultant for AAOMS. Dr
+
+yProfessor and Chair, University of Washington School of
+
+Aghaloo has received research grants from OMS Foundation and Am-
+
+Dentistry, Department of Oral and Maxillofacial Surgery, Seattle,
+Wash.
+
+gen. Dr Carlson receives book royalties from Wiley Blackwell, Quintessence, and Elsevier. Dr Ward serves as a consultant for AAOMS,
+
+zProfessor, Oral and Maxillofacial Surgery, UCLA School of
+
+AACMES, and OsteoScience. Dr Kademani serves as a consultant
+
+Dentistry, Los Angeles, Calif.
+
+for AAOMS and is the director of ABOMS.
+
+xProfessor and Kelly L. Krahwinkel Endowed Chairman,
+
+Address correspondence and reprint requests to Dr Ruggiero:
+
+Department of Oral and Maxillofacial Surgery, University of
+
+Clinical Professor, Division of Oral and Maxillofacial Surgery, Stony
+
+Tennessee Graduate School of Medicine, Knoxville, Tenn.
+
+Brook School of Dental Medicine, Hofstra North Shore-LIJ School
+
+kChalmers J Lyons Professor of Oral and Maxillofacial Surgery,
+
+of Medicine, New York Center for Orthognathic and Maxillofacial
+
+Associate Professor of Dentistry, Chair of the Department of Oral
+and Maxillofacial Surgery/ Hospital Dentistry in the School of
+
+Surgery, Lake Success, NY; e-mail: sruggie@optonline.net
+Received December 29 2021
+
+Dentistry and Associate Professor of Surgery for the Medical
+
+Accepted February 15 2022
+
+School, University of Michigan Hospital, Ann Arbor, Mich.
+
+Ó 2022 American Association of Oral and Maxillofacial Surgeons
+
+{Chief of Staff North Memorial Health, Fellowship Director, Oral/
+
+0278-2391/22/00148-3
+
+Head and Neck Oncologic and Reconstructive Surgery Attending
+
+https://doi.org/10.1016/j.joms.2022.02.008
+
+Surgeon, North Memorial Health and the University of Minnesota.
+
+920
+
+921
+
+RUGGIERO ET AL
+
+complications are significant, deciding to proceed
+with pharmacologic treatment becomes more challenging. In most cases of MRONJ, local therapies can
+be successful. The fact that more complex treatment
+is required for a few patients should not impact
+decision-making for all other patients with osteonecrosis of the jaws. The medications associated with
+MRONJ have proved to be safe and effective in clinical
+trials and postmarketing analyses for most patients and
+should continue as a mainstay therapy when indicated. Communicating the risks of MRONJ to patients
+and providers is critical to ensure appropriate medical
+management for the primary disease.
+Undoubtedly, risk profiles may change as new medications come to market. In addition, our understanding of disease pathophysiology, risk modifiers, and
+treatment strategies will continue to evolve. It is of
+the utmost importance that clinicians base their patient treatment decisions on currently available scientific evidence.
+Strategies for management of patients at risk for or
+with MRONJ were set forth in American Association
+of Oral and Maxillofacial Surgeons (AAOMS) Position
+Papers in 2007,1 2009,2 and 2014.3 These position papers were developed by a committee appointed by the
+AAOMS Board of Trustees and comprised of clinicians
+with extensive experience in caring for these patients,
+as well as clinical and basic science researchers. The
+knowledge base and experience in addressing MRONJ
+continues to evolve and expand, necessitating modifications and refinements to the previously published
+position papers. A working group comprised of three
+members of the AAOMS Committee on Oral, Head, and
+Neck Oncologic and Reconstructive Surgery (COHNORS) and three authors of the 2014 paper convened
+remotely in the fall of 2020 to appraise the current
+literature and revise the guidelines as indicated to
+reflect the current knowledge in this field. This update
+contains revisions to the pathogenesis and management strategies and highlights the current research status. AAOMS maintains it is vitally important for this
+information to be disseminated to other relevant
+healthcare professionals and organizations.
+
+Purpose
+The purpose of this position paper is to provide updates regarding:
+1. Risk estimates for developing MRONJ.
+2. Comparisons of the risks and benefits of medications related to osteonecrosis of the jaw in order
+to facilitate medical decision-making for the treating physician, dentist, dental specialist, and patient with the establishment of algorithms.
+
+3. Guidance to clinicians regarding:
+a. The differential diagnosis of MRONJ in patients with a history of exposure to antiresorptive medications.
+b. MRONJ prevention measures and management strategies for patients with MRONJ
+based on the disease stage.
+
+Medications
+Bisphosphonates (BPs) are antiresorptive medications that are effective in managing cancer-related conditions, including hypercalcemia of malignancy, spinal
+cord compression, and pathologic fractures (skeletalrelated events [SREs]) associated with bone metastases
+in the context of solid tumors (such as breast, prostate,
+and lung cancers) and multiple myeloma.4-13 While the
+potential for BPs to improve cancer-specific survival
+remains controversial, these medications have had a
+significant positive effect on the quality of life for patients with advanced cancer involving the skeleton
+and reducing or preventing skeletal-related events.
+Bisphosphonates also are used for the prevention of
+osteoporosis-related fractures (fragility fractures) in
+patients with osteoporosis and osteopenia.14-16 BPs
+administered orally–including alendronate (FosamaxÒ), risedronate (ActonelÒ) or parenterally (zoledronic
+acid
+[ReclastÒ]),
+and
+ibandronate
+(BonivaÒ)—can result in a significant reduction in
+vertebral and nonvertebral fractures for patients with
+osteoporosis.17-20
+Bisphosphonate therapy also is indicated for other
+metabolic bone diseases such as Paget’s disease of
+bone and osteogenesis imperfecta.21-23 However,
+clinical trials have not demonstrated the efficacy of
+bisphosphonate therapy in the management of
+fibrous dysplasia.24
+Denosumab (DMB), a receptor activator of nuclear
+factor kappa-B ligand (RANK-L), is an antiresorptive
+agent that exists as a fully humanized antibody against
+RANK ligand and inhibits osteoclast function and associated bone resorption. When denosumab (ProliaÒ) is
+administered subcutaneously every 6 months, there is
+a significant reduction in the risk of vertebral, nonvertebral, and hip fractures in osteoporotic patients.25-28
+Denosumab (XgevaÒ) also is effective in reducing
+SREs related to metastatic bone disease from solid
+tumors when administered monthly.29-31
+RANK ligand inhibitors also have proven efficacy in
+the treatment of giant cell tumors of bone and fibrous
+dysplasia.32-36 In contrast to BPs, RANK-L inhibitors do
+not bind to bone, and their effects on bone remodeling
+are mostly diminished within 6 months of treatment cessation.
+
+922
+Romosozumab is a new monoclonal antibody used
+for fracture prevention in osteoporotic women. Romosozumab, administered subcutaneously, works via the
+Wnt pathway by binding to and inhibiting sclerostin,
+resulting in increased bone formation and decreased
+bone resorption.37
+
+MRONJ Case Definition
+MRONJ should be distinguished from other forms of
+osteonecrosis (ONJ) conditions and identified by history and clinical exam. The clinical criteria required
+to establish a diagnosis of MRONJ have remained unchanged from the previous position paper.3
+
+The case definition of MRONJ includes all the
+following elements:
+1. Current or previous treatment with antiresorptive therapy alone or in combination with immune modulators or antiangiogenic medications.
+2. Exposed bone or bone that can be probed
+through an intraoral or extraoral fistula(e) in
+the maxillofacial region that has persisted for
+more than 8 weeks.
+3. No history of radiation therapy to the jaws or
+metastatic disease to the jaws.
+
+Staging
+A staging system for MRONJ was introduced in the
+2009 AAOMS position paper and then modified in
+the 2014 position paper to characterize more accurately all aspects of the clinical presentation of MRONJ.
+Since these modifications, the AAOMS staging system
+has continued to be a straightforward and relevant system to properly stratify these patients. It has been
+adopted by several professional societies and research
+organizations. The staging system facilitates the creation of rational treatment guidelines and guides data
+collection to assess the prognosis and outcomes for
+MRONJ patients. While AAOMS recognizes that
+different classification systems are being used by other
+organizations,38 the Association considers the AAOMS
+system to be a useful and widely implemented assessment tool guiding clinicians involved in the care of
+MRONJ patients.
+AAOMS remains concerned that over- emphasizing
+variable radiographic features often attributed to
+MRONJ may overestimate the true disease
+frequency by including false positives in the
+numerator (eg, cases with radiographic findings suggestive of MRONJ), but these patients do not fit the
+criteria for the diagnosis of MRONJ.
+
+In the orthopedic literature, the usefulness of a
+Stage 0 category has been established for staging
+avascular necrosis (AVN) of the femoral head when
+there is a suspicion of AVN in a pa tient at risk, but
+the diagnostic information is not conclusive.39
+AAOMS believes the Stage 0 category for
+MRONJ is analogous in principle and does account for
+the wide-ranging radiographic presentation of
+MRONJ that exists prior to overt bone exposure.
+Therefore, AAOMS has decided to maintain the current
+classification system with no modifications.
+
+PATIENTS AT-RISK
+
+No apparent necrotic bone in asymptomatic patients who have been treated with IV or oral antiresorptive therapy.
+STAGE 0 (NONEXPOSED BONE VARIANT)
+
+Patients with no clinical evidence of necrotic bone
+but who present with nonspecific symptoms or clinical and radiographic findings, such as:
+Symptoms
+ Odontalgia not explained by an odontogenic
+cause.
+ Dull, aching bone pain in the jaw, which may
+radiate to the temporomandibular joint region.
+ Sinus pain, which may be associated with inflammation and thickening of the maxillary sinus wall.
+ Altered neurosensory function.
+
+Clinical Findings
+ Loosening of teeth not explained by chronic periodontal disease.
+ Intraoral or extraoral swelling.
+
+Radiographic Findings
+ Alveolar bone loss or resorption not attributable
+to chronic periodontal disease.
+ Changes to trabecular pattern sclerotic bone and
+no new bone in extraction sockets.
+ Regions of osteosclerosis involving the alveolar
+bone and/or the surrounding basilar bone.
+ Thickening/ obscuring of periodontal ligament (
+thickening of the lamina dura, sclerosis, and
+decreased size of the periodontal ligament space).
+40
+
+These nonspecific findings, which characterize this
+variant of MRONJ without bone exposure, may occur
+in patients with a prior history of Stage 1, 2, or 3 disease who have been healed and have no clinical evidence of exposed bone. Progression to Stage 1
+disease has been reported in up to 50 percent of
+patients with Stage 0 disease 41 and, therefore, AAOMS
+deems it prudent to consider Stage 0 disease as a potential precursor to MRONJ.
+
+923
+
+RUGGIERO ET AL
+STAGE 1
+
+Exposed and necrotic bone or fistula that probes to
+the bone in patients who are asymptomatic and have
+no evidence of infection/inflammation. These patients
+also may present with radiographic findings
+mentioned for Stage 0 that are localized to the alveolar
+bone region.
+STAGE 2
+
+Exposed and necrotic bone, or fistula that probes to
+the bone, with evidence of infection/inflammation.
+These patients are symptomatic. These patients also
+may present with radiographic findings mentioned
+for Stage 0 localized to the alveolar bone region.
+STAGE 3
+
+Exposed and necrotic bone or fistulae that probes to
+the bone, with evidence of infection, and one or more
+of the following:
+ Exposed necrotic bone extending beyond the region of alveolar bone (ie, inferior border and
+ramus in the mandible, maxillary sinus, and
+zygoma in the maxilla)
+ Pathologic fracture.
+ Extraoral fistula.
+ Oral antral/oral-nasal communication.
+ Osteolysis extending to the inferior border of the
+mandible or sinus floor.
+
+jaw necrosis in antiresorptive na€ıve patients in which
+necrosis was linked to bacterial, viral, or fungal infections, trauma, smoking, steroids, immunocompromised host, autoimmune diseases, diabetes, and
+Furthermore,
+patient
+chemotherapy.43-57
+populations, such as those with osteogenesis
+imperfecta have been treated with antiresorptive
+agents without reports of MRONJ.58 Many patients
+receiving medications associated with MRONJ have
+other comorbidities, which are likely exacerbating or
+contributing factors. In combination, these confounding variables make incidence and prevalence difficult
+to estimate.
+Clinical trials, while being the gold standard for efficacy and safety data, are seldom powered to demonstrate uncommon events. Prior to the discovery of
+MRONJ, large randomized prospective trials of BPs
+with up to 10 years of patient data did not reveal any
+jaw bone necrosis as a complication.17,59 More
+recently, the HORIZON Pivotal Fracture trial tested
+3,889 randomized patients given annual zoledronic
+acid versus placebo for 3 years; one patient developed
+MRONJ in the intervention group and one in the placebo group.18 Extension of this trial for up to 6 years
+resulted in one additional MRONJ patient in the treatment group.60 Extension to 9 years resulted in no additional confirmed cases of MRONJ.61
+Definitive causality, taken as a whole, remains a difficult task to prove in general, let alone in individual patients presenting with clinical symptoms. Clinicians
+should be aware of these facts in decisions regarding
+treatment recommendations.
+
+CAUSALITY
+
+It is important to understand that patients at risk for
+or with established MRONJ also can present with
+other common clinical conditions not to be confused
+with MRONJ. Commonly misdiagnosed conditions
+may include but are not limited to alveolar osteitis,
+sinusitis, gingivitis/periodontitis, caries, periapical pathology, odontalgia, atypical neuralgias, fibro-osseous
+lesions, sarcoma, chronic sclerosing osteomyelitis,
+and temporomandibular joint (TMJ) disorders. It also
+is important to remember that delayed healing,
+exposed bone or sequestra (ie, osteonecrosis [ONJ]),
+can occur in patients not exposed to antiresorptive agents.42
+Proving causality of any medication-related complication is challenging from an epidemiologic perspective. It is well-known that MRONJ is a rare entity,
+multifactorial in nature, and patients with the same
+clinical presentation exist who have not been exposed
+to an antiresorptive medication. Studies have reported
+
+PATHOPHYSIOLOGY
+
+Since the AAOMS position paper in 2014, significant
+knowledge has been gained regarding MRONJ pathophysiology from both clinical and particularly preclinical animal studies. It should be noted that animal
+studies have a number of limitations, are most often using supratherapeutic doses and likely do not truly
+mirror the clinical environment. That said, they are
+critical in understanding disease mechanisms and
+can serve as one reference point to evidence-based
+clinical decision-making.
+Much debate persists among clinicians and researchers, contributing to the various treatment protocols utilized for patients today.62-65 Disease specificity
+unique to the jaws has focused leading hypotheses to
+include bone remodeling inhibition, inflammation or
+infection, angiogenesis inhibition, innate or acquired
+immune dysfunction, as well as genetic
+predisposition.3,65 Both animal and human studies
+suggest that an antiresorptive medication, coupled
+with inflammation or infection, is necessary and
+
+924
+sufficient to induce MRONJ. However, as more knowledge is gained on the subject, it is becoming increasingly apparent that MRONJ is multifactorial, and it is
+likely that multiple hypotheses can explain the overall
+pathophysiology of this disease.3,65
+Bone Remodeling Inhibition
+The definition of MRONJ includes oral or parenteral
+administration of antiresorptive medications, such
+that bone remodeling suppression is a central hypothesis in its pathophysiology. Antiresorptive medications, including BPs and denosumab (DMB), have
+direct effects on osteoclast formation, differentiation,
+or function. In osteoporosis, BPs are a first-line therapy
+to decrease bone remodeling, increase bone mineral
+density, and decrease vertebral and long bone fractures.66,67 BPs, in higher doses, also are utilized in primary bone malignancy and bone metastases to
+decrease SREs, including hypercalcemia of malignancy, reduce severe bone pain, and improve quality
+of life.68-72 Although DMB has only been approved
+for use since 2010, its use has increased significantly
+for both osteoporosis and malignancy in the last
+decade. Prevalence of MRONJ with DMB users is at
+least as high as BP users, likely due to its increased
+potency to inhibit bone resorption.30,73-75 This is
+supported in the jaws as animal studies demonstrate
+absent osteoclasts around the alveolar bone of DMBtreated mice.76 Human bone specimens also show an
+increased number of nonfunctional osteoclasts surrounding necrotic bone in BP-treated patients,77
+further reinforcing bone remodeling inhibition as a
+leading hypothesis in MRONJ pathophysiology. With
+the appearance of MRONJ in DMB-treated patients, it
+becomes increasingly apparent that the underlying
+pathophysiology involves dysfunctional osteoclasts.
+Animal studies evaluating withdrawal of BPs or DMB
+further highlight the importance of bone remodeling
+in MRONJ prevention and resolution. Rodents with established ONJ failed to resolve when antiresorptive
+were withdrawn. However, discontinuing DMB, but
+not BPs, prior to tooth extraction successfully prevented MRONJ development in rats.78,79 Moreover,
+parathyroid hormone, which acts directly on osteoblasts to induce bone formation and indirectly increases osteoclastic bone resorption and overall
+remodeling, has been shown to prevent MRONJ and
+improve extraction socket healing in rodents and preliminarily in patients.80-82 This observation provides
+further support for the central role of osteoclast
+inhibition in MRONJ pathogenesis.
+Inflammation or Infection
+Although most studies report tooth extraction as the
+major inciting event for MRONJ development, it is
+clear that most extracted teeth had pre-existing peri-
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+
+odontal or periapical disease.3,64,83,84 From this patient information, animal models of inflammation or
+infection were developed to replicate clinical, radiographic, and histologic features of MRONJ.85-88
+Presence of inflammatory cytokines, specifically at
+the site of MRONJ, also support the strong role of
+inflammation.89 As evidence of increased systemic
+inflammation and its contribution to MRONJ development, mice with experimentally induced rheumatoid
+arthritis demonstrated more severe MRONJ with
+increased oral bone exposure, more pronounced
+radiographic features, intense local inflammatory infiltrate, and larger areas of histologic necrosis.90 Further
+support for the inflammatory etiology showed that
+removal of the inflammatory nidus in ligatureinduced periodontitis ameliorated MRONJ development in mice, demonstrating reduced inflammation
+and prevention of disease progression.91 Moreover,
+transplantation of peripheral blood mononuclear cells
+with anti-inflammatory properties reduced MRONJ
+prevalence by improving soft-tissue healing,
+decreasing inflammatory polymorphonuclear cells
+and inflammatory marker expression, as well as
+enhancing vascularity.92 These preclinical findings
+confirm the irrefutable role of inflammation or infection in MRONJ disease prevalence, severity and
+resolution.
+The presence of bacteria on the exposed necrotic
+bone also contributes to disease severity, where pain
+and signs of infection define Stage 2 MRONJ.3,93,94
+This is not surprising since poor oral hygiene and biofilm presence are associated with MRONJ development,95,96 and oral health maintenance and dental
+prophylaxis before initiating antiresorptive therapy
+can decrease MRONJ prevalence.97,98 Importantly,
+clinical treatment protocols to reduce the biofilm
+and eradicate infection have emerged as important alternatives to debridement and resection in patients
+who may not be ideal surgical candidates.63
+Angiogenesis Inhibition
+Osteonecrosis is traditionally defined as avascular
+necrosis or aseptic necrosis, most commonly characterized as osteocyte death after decreased blood flow
+to the femoral head.99 However, MRONJ is defined as
+necrotic bone in the maxillofacial region after exposure to either antiresorptive or antiangiogenic medications.3 BPs such as zoledronic acid directly inhibit
+angiogenesis in vitro and in vivo100-103 and animal
+models demonstrate decreased vascularity in sites of
+MRONJ and decreased microvessel numbers during
+early stages of bone healing.104 In addition, angiogenesis normally seen during extraction socket healing
+is inhibited by BPs, and both BPs and DMB have
+been shown to decrease arterial area, venous area,
+and overall vascularity of periodontal tissues during
+
+925
+
+RUGGIERO ET AL
+
+early and late MRONJ development.105,106 Importantly, antiangiogenic medications, such as VEGF inhibitors, tyrosine kinase receptor inhibitors, and
+immunomodulatory drugs,107-109 can be associated
+with MRONJ. Moreover, patients with multiple
+myeloma receiving both antiresorptive and
+antiangiogenic medications, as shown in several
+studies,110-114 have a higher MRONJ prevalence.
+Important aspects of MRONJ treatment include
+determining disease margins, which can be
+challenging as microvascular mucosal abnormalities
+can be seen adjacent to frank MRONJ lesions.115 It is
+important to note that the incidence of MRONJ in patients on antiangiogenics is much lower than those taking antiresorptive medications.
+Innate or Acquired Immune Dysfunction
+Although animal studies confirm that an antiresorptive medication—coupled with inflammation or infection—is necessary and sufficient to produce MRONJ,
+not all patients with dental infections develop the disease. It is well-known that patients with medical comorbidities such as diabetes or rheumatoid arthritis
+or immunocompromised states are at significantly
+higher risk for MRONJ with or without exposure to
+antiresorptive agents.3,64,114,116 Patients with metastatic or primary bone malignancies have a compromised
+immune system.117 This also has been confirmed with
+animal studies, where chemotherapy, steroids, and
+disease-modifying antirheumatic drugs (DMARDs),
+combined with antiangiogenic medications and an
+antiresorptive, increase MRONJ severity or prevalence.118-120 Moreover, higher rates of MRONJ occur
+in patients with multiple myeloma who receive
+multiple chemotherapeutic agents.110,121
+Replenishing the area of nonhealing MRONJ lesions
+with mesenchymal stem cells (MSCs) to overcome immune dysfunction is a potential area of therapeutic interest,
+especially
+in
+patients
+who
+are
+immunocompromised. A recent study showed altered
+numbers and patterns of T-cells in human and rat
+MRONJ necrotic bone samples as compared to healthy
+patients and non-MRONJ sites.122 Preclinical studies
+also demonstrate healing or prevention of MRONJ lesions after systemic infusion with adipose or bone
+marrow-derived MSCs.123-125
+Genetic Factors
+In the 2014 paper, the authors identified several reports describing single-nucleotide polymorphisms
+(SNPs) that were associated with the development of
+MRONJ. Most of these SNPs were located within regions of the gene associated with either bone turnover,
+collagen formation, or certain metabolic bone diseases. Indeed, increasing evidence is available to
+support the role of SNPs with MRONJ.126,127 Specific
+
+links to sirtuin-1 (SIRT1), a bone remodeling regulator
+that promotes bone formation, may be protective
+against MRONJ if upregulated.128 SIRT1 also is
+involved in both reduction of inflammation and induction of angiogenesis, suggesting a role in several of the
+leading MRONJ hypotheses.128 Other genes also have
+been reported to increase MRONJ risk through their
+role in angiogenesis, bone remodeling, and immune
+responses, including PPAR gamma, CYP2C8, and
+many others.129 Collectively, these studies suggest
+that MRONJ is a multifactorial disease and that genetic
+factors may play a role in its development.130 Overall,
+however, current studies document either a weak or
+no association between genetic factors measured
+and risk for MRONJ.131 To determine predisposition,
+studies with larger sample sizes should be performed,
+with genetic risks confirmed in both BPs and DMBtreated patients who have breast or prostate cancer
+metastases, multiple myeloma, or osteoporosis.
+
+Risk Factors for MRONJ
+MEDICATION-RELATED RISK FACTORS
+
+To estimate the risk for medications associated with
+MRONJ, the primary parameter to be considered is the
+therapeutic indication for treatment (eg, malignancy or
+osteoporosis/osteopenia). The data suggest that antiresorptive medications (ie, BPs and DMB) are associated
+with an increased risk for developing MRONJ. The risk
+of MRONJ is considerably higher in the malignancy
+group (<5%) than in the osteoporosis group
+(<0.05%). Current data are insufficient to identify other
+medications as risk factors for developing MRONJ.
+MRONJ risk among cancer patients
+For estimating the risk for MRONJ among patients
+exposed to a medication, the risk for MRONJ in patients not exposed to antiresorptive medications
+must be estimated (Table 1). The risk for MRONJ
+among cancer patients enrolled in clinical trials and assigned to placebo groups ranges from 0 percent to 0.7
+percent.132-138
+a. Among cancer patients exposed to zoledronate,
+the cumulative risk of MRONJ clusters in the
+low single digits, <5 percent, and ranges from
+0 percent to 18 percent.113,132,133,137-144 The
+wide variation in estimates may be explained by
+the varying durations of follow-up, one to
+10 years, reported in the various studies. The
+risk of MRONJ among cancer patients exposed
+to zoledronate ranges between 2-10 times higher
+than cancer patients treated with placebo.
+b. Among cancer patients exposed to DMB, the risk
+of MRONJ ranges from 0 percent to 6.9 percent,
+with most studies reporting rates <5
+
+926
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+
+Table 1. MRONJ DISEASE FREQUENCY GROUPED BY INDICATIONS FOR TREATMENT VERSUS MEDICATION*
+
+Medication
+Indications for
+Treatment
+Malignancy
+Coleman (2020)138
+O’Carrigan et al,
+(2017)137
+O’Carrigan et al,
+(2017)137
+Macherey et al,
+(2017)136
+Gnant et al,
+(2015)247
+Coleman et al,
+(2014)133
+Valachis et al,
+(2013)132
+Boquete-Castro
+et al, (2016)135
+Coleman (2020)138
+Gnant et al,
+(2015)247
+Raje et al, (2018)113
+Himelstein
+(2017)140
+Henry (2014)141
+Yang et al,
+(2019)248
+Peddi et al,
+(2013)142
+Ng et al, (2021)145
+
+Placebo
+
+Zoledronate
+
+0.2% (2,218)*
+0.7% (6,788)
+0% (3,060)
+
+Oral BPs
+
+Denosumab Romosozumab
+
+5% (2,241)
+0.4% (6,788)
+1% (3,078)
+
+Study Design
+
+RCTy
+Systematic review
+Systematic review
+
+0.7% (818)
+
+1.5% (808)
+
+Systematic review
+
+0% (903)
+
+0% (900)
+
+RCT
+
+0% (1,679)
+
+1.7% (1,681)
+
+RCT
+
+0% (3,039) 0.52% (4,774)
+0.1%
+
+1.14%
+
+Systemic review
+1.7%
+
+Systematic review
+
+5.4% (2,214)
+0% (1,711)
+
+RCT
+RCT
+
+2.8% (82)
+1.5% (1,822)
+
+4.1% (850)
+
+RCT
+RCT
+
+1.1% (786)
+2% (8,525)
+
+0.8% (792)
+
+RCT
+Systematic review
+
+1.3% (2,846)
+
+1.8% (2,885)
+
+Systematic review
+
+1.6-4%z
+3.8-18%x
+1.4% (1,013)
+
+1.9%z
+6.9%x
+2% (1,020)
+
+Systematic review
+
+0.2% (2,218)
+0% (1,709)
+
+Wang et al,
+Systematic review
+(2014)144
+Osteoporosis
+Papapoulos et al,
+0% (3,383)
+0.04% (4,549)
+RCT
+(2012)26
+0.02% (4,945) 0.02% (5,864)
+Systematic review
+Grbic et al,
+(2010)150
+Cosman et al,
+0% (3,322)
+0.03% (3,321)
+RCT
+(2016)151
+0.05% (2,047)
+0.05% (2,046)
+RCT
+Saag et al, (2017)37
+Bone et al,
+0.3% (2,343)
+RCT
+(2017)153
+10-yr f/u
+Hallmer et al,
+0.043%
+Population study (50,000)
+(2018)75
+Nonmalignant bone
+disease
+Chawla et al,
+5% (532)
+Prospective case series
+(2019)156
+0.7% (138)
+Retrospective case series
+Rutkowski155
+* Sample size in parentheses
+y Randomized clinical trial.
+z <2 years of follow-up.
+x >2 years of follow-up.
+Ruggiero et al. AAOMS’ Position Paper on MRONJ—2022 Update. J Oral Maxillofac Surg 2022.
+
+927
+
+RUGGIERO ET AL
+
+percent.113,134,135,138,141,142,144,145 The risk for
+MRONJ among cancer patients exposed to DMB
+is comparable to the risk of MRONJ in cancer patients exposed to zoledronate.135,141,142,144,145
+Since the 2014 update, investigators have implicated numerous families of medications as risk factors
+for MRONJ.146-149 These medications include tyrosine
+kinase inhibitors (TKIs) such as sunitinib, monoclonal
+antibodies
+(bevacizumab),
+fusion
+proteins
+(aflibercept),
+mTOR
+inhibitors
+(everolimus),
+radiopharmaceuticals (radium 223), selective
+estrogen receptor modulators (raloxifene), and
+immunosuppressants
+(methotrexate
+and
+corticosteroids).
+When compared to antiresorptive medications, the
+level of evidence supporting other medication families
+as risk factors for MRONJ is level 5 (eg, isolated case reports or mini-case series [<5 cases]).146-149 Given that
+the poly-pharmaceutical management of cancer patients combined with the fact that cancer and immunosuppression are risk factors for MRONJ without
+exposure to antiresorptive agents, AAOMS believes
+that identifying a single medication as being the etiologic agent for MRONJ seems unlikely in case reports
+or mini-case series. Further controlled prospective
+studies will be required to measure the risk of MRONJ
+associated with non-antiresorptive agents.
+MRONJ Risk Among Osteoporosis Patients
+Most dentists and oral and maxillofacial surgeons
+evaluate patients in their practices exposed to antiresorptive therapy for management of osteoporosis (Table 1).
+a. Risk for MRONJ among osteoporotic patients
+exposed to BPs.
+The risk of MRONJ among study subjects assigned to
+placebo groups enrolled in osteoporosis clinical trials
+ranged from 0 percent to 0.02 percent.26,150,151 Among
+study subjects treated with BPs, the risk of MRONJ is
+0.02 percent to 0.05 percent.37,75,152 Among patients
+exposed to IV zoledronate, the risk for MRONJ is estimated to be #0.02% (# 2 per 10,000). For patients
+exposed to oral bisphosphonates, MRONJ risk is estimated to be #0.05% (# 5 per 10,000).
+b. MRONJ risk among osteoporotic
+exposed to RANK-L inhibitors.
+
+patients
+
+After 10 years of follow-up, among patients exposed
+to DMB, the risk for MRONJ was reported to be 0.3
+percent, almost an order of magnitude higher than
+for BPs.153
+
+c. The risk for MRONJ when exposed to romosozumab (0.03 percent to 0.05 percent) is comparable
+to alendronate (0.05 percent).37,151 In the placebo group, there were no cases of MRONJ.151
+It will be important to continue to monitor romosozumab to assess its role as a risk factor for
+MRONJ.
+The risk for MRONJ among osteoporosis patients
+treated with BPs ranges from 0.02 percent to 0.05
+percent and overlaps the risk for MRONJ of patients
+enrolled in placebo groups (0 percent to 0.02
+percent). The risk for MRONJ among patients treated
+with denosumab, however, has a larger range—from
+0.04 percent to 0.3 percent. As such, additional
+research will be needed to better estimate the risk of
+MRONJ among patients receiving denosumab. The
+risk of MRONJ for patients exposed to romosozumab
+(0.03 percent to 0.05 percent) more closely aligns
+with the risk associated with BPs.37,151 However, given
+its recent introduction as a therapeutic agent, additional research will be needed to refine its association
+and risk estimate for MRONJ.
+Based on this current review of data, the risk of
+developing MRONJ among osteoporotic patients
+exposed to BPs, DMB, and romosozumab is low. The
+occurrence of cases seen is best explained by a rare
+event among a large number of patients, 5.1 million
+over the age of 55, exposed to these drugs.154
+MRONJ Risk Among Patients with Nonmalignant
+Bone Disease
+a. AAOMS identified two studies where DMB was
+used to manage aggressive giant cell tumors of
+bone.155,156 The risk of developing MRONJ in
+the two studies was broad and ranged from 0.7
+percent to 5 percent. This is comparable to the
+risks of developing MRONJ in subjects treated
+with DMB for malignancies (range = 0 percent
+to 6.9 percent). Additional studies will be needed
+to confirm the risk estimate for MRONJ among
+patients with nonmalignant bone disease treated
+with antiresorptives.
+b. There are very limited data describing the occurrence of MRONJ in the pediatric population for
+osteogenesis imperfecta and other conditions.
+In a systematic review estimating the risk of
+MRONJ among children with osteogenesis imperfecta, there were no cases of MRONJ identified in
+a sample of 486 subjects treated for 4.5 to
+6.8 years.157 In a different systematic review
+that estimated the risk for MRONJ among those
+under the age of 24 for several conditions treated
+using BPs, no cases of MRONJ were reported.158
+
+928
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+
+The overall quality of the studies included in both
+systematic reviews was limited by small sample
+sizes or lack of MRONJ-related risk factors.
+
+Duration of Medication Therapy as a Risk Factor
+for MRONJ
+Regardless of indications for therapy, the duration
+of antiresorptive therapy is a risk factor for developing
+MRONJ. Among cancer patients exposed to zoledronate or DMB (n = 5,723), the risk of developing
+MRONJ was, respectively, 0.5 percent and 0.8 percent
+at 1 year, 1.0 percent and 1.8 percent at 2 years, and
+1.3 percent and 1.8 percent at 3 years.141 In a study
+by Saad et al, the investigators combined threeblinded phase three trials and found similar results,
+including a plateau after 2 years for patients exposed
+to DMB.5 In a more recent systematic review by Ng
+et al, the risk of MRONJ among cancer patients treated
+with zoledronate, was 1.6 percent to 4 percent after
+2 years of treatment and 3.8 percent to 18 percent
+with more than 2 years of treatment.145 Likewise, for
+DMB, the risks for developing MRONJ were 1.9
+percent and 6.9 percent with <24 months and
+>24 months of exposure, respectively.145
+For patients receiving bisphosphonate therapy to
+manage osteoporosis, data regarding duration are
+mixed. Early on, the prevalence of MRONJ was reported as increasing over time from near 0 percent
+at baseline to 0.21 percent after four or more years
+of BP exposure based on retrospective analysis.152,159
+More recent data from a large prospective, randomized
+placebo controlled trial demonstrate no significant increase in MRONJ in patients treated for up to
+9 years.18,60,61 In addition, there are no postmarketing
+data or general clinical experience to support an
+MRONJ prevalence of 0.21 percent in any
+osteoporosis-treated group. Therefore, while duration
+may be a risk factor, the overall risk remains low.
+LOCAL FACTORS
+
+Dentoalveolar Operations
+Dentoalveolar operations are the most common
+identifiable predisposing factor for developing
+MRONJ. Several studies report that among patients
+with MRONJ, tooth extraction is cited as a predisposing event ranging from 62 percent to 82
+percent.5,75,160 While this information is important,
+it is not what most patients or clinicians want to
+know. Most providers and patients want an answer
+to the following clinical question: ‘‘Among patients
+exposed to antiresorptive medications, what is the
+risk for developing MRONJ following tooth extraction (or other dentoalveolar procedures such as
+implant placement or periodontal procedures)?’’ Cur-
+
+rent estimates for the risk of MRONJ among osteoporotic patients exposed to BPs following tooth
+extraction range from 0 percent to 0.15
+percent.161,162 For osteoporotic patients exposed to
+DMB, the risk for MRONJ following tooth extraction
+was 1 percent.163
+For cancer patients exposed to BPs, the risk of developing MRONJ after tooth extraction ranges from 1.6
+percent to 14.8 percent.164-166 In a small case series,
+n = 61 subjects having 102 extractions, the risk for
+MRONJ after tooth extraction was 13.1 percent.167
+In a systematic review by Gaudin et al, the risk for
+MRONJ after tooth extraction (n = 564) was estimated
+to be 3.2 percent.162 While the estimates for developing MRONJ in high-risk patients undergoing tooth
+extraction vary, they cluster between 1 percent and
+5 percent, similar to estimates of osteoradionecrosis
+following tooth extraction in irradiated patients.
+The risk of developing MRONJ among patients
+who have been exposed to antiresorptive medications for other dentoalveolar operations such as
+dental implant placement and endodontic or periodontal procedures is unknown.168 The risk for
+MRONJ after implant placement among patients
+treated with DMB has been reported to be 0.5
+percent.163 Absent better data, AAOMS cautions the
+use of these procedures in cancer patients exposed
+to antiresorptive therapies and recommends osteoporosis patients be informed of potential risks, albeit
+low, including development of MRONJ, early and
+late implant failure all of which have been described
+in case reports and clinical trials.
+Anatomic Factors
+Limited new information regarding anatomic risk
+factors for MRONJ is available. MRONJ is more likely
+to appear in the mandible (75 percent) than the
+maxilla (25 percent) but can appear in both jaws
+(4.5 percent).5,75 Denture use was associated with
+an increased risk for MRONJ among cancer patients
+exposed to zoledronate (OR = 4.9; 95 percent
+CI = 1.2 to 20.1).169 In a study by Vahtsevanos et al,
+a sample of 1,621 cancer patients treated with intravenous zoledronate, ibandronate or pamidronate, there
+was a two-fold increased risk for MRONJ among denture wearers.170
+Concomitant Oral Disease
+Pre-existing inflammatory dental disease such as
+periodontal disease or periapical pathology is cited
+as a risk factor.75,168 Among cancer patients with
+MRONJ, the pre-existing inflammatory dental disease
+was a risk factor among 50 percent of the cases.5,165
+Given that a common treatment of inflammatory
+dental disease is tooth extraction, pre-existing dental
+disease may confound the relationship between tooth
+
+929
+
+RUGGIERO ET AL
+
+extraction and risk for MRONJ. Tooth extraction may
+expose MRONJ as opposed to being the precipitating
+event. It would be valuable to see an estimate of the association between tooth extraction and MRONJ
+adjusted for pre-existing inflammatory dental disease.
+After tooth extraction and periodontal disease, the
+next most common risk factor is reported as ‘‘spontaneous’’ MRONJ with no identifiable dental
+risk factor.168
+DEMOGRAPHIC AND SYSTEMIC FACTORS AND
+OTHER MEDICATIONS
+
+Age and sex are variably reported as risk factors for
+MRONJ.5,165,169-171 The higher prevalence of MRONJ
+in the female population is likely a reflection of the
+underlying disease for which the agents are being
+prescribed (eg, osteoporosis, breast cancer).
+As noted previously, those under the age of 24
+treated with antiresorptives for benign bone diseases
+have not demonstrated any risk for MRONJ even after
+an extended duration of therapy. The overall quality of
+the studies included even in systematic reviews is
+based on small sample sizes and the lack of other
+MRONJ-related risk factors. The risk of developing
+MRONJ in the pediatric population requires continued
+surveillance.
+Corticosteroids are associated with an increased risk
+for MRONJ.5,168,171 There are concerns that corticosteroids increase the risk for MRONJ when given in
+conjunction with antiresporptive agents.
+Comorbid conditions are inconsistently reported to
+be associated with an increased risk for MRONJ,
+including anemia (hemoglobin < 10 g/dL) and diabetes.5,171 Cancer type also is variably reported as a
+risk factor.170,172
+Tobacco use is variably reported as a risk factor for
+MRONJ. In a case-control study, tobacco use approached statistical significance as a risk factor for
+MRONJ in cancer patients (OR = 3.0; 95 percent
+CI = 0.8 to 10.4).169 In a more recent case-controlled
+study, tobacco use was not associated with ONJ in a
+sample of cancer patients exposed to zolendronate.171
+Vahtsevanos did not report an association between tobacco use and MRONJ.170
+In brief, after chemotherapy and corticosteroid
+exposure, the next most reported comorbidity is ‘‘no
+comorbidity.’’168
+In summary, the current literature reaffirms that the
+risk of MRONJ is significantly greater in cancer patients receiving antiresorptive therapy compared to
+patients receiving antiresorptive therapy for osteoporosis. Moreover, the risk of MRONJ in osteoporosis patients receiving antiresorptive therapy continues to be
+very low regardless of drug type (BPs, DMB, romoszumab) or dosing schedule.
+
+Management Strategies
+TREATMENT GOALS
+
+The major goals of treatment for patients at risk of
+developing or who have established MRONJ are:
+ Prevention of MRONJ (see section MRONJ risk
+among cancer patients below).
+ Prioritization and support of continued oncologic
+treatment in patients receiving antiresorptive
+therapy alone or in combination with immune
+modulators or antiangiogenic medications:
+B Oncology patients benefit from the therapeutic
+effect of antiresorptive therapy by controlling
+bone pain and reducing the incidence of other
+SREs.
+ Prioritization and support of continued bone
+health and the prevention of fragility fractures
+B Patients with osteoporosis, osteopenia, and
+other metabolic bone diseases benefit from
+antiresorptive therapy by significantly reducing
+the risk of fragility fractures and other skeletalrelated events.
+ Preservation of quality of life through:
+B Patient education and reassurance.
+B Control of pain.
+B Control of secondary infection.
+B Prevention of extension of lesion and development of new areas of necrosis.
+
+PREVENTION OF MRONJ
+
+Numerous studies demonstrate potentially modifiable factors for reducing the risk of MRONJ, including
+performing high-risk surgical procedures prior to initiating therapy,95,173-175 using preoperative and
+postoperative antibiotics and antimicrobial mouth
+rinses,174,176-180
+primarily closing extractions
+sites,176-178
+and
+maintaining
+good
+oral
+hygiene.95,166,176,177,181 Maximizing overall patient
+health is always indicated, such as smoking cessation
+and diabetes optimization. Although no individual
+strategy nor collection of strategies eliminates all
+MRONJ risks, these preventive procedures are
+recommended.
+The prevention of MRONJ begins with the realization that patients receiving antiresorptive therapies
+may have altered osseous wound-healing capacity,
+which may also be a risk for developing MRONJ.
+Similar to other common preventive strategies in medicine and dentistry, healthcare providers need to
+recognize the importance of coordinated dental care
+and pretreatment management in minimizing the
+risk of MRONJ. This requires a continuous effort to
+educate patients, dentists, and medical professionals
+
+930
+about the real risks associated with these therapies and
+clinical prevention paradigms that can mitigate
+MRONJ development.
+AAOMS re-emphasizes the importance of a multidisciplinary approach to the treatment of patients who
+are receiving antiresorptive therapies. This may also
+apply to other immune modulators or targeted therapies taken alone or in combination with antiresorptives. This approach includes consultation with an
+appropriate dental professional when it is determined
+a patient would benefit from these therapies.
+Optimization of Oral Health
+The 2014 AAOMS position paper identified valid
+prophylactic treatment strategies that reduce the incidence of MRONJ. The efficacies of these strategies
+remain validated by subsequent studies that demonstrate the importance of pretreatment dental
+screening and regimented dental surveillance. There
+is a robust level of support for early screening and initiation of appropriate dental care prior to the initiation
+of antiresorptive therapy.38,182-186
+These preventive management strategies not only
+decrease the risk for MRONJ but accrue the benefits
+that all patients enjoy with optimum oral health.186-193
+In a prospective study of prostate cancer patients
+with bone metastasis, instituting a more regimented
+dental health surveillance system resulted in a 2.5fold reduction in relative risk compared to symptomatically driven dental treatment.186 In a systematic review aimed at identifying prevention strategies
+associated with tooth extractions in patients at risk
+for MRONJ, no randomized clinical trials were reported.194 However, there are many animal studies
+that demonstrate that periodontal or periapical inflammation plays a key role in creating a local environment
+that supports the development of bone necrosis in the
+context of systemic antiresorptive therapy.85,91,195,196
+Treatment planning for patients at risk of developing MRONJ should include a thorough examination
+of the oral cavity and a radiographic assessment when
+indicated. It is important to identify both acute infection and sites of potential infection to prevent future
+sequelae that could be exacerbated once drug therapies begin. Considerations during the clinical and
+radiographic assessment include patient motivation,
+patient education regarding dental care, fluoride application, chlorhexidine rinses, tooth mobility, periodontal disease, presence of root fragments, caries,
+periapical pathology, edentulism, and denture
+stability.197
+An additional benefit of early dental consultation,
+when the use of antiresorptive therapy is being
+considered, is that the patient is informed of the
+risk associated with these drug therapies and the
+risk incurred by not undergoing recommended
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+
+dental preventive measures before consenting
+to treatment.
+Cessation of At-Risk Medication Therapy (Drug
+Holiday) Prior to Tooth Extraction or Other Procedures that Involve Osseous Injury (eg, Dental
+Implant Placement, Periodontal or Apical Endodontic Treatment)
+The clinical practice of antiresorptive drug holidays
+to mitigate MRONJ risk in patients undergoing dentoalveolar surgery was controversial at the time of the previous AAOMS position paper in 2014 and remained the
+case in 2021. While the practice of a drug holiday has
+been accepted and recommended by several international professional societies,3,38,182,183,198 the evidence to support or refute such positions remains
+inconclusive. The difficulty in establishing or refuting
+the efficacy of drug holidays is due to the rarity of
+MRONJ in these patient populations. Therefore, since
+few events are reported, randomized-controlled trials
+provide insufficient data to create sound treatment
+protocols. In a 2020 systematic review that studied
+the efficacy of antiresorptive drug holiday in preventing MRONJ, a variety of papers were identified with
+differing conclusions suggesting that a high level of evidence for supporting or refuting the use of a holiday is
+missing.199
+The historical use of a drug holiday was intended to
+decrease the prevalence of MRONJ subsequent to the
+performance of high-risk surgical procedures. The
+concern regarding this practice is the loss of efficacy
+of antiresorptive therapy with the development of
+SREs and fragility fractures. Among others, factors for
+consideration may include disease-related risk (cancer
+vs osteoporosis), drug-dosing frequency, duration of
+therapy, comorbidities, other medications (especially
+chemotherapy, steroids, or antiangiogenics), degree
+of underlying infection/inflammation, and extent of
+surgery to be performed.
+Of note, the working group was unable to reach a
+consensus regarding a recommendation on drug holidays and was evenly split between offering drug holidays to patients on a case-by-case basis using prior
+recommendations and those who never recommend
+drug holidays, believing that the risks of potential deleterious effects of suspending antiresorptive therapy
+may outweigh a benefit.
+A special concern should be considered for suspending RANKL inhibitors in osteoporosis patients. Several
+studies have demonstrated a rebound increase in bone
+resorption following the discontinuation of DMB, resulting in an increased risk of multilevel vertebral fractures.200-202 If DMB is to be suspended, the timing and
+duration of the holiday should be optimized in order to
+minimize this risk. The planned dentoalveolar surgery
+can be completed 3-4 months following the last dose of
+
+931
+
+RUGGIERO ET AL
+
+Table 2. MRONJ PREVENTION STRATEGIES
+
+Pretherapy (Nonmalignant
+Disease)
+Pretherapy (malignant disease)
+
+During antiresorptive therapy
+(nonmalignant disease)
+
+During antiresorptive therapy/
+targeted therapies (malignant
+disease)
+
+ Educate patient about the potential risks associated with long-term ART.*
+ Optimization of dental health can occur concurrent with ART.
+ Educate patients about the higher risk of MRONJ and the importance of regimented dental care.
+ Optimization of the dental health prior to the initiation of ART if systemic
+conditions permit (extraction of nonrestorable teeth or teeth with a poor
+prognosis).
+ No alteration of operative plan for most patients.
+ Considerations include drug schedule, duration of therapy, comorbidities,
+other medications (especially chemotherapy, steroids, or antiangiogenics),
+degree of underlying infection/inflammation, and extent of surgery to be
+performed. Drug holidays are controversial.
+ BTMy are not a useful tool to assess MRONJ risk.
+ Educate patients about the higher MRONJ risk in the setting of malignant
+disease.
+ Educate the patient about the importance of regimented dental care and
+prevention.
+ Avoid dentoalveolar surgery if possible.
+ Consider root retention techniques to avoid extractions.
+ Dental implants are contraindicated.
+ Drug holidays are controversial.
+
+* Antiresorptive therapies.
+y Bone turnover markers (CTX).
+Ruggiero et al. AAOMS’ Position Paper on MRONJ—2022 Update. J Oral Maxillofac Surg 2022.
+
+DMB when the level of osteoclast inhibition is waning.
+It can then be reinstituted 6-8 weeks postsurgery. This
+management strategy minimizes the length of the drug
+holiday while maintaining a favorable environment for
+bone healing.
+Bone Turnover Markers. Since the 2014 AAOMS position paper, there has been a shift away from bone
+turnover markers. No biomarkers are validated for clinical decision-making, and continued research and prospective studies are required before these markers can
+be considered efficacious tools in estimating
+MRONJ risk.
+Other Biomarkers
+Biomarkers related to angiogenesis, VEGF activity,
+endocrine function, and PTH have more recently
+been described.203-205 These markers remain at an
+exploratory stage and are not yet validated for
+clinical decision-making.
+PREVENTION STRATEGIES
+
+Patients scheduled to initiate antiresorptive treatment for cancer therapy
+The treatment objective for this group of patients is
+to minimize the risk of developing MRONJ (Table 2).
+Although a small percentage of patients receiving
+antiresorptives develop osteonecrosis of the jaw spontaneously, the majority of affected patients experience
+
+this complication following dentoalveolar surgery.5,112,165,206,207 Therefore, if systemic conditions
+permit, initiation of antiresorptive therapy should be
+delayed until dental health is optimized.173,208 This decision must be made in conjunction with the treating
+physician and dentist and other specialists involved
+in the care of the patient. There is widespread
+consensus that optimizing dental health prior to initiating therapy is efficacious and of paramount importance.38,185,186,209 Medical oncologists should
+educate their patients about the importance of dental
+health and the efficacy of prophylactic dental treatment in the prevention of MRONJ. Similar to patients
+who are to receive radiation therapy, optimizing the
+dental health in patients receiving antiresorptives or
+other therapies that can compromise bone healing is
+essential. The pretreatment evaluation of dental health
+must extend beyond a review of systems and include a
+physical and radiographic exam. Therefore, a comprehensive dental examination performed by a dental
+health professional would be a prudent approach for
+all patients prior to receiving antiresorptive therapy
+for malignant disease. This level of dental health assessment is most appropriately performed by a dental
+health professional.
+The importance of minimizing the burden of dental
+infection and inflammation prior to dentoalveolar surgery in this cohort of patients with an elevated MRONJ
+risk cannot be over-emphasized. Nonrestorable teeth
+
+932
+and those with a poor prognosis should be extracted.
+Other necessary elective dentoalveolar surgery also
+should be completed at this time. It remains advisable
+that antiresorptive therapy should be delayed, if systemic conditions permit, until the surgical site(s)
+have mucosalized or until there is adequate osseous
+healing. Dental prophylaxis, caries control, conservative restorative dentistry, and nonoperative endodontic therapy are critical to maintaining functionally
+sound teeth. This level of care must be continued on
+a frequent and indefinite basis.185
+The posterior lingual plate region is a common site
+for trauma and mucosal irritation in denture
+wearers.5,75,170 Therefore, patients with full or partial
+dentures should be examined for areas of mucosal
+trauma, especially along the lingual flange region. It
+also is critical that patients be educated as to the
+importance of dental hygiene and regular dental evaluations, and specifically instructed to report any
+pain, swelling, or exposed bone.
+Patients scheduled to initiate antiresorptive treatment for osteoporosis
+Patients who are scheduled to receive antiresorptive therapy for the prevention of fragility fractures
+assume a significantly lower risk of MRONJ. Therefore, the urgency and the timing of optimizing the
+dental health are not as crucial. However, at the initiation of treatment, it would be prudent to educate
+patients regarding the potential risks of MRONJ.
+The importance of optimizing dental health
+throughout this treatment period and beyond cannot
+be underestimated.
+It is not uncommon for patients to seek the consultation of an oral and maxillofacial surgeon in guiding
+their decision about starting or continuing antiresorptive therapy. In this scenario, the consulting oral and
+maxillofacial surgeon should use this opportunity to
+place the risks and benefits into the proper perspective. More specifically, patients should be reminded
+of the benefits associated with antiresorptive therapies
+in preventing fragility fractures and an acknowledgment of the rare occurrence of MRONJ.
+The initial enthusiasm and attention associated
+with the discovery of MRONJ have had unintended
+consequences. When initially described, a ‘‘class effect’’ was observed, suggesting that MRONJ rates
+for patients receiving oncologic doses of BPs and
+those receiving osteoporotic doses of BPs were
+similar. A plateau and a decline in the use of BPs
+for osteoporosis was noted in 2006 and is hypothesized to be associated with various safety concerns,
+such as MRONJ. Patients are becoming increasingly
+more reluctant to begin or comply with their antiresorptive therapy. Current evidence also confirms an
+increase in fragility fractures with significant associ-
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+
+ated morbidity. As one salient example, hip fracture
+rates in the United States declined each year from
+2002 to 2012 and then plateaued at levels higher
+than projected for 2013 to 2015, attributable to an
+‘‘osteoporosis treatment gap.’’210 Hip fracture carries
+significant morbidity, with only 40 percent to 60
+percent of individuals recovering their prefracture
+level of mobility and ability to perform instrumental
+activities of daily living.211 These data are representative of a true health crisis. The documented risk
+for developing MRONJ is low; however, the
+patient-perceived risk is not. As such, patients are
+unwilling to start or continue antiresorptive medical
+therapy. Patients are irrationally denying themselves
+the tangible therapeutic benefit of antiresorptive
+therapy to minimize the risk of fragility fractures
+in order to prevent a minuscule risk of developing MRONJ.
+It is clear the benefit of fracture prevention outweighs the risk of MRONJ development in osteoporotic patients.212 This benefit is even more favorable
+in the cancer population where bone-stabilizing medications significantly improve quality of life, and it is
+detrimental when antiresorptives are withheld due
+to MRONJ safety concerns.
+Asymptomatic patients receiving antiresorptive
+therapies for cancer
+Maintaining good oral hygiene and dental care is of
+paramount importance in preventing dental disease
+that may require eventual extractions or other dentoalveolar surgery. Procedures that involve direct osseous
+injury should be avoided if possible. If a dentoalveolar
+surgical procedure is unavoidable (eg, fractured tooth,
+advanced periodontal disease), patients should be
+informed of the associated risks. The benefit of a
+drug holiday remains unsubstantiated in this setting.
+Nonrestorable teeth may be treated by removal of
+the crowns and endodontic treatment of the remaining roots.213 Teeth may be extracted if necessary.
+Placement of dental implants should be avoided in
+the oncology patient receiving parenteral antiresorptive therapy or antiangiogenic medications. Case series
+and systematic reviews have reported necrosis associated with antiresorptive therapy and implant placement.194,214-216
+Asymptomatic patients receiving antiresorptive
+therapy for osteoporosis
+Since the 2014 position paper, epidemiologic data
+regarding the risk of MRONJ in patients receiving
+antiresorptive therapy for osteoporosis remain
+limited due to the lack of sound prospective studies
+with sufficient power. Nevertheless, the risk for
+developing MRONJ is between 0.02 percent and
+0.04 percent for BPs and 0.3 percent for DMB. (see
+
+933
+
+RUGGIERO ET AL
+
+Table 1). Sound recommendations based on strong
+clinical research design are still lacking for patients
+taking oral BPs.
+In general, elective dentoalveolar surgery does not
+appear to be contraindicated in this group. Risk assessment for the development of MRONJ in these patients
+includes the above-stated data and the discussion
+above related to drug holidays.
+The placement of dental implants in the context of
+antiresorptive therapy for osteoporosis continues to
+be an area of research interest. Several systematic reviews have acknowledged the lack of quality data and
+randomized clinical trials. Some studies have recommended caution, especially with a longer duration of
+therapy or steroid use.194,216 For example, in their systematic review, Granate et al,216 identified several
+studies that reported an elevated MRONJ risk associated with implants placed in the posterior jaw if the
+duration of bisphosphonate therapy exceeded 3 years
+and if the patients were receiving systemic corticosteroids. In contrast to these studies, systematic reviews
+by Gelazius et al, and Stavropoulos et al, reported no increase in risk.214,217 A recent retrospective propensitymatched cohort study of 44,900 patients reported a
+decreased risk of ONJ in osteoporosis patients
+receiving implants compared to matched controls
+who did not have implants. Of note, 9,738 patients
+had a history of BP use, and the results for implants
+was in contrast to risk increase for patients who underwent tooth extraction.218
+Reports of implant-related (MRONJ) necrosis can be
+divided into the early (implant surgery-triggered) or
+late (implant presence-triggered) category.215,219,220
+In these reviews, the majority of the implant-related
+necrosis were not related to the initial implant surgery
+but occurred late (>12 months) and often at sites
+where implants were placed prior to the initiation of
+bisphosphonate therapy. The common presentation
+was an en bloc failure, where the osseointegration of
+the implants is maintained within the sequestrum.220,221 This has been recognized as a separate
+pattern of failure that is distinct from the common
+peri-implantitis failure and considered by some to be
+pathognomonic of MRONJ. Although there are no prospective studies or systematic reviews pertaining to
+implant-related necrosis associated with RANKL
+inhibitors or other targeted therapies, AAOMS considers this to have a similar level of risk.
+In summary, robust data do not exist, and available
+data are conflicting. Therefore, AAOMS suggests that
+if dental implants are placed, informed consent should
+be provided to include the low risk of MRONJ, as well
+as early and late implant failure. These patients should
+be placed on a regular long-term recall schedule.
+
+Treatment Strategies
+AAOMS has developed a series of treatment algorithms to streamline the evaluation (Fig 1) and management strategies (Figs 2-4) for patients with MRONJ.
+These strategies are based on a current review of
+nonoperative and operative therapies and their
+associated outcomes. Emphasis is placed on both
+nonoperative and operative management being
+acceptable for all stages of disease based on surgical
+judgment and patient factors in a shared decisionmaking model.
+Nonoperative therapy
+The efficacy of nonoperative therapies in the management of MRONJ is documented in the literature
+and provides a useful adjunct to the spectrum of management strategies that also include operative treatment (Fig 2). Nonoperative strategies can be useful
+in all stages, especially where significant comorbidities
+preclude operative treatment. They may also result in
+stabilization of disease or cure in earlier stages. The
+goal of both operative and nonoperative therapies remains the same: curative therapy and quality-of-life
+improvement. Nonoperative therapy heavily focuses
+on patient education, reassurance, control of pain,
+and control of secondary infection to allow for sequestration of the exposed, necrotic bone.3,63
+Decisions on operative versus nonoperative therapy
+should be patient-specific and tailored to individual
+needs. The risk versus benefit ratio (including quality
+of life with their current symptomology), ability to
+perform good wound care to prevent infection and disease spread, morbidity from a major surgical procedure, as well as oral function or dental rehabilitation
+after marginal or segmental resection should be
+considered. Radiographic imaging is of utmost importance in the evaluation of MRONJ lesions. Threedimensional imaging can identify forming or fully
+formed sequestra and potentially decrease the invasiveness of a surgical procedure. Maintenance of
+maxillary or mandibular integrity is desirable, as the
+reconstruction of surgical defects in this population
+can be challenging.63,222
+Stage 1 patients can be managed with chlorhexidine
+wound care and improved oral hygiene to remove the
+biofilm from the necrotic bone surface.63 Surgery may
+not be indicated in the absence of disease progression,
+with patient adequate quality of life.63,223 Stage 2 patients may struggle with local wound care and may
+require antibiotics for symptom control. Those patients who remain refractory to nonoperative treatment or those patients who cannot maintain
+adequate hygiene may benefit from operative therapy.
+In the presence of developing or established bony
+
+934
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+
+FIGURE 1. Initial evaluation.
+Ruggiero et al. AAOMS’ Position Paper on MRONJ—2022 Update. J Oral Maxillofac Surg 2022.
+
+sequestra, nonoperative therapy may be indicated to
+allow for ultimate sequestrectomy. Exfoliation of the
+exposed, necrotic bone will often result in disease resolution.63,224,225 Therefore, for those patients with
+
+Stage 2 or 3 diseases who are poor surgical candidates,
+nonoperative therapies may be indicated (Fig 2).
+There is little evidence to suggest that the use of
+adjunctive therapies, such as hyperbaric oxygen or
+
+FIGURE 2. Non-operative therapies.
+Ruggiero et al. AAOMS’ Position Paper on MRONJ—2022 Update. J Oral Maxillofac Surg 2022.
+
+935
+
+RUGGIERO ET AL
+
+FIGURE 3. Operative therapies for mandibular disease.
+Ruggiero et al. AAOMS’ Position Paper on MRONJ—2022 Update. J Oral Maxillofac Surg 2022.
+
+ozone therapy, can lead to MRONJ resolution. Larger
+studies and controlled trials have yet to demonstrate
+the efficacy of the aforementioned treatments.226-229
+Therefore, these therapies should not be
+recommended as a mainstay of treatment at this time.
+The use of vitamin E and pentoxifylline as an adjunct
+to standard MRONJ therapies have been reported only
+in case studies. A randomized, prospective, placebocontrolled trial of vitamin E and pentoxifylline is underway and will provide additional information about
+
+this treatment modality. Teriparatide, one of the few
+anabolic agents used for the treatment of osteoporosis,
+also has shown promise as an adjunct for the treatment
+of MRONJ in osteoporotic patients.230
+Operative therapy
+While nonoperative therapy continues to be a treatment option for MRONJ, operative therapy is increasingly reported as a viable option with high success
+rates for all stages of the disease (Figs 3 and 4).
+
+FIGURE 4. Operative therapies for maxillary disease.
+Ruggiero et al. AAOMS’ Position Paper on MRONJ—2022 Update. J Oral Maxillofac Surg 2022.
+
+936
+Numerous reports have identified high success rates
+associated with resection of MRONJ lesions.231-237
+Importantly, one must consider that MRONJ may
+progress over time, albeit in an unpredictable
+manner.238 Furthermore, adopting a nonoperative
+approach to MRONJ does not uniformly result in
+sequestration of the exposed necrotic bone with disease resolution.239 Thus, operative intervention
+should be explored and presented as a treatment option in an attempt to reduce the progression of disease
+with the recognition that early surgical intervention
+can predict beneficial patient outcomes.240
+Segmental or marginal resection of the mandible
+and partial maxillectomy are effective methods to
+control MRONJ.231-238,241 This approach can be
+applied to patients with all stages of MRONJ,
+including Stage 1 disease.169 These resections
+require margins beyond the borders of the
+necrotic bone to an area of vital, bleeding bone.
+Additional reports have identified success when
+surgical resection of MRONJ was performed by
+experienced surgeons.242,243 Consistent with surgical principles, control of comorbid conditions is
+paramount in managing MRONJ.241 Physiologically
+compromised patients, such as those with an
+increasing burden of distant metastatic disease,
+may not respond favorably to resection of their
+osteonecrotic jaw, and may occasionally develop
+refractory disease.241 Finally, surgical resection for
+MRONJ in patients with metastatic cancer may
+identify metastases in the jaw specimen, albeit
+in a minority of patients.62
+Active clinical and radiographic surveillance is critical in the nonoperative management of patients
+with Stage 1, 2, and 3 diseases to monitor for signs of
+disease progression. In patients who demonstrate
+the failure of nonoperative therapy, early operative
+intervention is recommended. In patients with a progressive clinical or radiographic disease or more
+advanced disease at presentation, surgical resection
+of MRONJ should be performed without first instituting prolonged nonoperative measures. MRONJ represents a complex wound whereby operative therapy
+can be performed in a timely fashion.241,244 Although
+controversy between operative and nonoperative
+therapies exist, operative treatment of patients has
+demonstrated maintenance of mucosal coverage,
+improved quality of life, and expedient resumption
+of antiresorptive therapy for all stages of MRONJ disease.245 The benefit of drug holidays for the operative
+intervention of MRONJ has not been substantiated.
+
+Future Research
+AAOMS realizes that MRONJ is a complex disease
+process with a multifactorial etiology for which
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+
+many questions remain unanswered. Continued preclinical and clinical data are required, especially in
+the form of prospective studies. Continued research
+efforts and the outcomes that result should be
+considered the foundation upon which recommendations are developed that will guide patients and
+providers. While the data supporting the conclusion
+that antiresorptives represent genuine risk factors
+are robust, this is not the case for other classifications of medications (eg, antiangiogenics, corticosteroids, immune modulators). Published studies have
+reported a relationship of certain dosing practices
+(eg, transition from BPs to DMB) or a synergistic effect between antiresorptive medications and antiangiogenic medication with a risk of MRONJ. These
+associations, however, are based on case reports
+and small case series. It also has been hypothesized
+that the total exposure to an antiresorptive medication is a risk factor for developing MRONJ. However, this has been difficult to demonstrate, possibly
+as a result of not having a good measure of exposure other than years of treatment. Similar to the
+cancer risk associated with tobacco use (eg, pack/
+years), the antiresorptive exposure risk MRONJ
+may be better defined as a cumulative dose load
+(eg, mg equivalent of BP/years of exposure) that
+would account for risk associated with different
+medications and dosing schedules over time. Dosereduction protocols and individualized strategies
+for antiresorptive therapy in long-term cancer survivors with a metastatic bone disease are being
+explored. It remains to be determined if these protocols will reduce the risk of MRONJ in this patient
+cohort.246 AAOMS acknowledges the challenge of
+elucidating potential risks associated with non-antiresorptive therapies, alone or in combination with
+antiresorptive medications, and therefore considers
+it imperative that research efforts continue in the
+form of prospective studies.
+A review of the current literature also failed to provide sound data in the form of randomized, controlled
+trials that would establish the effectiveness of biomarkers and drug holidays or validate a risk relationship with genetic markers and MRONJ. Until these
+relationships are established or refuted, AAOMS considers it prudent to recognize that these factors may
+play a role in the development and management
+of MRONJ.
+
+References
+1. American Association of Oral and Maxillofacial Surgeons position paper on bisphosphonate-related osteonecrosis of the
+jaws. J Oral Maxillofac Surg 65:369, 2007
+2. Ruggiero SL, Dodson TB, Assael LA, et al: American Association
+of Oral and Maxillofacial Surgeons position paper on
+
+RUGGIERO ET AL
+bisphosphonate-related osteonecrosis of the jaw - 2009 update.
+J Oral Maxillofac Surg 67(Supp 1), 2009
+3. Ruggiero SL, Dodson TB, Fantasia J, et al: American Association
+of Oral and Maxillofacial Surgeons position paper on medication-related osteonecrosis of the jaw–2014 update. J Oral Maxillofac Surg 72:1938, 2014
+4. Saad F, Gleason DM, Murray R, et al: Zoledronic acid
+prostate cancer study G. A randomized, placebo-controlled
+trial of zoledronic acid in patients with hormone-refractory metastatic prostate carcinoma. J Natl Cancer Inst
+94:1458, 2002
+5. Saad F, Brown JE, Van Poznak C, et al: Incidence, risk factors, and outcomes of osteonecrosis of the jaw: Integrated
+analysis from three blinded active-controlled phase III trials
+in cancer patients with bone metastases. Ann Oncol 23:
+1341, 2012
+6. Rosen LS, Gordon D, Tchekmedyian S, et al: Zoledronic acid
+versus placebo in the treatment of skeletal metastases in patients with lung cancer and other solid tumors: A phase III,
+double-blind, randomized trial–the zoledronic acid lung cancer and other solid tumors study group. J Clin Oncol 21:
+3150, 2003
+7. Hortobagyi GN, Theriault RL, Porter L, et al: Efficacy of pamidronate in reducing skeletal complications in patients
+with breast cancer and lytic bone metastases. Protocol 19
+Aredia Breast Cancer Study Group. N Engl J Med 335:
+1785, 1996
+8. Hortobagyi GN, Theriault RL, Lipton A, et al: Long-term prevention of skeletal complications of metastatic breast cancer with
+pamidronate. Protocol 19 Aredia Breast Cancer Study Group. J
+Clin Oncol 16:2038, 1998
+9. Berenson JR, Lichtenstein A, Porter L, et al: Efficacy of pamidronate in reducing skeletal events in patients with advanced
+multiple myeloma. Myeloma Aredia Study Group N Engl J
+Med 334:488, 1996
+10. Berenson JR, Lichtenstein A, Porter L, et al: Long-term pamidronate treatment of advanced multiple myeloma patients reduces skeletal events. Myeloma Aredia Study Group. J Clin
+Oncol 16:593, 1998
+11. Berenson JR, Hillner BE, Kyle RA, et al: American Society of
+Clinical Oncology Bisphosphonates Expert Panel. American
+Society of Clinical Oncology clinical practice guidelines: The
+role of bisphosphonates in multiple myeloma. J Clin Oncol
+20:3719, 2002
+12. Stopeck A, Brufsky A, Kennedy L, et al: Cost-effectiveness of denosumab for the prevention of skeletal-related events in patients with solid tumors and bone metastases in the United
+States. J Med Econ 23:37, 2020
+13. Jeon HL, Oh IS, Baek YH, et al: Zoledronic acid and skeletalrelated events in patients with bone metastatic cancer or multiple myeloma. J Bone Miner Metab 38:254, 2020
+14. Delmas PD: The use of bisphosphonates in the treatment of
+osteoporosis. Curr Opin Rheumatol 17:462, 2005
+15. Watts NB: Bisphosphonate treatment of osteoporosis. Clin Geriatr Med 19:395, 2003
+16. Gossiel F, Paggiosi MA, Naylor KE, et al: The effect of bisphosphonates on bone turnover and bone balance in postmenopausal women with osteoporosis: The T-score bone
+marker approach in the TRIO study. Bone 131:115158,
+2020
+17. Black DM, Cummings SR, Karpf DB, et al: Randomized trial of
+effect of alendronate on risk of fracture in women with existing
+vertebral fractures. Fracture Intervention Trial Research
+Group. Lancet 348:1535, 1996
+18. Black DM, Delmas PD, Eastell R, et al: Once-yearly zoledronic
+acid for treatment of postmenopausal osteoporosis. N Engl J
+Med 356:1809, 2007
+19. Nakamura T, Fukunaga M, Nakano T, et al: Efficacy and safety of
+once-yearly zoledronic acid in Japanese patients with primary
+osteoporosis: Two-year results from a randomized placebocontrolled double-blind study (ZOledroNate treatment in efficacy to osteoporosis; ZONE study). Osteoporos Int 28:389,
+2017
+
+937
+20. Cranney A, Wells G, Willan A, et al: Meta-analyses of therapies
+for postmenopausal osteoporosis. II. Meta-analysis of alendronate for the treatment of postmenopausal women. Endocr
+Rev 23:508, 2002
+21. Delmas PD, Meunier PJ: The management of Paget’s disease of
+bone. N Engl J Med 336:558, 1997
+22. Letocha AD, Cintas HL, Troendle JF, et al: Controlled trial of pamidronate in children with types III and IV osteogenesis imperfecta confirms vertebral gains but not short-term functional
+improvement. J Bone Miner Res 20:977, 2005
+23. Florenzano P, Pan KS, Brown SM, et al: Age-related changes and
+effects of bisphosphonates on bone turnover and disease progression in fibrous dysplasia of bone. J Bone Miner Res 34:653,
+2019
+24. Boyce AM, Kelly MH, Brillante BA, et al: A randomized, double
+blind, placebo-controlled trial of alendronate treatment for
+fibrous dysplasia of bone. J Clin Endocrinol Metab 99:4133,
+2014
+25. Cummings SR, San Martin J, McClung MR, et al: Denosumab for
+prevention of fractures in postmenopausal women with osteoporosis. N Engl J Med 361:756, 2009
+26. Papapoulos S, Chapurlat R, Libanati C, et al: Five years of denosumab exposure in women with postmenopausal osteoporosis: Results from the first two years of the FREEDOM
+extension. J Bone Miner Res 27:694, 2012
+27. Kanis JA, Harvey NC, Lorentzon M, et al: Combining fracture
+outcomes in phase 3 trials of osteoporosis: An analysis of the
+effects of denosumab in postmenopausal women. Osteoporos
+Int 32:165, 2021
+28. Miller PD, Pannacciulli N, Malouf-Sierra J, et al: Efficacy and
+safety of denosumab vs. bisphosphonates in postmenopausal
+women previously treated with oral bisphosphonates. Osteoporos Int 31:181, 2020
+29. Terpos E, Raje N, Croucher P, et al: Denosumab compared
+with zoledronic acid on PFS in multiple myeloma: Exploratory results of an international phase 3 study. Blood Adv
+5:725, 2021
+30. Fizazi K, Carducci M, Smith M, et al: Denosumab versus zoledronic acid for treatment of bone metastases in men with
+castration-resistant prostate cancer: A randomized, doubleblind study. Lancet 377:813, 2011
+31. Stopeck AT, Lipton A, Body JJ, et al: Denosumab compared with
+zoledronic acid for the treatment of bone metastases in patients with advanced breast cancer: A randomized, doubleblind study. J Clin Oncol 28:5132, 2010
+32. Chawla S, Henshaw R, Seeger L, et al: Safety and efficacy of denosumab for adults and skeletally mature adolescents with giant cell tumour of bone: Interim analysis of an open-label,
+parallel-group, phase 2 study. Lancet Oncol 14:901, 2013
+33. Bredell M, Rordorf T, Kroiss S, et al: Denosumab as a treatment alternative for central giant cell granuloma: A longterm retrospective cohort study. J Oral Maxillofac Surg 76:
+775, 2018
+34. Boyce AM: Denosumab: An emerging therapy in pediatric bone
+Disorders. Curr Osteoporos Rep 15:283, 2017
+35. de Castro LF, Burke AB, Wang HD, et al: Activation of RANK/
+RANKL/OPG pathway is involved in the pathophysiology of
+fibrous dysplasia and associated with disease burden. J Bone
+Miner Res 34:290, 2019
+36. Palmisano B, Spica E, Remoli C, et al: RANKL inhibition in
+fibrous dysplasia of bone: A preclinical study in a mouse model
+of the human disease. J Bone Miner Res 34:2171, 2019
+37. Saag KG, Petersen J, Brandi ML, et al: Romosozumab or alendronate for fracture prevention in women with osteoporosis. N
+Engl J Med 377:1417, 2017
+38. Campisi G, Mauceri R, Bertoldo F, et al: Medication-related osteonecrosis of jaws (MRONJ) prevention and diagnosis: Italian
+consensus update 2020. Int J Environ Res Public Health 17,
+2020
+39. Steinberg ME, Hayken GD, Steinberg DR: A quantitative system
+for staging avascular necrosis. J Bone Joint Surg Br 77:34, 1995
+40. Fleisher KE, Welch G, Kottal S, et al: Predicting risk for bisphosphonate-related osteonecrosis of the jaws: CTX versus
+
+938
+radiographic markers. Oral Surg Oral Med Oral Pathol Oral Radiol Endod 110:509, 2010
+41. Fedele S, Porter SR, D’Aiuto F, et al: Nonexposed variant of bisphosphonate-associated osteonecrosis of the jaw: A case series. Am J Med 123:1060, 2010
+42. Fleisher KE, Janal MN, Albstein N, et al: Comorbid conditions
+are a risk for osteonecrosis of the jaw unrelated to antiresorptive therapy. Oral Surg Oral Med Oral Pathol Oral Radiol 127:
+140, 2019
+43. Farah CS, Savage NW: Oral ulceration with bone sequestration.
+Aust Dent J 48:61, 2003
+44. Filippi A, Dreyer T, Bohle RM, et al: Sequestration of the alveolar bone by invasive aspergillosis in acute myeloid leukemia.
+J Oral Pathol Med 26:437, 1997
+45. Friel P, Macintyre DR: Bone sequestration from lower 3rd molar
+region. Br Dent J 193:366, 2002
+46. Huang JS, Kok SH, Lee JJ, et al: Extensive maxillary sequestration resulting from mucormycosis. Br J Oral Maxillofac Surg
+43:532, 2005
+47. Peters E, Daley T: American Academy of Oral and Maxillofacial
+Pathology. Persistent painful ulcer of the posterior lingual
+mandibular mucosa. J Contemp Dent Pract 4:71, 2003
+48. Sonnier KE, Horning GM: Spontaneous bony exposure: A
+report of 4 cases of idiopathic exposure and sequestration of
+alveolar bone. J Periodontol 68:758, 1997
+49. Peters E, Lovas GL, Wysocki GP: Lingual mandibular sequestration and ulceration. Oral Surg Oral Med Oral Pathol 75:739,
+1993
+50. Nandakumar H, Shankaramba KB: Massive sequestration of the
+upper jaw: A case report. Br J Oral Maxillofac Surg 28:55, 1990
+51. Ramon Y, Oberman M, Horowitz I, Freedman: Extensive maxillary sequestration resulting from rhinocerebral mucormyocosis. J Oral Surg 35:989, 1977
+52. Liao MT, Chien WC, Wang JC, et al: Increased risk of bisphosphonate-related osteonecrosis of the jaw in patients with Sjogren’s syndrome: Nationwide population-based cohort study.
+BMJ Open 9:e024655, 2019
+53. Schwartz HC: Osteonecrosis of the jaws. A complication of cancer chemotherapy. Head Neck Surg 4:251, 1982
+54. Cooper JC: Tooth exfoliation and osteonecrosis of the jaw
+following herpes zoster. Br Dent J 143:297, 1977
+55. Schwartz O, Kvorning SA: Tooth exfoliation, osteonecrosis of
+the jaw and neuralgia following herpes zoster of the trigeminal
+nerve. Int J Oral Surg 11:364, 1982
+56. Calhoun KH, Shapiro RD, Stiernberg CM, et al: Osteomyelitis of
+the mandible. Arch Otolaryngol Head Neck Surg 114:1157,
+1988
+57. Koorbusch GF, Fotos P, Goll KT: Retrospective assessment of
+osteomyelitis. Etiology, demographics, risk factors, and management in 35 cases. Oral Surg Oral Med Oral Pathol 74:149,
+1992
+58. Maines E, Monti E, Doro F, et al: Children and adolescents
+treated with neridronate for osteogenesis imperfecta show
+no evidence of any osteonecrosis of the jaw. J Bone Miner
+Metab 30:434, 2012
+59. Black DM, Schwartz AV, Ensrud KE, et al: Effects of continuing
+or stopping alendronate after 5 years of treatment: The fracture
+intervention trial long-term extension (FLEX): A randomized
+trial. JAMA 296:2927, 2006
+60. Black DM, Reid IR, Boonen S, et al: The effect of 3 versus 6 years
+of zoledronic acid treatment of osteoporosis: A randomized
+extension to the HORIZON-Pivotal fracture trial (PFT). J Bone
+Miner Res 27:243, 2012
+61. Black DM, Reid IR, Cauley JA, et al: The effect of 6 versus 9
+years of zoledronic acid treatment in osteoporosis: A randomized second extension to the HORIZON-Pivotal fracture trial
+(PFT). J Bone Miner Res 30:934, 2015
+62. Carlson ER, Fleisher KE, Ruggiero SL: Metastatic cancer identified in osteonecrosis specimens of the jaws in patients
+receiving intravenous bisphosphonate medications. J Oral
+Maxillofac Surg 71:2077, 2013
+63. Hadaya D, Soundia A, Freymiller E, et al: Nonsurgical
+management of medication-related osteonecrosis of the
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+jaws using local wound care. J Oral Maxillofac Surg 76:
+2332, 2018
+64. Marx RE, Sawatari Y, Fortin M, Broumand V: Bisphosphonateinduced exposed bone (osteonecrosis/osteopetrosis) of the
+jaws: Risk factors, recognition, prevention, and treatment. J
+Oral Maxillofac Surg 63:1567, 2005
+65. Aghaloo T, Hazboun R, Tetradis S: Pathophysiology of osteonecrosis of the jaws. Oral Maxillofac Surg Clin North Am 27:489,
+2015
+66. Johnston CB, Dagar M: Osteoporosis in older adults. Med Clin
+North Am 104:873, 2020
+67. Black DM, Rosen CJ: Clinical practice. Postmenopausal Osteoporos N Engl J Med 374:254, 2016
+68. Schwartz E, Reichert Z, Van Poznak C: Pharmacologic management of metastatic bone disease. Bone 115735, 2020
+69. Coleman R: Bisphosphonates and breast cancer from cautious
+palliation to saving lives. Bone 140:115570, 2020
+70. Lacey DL, Boyle WJ, Simonet WS, et al: Bench to bedside:
+Elucidation of the OPG-RANK-RANKL pathway and the
+development of denosumab. Nat Rev Drug Discov 11:401,
+2012
+71. Coleman RE, Major P, Lipton A, et al: Predictive value of bone
+resorption and formation markers in cancer patients with
+bone metastases receiving the bisphosphonate zoledronic
+acid. J Clin Oncol 23:4925, 2005
+72. Stewart AF: Clinical practice. Hypercalcemia associated with
+cancer. N Engl J Med 352:373, 2005
+73. Benjamin B, Benjamin MA, Swe M, Sugathan S: Review on the
+comparison of effectiveness between denosumab and bisphosphonates in post-menopausal osteoporosis. Osteoporos
+Sarcopenia 2:77, 2016
+74. Limones A, Saez-Alcaide LM, Diaz-Parreno SA, et al: Medicationrelated osteonecrosis of the jaws (MRONJ) in cancer patients
+treated with denosumab vs.. zoledronic acid: A systematic review and meta-analysis. Med Oral Patol Oral Cir Bucal 25:
+e326, 2020
+75. Hallmer F, Andersson G, Gotrick B, et al: Prevalence, initiating
+factor, and treatment outcome of medication-related osteonecrosis of the jaw-a 4-year prospective study. Oral Surg Oral Med
+Oral Pathol Oral Radiol 126:477, 2018
+76. Soundia A, Hadaya D, Esfandi N, et al: Osteonecrosis of the jaws
+(ONJ) in mice after extraction of teeth with periradicular disease. Bone 90:133, 2016
+77. Wehrhan F, Gross C, Creutzburg K, et al: Osteoclastic expression of higher-level regulators NFATc1 and BCL6 in medication-related osteonecrosis of the jaw secondary to
+bisphosphonate therapy: A comparison with osteoradionecrosis and osteomyelitis. J Transl Med 17:69, 2019
+78. de Molon RS, Shimamoto H, Bezouglaia O, et al: OPG-Fc but not
+zoledronic acid discontinuation reverses osteonecrosis of the
+jaws (ONJ) in mice. J Bone Miner Res 30:1627, 2015
+79. Hadaya D, Soundia A, Gkouveris I, et al: Antiresorptive-type and
+discontinuation-timing Affect ONJ burden. J Dent Res 100:746,
+2021
+80. Kuroshima S, Entezami P, McCauley LK, Yamashita J: Early effects of parathyroid hormone on bisphosphonate/steroid-associated compromised osseous wound healing. Osteoporos Int
+25:1141, 2014
+81. Dayisoylu EH, Senel FC, Ungor C, et al: The effects of adjunctive
+parathyroid hormone injection on bisphosphonate-related osteonecrosis of the jaws: An animal study. Int J Oral Maxillofac
+Surg 42:1475, 2013
+82. Chopra K, Malhan N: Teriparatide for the treatment of medication-related osteonecrosis of the jaw. Am J Ther 28:e469, 2021
+83. Ficarra G, Beninati F, Rubino I, et al: Osteonecrosis of the jaws
+in periodontal patients with a history of bisphosphonates treatment. J Clin Periodontol 32:1123, 2005
+84. Thumbigere-Math V, Michalowicz BS, Hodges JS, et al: Periodontal disease as a risk factor for bisphosphonate-related osteonecrosis of the jaw. J Periodontol 85:226, 2014
+85. Aghaloo TL, Kang B, Sung EC, et al: Periodontal disease and bisphosphonates induce osteonecrosis of the jaws in the rat. J
+Bone Miner Res 26:1871, 2011
+
+RUGGIERO ET AL
+86. Kang B, Cheong S, Chaichanasakul T, et al: Periapical disease
+and bisphosphonates induce osteonecrosis of the jaws in
+mice. J Bone Miner Res 28:1631, 2013
+87. Hadaya D, Soundia A, Gkouveris I, et al: Development of medication-related osteonecrosis of the jaw after extraction of teeth
+with experimental periapical disease. J Oral Maxillofac Surg 77:
+71, 2019
+88. Aguirre JI, Akhter MP, Kimmel DB, et al: Oncologic doses of zoledronic acid induce osteonecrosis of the jaw-like lesions in
+rice rats (Oryzomys palustris) with periodontitis. J Bone Miner
+Res 27:2130, 2012
+89. Soma T, Iwasaki R, Sato Y, et al: Tooth extraction in mice administered zoledronate increases inflammatory cytokine levels and
+promotes osteonecrosis of the jaw. J Bone Miner Metab 39:372,
+2021
+90. de Molon RS, Hsu C, Bezouglaia O, et al: Rheumatoid arthritis
+Exacerbates the severity of osteonecrosis of the jaws (ONJ)
+in mice. A randomized, prospective, controlled animal study.
+J Bone Miner Res 31:1596, 2016
+91. Kim T, Kim S, Song M, et al: Removal of pre-existing periodontal inflammatory condition before tooth extraction Ameliorates medication-related osteonecrosis of the jaw-like
+lesion in mice. Am J Pathol 188:2318, 2018
+92. Kuroshima S, Nakajima K, Sasaki M, et al: Systemic administration of quality and quantity-controlled PBMNCs reduces bisphosphonate-related osteonecrosis of jaw-like lesions in
+mice. Stem Cell Res Ther 10:209, 2019
+93. Hansen T, Kunkel M, Weber A, James Kirkpatrick C: Osteonecrosis of the jaws in patients treated with bisphosphonates histomorphologic analysis in comparison with infected
+osteoradionecrosis. J Oral Pathol Med 35:155, 2006
+94. Mawardi H, Giro G, Kajiya M, et al: A role of oral bacteria in bisphosphonate-induced osteonecrosis of the jaw. J Dent Res 90:
+1339, 2011
+95. Vandone AM, Donadio M, Mozzati M, et al: Impact of dental
+care in the prevention of bisphosphonate-associated osteonecrosis of the jaw: A single-center clinical experience. Ann Oncol
+23:193, 2012
+96. Sedghizadeh PP, Kumar SK, Gorur A, et al: Microbial biofilms in
+osteomyelitis of the jaw and osteonecrosis of the jaw secondary
+to bisphosphonate therapy. J Am Dent Assoc 140:1259, 2009
+97. Francini F, Pascucci A, Francini E, et al: Osteonecrosis of the jaw
+in patients with cancer who received zoledronic acid and bevacizumab. J Am Dent Assoc 142:506, 2011
+98. Migliorati CA, Schubert MM, Peterson DE, Seneda LM: Bisphosphonate-associated osteonecrosis of mandibular and
+maxillary bone: An emerging oral complication of supportive
+cancer therapy. Cancer 104:83, 2005
+99. Petek D, Hannouche D, Suva D: Osteonecrosis of the femoral
+head: Pathophysiology and current concepts of treatment.
+EFORT Open Rev 4:85, 2019
+100. Wood J, Bonjean K, Ruetz S, et al: Novel antiangiogenic effects
+of the bisphosphonate compound zoledronic acid. J Pharmacol
+Exp Ther 302:1055, 2002
+101. Santini D, Vincenzi B, Dicuonzo G, et al: Zoledronic acid induces significant and long-lasting modifications of circulating
+angiogenic factors in cancer patients. Clin Cancer Res 9:
+2893, 2003
+102. Ishtiaq S, Edwards S, Sankaralingam A, et al: The effect of nitrogen containing bisphosphonates, zoledronate and alendronate,
+on the production of pro-angiogenic factors by osteoblastic
+cells. Cytokine 71:154, 2015
+103. Kun-Darbois JD, Libouban H, Mabilleau G, et al: Bone mineralization and vascularization in bisphosphonate-related osteonecrosis of the jaw: An experimental study in the rat. Clin
+Oral Investig 22:2997, 2018
+104. Gao SY, Lin RB, Huang SH, et al: PDGF-BB exhibited therapeutic
+effects on rat model of bisphosphonate-related osteonecrosis
+of the jaw by enhancing angiogenesis and osteogenesis. Bone
+144:115117, 2021
+105. Bi Y, Gao Y, Ehirchiou D, et al: Bisphosphonates cause osteonecrosis of the jaw-like disease in mice. Am J Pathol 177:280,
+2010
+
+939
+106. Gkouveris I, Hadaya D, Soundia A, et al: Vasculature submucosal changes at early stages of osteonecrosis of the jaw (ONJ).
+Bone 123:234, 2019
+107. Vallina C, Ramirez L, Torres J, et al: Osteonecrosis of the jaws
+produced by sunitinib: A systematic review. Med Oral Patol
+Oral Cir Bucal 24:e326, 2019
+108. Gacche RN, Meshram RJ: Angiogenic factors as potential drug
+target: Efficacy and limitations of anti-angiogenic therapy. Biochim Biophys Acta 1846(1):161, 2014
+109. Akita Y, Kuroshima S, Nakajima K, et al: Effect of anti-angiogenesis induced by chemotherapeutic monotherapy, chemotherapeutic/bisphosphonate combination therapy and anti-VEGFA
+mAb therapy on tooth extraction socket healing in mice. J
+Bone Miner Metab 36:547, 2018
+110. Rugani P, Walter C, Kirnbauer B, et al: Prevalence of medication-related osteonecrosis of the jaw in patients with breast
+cancer, prostate cancer, and multiple myeloma. Dent J (Basel)
+4:32, 2016
+111. Dimopoulos MA, Kastritis E, Anagnostopoulos A, et al: Osteonecrosis of the jaw in patients with multiple myeloma treated
+with bisphosphonates: Evidence of increased risk after treatment with zoledronic acid. Haematologica 91:968, 2006
+112. Badros A, Weikel D, Salama A, et al: Osteonecrosis of the jaw in
+multiple myeloma patients: Clinical features and risk factors. J
+Clin Oncol 24:945, 2006
+113. Raje N, Terpos E, Willenbacher W, et al: Denosumab versus zoledronic acid in bone disease treatment of newly diagnosed
+multiple myeloma: An international, double-blind, doubledummy, randomised, controlled, phase 3 study. Lancet Oncol
+19:370, 2018
+114. Filleul O, Crompot E, Saussez S: Bisphosphonate-induced osteonecrosis of the jaw: A review of 2,400 patient cases. J Cancer Res Clin Oncol 136:1117, 2010
+115. Bastos P, Patel V, Festy F, et al: In-vivo imaging of the microvasculature of the soft tissue margins of osteonecrotic jaw lesions.
+Br Dent J 223:699, 2017
+116. Zhang Q, Yu W, Lee S, et al: Bisphosphonate induces osteonecrosis of the jaw in diabetic mice via NLRP3/Caspase-1Dependent IL-1 beta mechanism. J Bone Miner Res 30:2300, 2015
+117. Kabilova TO, Kovtonyuk LV, Zonov EV, et al: Immunotherapy of
+hepatocellular carcinoma with small double-stranded RNA.
+BMC Cancer 14:338, 2014
+118. Hayano H, Kuroshima S, Sasaki M, et al: Distinct immunopathology in the early stages between different antiresorptivesrelated osteonecrosis of the jaw-like lesions in mice. Bone
+135:115308, 2020
+119. Rao NJ, Yu RQ, Wang JY, et al: Effect of periapical diseases in
+development of MRONJ in immunocompromised mouse
+model. Biomed Res Int 2019:1271492, 2019
+120. Aghaloo TL, Tetradis S: Osteonecrosis of the jaw in the absence
+of antiresorptive or antiangiogenic exposure: A series of 6
+cases. J Oral Maxillofac Surg 75:129, 2017
+121. Bamias A, Kastritis E, Bamia C, et al: Osteonecrosis of the jaw in
+cancer after treatment with bisphosphonates: Incidence and
+risk factors. J Clin Oncol 23:8580, 2005
+122. Qu X, Wang Z, Zhou T, Shan L: Determination of the molecular
+mechanism by which macrophages and gammadelta-T cells
+contribute to ZOL-induced ONJ. Aging (Albany NY) 12:
+20743, 2020
+123. Rodriguez-Lozano FJ, Onate-Sanchez R, Gonzalvez-Garcia M,
+et al: Allogeneic bone marrow mesenchymal stem cell transplantation in tooth extractions sites Ameliorates the incidence
+of osteonecrotic jaw-like lesions in zoledronic acid-treated rats.
+J Clin Med 9:1649, 2020
+124. Alonso-Rodriguez E, Gonzalez-Martin-Moro J, CebrianCarretero JL, et al: Bisphosphonate-related osteonecrosis.
+Application of adipose-derived stem cells in an experimental
+murine model. Med Oral Patol Oral Cir Bucal 24:e529, 2019
+125. Barba-Recreo P, Del Castillo Pardo de Vera JL, GeorgievHristov T, et al: Adipose-derived stem cells and platelet-rich
+plasma for preventive treatment of bisphosphonate-related osteonecrosis of the jaw in a murine model. J Craniomaxillofac
+Surg 43:1161, 2015
+
+940
+126. Sarasquete ME, Garcia-Sanz R, Marin L, et al: Bisphosphonaterelated osteonecrosis of the jaw is associated with polymorphisms of the cytochrome P450 CYP2C8 in multiple myeloma:
+A genome-wide single nucleotide polymorphism analysis.
+Blood 112:2709, 2008
+127. Yang G, Hamadeh IS, Katz J, et al: SIRT1/HERC4 Locus associated with bisphosphonate-induced osteonecrosis of the jaw:
+An Exome-wide association analysis. J Bone Miner Res 33:91,
+2018
+128. Yang G, Collins JM, Rafiee R, et al: SIRT1 gene SNP rs932658 is
+associated with medication-related osteonecrosis of the jaw. J
+Bone Miner Res 36:347, 2021
+129. Lee KH, Kim SH, Kim CH, et al: Identifying genetic variants underlying medication-induced osteonecrosis of the jaw in cancer and osteoporosis: A case control study. J Transl Med 17:
+381, 2019
+130. Kastritis E, Melea P, Bagratuni T, et al: Genetic factors related
+with early onset of osteonecrosis of the jaw in patients with
+multiple myeloma under zoledronic acid therapy. Leuk Lymphoma 58:2304, 2017
+131. Guo Z, Cui W, Que L, et al: Pharmacogenetics of medicationrelated osteonecrosis of the jaw: A systematic review and
+meta-analysis. Int J Oral Maxillofac Surg 49:298, 2020
+132. Valachis A, Polyzos NP, Coleman RE, et al: Adjuvant therapy
+with zoledronic acid in patients with breast cancer: A systematic review and meta-analysis. Oncologist 18:353, 2013
+133. Coleman R, Cameron D, Dodwell D, et al: Adjuvant zoledronic
+acid in patients with early breast cancer: Final efficacy analysis
+of the AZURE (BIG 01/04) randomised open-label phase 3 trial.
+Lancet Oncol 15:997, 2014
+134. Gnant M, Pfeiler G, Dubsky PC, et al: Adjuvant denosumab in
+breast cancer (ABCSG-18): A multicentre, randomised, double
+blind, placebo-controlled trial. Lancet 386:433, 2015
+135. Boquete-Castro A, Gomez-Moreno G, Calvo-Guirado JL, et al:
+Denosumab and osteonecrosis of the jaw. A systematic analysis
+of events reported in clinical trials. Clin Oral Implants Res 27:
+367, 2016
+136. Macherey S, Monsef I, Jahn F, et al: Bisphosphonates for
+advanced prostate cancer. Cochrane Database Syst Rev 12:
+CD006250, 2017
+137. O’Carrigan B, Wong MH, Willson ML, et al: Bisphosphonates
+and other bone agents for breast cancer. Cochrane Database
+Syst Rev 10:CD003474, 2017
+138. Coleman R, Finkelstein DM, Barrios C, et al: Adjuvant denosumab in early breast cancer (D-CARE): An international, multicentre, randomised, controlled, phase 3 trial. Lancet Oncol
+21:60, 2020
+139. Barrett-Lee P, Casbard A, Abraham J, et al: Oral ibandronic acid
+versus intravenous zoledronic acid in treatment of bone metastases from breast cancer: A randomised, open label, noninferiority phase 3 trial. Lancet Oncol 15:114, 2014
+140. Himelstein AL, Foster JC, Khatcheressian JL, et al: Effect of
+longer-Interval vs standard dosing of zoledronic acid on skeletal events in patients with bone metastases: A randomized
+clinical trial. JAMA 317:48, 2017
+141. Henry D, Vadhan-Raj S, Hirsh V, et al: Delaying skeletal-related
+events in a randomized phase 3 study of denosumab versus zoledronic acid in patients with advanced cancer: An analysis of
+data from patients with solid tumors. Support Care Cancer 22:
+679, 2014
+142. Peddi P, Lopez-Olivo MA, Pratt GF, Suarez-Almazor ME: Denosumab in patients with cancer and skeletal metastases: A systematic review and meta-analysis. Cancer Treat Rev 39:97, 2013
+143. Jackson GH, Morgan GJ, Davies FE, et al: Osteonecrosis of the
+jaw and renal safety in patients with newly diagnosed multiple
+myeloma: Medical Research Council Myeloma IX Study results.
+Br J Haematol 166:109, 2014
+144. Wang X, Yang KH, Wanyan P, Tian JH: Comparison of the efficacy and safety of denosumab versus bisphosphonates in
+breast cancer and bone metastases treatment: A meta-analysis
+of randomized controlled trials. Oncol Lett 7:1997, 2014
+145. Ng TL, Tu MM, Ibrahim MFK, et al: Long-term impact of bonemodifying agents for the treatment of bone metastases: A systematic review. Support Care Cancer 29:925, 2021
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+146. Fusco V, Santini D, Armento G, et al: Osteonecrosis of jaw
+beyond antiresorptive (bone-targeted) agents: New horizons
+in oncology. Expert Opin Drug Saf 15:925, 2016
+147. Nicolatou-Galitis O, Kouri M, Papadopoulou E, et al: Osteonecrosis of the jaw related to non-antiresorptive medications: A
+systematic review. Support Care Cancer 27:383, 2019
+148. King R, Tanna N, Patel V: Medication-related osteonecrosis
+of the jaw unrelated to bisphosphonates and denosumab-a
+review. Oral Surg Oral Med Oral Pathol Oral Radiol 127:
+289, 2019
+149. Sacco R, Shah S, Leeson R, et al: Osteonecrosis and osteomyelitis of the jaw associated with tumour necrosis factor-alpha
+(TNF-alpha) inhibitors: A systematic review. Br J Oral Maxillofac Surg 58:25, 2020
+150. Grbic JT, Black DM, Lyles KW, et al: The incidence of osteonecrosis of the jaw in patients receiving 5 milligrams of zoledronic
+acid: Data from the health outcomes and reduced incidence
+with zoledronic acid once yearly clinical trials program. J Am
+Dent Assoc 141:1365, 2010
+151. Cosman F, Crittenden DB, Adachi JD, et al: Romosozumab treatment in postmenopausal women with osteoporosis. N Engl J
+Med 375:1532, 2016
+152. Administration USFaD. Background Document for Meeting of
+Advisory Committee for Reproductive Health Drugs and
+Drug Safety and Risk Management Advisory Committee. Adelphi, MD, FDA, HHS, 2011
+153. Bone HG, Wagman RB, Brandi ML, et al: 10 years of denosumab treatment in postmenopausal women with osteoporosis: Results from the phase 3 randomised FREEDOM
+trial and open-label extension. Lancet Diabetes Endocrinol
+5:513, 2017
+154. FDA. Briefing Information for the September 9, 2011 Joint
+Meeting of the Reproductive Health Drugs Advisory Committee and the Drug Safety and Risk Management Advisory Committee. Adelphi, MD, FDA, HHS, 2011
+155. Rutkowski P, Gaston L, Borkowska A, et al: Denosumab treatment of inoperable or locally advanced giant cell tumor of
+bone multicenter analysis outside clinical trial. Eur J Surg Oncol 44:1384, 2018
+156. Chawla S, Blay JY, Rutkowski P, et al: Denosumab in patients
+with giant-cell tumour of bone: A multicentre, open-label,
+phase 2 study. Lancet Oncol 20:1719, 2019
+157. Hennedige AA, Jayasinghe J, Khajeh J, Macfarlane TV: Systematic review on the incidence of bisphosphonate related osteonecrosis of the jaw in children diagnosed with osteogenesis
+imperfecta. J Oral Maxillofac Res 4:e1, 2013
+158. Duarte NT, Rech BO, Martins IG, et al: Can children be affected
+by bisphosphonate-related osteonecrosis of the jaw? A systematic review. Int J Oral Maxillofac Surg 49:183, 2020
+159. Lo JC, O’Ryan FS, Gordon NP, et al: Prevalence of osteonecrosis
+of the jaw in patients with oral bisphosphonate exposure. J
+Oral Maxillofac Surg 68:243, 2010
+160. Aljohani S, Fliefel R, Ihbe J, et al: What is the effect of antiresorptive drugs (ARDs) on the development of medicationrelated osteonecrosis of the jaw (MRONJ) in osteoporosis patients: A systematic review. J Craniomaxillofac Surg 45:1493,
+2017
+161. Shudo A, Kishimoto H, Takaoka K, Noguchi K: Long-term oral
+bisphosphonates delay healing after tooth extraction: A single
+institutional prospective study. Osteoporos Int 29:2315, 2018
+162. Gaudin E, Seidel L, Bacevic M, et al: Occurrence and risk indicators of medication-related osteonecrosis of the jaw after
+dental extraction: A systematic review and meta-analysis. J
+Clin Periodontol 42:922, 2015
+163. Watts NB, Grbic JT, Binkley N, et al: Invasive oral procedures
+and events in postmenopausal women with osteoporosis
+treated with denosumab for up to 10 Years. J Clin Endocrinol
+Metab 104:2443, 2019
+164. Mozzati M, Arata V, Gallesio G: Tooth extraction in patients on
+zoledronic acid therapy. Oral Oncol 48:817, 2012
+165. Yamazaki T, Yamori M, Ishizaki T, et al: Increased incidence of
+osteonecrosis of the jaw after tooth extraction in patients
+treated with bisphosphonates: A cohort study. Int J Oral Maxillofac Surg 41:1397, 2012
+
+RUGGIERO ET AL
+166. Scoletta M, Arata V, Arduino PG, et al: Tooth extractions in intravenous bisphosphonate-treated patients: A refined protocol. J
+Oral Maxillofac Surg 71:994, 2013
+167. Bodem JP, Kargus S, Eckstein S, et al: Incidence of bisphosphonate-related osteonecrosis of the jaw in high-risk patients undergoing surgical tooth extraction. J Craniomaxillofac Surg
+43:510, 2015
+168. McGowan K, McGowan T, Ivanovski S: Risk factors for medication-related osteonecrosis of the jaws: A systematic review.
+Oral Dis 24:527, 2018
+169. Kyrgidis A, Vahtsevanos K, Koloutsos G, et al: Bisphosphonaterelated osteonecrosis of the jaws: A case-control study of
+risk factors in breast cancer patients. J Clin Oncol 26:4634,
+2008
+170. Vahtsevanos K, Kyrgidis A, Verrou E, et al: Longitudinal cohort
+study of risk factors in cancer patients of bisphosphonaterelated osteonecrosis of the jaw. J Clin Oncol 27:5356, 2009
+171. Tsao C, Darby I, Ebeling PR, et al: Oral health risk factors for
+bisphosphonate-associated jaw osteonecrosis. J Oral Maxillofac Surg 71:1360, 2013
+172. Qi WX, Tang LN, He AN, et al: Risk of osteonecrosis of the jaw
+in cancer patients receiving denosumab: A meta-analysis of
+seven randomized controlled trials. Int J Clin Oncol 19:403,
+2014
+173. Ripamonti CI, Maniezzo M, Campa T, et al: Decreased occurrence of osteonecrosis of the jaw after implementation of
+dental preventive measures in solid tumour patients with
+bone metastases treated with bisphosphonates. The experience of the National Cancer Institute of Milan. Ann Oncol
+20:137, 2009
+174. Montefusco V, Gay F, Spina F, et al: Antibiotic prophylaxis
+before dental procedures may reduce the incidence of osteonecrosis of the jaw in patients with multiple myeloma treated
+with bisphosphonates. Leuk Lymphoma 49:2156, 2008
+175. Bantis A, Zissimopoulos A, Sountoulides P, et al: Bisphosphonate-induced osteonecrosis of the jaw in patients with bone
+metastatic, hormone-sensitive prostate cancer. Risk factors
+and prevention strategies. Tumori 97:479, 2011
+176. Kunchur R, Goss AN: The oral health status of patients on oral
+bisphosphonates for osteoporosis. Aust Dent J 53:354, 2008
+177. Lodi G, Sardella A, Salis A, et al: Tooth extraction in patients taking intravenous bisphosphonates: A preventive protocol and
+case series. J Oral Maxillofac Surg 68:107, 2010
+178. Mozzati M, Gallesio G, Arata V, et al: Platelet-rich therapies in
+the treatment of intravenous bisphosphonate-related osteonecrosis of the jaw: A report of 32 cases. Oral Oncol 48:469, 2012
+179. Ferlito S, Puzzo S, Liardo C: Preventive protocol for tooth extractions in patients treated with zoledronate: A case series. J
+Oral Maxillofac Surg 69:e1, 2011
+180. Schubert M, Klatte I, Linek W, et al: The saxon bisphosphonate
+register - therapy and prevention of bisphosphonate-related osteonecrosis of the jaws. Oral Oncol 48:349, 2012
+181. Bonacina R, Mariani U, Villa F, Villa A: Preventive strategies and
+clinical implications for bisphosphonate-related osteonecrosis
+of the jaw: A review of 282 patients. J Can Dent Assoc 77:b147,
+2011
+182. Khan AA, Morrison A, Hanley DA, et al: International Task
+Force on Osteonecrosis of the Jaw. Diagnosis and management
+of osteonecrosis of the jaw: a systematic review and international consensus. J Bone Miner Res 30:3, 2015
+183. Japanese Allied Committee on Osteonecrosis of the
+JawYoneda T, Hagino H, Sugimoto T, et al: Antiresorptive
+agent-related osteonecrosis of the jaw: Position paper 2017
+of the Japanese Allied Committee on osteonecrosis of the
+jaw. J Bone Miner Metab 35:6, 2017
+184. Aparecida Cariolatto F, Carelli J, de Campos Moreira T, et al:
+Recommendations for the prevention of bisphosphonaterelated osteonecrosis of the jaw: A systematic review. J Evid
+Based Dent Pract 18:142, 2018
+185. Beth-Tasdogan NH, Mayer B, Hussein H, Zolk O: Interventions
+for managing medication-related osteonecrosis of the jaw. Cochrane Database Syst Rev 10:CD012432, 2017
+186. Mucke T, Deppe H, Hein J, et al: Prevention of bisphosphonaterelated osteonecrosis of the jaws in patients with prostate can-
+
+941
+cer treated with zoledronic acid - a prospective study over 6
+years. J Craniomaxillofac Surg 44:1689, 2016
+187. Smidt-Hansen T, Folkmar TB, Fode K, et al: Combination of zoledronic Acid and targeted therapy is active but may induce osteonecrosis of the jaw in patients with metastatic renal cell
+carcinoma. J Oral Maxillofac Surg 71:1532, 2013
+188. Sivolella S, Lumachi F, Stellini E, Favero L: Denosumab and antiangiogenetic drug-related osteonecrosis of the jaw: An uncommon but potentially severe disease. Anticancer Res 33:1793,
+2013
+189. Patel V, McLeod NM, Rogers SN, Brennan PA: Bisphosphonate
+osteonecrosis of the jaw–a literature review of UK policies
+versus international policies on bisphosphonates, risk factors
+and prevention. Br J Oral Maxillofac Surg 49:251, 2011
+190. Hellstein JW, Adler RA, Edwards B, Ristic H, American Dental
+Association Council on scientific Affairs Expert Panel on antiresorptive Agents: Managing the care of patients receiving antiresorptive therapy for prevention and treatment of osteoporosis:
+Executive summary of recommendations from the American
+Dental Association Council on scientific Affairs. J Am Dent Assoc 142:1243, 2011
+191. Atalay B, Yalcin S, Emes Y, et al: Bisphosphonate-related osteonecrosis: Laser-assisted surgical treatment or conventional surgery? Lasers Med Sci 26:815, 2011
+192. Guarneri V, Miles D, Robert N, et al: Bevacizumab and osteonecrosis of the jaw: Incidence and association with bisphosphonate therapy in three large prospective trials in advanced
+breast cancer. Breast Cancer Res Treat 122:181, 2010
+193. Edwards BJ, Hellstein JW, Jacobsen PL, et al: American Dental
+Association Council on scientific Affairs Expert Panel on bisphosphonate-associated osteonecrosis of the Jaw: Updated
+recommendations for managing the care of patients receiving
+oral bisphosphonate therapy: An advisory statement from the
+American Dental Association Council on scientific Affairs. J
+Am Dent Assoc 139:1674, 2008
+194. de-Freitas NR, Lima LB, de-Moura MB, et al: Bisphosphonate
+treatment and dental implants: A systematic review. Med Oral
+Patol Oral Cir Bucal 21:e644, 2016
+195. de Molon RS, Cheong S, Bezouglaia O, et al: Spontaneous osteonecrosis of the jaws in the maxilla of mice on antiresorptive
+treatment: A novel ONJ mouse model. Bone 68:11, 2014
+196. Messer JG, Jiron JM, Mendieta Calle JL, et al: Zoledronate treatment duration is linked to bisphosphonate-related osteonecrosis of the jaw prevalence in rice rats with generalized
+periodontitis. Oral Dis 25:1116, 2019
+197. Hinchy NV, Jayaprakash V, Rossitto RA, et al: Osteonecrosis of
+the jaw - prevention and treatment strategies for oral health
+professionals. Oral Oncol 49:878, 2013
+198. Khan AA, Morrison A, Kendler DL, et al: International task
+Force on osteonecrosis of the Jaw: Case-based review of osteonecrosis of the jaw (ONJ) and application of the international
+recommendations for management from the international
+task Force on ONJ. J Clin Densitom 20:8, 2017
+199. Ottesen C, Schiodt M, Gotfredsen K: Efficacy of a high-dose
+antiresorptive drug holiday to reduce the risk of medicationrelated osteonecrosis of the jaw (MRONJ): A systematic review.
+Heliyon 6:e03795, 2020
+200. Anastasilakis AD, Polyzos SA, Makras P, et al: Clinical features of
+24 patients with rebound-associated vertebral fractures after
+denosumab discontinuation: Systematic review and additional
+cases. J Bone Miner Res 32:1291, 2017
+201. Cummings SR, Ferrari S, Eastell R, et al: Vertebral fractures after
+discontinuation of denosumab: A post Hoc analysis of the randomized placebo-controlled FREEDOM trial and its extension. J
+Bone Miner Res 33:190, 2018
+202. Tsourdi E, Langdahl B, Cohen-Solal M, et al: Discontinuation of
+denosumab therapy for osteoporosis: A systematic review and
+position statement by ECTS. Bone 105:11, 2017
+203. Lorenzo-Pouso AI, Perez-Sayans M, Gonzalez-Palanca S, et al:
+Biomarkers to predict the onset of biphosphonate-related osteonecrosis of the jaw: A systematic review. Med Oral Patol
+Oral Cir Bucal 24:e26, 2019
+204. Musolino C, Oteri G, Allegra A, et al: Altered microRNA expression profile in the peripheral lymphoid compartment of
+
+942
+multiple myeloma patients with bisphosphonate-induced osteonecrosis of the jaw. Ann Hematol 97:1259, 2018
+205. Yang R, Tao Y, Wang C, et al: Circulating microRNA Panel as a
+novel biomarker to Diagnose bisphosphonate-related osteonecrosis of the jaw. Int J Med Sci 15:1694, 2018
+206. Durie BG, Katz M, Crowley J: Osteonecrosis of the jaw and bisphosphonates. N Engl J Med 353:99, 2005
+207. Hoff AO, Toth BB, Altundag K, et al: Frequency and risk factors
+associated with osteonecrosis of the jaw in cancer patients
+treated with intravenous bisphosphonates. J Bone Miner Res
+23:826, 2008
+208. Dimopoulos MA, Kastritis E, Bamia C, et al: Reduction of osteonecrosis of the jaw (ONJ) after implementation of preventive
+measures in patients with multiple myeloma treated with zoledronic acid. Ann Oncol 20:117, 2009
+209. Yarom N, Shapiro CL, Peterson DE, et al: Medication-related osteonecrosis of the jaw: MASCC/ISOO/ASCO clinical practice
+guideline. J Clin Oncol 37:2270, 2019
+210. Lewiecki EM, Wright NC, Curtis JR, et al: Hip fracture trends in
+the United States, 2002 to 2015. Osteoporos Int 29:717, 2018
+211. Guzon-Illescas O, Perez Fernandez E, Crespi Villarias N, et al:
+Mortality after osteoporotic hip fracture: Incidence, trends,
+and associated factors. J Orthop Surg Res 14:203, 2019
+212. McCauley LK: Clinical recommendations for prevention of secondary fractures in patients with osteoporosis: Implications for
+dental care. J Am Dent Assoc 151:311, 2020
+213. Moinzadeh AT, Shemesh H, Neirynck NA, et al: Bisphosphonates and their clinical implications in endodontic therapy.
+Int Endod J 46:391, 2013
+214. Gelazius R, Poskevicius L, Sakavicius D, et al: Dental implant
+placement in patients on bisphosphonate therapy: A systematic review. J Oral Maxillofac Res 9:e2, 2018
+215. Holzinger D, Seemann R, Matoni N, et al: Effect of dental implants on bisphosphonate-related osteonecrosis of the jaws. J
+Oral Maxillofac Surg 72:1937.e1, 2014
+216. Granate-Marques A, Polis-Yanes C, Seminario-Amez M, et al:
+Medication-related osteonecrosis of the jaw associated with
+implant and regenerative treatments: Systematic review. Med
+Oral Patol Oral Cir Bucal 24:e195, 2019
+217. Stavropoulos A, Bertl K, Pietschmann P, Pandis N, Schiødt M,
+Klinge: The effect of antiresorptive drugs on implant therapy:
+Systematic review and meta-analysis. B Clin Oral Implants Res
+18(29 Suppl):54–92, 2018
+218. Ryu JI, Kim HY, Kwon YD: Is implant surgery a risk factor for
+osteonecrosis of the jaw in older adult patients with osteoporosis? A national cohort propensity score-matched study. Clin
+Oral Implants Res 32:437, 2021
+219. Giovannacci I, Meleti M, Manfredi M, et al: Medication-related
+osteonecrosis of the jaw around dental implants: Implant surgery-triggered or implant presence-triggered osteonecrosis? J
+Craniofac Surg 27:697, 2016
+220. Kwon TG, Lee CO, Park JW, et al: Osteonecrosis associated
+with dental implants in patients undergoing bisphosphonate
+treatment. Clin Oral Implants Res 25:632, 2014
+221. Pogrel MA, Ruggiero SL: Previously successful dental implants
+can fail when patients commence anti-resorptive therapy-a
+case series. Int J Oral Maxillofac Surg 47:220, 2018
+222. Walton K, Grogan TR, Eshaghzadeh E, et al: Medication related
+osteonecrosis of the jaw in osteoporotic vs oncologic patients quantifying radiographic appearance and relationship to clinical findings. Dentomaxillofac Radiol 48:20180128, 2019
+223. Coropciuc RG, Grisar K, Aerden T, et al: Medication-related osteonecrosis of the jaw in oncological patients with skeletal metastases: Conservative treatment is effective up to stage 2. Br J
+Oral Maxillofac Surg 55:787, 2017
+224. Soundia A, Hadaya D, Mallya SM, Aghaloo TL, Tetradis S: Radiographic predictors of bone exposure in patients with stage
+0 medication-related osteonecrosis of the jaws. Surg Oral
+Med Oral Pathol Oral Radiol 126(6), 2018
+225. Varoni EM, Lombardi N, Villa G, et al: Conservative management of medication-related osteonecrosis of the jaws (MRONJ):
+A retrospective cohort study. Antibiotics (Basel) 10, 2021
+226. Ripamonti CI, Cislaghi E, Mariani L, Maniezzo M: Efficacy and
+safety of medical ozone (O(3)) delivered in oil suspension ap-
+
+AAOMS’ POSITION PAPER ON MRONJ—2022 UPDATE
+plications for the treatment of osteonecrosis of the jaw in patients with bone metastases treated with bisphosphonates:
+Preliminary results of a phase I-II study. Oral Oncol 47:185,
+2011
+227. Freiberger JJ, Padilla-Burgos R, McGraw T, et al: What is the role
+of hyperbaric oxygen in the management of bisphosphonaterelated osteonecrosis of the jaw: A randomized controlled trial
+of hyperbaric oxygen as an adjunct to surgery and antibiotics. J
+Oral Maxillofac Surg 70:1573, 2012
+228. Epstein MS, Wicknick FW, Epstein JB, et al: Management of bisphosphonate-associated osteonecrosis: Pentoxifylline and
+tocopherol in addition to antimicrobial therapy. An initial
+case series. Oral Surg Oral Med Oral Pathol Oral Radiol Endod
+110:593, 2010
+229. Morishita K, Yamada SI, Kawakita A, et al: Treatment outcomes
+of adjunctive teriparatide therapy for medication-related osteonecrosis of the jaw (MRONJ): A multicenter retrospective analysis in Japan. J Orthop Sci 25:1079, 2020
+230. Sim IW, Borromeo GL, Tsao C, et al: Teriparatide promotes
+bone healing in medication-related osteonecrosis of the jaw:
+A placebo-controlled, randomized trial. J Clin Oncol 38:2971,
+2020
+231. Carlson ER, Basile JD: The role of surgical resection in the management of bisphosphonate-related osteonecrosis of the jaws. J
+Oral Maxillofac Surg 67:85, 2009
+232. Abu-Id MH, Warnke PH, Gottschalk J, et al: ‘ Bisphossy jaws’ high and low risk factors for bisphosphonate-induced osteonecrosis of the jaw. J Craniomaxillofac Surg 36:95, 2008
+233. Wutzl A, Biedermann E, Wanschitz F, et al: Treatment results of
+bisphosphonate-related osteonecrosis of the jaws. Head Neck
+30:1224, 2008
+234. Stanton DC, Balasanian E: Outcome of surgical management of
+bisphosphonate-related osteonecrosis of the jaws: Review of
+33 surgical cases. J Oral Maxillofac Surg 67:943, 2009
+235. Wilde F, Heufelder M, Winter K, et al: The role of surgical therapy in the management of intravenous bisphosphonatesrelated osteonecrosis of the jaw. Oral Surg Oral Med Oral Pathol
+Oral Radiol Endod 111:153, 2011
+236. Adornato MC, Morcos I, Rozanski J: The treatment of bisphosphonate-associated osteonecrosis of the jaws with bone
+resection and autologous platelet-derived growth factors. J
+Am Dent Assoc 138:971, 2007
+237. Williamson R: Surgical management of bisphosphonate
+induced osteonecrosis of the jaws. Int J Oral Maxillofac Surg
+39:251, 2010
+238. Carlson ER: Management of antiresorptive osteonecrosis of the
+jaws with primary surgical resection. J Oral Maxillofac Surg 72:
+655, 2014
+239. Watters AL, Hansen HJ, Williams T, et al: Intravenous bisphosphonate-related osteonecrosis of the jaw: Long-term
+follow-up of 109 patients. Oral Surg Oral Med Oral Pathol
+Oral Radiol 115:192, 2013
+240. Ristow O, Ruckschloss T, Muller M, et al: Is the conservative
+non-surgical management of medication-related osteonecrosis
+of the jaw an appropriate treatment option for early stages? A
+long-term single-center cohort study. J Craniomaxillofac Surg
+47:491, 2019
+241. Carlson ER, Schlott BJ: Anti-resorptive osteonecrosis of the
+jaws. Facts forgotten, questions answered, lessons learned.
+Oral Maxillofac Surg Clin North Am 26:171, 2014
+242. Klingelhoffer C, Zeman F, Meier J, et al: Evaluation of surgical
+outcome and influencing risk factors in patients with medication-related osteonecrosis of the jaws. J Craniomaxillofac
+Surg 44:1694, 2016
+243. Nisi M, La Ferla F, Karapetsa D, et al: Conservative surgical management of patients with bisphosphonate-related osteonecrosis of the jaws: A series of 120 patients. Br J Oral Maxillofac
+Surg 54:930, 2016
+244. Park H, Copeland C, Henry S, Barbul A: Complex wounds and
+their management. Surg Clin North Am 90:1181, 2010
+245. Giudice A, Barone S, Diodati F, et al: Can surgical management
+improve resolution of medication-related osteonecrosis of the
+jaw at early stages? A prospective cohort study. J Oral Maxillofac Surg 78:1986, 2020
+
+RUGGIERO ET AL
+246. Rachner TD, Coleman R, Hadji P, Hofbauer LC: Individualized bone-protective management in long-term cancer
+survivors with bone metastases. J Bone Miner Res 36:
+1906, 2021
+247. Gnant M, Mlineritsch B, Stoeger H, et al: Colorectal cancer
+study group VA: Zoledronic acid combined with adjuvant endocrine therapy of tamoxifen versus anastrozol plus ovarian func-
+
+943
+tion suppression in premenopausal early breast cancer: Final
+analysis of the Austrian breast and Colorectal cancer study
+group trial 12. Ann Oncol 26:313, 2015
+248. Yang YL, Xiang ZJ, Yang JH, et al: The incidence and relative
+risk of adverse events in patients treated with bisphosphonate
+therapy for breast cancer: A systematic review and meta-analysis. Ther Adv Med Oncol June 9:11, 2019
+
+

@@ -272,8 +272,8 @@
       // Get parameters from URL
       const urlParams = new URLSearchParams(window.location.search);
       const indication = urlParams.get('indication') || 'osteoporosis';
-      const medication = urlParams.get('medication') || 'bisphosphonate';
-      const administrationRoute = urlParams.get('route') || 'oral';
+      const medication = urlParams.get('medication') || 'none';
+      const administrationRoute = urlParams.get('route') || 'not_specific';
       const invasiveDentalTreatment = urlParams.get('invasive') === 'true';
       const patientName = urlParams.get('name') || '患者';
       
@@ -284,7 +284,7 @@
           hasAntiresorptiveMed: medication !== 'none',
           drugName: medication,
           administrationRoute: administrationRoute
-        }, invasiveDentalTreatment);
+        }, invasiveDentalTreatment ? '拔牙' : '洗牙');
         
         // Generate content
         generateContent(assessment, patientName);
@@ -390,15 +390,16 @@
       function getMedicationDisplayName(medication) {
         const names = {
           'none': '無',
-          'bisphosphonate': '雙磷酸鹽類',
-          'bisphosphonate_Alendronate': 'Alendronate (Fosamax)',
-          'bisphosphonate_Risedronate': 'Risedronate (Actonel)',
-          'bisphosphonate_Ibandronate': 'Ibandronate (Boniva)',
-          'bisphosphonate_Clodronate': 'Clodronate',
-          'bisphosphonate_Zoledronate': 'Zoledronate (Zometa/Reclast)',
-          'bisphosphonate_Pamidronate': 'Pamidronate (Aredia)',
+          'Bisphosphonate': '雙磷酸鹽類',
+          'Alendronate': 'Alendronate (Fosamax)',
+          'Risedronate': 'Risedronate (Actonel)',
+          'Ibandronate': 'Ibandronate (Boniva)',
+          'Clodronate': 'Clodronate',
+          'Zoledronate': 'Zoledronate (Zometa/Reclast)',
+          'Pamidronate': 'Pamidronate (Aredia)',
           'Denosumab': 'Denosumab (Prolia/Xgeva)',
           'Romosuzumab': 'Romosuzumab (Evenity)',
+          'Romosozumab': 'Romosozumab (Evenity)',
           'not_specific': '未特定'
         };
         return names[medication] || medication;

@@ -465,8 +465,17 @@ class MRONJRiskCalculator {
   getReferencePapers(indication, medication, administrationRoute, invasiveDentalTreatment) {
     const treatmentKey = invasiveDentalTreatment ? 'YES' : 'none';
     
+    // List of specific bisphosphonates that should map to general bisphosphonate category
+    const specificBisphosphonates = ['Alendronate', 'Risedronate', 'Ibandronate', 'Clodronate', 'Zoledronate', 'Pamidronate'];
+    
+    // Map specific bisphosphonates to general bisphosphonate category for references
+    let medicationKey = medication;
+    if (specificBisphosphonates.includes(medication)) {
+      medicationKey = 'bisphosphonate';
+    }
+    
     // Direct lookup: indication -> medication -> route -> treatment
-    const references = this.referencePapers?.[indication]?.[medication]?.[administrationRoute]?.[treatmentKey];
+    const references = this.referencePapers?.[indication]?.[medicationKey]?.[administrationRoute]?.[treatmentKey];
     
     if (references) {
       return references;
