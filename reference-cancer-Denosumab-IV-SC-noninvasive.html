@@ -80,6 +80,45 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
     
+    .paper-header {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .paper-number {
+      background: #007AFF;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    
+    .paper-details {
+      margin-left: 45px;
+    }
+    
+    .paper-details > div {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .paper-doi a {
+      color: #007AFF;
+      text-decoration: none;
+    }
+    
+    .paper-doi a:hover {
+      text-decoration: underline;
+    }
+    
     .paper-title {
       font-weight: bold;
       color: #2c3e50;
@@ -145,10 +184,15 @@
     .search-box {
       margin-bottom: 30px;
       text-align: center;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
     }
     
     .search-input {
-      width: 100%;
+      flex: 1;
       max-width: 500px;
       padding: 12px 20px;
       border: 2px solid #ddd;
@@ -160,6 +204,37 @@
     
     .search-input:focus {
       border-color: #007AFF;
+    }
+    
+    .print-button, .export-button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 120px;
+    }
+    
+    .print-button {
+      background: #28a745;
+      color: white;
+    }
+    
+    .print-button:hover {
+      background: #218838;
+      transform: translateY(-2px);
+    }
+    
+    .export-button {
+      background: #17a2b8;
+      color: white;
+    }
+    
+    .export-button:hover {
+      background: #138496;
+      transform: translateY(-2px);
     }
     
     .no-results {
@@ -201,6 +276,8 @@
     
     <div class="search-box">
       <input type="text" id="searchInput" class="search-input" placeholder="搜尋文獻作者、標題或期刊...">
+      <button id="printButton" class="print-button">列印文獻</button>
+      <button id="exportButton" class="export-button">匯出清單</button>
     </div>
     
     <div id="referenceDetailContent">
@@ -327,14 +404,25 @@
           params.invasive
         );
         
-        // Get incidence rate (you might need to implement this in your calculator)
-        const incidenceRate = getIncidenceRate(params.indication, params.medication, params.route, params.invasive);
+        // Get incidence rate from calculator
+        const incidenceRate = calculator.getIncidenceRate(params.indication, params.medication, params.route, params.invasive);
+        
+        // Format incidence rate display
+        let incidenceDisplay = '';
+        if (incidenceRate === null || incidenceRate === undefined || incidenceRate === 'N/A') {
+          incidenceDisplay = '<span style="color: #6c757d; font-style: italic;">資料不足</span>';
+        } else if (typeof incidenceRate === 'object' && incidenceRate.specific !== undefined) {
+          // Handle dual rate results (specific + general)
+          incidenceDisplay = `${incidenceRate.specific}% <span style="color: #666; font-size: 0.9em;">(特定藥物) / ${incidenceRate.general}% <span style="color: #666; font-size: 0.9em;">(一般類別)</span>`;
+        } else {
+          incidenceDisplay = `${incidenceRate}%`;
+        }
         
         let html = `
           <div class="medication-info">
             <div class="medication-title">${medicationName}</div>
             <div class="incidence-info">
-              統計發生率: ${incidenceRate !== null ? incidenceRate + '%' : '<span style="color: #6c757d; font-style: italic;">資料不足</span>'}
+              <strong>統計發生率:</strong> ${incidenceDisplay}
             </div>
             <div class="stats-summary">
               <h3>文獻統計</h3>
@@ -343,14 +431,19 @@
             <ul class="paper-list">
         `;
         
-        references.forEach(paper => {
+        references.forEach((paper, index) => {
           html += `
-            <li class="paper-item">
-              <div class="paper-title">${paper.title}</div>
-              <div class="paper-authors">${paper.authors}</div>
-              <div class="paper-journal">${paper.journal}</div>
-              <div class="paper-year">${paper.year}</div>
-              ${paper.doi ? `<div class="paper-doi"><a href="${paper.doi}" target="_blank">${paper.doi}</a></div>` : ''}
+            <li class="paper-item" data-index="${index}">
+              <div class="paper-header">
+                <div class="paper-number">${index + 1}</div>
+                <div class="paper-title">${paper.title}</div>
+              </div>
+              <div class="paper-details">
+                <div class="paper-authors"><strong>作者:</strong> ${paper.authors}</div>
+                <div class="paper-journal"><strong>期刊:</strong> ${paper.journal}</div>
+                <div class="paper-year"><strong>年份:</strong> ${paper.year}</div>
+                ${paper.doi ? `<div class="paper-doi"><strong>DOI:</strong> <a href="${paper.doi}" target="_blank" rel="noopener noreferrer">${paper.doi}</a></div>` : ''}
+              </div>
             </li>
           `;
         });
@@ -367,21 +460,69 @@
       function searchPapers(query) {
         const paperItems = document.querySelectorAll('.paper-item');
         const queryLower = query.toLowerCase();
+        let visibleCount = 0;
         
         paperItems.forEach(item => {
           const text = item.textContent.toLowerCase();
           if (text.includes(queryLower)) {
             item.style.display = 'block';
+            visibleCount++;
           } else {
             item.style.display = 'none';
           }
         });
+        
+        // Update results count
+        const statsSummary = document.querySelector('.stats-summary p');
+        if (statsSummary) {
+          statsSummary.textContent = `共找到 ${visibleCount} 篇相關文獻${query ? ` (搜尋: "${query}")` : ''}`;
+        }
+      }
+      
+      // Print functionality
+      function printReferences() {
+        window.print();
+      }
+      
+      // Export functionality
+      function exportReferences() {
+        const references = calculator.getReferencePapers(params.indication, params.medication, params.route, params.invasive);
+        const medicationName = generateMedicationName(params.indication, params.medication, params.route, params.invasive, 'zh');
+        
+        let exportText = `MRONJ風險評估文獻參考\n`;
+        exportText += `=${medicationName}=\n`;
+        exportText += `基於最新系統性文獻回顧的詳細參考資料\n\n`;
+        
+        references.forEach((paper, index) => {
+          exportText += `${index + 1}. ${paper.title}\n`;
+          exportText += `   作者: ${paper.authors}\n`;
+          exportText += `   期刊: ${paper.journal}\n`;
+          exportText += `   年份: ${paper.year}\n`;
+          if (paper.doi) {
+            exportText += `   DOI: ${paper.doi}\n`;
+          }
+          exportText += `\n`;
+        });
+        
+        // Create and download file
+        const blob = new Blob([exportText], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `MRONJ_${params.indication}_${params.medication}_${params.route}_${params.invasive ? 'invasive' : 'noninvasive'}_references.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
       }
       
       // Event listeners
       searchInput.addEventListener('input', function() {
         searchPapers(this.value);
       });
+      
+      document.getElementById('printButton').addEventListener('click', printReferences);
+      document.getElementById('exportButton').addEventListener('click', exportReferences);
       
       // Initialize
       generateDetailContent();
