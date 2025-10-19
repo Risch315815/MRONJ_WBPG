@@ -568,7 +568,7 @@
         // Add reference papers link if available (skip for semi-invasive treatments)
         let referenceLink = '';
         if (assessment.references && assessment.references.length > 0 && assessment.invasiveness !== 'semiInvasive') {
-          const indication = patientData.hasCancer ? 'cancer' : 'osteoporosis';
+          const indication = getIndicationForReference(patientData);
           const invasive = assessment.invasive ? 'true' : 'false';
           const patientName = patientData.name || '患者';
           
@@ -581,9 +581,10 @@
             let referenceLinks = [];
             patientData.highestRiskMedications.forEach((med, index) => {
               const medication = med.drugName;
-              const route = med.administrationRoute === '口服' ? 'oral' : 
-                           med.administrationRoute === '注射' ? 'IV/SC' : 
-                           med.administrationRoute;
+              const route = getRouteForReference({ 
+                hasAntiresorptiveMed: true, 
+                administrationRoute: med.administrationRoute 
+              });
               
               const referenceFileName = getReferenceFileName(indication, medication, route, invasive === 'true');
               const referenceUrl = `${referenceFileName}?name=${encodeURIComponent(patientName)}`;
@@ -676,6 +677,36 @@
       
       // Return as-is if already in correct format
       return route || 'not_specific';
+    }
+    
+    // Helper function to get indication for reference URL
+    function getIndicationForReference(patientData) {
+      // Check if patient has cancer
+      if (patientData.hasCancer) {
+        return 'cancer';
+      }
+      
+      // Check medications for indication
+      if (patientData.medications && patientData.medications.length > 0) {
+        const firstMed = patientData.medications[0];
+        if (firstMed.indication === '骨轉移' || firstMed.indication === '多發性骨髓瘤') {
+          return 'cancer';
+        }
+        if (firstMed.indication === '骨質疏鬆') {
+          return 'osteoporosis';
+        }
+      }
+      
+      // Check legacy indication field
+      if (patientData.indication === '骨轉移' || patientData.indication === '多發性骨髓瘤') {
+        return 'cancer';
+      }
+      if (patientData.indication === '骨質疏鬆') {
+        return 'osteoporosis';
+      }
+      
+      // Default to osteoporosis if no clear indication
+      return 'osteoporosis';
     }
     
     // Helper function to generate the correct reference file name
