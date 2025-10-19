@@ -653,13 +653,20 @@
     
     // Helper function to get medication for reference URL
     function getMedicationForReference(patientData) {
+      console.log('getMedicationForReference - patientData:', patientData);
+      console.log('getMedicationForReference - hasAntiresorptiveMed:', patientData.hasAntiresorptiveMed);
+      console.log('getMedicationForReference - drugName:', patientData.drugName);
+      
       if (!patientData.hasAntiresorptiveMed) {
+        console.log('getMedicationForReference - returning none because hasAntiresorptiveMed is false');
         return 'none';
       }
       
       // Use the medication that contributed to the highest risk assessment
       // This is set by the algorithm when processing multiple medications
-      return patientData.drugName || 'none';
+      const medication = patientData.drugName || 'none';
+      console.log('getMedicationForReference - returning medication:', medication);
+      return medication;
     }
     
     // Helper function to get route for reference URL
@@ -681,36 +688,49 @@
     
     // Helper function to get indication for reference URL
     function getIndicationForReference(patientData) {
+      console.log('getIndicationForReference - patientData:', patientData);
+      console.log('getIndicationForReference - hasCancer:', patientData.hasCancer);
+      console.log('getIndicationForReference - medications:', patientData.medications);
+      
       // Check if patient has cancer
       if (patientData.hasCancer) {
+        console.log('getIndicationForReference - returning cancer because hasCancer is true');
         return 'cancer';
       }
       
       // Check medications for indication
       if (patientData.medications && patientData.medications.length > 0) {
         const firstMed = patientData.medications[0];
+        console.log('getIndicationForReference - firstMed indication:', firstMed.indication);
         if (firstMed.indication === '骨轉移' || firstMed.indication === '多發性骨髓瘤') {
+          console.log('getIndicationForReference - returning cancer based on medication indication');
           return 'cancer';
         }
         if (firstMed.indication === '骨質疏鬆') {
+          console.log('getIndicationForReference - returning osteoporosis based on medication indication');
           return 'osteoporosis';
         }
       }
       
       // Check legacy indication field
       if (patientData.indication === '骨轉移' || patientData.indication === '多發性骨髓瘤') {
+        console.log('getIndicationForReference - returning cancer based on legacy indication');
         return 'cancer';
       }
       if (patientData.indication === '骨質疏鬆') {
+        console.log('getIndicationForReference - returning osteoporosis based on legacy indication');
         return 'osteoporosis';
       }
       
       // Default to osteoporosis if no clear indication
+      console.log('getIndicationForReference - returning default osteoporosis');
       return 'osteoporosis';
     }
     
     // Helper function to generate the correct reference file name
     function getReferenceFileName(indication, medication, route, invasive) {
+      console.log('getReferenceFileName called with:', { indication, medication, route, invasive });
+      
       // Handle special cases for medication names
       let medicationKey = medication;
       
@@ -718,11 +738,13 @@
       const specificBisphosphonates = ['Alendronate', 'Risedronate', 'Ibandronate', 'Clodronate', 'Zoledronate', 'Pamidronate'];
       if (specificBisphosphonates.includes(medication)) {
         medicationKey = 'bisphosphonate';
+        console.log('getReferenceFileName - mapped specific bisphosphonate to general:', medication, '->', medicationKey);
       }
       
       // Handle Romosuzumab vs Romosozumab naming inconsistency
       if (medication === 'Romosozumab') {
         medicationKey = 'Romosuzumab';
+        console.log('getReferenceFileName - mapped Romosozumab to Romosuzumab');
       }
       
       // Map route names to file naming convention
@@ -734,17 +756,22 @@
       } else {
         routeKey = 'not_specific';
       }
+      console.log('getReferenceFileName - route mapping:', route, '->', routeKey);
       
       // Map invasive status to file naming convention
       const invasiveKey = invasive ? 'invasive' : 'noninvasive';
+      console.log('getReferenceFileName - invasive mapping:', invasive, '->', invasiveKey);
       
       // Generate the file name
       if (medicationKey === 'none') {
         // For no medication cases, use a general reference
+        console.log('getReferenceFileName - returning reference-papers.html because medicationKey is none');
         return 'reference-papers.html';
       }
       
-      return `reference-${indication}-${medicationKey}-${routeKey}-${invasiveKey}.html`;
+      const fileName = `reference-${indication}-${medicationKey}-${routeKey}-${invasiveKey}.html`;
+      console.log('getReferenceFileName - generated file name:', fileName);
+      return fileName;
     }
   </script>
 </body>
