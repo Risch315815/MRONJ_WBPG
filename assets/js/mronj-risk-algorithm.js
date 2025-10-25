@@ -87,8 +87,14 @@ class MRONJRiskCalculator {
 
     // Semi-invasive treatment special considerations
     this.semiInvasiveConsiderations = {
-      '根管治療': '應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)',
-      '牙周深層清潔': '建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、雷射牙周治療等等)'
+      '根管治療': {
+        zh: '應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)',
+        en: 'Special attention should be paid to prevent root canal filling materials or adhesives from extending beyond the root apex, or consider using biocompatible adhesives (such as bioceramics, MTA)'
+      },
+      '牙齦下牙結石刮除術': {
+        zh: '建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、雷射牙周治療等等)',
+        en: 'It is recommended to remove subgingival calculus and inflamed tissue using minimally invasive methods (such as microscope-assisted microsurgery, periodontal laser therapy, etc.)'
+      }
     };
 
     // Data quality indicators - mark which rates are based on limited sources
@@ -118,14 +124,14 @@ class MRONJRiskCalculator {
   }
 
   // Calculate MRONJ risk - integrated function for both single treatment and all categories
-  calculateRisk(patientData, dentalTreatment = null) {
+  calculateRisk(patientData, dentalTreatment = null, language = 'zh') {
     const indication = patientData.hasCancer ? 'cancer' : 'osteoporosis';
     const medication = patientData.hasAntiresorptiveMed ? patientData.drugName : 'none';
     const administrationRoute = this.normalizeAdministrationRoute(patientData);
     
     // If no specific treatment provided, calculate for all categories
     if (!dentalTreatment) {
-      return this.calculateRiskForAllCategories(patientData, indication, medication, administrationRoute);
+      return this.calculateRiskForAllCategories(patientData, indication, medication, administrationRoute, language);
     }
     
     // Single treatment calculation
@@ -176,12 +182,12 @@ class MRONJRiskCalculator {
       riskCategory,
       references,
       riskLevel: this.getRiskLevel(riskCategory),
-      recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations)
+      recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations, language)
     };
   }
 
   // Helper function for calculating risk for all categories
-  calculateRiskForAllCategories(patientData, indication, medication, administrationRoute) {
+  calculateRiskForAllCategories(patientData, indication, medication, administrationRoute, language = 'zh') {
     const treatmentCategories = [
       { 
         name: '非侵入性治療', 
@@ -252,7 +258,7 @@ class MRONJRiskCalculator {
         generalIncidenceRate: generalIncidenceRate,
         showIncidenceRate: category.showIncidenceRate,
         hasLimitedData: hasLimitedData,
-        recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations),
+        recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations, language),
         references: references,
         riskCategory: riskCategory
       });
@@ -416,7 +422,7 @@ class MRONJRiskCalculator {
   }
 
   // Get recommendation based on risk category
-  getRecommendation(category, isInvasive, isSemiInvasive, specialConsiderations) {
+  getRecommendation(category, isInvasive, isSemiInvasive, specialConsiderations, language = 'zh') {
     let baseRecommendation = '';
     
     // Base recommendations
@@ -455,7 +461,9 @@ class MRONJRiskCalculator {
     
     // Add special considerations for semi-invasive treatments
     if (isSemiInvasive && specialConsiderations) {
-      baseRecommendation += `\n\n特別注意事項：${specialConsiderations}`;
+      const specialText = specialConsiderations[language] || specialConsiderations;
+      const label = language === 'en' ? 'Special Considerations:' : '特別注意事項：';
+      baseRecommendation += `\n\n${label}${specialText}`;
     }
     
     return baseRecommendation;

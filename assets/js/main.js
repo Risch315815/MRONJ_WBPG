@@ -419,7 +419,8 @@ function assessRisk() {
               indication === 'Bone Metastasis';
             medPatient.hasCancer = isCancerReason;
 
-            const results = riskCalculator.calculateRisk(medPatient);
+            const language = localStorage.getItem('preferredLanguage') || 'zh';
+            const results = riskCalculator.calculateRisk(medPatient, language);
             const catRes = results.find(r => r.invasiveness === category.invasiveness);
             if (!catRes) return;
 

@@ -741,6 +741,12 @@
         medicationKey = 'Romosuzumab';
       }
       
+      // Special case: Cancer bisphosphonates use integrated files (no route in filename)
+      if (indication === 'cancer' && medicationKey === 'bisphosphonate') {
+        const invasiveKey = invasive ? 'invasive' : 'noninvasive';
+        return `reference-${indication}-${medicationKey}-${invasiveKey}.html`;
+      }
+      
       // Map route names to file naming convention
       let routeKey = route;
       if (route === 'oral') {

@@ -264,6 +264,12 @@
     // Function to generate individual reference page URLs
     function generateReferencePageUrl(indication, medication, route, invasive) {
       const invasiveStr = invasive ? 'invasive' : 'noninvasive';
+      
+      // Special case for cancer bisphosphonates - use combined route
+      if (indication === 'cancer' && medication === 'bisphosphonate' && route === 'oral/IV/SC') {
+        return `reference-${indication}-${medication}-${invasiveStr}.html`;
+      }
+      
       const routeSafe = route.replace('/', '-');
       return `reference-${indication}-${medication}-${routeSafe}-${invasiveStr}.html`;
     }
@@ -376,7 +382,7 @@
               {
                 indication: 'cancer',
                 medication: 'bisphosphonate',
-                route: 'IV/SC',
+                route: 'oral/IV/SC',
                 invasive: false,
                 incidence: 0.88
               },
@@ -404,7 +410,7 @@
               {
                 indication: 'cancer',
                 medication: 'bisphosphonate',
-                route: 'IV/SC',
+                route: 'oral/IV/SC',
                 invasive: true,
                 incidence: 9.17
               },

@@ -12,27 +12,6 @@
       padding: 20px;
     }
     
-    .reference-detail-header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding: 30px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-    
-    .reference-detail-header h1 {
-      margin: 0 0 15px 0;
-      font-size: 2.2em;
-    }
-    
-    .reference-detail-header .subtitle {
-      margin: 0;
-      font-size: 1.1em;
-      opacity: 0.9;
-    }
-    
     .medication-info {
       background: white;
       padding: 25px;
@@ -142,26 +121,6 @@
       box-shadow: 0 6px 8px rgba(0,0,0,0.15);
     }
     
-    .search-box {
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    
-    .search-input {
-      width: 100%;
-      max-width: 500px;
-      padding: 12px 20px;
-      border: 2px solid #ddd;
-      border-radius: 25px;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-    
-    .search-input:focus {
-      border-color: #007AFF;
-    }
-    
     .no-results {
       text-align: center;
       padding: 40px;
@@ -194,14 +153,6 @@
   <a href="reference-papers.html" class="back-button">← 返回文獻總覽</a>
   
   <div class="reference-detail-container">
-    <div class="reference-detail-header">
-      <h1 id="pageTitle">[癌症] 雙磷酸鹽類 (口服) + 侵入性牙科治療</h1>
-      <p class="subtitle" id="pageSubtitle">基於最新系統性文獻回顧的詳細參考資料</p>
-    </div>
-    
-    <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="搜尋文獻作者、標題或期刊...">
-    </div>
     
     <div id="referenceDetailContent">
       <!-- Content will be populated by JavaScript -->
@@ -229,7 +180,8 @@
       // Route mapping
       const routeMap = {
         'oral': { zh: '口服', en: 'oral' },
-        'IV/SC': { zh: '注射', en: 'injection' }
+        'IV/SC': { zh: '注射', en: 'injection' },
+        'oral/IV/SC': { zh: '口服/注射', en: 'oral/injection' }
       };
       
       // Invasive treatment mapping
@@ -259,13 +211,12 @@
     // Function to get parameters from filename
     function getParametersFromFilename() {
       const filename = window.location.pathname.split('/').pop();
-      const match = filename.match(/reference-(\w+)-(\w+)-(\w+)-(\w+)\.html/);
+      const match = filename.match(/reference-(\w+)-(\w+)-(\w+)\.html/);
       if (match) {
         return {
           indication: match[1],
           medication: match[2],
-          route: match[3],
-          invasive: match[4] === 'invasive'
+          invasive: match[3] === 'invasive'
         };
       }
       return null;
@@ -274,57 +225,41 @@
     document.addEventListener('DOMContentLoaded', function() {
       const calculator = new MRONJRiskCalculator();
       const referenceDetailContent = document.getElementById('referenceDetailContent');
-      const searchInput = document.getElementById('searchInput');
-      const pageTitle = document.getElementById('pageTitle');
-      const pageSubtitle = document.getElementById('pageSubtitle');
       
-      
-    // Specific parameters for this page
-    const specificParams = {
-      indication: 'cancer',
-      medication: 'bisphosphonate',
-      route: 'oral',
-      invasive: true
-    };
-    
-    // Override the parameter detection
-    params = specificParams;
-  
-    // Get parameters from URL or filename
-      let params = {
-        indication: getUrlParameter('indication'),
-        medication: getUrlParameter('medication'),
-        route: getUrlParameter('route'),
-        invasive: getUrlParameter('invasive') === 'true'
+      // Specific parameters for this page
+      const specificParams = {
+        indication: 'cancer',
+        medication: 'bisphosphonate',
+        route: 'oral/IV/SC',
+        invasive: false
       };
       
-      // If URL parameters are not available, try to get from filename
-      if (!params.indication) {
-        const filenameParams = getParametersFromFilename();
-        if (filenameParams) {
-          params = filenameParams;
-        }
-      }
-      
-      if (!params.indication) {
-        referenceDetailContent.innerHTML = '<div class="no-results">無法載入文獻資料</div>';
-        return;
-      }
+      // Override the parameter detection
+      let params = specificParams;
       
       // Generate content
       function generateDetailContent() {
         const medicationName = generateMedicationName(params.indication, params.medication, params.route, params.invasive, 'zh');
         
-        // Update page title
-        pageTitle.textContent = medicationName;
-        pageSubtitle.textContent = '基於最新系統性文獻回顧的詳細參考資料';
-        
-        // Get references
-        const references = calculator.getReferencePapers(
+        // Get references from both oral and IV/SC routes
+        const oralReferences = calculator.getReferencePapers(
           params.indication, 
           params.medication, 
-          params.route, 
+          'oral', 
           params.invasive
+        );
+        
+        const ivScReferences = calculator.getReferencePapers(
+          params.indication, 
+          params.medication, 
+          'IV/SC', 
+          params.invasive
+        );
+        
+        // Combine references and remove duplicates based on title
+        const allReferences = [...oralReferences, ...ivScReferences];
+        const uniqueReferences = allReferences.filter((paper, index, self) => 
+          index === self.findIndex(p => p.title === paper.title)
         );
         
         // Get incidence rate (you might need to implement this in your calculator)
@@ -338,12 +273,12 @@
             </div>
             <div class="stats-summary">
               <h3>文獻統計</h3>
-              <p>共找到 ${references.length} 篇相關文獻</p>
+              <p>共找到 ${uniqueReferences.length} 篇相關文獻 (口服: ${oralReferences.length} 篇, 注射: ${ivScReferences.length} 篇)</p>
             </div>
             <ul class="paper-list">
         `;
         
-        references.forEach(paper => {
+        uniqueReferences.forEach(paper => {
           html += `
             <li class="paper-item">
               <div class="paper-title">${paper.title}</div>
@@ -363,33 +298,13 @@
         referenceDetailContent.innerHTML = html;
       }
       
-      // Search functionality
-      function searchPapers(query) {
-        const paperItems = document.querySelectorAll('.paper-item');
-        const queryLower = query.toLowerCase();
-        
-        paperItems.forEach(item => {
-          const text = item.textContent.toLowerCase();
-          if (text.includes(queryLower)) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      }
-      
-      // Event listeners
-      searchInput.addEventListener('input', function() {
-        searchPapers(this.value);
-      });
-      
       // Initialize
       generateDetailContent();
     });
     
     // Function to get incidence rate (you'll need to implement this based on your data)
     function getIncidenceRate(indication, medication, route, invasive) {
-      return null;
+      return 0.88;
       // This is a placeholder - you'll need to implement this based on your actual data
       // For now, return null to show "資料不足"
       return null;

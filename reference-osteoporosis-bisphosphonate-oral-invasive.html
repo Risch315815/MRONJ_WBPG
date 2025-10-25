@@ -199,10 +199,6 @@
       <p class="subtitle" id="pageSubtitle">基於最新系統性文獻回顧的詳細參考資料</p>
     </div>
     
-    <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="搜尋文獻作者、標題或期刊...">
-    </div>
-    
     <div id="referenceDetailContent">
       <!-- Content will be populated by JavaScript -->
     </div>
@@ -289,27 +285,6 @@
     
     // Override the parameter detection
     params = specificParams;
-  
-    // Get parameters from URL or filename
-      let params = {
-        indication: getUrlParameter('indication'),
-        medication: getUrlParameter('medication'),
-        route: getUrlParameter('route'),
-        invasive: getUrlParameter('invasive') === 'true'
-      };
-      
-      // If URL parameters are not available, try to get from filename
-      if (!params.indication) {
-        const filenameParams = getParametersFromFilename();
-        if (filenameParams) {
-          params = filenameParams;
-        }
-      }
-      
-      if (!params.indication) {
-        referenceDetailContent.innerHTML = '<div class="no-results">無法載入文獻資料</div>';
-        return;
-      }
       
       // Generate content
       function generateDetailContent() {

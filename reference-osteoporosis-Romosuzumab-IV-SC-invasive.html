@@ -194,14 +194,6 @@
   <a href="reference-papers.html" class="back-button">← 返回文獻總覽</a>
   
   <div class="reference-detail-container">
-    <div class="reference-detail-header">
-      <h1 id="pageTitle">[骨質疏鬆症] Romosuzumab (注射) + 侵入性牙科治療</h1>
-      <p class="subtitle" id="pageSubtitle">基於最新系統性文獻回顧的詳細參考資料</p>
-    </div>
-    
-    <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="搜尋文獻作者、標題或期刊...">
-    </div>
     
     <div id="referenceDetailContent">
       <!-- Content will be populated by JavaScript -->
@@ -274,9 +266,6 @@
     document.addEventListener('DOMContentLoaded', function() {
       const calculator = new MRONJRiskCalculator();
       const referenceDetailContent = document.getElementById('referenceDetailContent');
-      const searchInput = document.getElementById('searchInput');
-      const pageTitle = document.getElementById('pageTitle');
-      const pageSubtitle = document.getElementById('pageSubtitle');
       
       
     // Specific parameters for this page
@@ -289,35 +278,11 @@
     
     // Override the parameter detection
     params = specificParams;
-  
-    // Get parameters from URL or filename
-      let params = {
-        indication: getUrlParameter('indication'),
-        medication: getUrlParameter('medication'),
-        route: getUrlParameter('route'),
-        invasive: getUrlParameter('invasive') === 'true'
-      };
-      
-      // If URL parameters are not available, try to get from filename
-      if (!params.indication) {
-        const filenameParams = getParametersFromFilename();
-        if (filenameParams) {
-          params = filenameParams;
-        }
-      }
-      
-      if (!params.indication) {
-        referenceDetailContent.innerHTML = '<div class="no-results">無法載入文獻資料</div>';
-        return;
-      }
       
       // Generate content
       function generateDetailContent() {
         const medicationName = generateMedicationName(params.indication, params.medication, params.route, params.invasive, 'zh');
         
-        // Update page title
-        pageTitle.textContent = medicationName;
-        pageSubtitle.textContent = '基於最新系統性文獻回顧的詳細參考資料';
         
         // Get references
         const references = calculator.getReferencePapers(
@@ -363,25 +328,6 @@
         referenceDetailContent.innerHTML = html;
       }
       
-      // Search functionality
-      function searchPapers(query) {
-        const paperItems = document.querySelectorAll('.paper-item');
-        const queryLower = query.toLowerCase();
-        
-        paperItems.forEach(item => {
-          const text = item.textContent.toLowerCase();
-          if (text.includes(queryLower)) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      }
-      
-      // Event listeners
-      searchInput.addEventListener('input', function() {
-        searchPapers(this.value);
-      });
       
       // Initialize
       generateDetailContent();
