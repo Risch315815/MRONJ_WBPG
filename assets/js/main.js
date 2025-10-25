@@ -420,7 +420,7 @@ function assessRisk() {
             medPatient.hasCancer = isCancerReason;
 
             const language = localStorage.getItem('preferredLanguage') || 'zh';
-            const results = riskCalculator.calculateRisk(medPatient, language);
+            const results = riskCalculator.calculateRisk(medPatient, null, language);
             const catRes = results.find(r => r.invasiveness === category.invasiveness);
             if (!catRes) return;
 
@@ -437,7 +437,7 @@ function assessRisk() {
                 // Try fallback to general Bisphosphonate
                 const fallbackPatient = { ...medPatient };
                 fallbackPatient.drugName = 'Bisphosphonate';
-                const fallbackResults = riskCalculator.calculateRisk(fallbackPatient);
+                const fallbackResults = riskCalculator.calculateRisk(fallbackPatient, null, language);
                 const fallbackCatRes = fallbackResults.find(r => r.invasiveness === category.invasiveness);
                 if (fallbackCatRes && fallbackCatRes.incidenceRate !== 'N/A') {
                   finalResult = fallbackCatRes;
@@ -494,7 +494,8 @@ function assessRisk() {
           }
         } else {
           // Single-medication legacy path
-          const allCategoryResults = riskCalculator.calculateRisk(algorithmPatientData);
+          const language = localStorage.getItem('preferredLanguage') || 'zh';
+          const allCategoryResults = riskCalculator.calculateRisk(algorithmPatientData, null, language);
           const categoryResult = allCategoryResults.find(result => result.invasiveness === category.invasiveness);
           if (categoryResult) {
             riskLevel = categoryResult.riskLevel;
