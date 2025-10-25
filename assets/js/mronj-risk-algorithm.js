@@ -81,7 +81,7 @@ class MRONJRiskCalculator {
     // Treatment classification system
     this.treatmentClassification = {
       nonInvasive: ['洗牙', '蛀牙填補', '假牙贋復'],
-      semiInvasive: ['根管治療', '牙周深層清潔'],
+      semiInvasive: ['根管治療', '牙齦下牙結石刮除術'],
       invasive: ['拔牙', '齒槽骨整形術', '牙冠增長術', '植牙']
     };
 
@@ -245,7 +245,20 @@ class MRONJRiskCalculator {
       const references = isSemiInvasive ? [] : this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
       
       // Get special considerations for semi-invasive treatments
-      const specialConsiderations = isSemiInvasive ? this.semiInvasiveConsiderations['根管治療'] : null;
+      let specialConsiderations = null;
+      if (isSemiInvasive) {
+        // For semi-invasive treatments, we need to get considerations for the specific treatment
+        // Since we're calculating for all categories, we'll combine considerations for both treatments
+        const rootCanalConsiderations = this.semiInvasiveConsiderations['根管治療'];
+        const scalingConsiderations = this.semiInvasiveConsiderations['牙齦下牙結石刮除術'];
+        
+        if (rootCanalConsiderations && scalingConsiderations) {
+          specialConsiderations = {
+            zh: `根管治療：${rootCanalConsiderations.zh}\n\n牙齦下牙結石刮除術：${scalingConsiderations.zh}`,
+            en: `Root Canal Treatment: ${rootCanalConsiderations.en}\n\nSubgingival Scaling: ${scalingConsiderations.en}`
+          };
+        }
+      }
       
       assessments.push({
         categoryName: category.name,
