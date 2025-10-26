@@ -516,22 +516,22 @@
         html += `
           <div class="risk-category-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-left: 5px solid #6c757d;">
             <div class="category-title">
-              <span class="risk-badge" style="background-color: #6c757d;">完整文獻參考</span>
-              <span>基於最新系統性文獻回顧的完整參考資料</span>
+              <span class="risk-badge" style="background-color: #6c757d;">${isEnglish ? 'Complete References' : '完整文獻參考'}</span>
+              <span>${isEnglish ? 'Complete reference materials based on latest systematic literature review' : '基於最新系統性文獻回顧的完整參考資料'}</span>
             </div>
         `;
         
         // Add references by indication and medication type
         const indicationGroups = [
-          { name: '骨質疏鬆症', key: 'osteoporosis', color: '#28a745' },
-          { name: '癌症', key: 'cancer', color: '#dc3545' }
+          { name: isEnglish ? 'Osteoporosis' : '骨質疏鬆症', key: 'osteoporosis', color: '#28a745' },
+          { name: isEnglish ? 'Cancer' : '癌症', key: 'cancer', color: '#dc3545' }
         ];
         
         indicationGroups.forEach(indication => {
           html += `
             <div class="medication-group">
               <div class="medication-title" style="color: ${indication.color}; font-size: 1.6em; margin-bottom: 20px;">
-                ${indication.name}相關文獻
+                ${indication.name}${isEnglish ? ' Related Literature' : '相關文獻'}
               </div>
           `;
           
@@ -541,10 +541,10 @@
               if (medication === 'none') return;
               
               const medicationData = indicationData[medication];
-              const medicationName = medication === 'bisphosphonate' ? '雙磷酸鹽類' : 
+              const medicationName = medication === 'bisphosphonate' ? (isEnglish ? 'Bisphosphonates' : '雙磷酸鹽類') : 
                                    medication === 'Denosumab' ? 'Denosumab' : 
                                    medication === 'Romosuzumab' ? 'Romosuzumab' : 
-                                   medication === 'mixed' ? '混合藥物' : medication;
+                                   medication === 'mixed' ? (isEnglish ? 'Mixed Medications' : '混合藥物') : medication;
               
               html += `
                 <div style="margin-bottom: 25px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 8px;">
@@ -555,9 +555,9 @@
                 if (route === 'none') return;
                 
                 const routeData = medicationData[route];
-                const routeName = route === 'IV/SC' ? '靜脈/皮下注射' : 
-                                route === 'oral' ? '口服' : 
-                                route === 'mixed' ? '混合給藥途徑' : route;
+                const routeName = route === 'IV/SC' ? (isEnglish ? 'IV/Subcutaneous Injection' : '靜脈/皮下注射') : 
+                                route === 'oral' ? (isEnglish ? 'Oral' : '口服') : 
+                                route === 'mixed' ? (isEnglish ? 'Mixed Routes' : '混合給藥途徑') : route;
                 
                 html += `
                   <div style="margin-bottom: 20px;">
@@ -565,8 +565,8 @@
                 `;
                 
                 Object.keys(routeData).forEach(invasive => {
-                  const invasiveName = invasive === 'none' ? '非侵入性治療' : 
-                                     invasive === 'YES' ? '侵入性治療' : invasive;
+                  const invasiveName = invasive === 'none' ? (isEnglish ? 'Non-invasive Treatment' : '非侵入性治療') : 
+                                     invasive === 'YES' ? (isEnglish ? 'Invasive Treatment' : '侵入性治療') : invasive;
                   const papers = routeData[invasive];
                   
                   if (papers && papers.length > 0) {
@@ -627,7 +627,7 @@
             section.style.display = 'block';
           } else if (filter === 'comprehensive') {
             // Show only comprehensive reference section
-            if (section.querySelector('.risk-badge') && section.querySelector('.risk-badge').textContent.includes('完整文獻參考')) {
+            if (section.querySelector('.risk-badge') && (section.querySelector('.risk-badge').textContent.includes('完整文獻參考') || section.querySelector('.risk-badge').textContent.includes('Complete References'))) {
               section.style.display = 'block';
             } else {
               section.style.display = 'none';
