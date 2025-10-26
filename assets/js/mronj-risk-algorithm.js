@@ -497,11 +497,11 @@ class MRONJRiskCalculator {
     
     // Add hard-coded special considerations for semi-invasive treatments
     if (isSemiInvasive) {
-      const specialConsiderationsZh = `根管治療：應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)\n\n牙齦下牙結石刮除術：建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、雷射牙周治療等等)`;
-      const specialConsiderationsEn = `Root Canal Treatment: Root canal filling materials or adhesives should not extend beyond the root apex. Consider using biocompatible adhesives (such as bioceramics, MTA)\n\nSubgingival Scaling and Root Planing: It is recommended to remove subgingival calculus and inflamed tissue using minimally invasive methods (such as microscope-assisted therapy, periodontal laser therapy, etc.)`;
+      const specialConsiderationsZh = `<strong>根管治療：</strong>應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)\n<strong>牙齦下牙結石刮除術：</strong>建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、雷射牙周治療等等)`;
+      const specialConsiderationsEn = `<strong>Root Canal Treatment:</strong> Root canal filling materials or adhesives should not extend beyond the root apex. Consider using biocompatible adhesives (such as bioceramics, MTA)\n<strong>Subgingival Scaling and Root Planing:</strong> It is recommended to remove subgingival calculus and inflamed tissue using minimally invasive methods (such as microscope-assisted therapy, periodontal laser therapy, etc.)`;
       
-      recommendationZh += `\n\n特別注意事項：${specialConsiderationsZh}`;
-      recommendationEn += `\n\nSpecial Considerations: ${specialConsiderationsEn}`;
+      recommendationZh += `\n\n<strong>特別注意事項：</strong>\n${specialConsiderationsZh}`;
+      recommendationEn += `\n\n<strong>Special Considerations:</strong>\n${specialConsiderationsEn}`;
     }
     
     // Return the requested language version, but also include both in the result

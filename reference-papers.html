@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文獻參考 - MRONJ風險評估</title>
+  <title class="zh-text">文獻參考 - MRONJ風險評估</title>
+  <title class="en-text" style="display: none;">Literature References - MRONJ Risk Assessment</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     .reference-container {
@@ -233,24 +234,33 @@
   </style>
 </head>
 <body>
-  <a href="risk-assessment.html" class="back-button">← 返回風險評估</a>
+  <a href="risk-assessment.html" class="back-button zh-text">← 返回風險評估</a>
+  <a href="risk-assessment.html" class="back-button en-text" style="display: none;">← Back to Risk Assessment</a>
   
   <div class="reference-container">
     <div class="reference-header">
-      <h1>MRONJ風險評估文獻參考</h1>
-      <p>基於最新系統性文獻回顧的完整參考資料 (更新至2025年9月)</p>
+      <h1 class="zh-text">MRONJ風險評估文獻參考</h1>
+      <h1 class="en-text" style="display: none;">MRONJ Risk Assessment Literature References</h1>
+      <p class="zh-text">基於最新系統性文獻回顧的完整參考資料 (更新至2025年9月)</p>
+      <p class="en-text" style="display: none;">Complete reference materials based on latest systematic literature review (Updated September 2025)</p>
     </div>
     
     <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="搜尋文獻作者、標題或期刊...">
+      <input type="text" id="searchInput" class="search-input zh-text" placeholder="搜尋文獻作者、標題或期刊...">
+      <input type="text" id="searchInputEn" class="search-input en-text" style="display: none;" placeholder="Search author, title or journal...">
     </div>
     
     <div class="filter-buttons">
-      <button class="filter-btn active" data-filter="all">全部</button>
-      <button class="filter-btn" data-filter="low">低風險</button>
-      <button class="filter-btn" data-filter="medium">中度風險</button>
-      <button class="filter-btn" data-filter="high">高風險</button>
-      <button class="filter-btn" data-filter="comprehensive">完整文獻</button>
+      <button class="filter-btn active zh-text" data-filter="all">全部</button>
+      <button class="filter-btn zh-text" data-filter="low">低風險</button>
+      <button class="filter-btn zh-text" data-filter="medium">中度風險</button>
+      <button class="filter-btn zh-text" data-filter="high">高風險</button>
+      <button class="filter-btn zh-text" data-filter="comprehensive">完整文獻</button>
+      <button class="filter-btn active en-text" data-filter="all" style="display: none;">All</button>
+      <button class="filter-btn en-text" data-filter="low" style="display: none;">Low Risk</button>
+      <button class="filter-btn en-text" data-filter="medium" style="display: none;">Medium Risk</button>
+      <button class="filter-btn en-text" data-filter="high" style="display: none;">High Risk</button>
+      <button class="filter-btn en-text" data-filter="comprehensive" style="display: none;">Complete References</button>
     </div>
     
     <div id="referenceContent">
@@ -314,10 +324,21 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+      // Apply language preference
+      function applyLanguagePreference() {
+        const lang = localStorage.getItem('preferredLanguage') || 'zh';
+        const showZh = lang !== 'en';
+        document.querySelectorAll('.zh-text').forEach(el => { el.style.display = showZh ? '' : 'none'; });
+        document.querySelectorAll('.en-text').forEach(el => { el.style.display = showZh ? 'none' : ''; });
+        return lang;
+      }
+      const currentLang = applyLanguagePreference();
+      const isEnglish = currentLang === 'en';
+      
       const calculator = new MRONJRiskCalculator();
       const referenceContent = document.getElementById('referenceContent');
-      const searchInput = document.getElementById('searchInput');
-      const filterButtons = document.querySelectorAll('.filter-btn');
+      const searchInput = isEnglish ? document.getElementById('searchInputEn') : document.getElementById('searchInput');
+      const filterButtons = document.querySelectorAll('.filter-btn:not([style*="display: none"])');
       
       let allReferences = [];
       let filteredReferences = [];
@@ -326,7 +347,7 @@
       function generateReferenceContent() {
         const categories = [
           {
-            name: '低風險',
+            name: isEnglish ? 'Low Risk' : '低風險',
             class: 'low-risk',
             badge: 'low',
             medications: [
@@ -361,7 +382,7 @@
             ]
           },
           {
-            name: '中度風險',
+            name: isEnglish ? 'Medium Risk' : '中度風險',
             class: 'medium-risk',
             badge: 'medium',
             medications: [
@@ -396,7 +417,7 @@
             ]
           },
           {
-            name: '高風險',
+            name: isEnglish ? 'High Risk' : '高風險',
             class: 'high-risk',
             badge: 'high',
             medications: [
@@ -444,7 +465,7 @@
             );
             
             // Generate the medication name dynamically
-            const medicationName = generateMedicationName(med.indication, med.medication, med.route, med.invasive, 'zh');
+            const medicationName = generateMedicationName(med.indication, med.medication, med.route, med.invasive, isEnglish ? 'en' : 'zh');
             
             // Generate the reference page URL
             const referencePageUrl = generateReferencePageUrl(med.indication, med.medication, med.route, med.invasive);
@@ -454,11 +475,11 @@
                 <div class="medication-title" style="display: flex; justify-content: space-between; align-items: center;">
                   <span>${medicationName}</span>
                   <a href="${referencePageUrl}" class="reference-link" style="background: #007AFF; color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9em; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    查看詳細文獻
+                    ${isEnglish ? 'View Detailed References' : '查看詳細文獻'}
                   </a>
                 </div>
                 <div class="incidence-info">
-                  統計發生率: ${med.incidence === 'N/A' ? '<span style="color: #6c757d; font-style: italic;">資料不足</span>' : med.incidence + '%'}
+                  ${isEnglish ? 'Statistical Incidence:' : '統計發生率:'} ${med.incidence === 'N/A' ? (isEnglish ? '<span style="color: #6c757d; font-style: italic;">Insufficient Data</span>' : '<span style="color: #6c757d; font-style: italic;">資料不足</span>') : med.incidence + '%'}
                 </div>
                 <ul class="paper-list">
             `;
