@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文獻參考詳情 - MRONJ風險評估</title>
+  <title class="zh-text">文獻參考詳情 - MRONJ風險評估</title>
+  <title class="en-text" style="display: none;">Reference Details - MRONJ Risk Assessment</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     .reference-detail-container {
@@ -150,7 +151,8 @@
   </style>
 </head>
 <body>
-  <a href="reference-papers.html" class="back-button">← 返回文獻總覽</a>
+  <a href="reference-papers.html" class="back-button zh-text">← 返回文獻總覽</a>
+  <a href="reference-papers.html" class="back-button en-text" style="display: none;">← Back to References</a>
   
   <div class="reference-detail-container">
     
@@ -223,6 +225,15 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+      // Apply language preference
+      function applyLanguagePreference() {
+        const lang = localStorage.getItem('preferredLanguage') || 'zh';
+        const showZh = lang !== 'en';
+        document.querySelectorAll('.zh-text').forEach(el => { el.style.display = showZh ? '' : 'none'; });
+        document.querySelectorAll('.en-text').forEach(el => { el.style.display = showZh ? 'none' : ''; });
+      }
+      applyLanguagePreference();
+      
       const calculator = new MRONJRiskCalculator();
       const referenceDetailContent = document.getElementById('referenceDetailContent');
       
@@ -239,7 +250,8 @@
       
       // Generate content
       function generateDetailContent() {
-        const medicationName = generateMedicationName(params.indication, params.medication, params.route, params.invasive, 'zh');
+        const isEnglish = (localStorage.getItem('preferredLanguage') || 'zh') === 'en';
+        const medicationName = generateMedicationName(params.indication, params.medication, params.route, params.invasive, isEnglish ? 'en' : 'zh');
         
         // Get references from both oral and IV/SC routes
         const oralReferences = calculator.getReferencePapers(
@@ -265,15 +277,22 @@
         // Get incidence rate (you might need to implement this in your calculator)
         const incidenceRate = getIncidenceRate(params.indication, params.medication, params.route, params.invasive);
         
+        const incidenceLabel = isEnglish ? 'Statistical Incidence:' : '統計發生率:';
+        const incidenceNA = isEnglish ? '<span style="color: #6c757d; font-style: italic;">Insufficient Data</span>' : '<span style="color: #6c757d; font-style: italic;">資料不足</span>';
+        const statsTitle = isEnglish ? 'Literature Statistics' : '文獻統計';
+        const statsText = isEnglish 
+          ? `Found ${uniqueReferences.length} related articles (oral: ${oralReferences.length} articles, injection: ${ivScReferences.length} articles)`
+          : `共找到 ${uniqueReferences.length} 篇相關文獻 (口服: ${oralReferences.length} 篇, 注射: ${ivScReferences.length} 篇)`;
+        
         let html = `
           <div class="medication-info">
             <div class="medication-title">${medicationName}</div>
             <div class="incidence-info">
-              統計發生率: ${incidenceRate !== null ? incidenceRate + '%' : '<span style="color: #6c757d; font-style: italic;">資料不足</span>'}
+              ${incidenceLabel} ${incidenceRate !== null ? incidenceRate + '%' : incidenceNA}
             </div>
             <div class="stats-summary">
-              <h3>文獻統計</h3>
-              <p>共找到 ${uniqueReferences.length} 篇相關文獻 (口服: ${oralReferences.length} 篇, 注射: ${ivScReferences.length} 篇)</p>
+              <h3>${statsTitle}</h3>
+              <p>${statsText}</p>
             </div>
             <ul class="paper-list">
         `;

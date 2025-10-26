@@ -479,7 +479,7 @@ function assessRisk() {
 
           if (best) {
             riskLevel = best.riskLevel;
-            recommendation = best.recommendation;
+            recommendation = best.recommendationZh || best.recommendation;
             recommendationEn = best.recommendationEn || getFallbackRecommendationEn(best.riskLevel, category.invasiveness === 'invasive');
             incidenceRate = best.incidenceRate;
             generalIncidenceRate = best.generalIncidenceRate;
@@ -499,7 +499,7 @@ function assessRisk() {
           const categoryResult = allCategoryResults.find(result => result.invasiveness === category.invasiveness);
           if (categoryResult) {
             riskLevel = categoryResult.riskLevel;
-            recommendation = categoryResult.recommendation;
+            recommendation = categoryResult.recommendationZh || categoryResult.recommendation;
             recommendationEn = categoryResult.recommendationEn || getFallbackRecommendationEn(categoryResult.riskLevel, category.invasiveness === 'invasive');
             incidenceRate = categoryResult.incidenceRate;
             generalIncidenceRate = categoryResult.generalIncidenceRate;

@@ -539,6 +539,7 @@
         
         const recommendation = document.createElement('p');
         recommendation.className = 'recommendation';
+        recommendation.style.whiteSpace = 'pre-line'; // Preserve line breaks
         recommendation.textContent = isEnglish ? assessment.recommendationEn : assessment.recommendation;
         
         // Add incidence rate if available

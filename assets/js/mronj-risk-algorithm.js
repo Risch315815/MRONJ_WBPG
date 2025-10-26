@@ -85,18 +85,6 @@ class MRONJRiskCalculator {
       invasive: ['拔牙', '齒槽骨整形術', '牙冠增長術', '植牙']
     };
 
-    // Semi-invasive treatment special considerations
-    this.semiInvasiveConsiderations = {
-      '根管治療': {
-        zh: '應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)',
-        en: 'Special attention should be paid to prevent root canal filling materials or adhesives from extending beyond the root apex, or consider using biocompatible adhesives (such as bioceramics, MTA)'
-      },
-      '牙齦下牙結石刮除術': {
-        zh: '建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、雷射牙周治療等等)',
-        en: 'It is recommended to remove subgingival calculus and inflamed tissue using minimally invasive methods (such as microscope-assisted microsurgery, periodontal laser therapy, etc.)'
-      }
-    };
-
     // Data quality indicators - mark which rates are based on limited sources
     this.limitedDataSources = {
       osteoporosis: {
@@ -165,8 +153,7 @@ class MRONJRiskCalculator {
     // Get reference papers
     const references = this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
     
-    // Get special considerations for semi-invasive treatments
-    const specialConsiderations = isSemiInvasive ? this.semiInvasiveConsiderations[dentalTreatment] : null;
+    const recommendations = this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, null, language);
     
     return {
       indication,
@@ -182,7 +169,9 @@ class MRONJRiskCalculator {
       riskCategory,
       references,
       riskLevel: this.getRiskLevel(riskCategory),
-      recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations, language)
+      recommendation: recommendations.recommendation,
+      recommendationZh: recommendations.recommendationZh,
+      recommendationEn: recommendations.recommendationEn
     };
   }
 
@@ -244,21 +233,7 @@ class MRONJRiskCalculator {
       // Get reference papers (skip for semi-invasive treatments)
       const references = isSemiInvasive ? [] : this.getReferencePapers(indication, medication, administrationRoute, riskAssessmentInvasiveness);
       
-      // Get special considerations for semi-invasive treatments
-      let specialConsiderations = null;
-      if (isSemiInvasive) {
-        // For semi-invasive treatments, we need to get considerations for the specific treatment
-        // Since we're calculating for all categories, we'll combine considerations for both treatments
-        const rootCanalConsiderations = this.semiInvasiveConsiderations['根管治療'];
-        const scalingConsiderations = this.semiInvasiveConsiderations['牙齦下牙結石刮除術'];
-        
-        if (rootCanalConsiderations && scalingConsiderations) {
-          specialConsiderations = {
-            zh: `根管治療：${rootCanalConsiderations.zh}\n\n牙齦下牙結石刮除術：${scalingConsiderations.zh}`,
-            en: `Root Canal Treatment: ${rootCanalConsiderations.en}\n\nSubgingival Scaling: ${scalingConsiderations.en}`
-          };
-        }
-      }
+      const recommendations = this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, null, language);
       
       assessments.push({
         categoryName: category.name,
@@ -271,7 +246,9 @@ class MRONJRiskCalculator {
         generalIncidenceRate: generalIncidenceRate,
         showIncidenceRate: category.showIncidenceRate,
         hasLimitedData: hasLimitedData,
-        recommendation: this.getRecommendation(riskCategory, isInvasive, isSemiInvasive, specialConsiderations, language),
+        recommendation: recommendations.recommendation,
+        recommendationZh: recommendations.recommendationZh,
+        recommendationEn: recommendations.recommendationEn,
         references: references,
         riskCategory: riskCategory
       });
@@ -436,50 +413,103 @@ class MRONJRiskCalculator {
 
   // Get recommendation based on risk category
   getRecommendation(category, isInvasive, isSemiInvasive, specialConsiderations, language = 'zh') {
-    let baseRecommendation = '';
-    
-    // Base recommendations
+    // Base recommendations in both languages
     const recommendations = {
       low: {
-        true: '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。',
-        false: '可進行治療，建議定期追蹤。'
+        true: {
+          zh: '可進行治療，但需要告知風險並簽署同意書。建議術後追蹤。',
+          en: 'Treatment can be performed, but risk disclosure and informed consent are required. Post-operative follow-up is recommended.'
+        },
+        false: {
+          zh: '可進行治療，建議定期追蹤。',
+          en: 'Treatment can be performed. Regular follow-up is recommended.'
+        }
       },
       'low-moderate': {
-        true: '可進行治療，但需要特別注意風險並簽署同意書。建議術前諮詢原處方醫師，術後密切追蹤。',
-        false: '可進行治療，建議術前諮詢醫師並密切追蹤。'
+        true: {
+          zh: '可進行治療，但需要特別注意風險並簽署同意書。建議術前諮詢原處方醫師，術後密切追蹤。',
+          en: 'Treatment can be performed, but special attention to risks and informed consent are required. Consult the prescribing physician before treatment and closely monitor post-operatively.'
+        },
+        false: {
+          zh: '可進行治療，建議術前諮詢醫師並密切追蹤。',
+          en: 'Treatment can be performed. Consult physician before treatment and monitor closely.'
+        }
       },
       moderate: {
-        true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。',
-        false: '建議定期追蹤，如有牙科治療需求請先諮詢醫師。'
+        true: {
+          zh: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後追蹤。',
+          en: 'Consult the prescribing physician to assess whether medication suspension is needed. Special handling and post-operative follow-up are required.'
+        },
+        false: {
+          zh: '建議定期追蹤，如有牙科治療需求請先諮詢醫師。',
+          en: 'Regular follow-up is recommended. Consult physician before any dental treatment.'
+        }
       },
       'moderate-high': {
-        true: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後密切追蹤。',
-        false: '建議密切追蹤，如有牙科治療需求請先諮詢醫師。'
+        true: {
+          zh: '建議先諮詢原處方醫師，評估是否需要暫停用藥。需要特殊處理及術後密切追蹤。',
+          en: 'Consult the prescribing physician to assess whether medication suspension is needed. Special handling and close post-operative monitoring are required.'
+        },
+        false: {
+          zh: '建議密切追蹤，如有牙科治療需求請先諮詢醫師。',
+          en: 'Close monitoring is recommended. Consult physician before any dental treatment.'
+        }
       },
       high: {
-        true: '建議轉診至醫學中心進行評估。需要特殊處理及術後密切追蹤。',
-        false: '建議密切追蹤，避免侵入性牙科治療。'
+        true: {
+          zh: '建議轉診至醫學中心進行評估。需要特殊處理及術後密切追蹤。',
+          en: 'Referral to a medical center for evaluation is recommended. Special handling and close post-operative monitoring are required.'
+        },
+        false: {
+          zh: '建議密切追蹤，避免侵入性牙科治療。',
+          en: 'Close monitoring is recommended. Avoid invasive dental treatments.'
+        }
       },
       unknown: {
-        true: '缺乏足夠資料進行風險評估。建議轉診至醫學中心進行專業評估，並密切追蹤。',
-        false: '缺乏足夠資料進行風險評估。建議諮詢專業醫師並定期追蹤。'
+        true: {
+          zh: '缺乏足夠資料進行風險評估。建議轉診至醫學中心進行專業評估，並密切追蹤。',
+          en: 'Insufficient data for risk assessment. Referral to a medical center for professional evaluation and close monitoring is recommended.'
+        },
+        false: {
+          zh: '缺乏足夠資料進行風險評估。建議諮詢專業醫師並定期追蹤。',
+          en: 'Insufficient data for risk assessment. Consult a healthcare professional and maintain regular follow-up.'
+        }
       },
       'N/A': {
-        true: '缺乏足夠研究資料進行風險評估。建議轉診至醫學中心進行專業評估，並密切追蹤。',
-        false: '缺乏足夠研究資料進行風險評估。建議諮詢專業醫師並定期追蹤。'
+        true: {
+          zh: '缺乏足夠研究資料進行風險評估。建議轉診至醫學中心進行專業評估，並密切追蹤。',
+          en: 'Insufficient research data for risk assessment. Referral to a medical center for professional evaluation and close monitoring is recommended.'
+        },
+        false: {
+          zh: '缺乏足夠研究資料進行風險評估。建議諮詢專業醫師並定期追蹤。',
+          en: 'Insufficient research data for risk assessment. Consult a healthcare professional and maintain regular follow-up.'
+        }
       }
     };
     
-    baseRecommendation = recommendations[category][isInvasive] || '請諮詢專業醫師。';
+    const baseRec = recommendations[category]?.[isInvasive] || { 
+      zh: '請諮詢專業醫師。', 
+      en: 'Please consult a healthcare professional.' 
+    };
     
-    // Add special considerations for semi-invasive treatments
-    if (isSemiInvasive && specialConsiderations) {
-      const specialText = specialConsiderations[language] || specialConsiderations;
-      const label = language === 'en' ? 'Special Considerations:' : '特別注意事項：';
-      baseRecommendation += `\n\n${label}${specialText}`;
+    let recommendationZh = baseRec.zh;
+    let recommendationEn = baseRec.en;
+    
+    // Add hard-coded special considerations for semi-invasive treatments
+    if (isSemiInvasive) {
+      const specialConsiderationsZh = `根管治療：應特別注意勿讓根管封填材料或黏著劑超出根尖孔，或是可選擇生物相容性佳之黏著劑(如生物陶瓷、MTA)\n\n牙齦下牙結石刮除術：建議以微創方式移除牙齦下牙結石與發炎組織(如顯微鏡輔助微創術式、雷射牙周治療等等)`;
+      const specialConsiderationsEn = `Root Canal Treatment: Root canal filling materials or adhesives should not extend beyond the root apex. Consider using biocompatible adhesives (such as bioceramics, MTA)\n\nSubgingival Scaling and Root Planing: It is recommended to remove subgingival calculus and inflamed tissue using minimally invasive methods (such as microscope-assisted therapy, periodontal laser therapy, etc.)`;
+      
+      recommendationZh += `\n\n特別注意事項：${specialConsiderationsZh}`;
+      recommendationEn += `\n\nSpecial Considerations: ${specialConsiderationsEn}`;
     }
     
-    return baseRecommendation;
+    // Return the requested language version, but also include both in the result
+    return {
+      recommendation: language === 'en' ? recommendationEn : recommendationZh,
+      recommendationZh: recommendationZh,
+      recommendationEn: recommendationEn
+    };
   }
 
   // Get reference papers for the specific condition
