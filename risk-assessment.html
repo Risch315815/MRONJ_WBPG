@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title class="zh-text">風險評估結果 - MRONJ風險評估</title>
-  <title class="en-text" style="display: none;">Risk Assessment Results - MRONJ Risk Assessment</title>
+  <title>風險評估結果 - MRONJ風險評估</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     @media print {
@@ -263,6 +262,13 @@
       // Get language preference from localStorage (set by homepage)
       const savedLang = localStorage.getItem('preferredLanguage') || 'zh';
       
+      // Update lang attribute based on language preference
+      if (savedLang === 'en') {
+        document.documentElement.lang = 'en';
+      } else {
+        document.documentElement.lang = 'zh-TW';
+      }
+      
       // Show/hide text based on saved language preference
       if (savedLang === 'en') {
         zhTexts.forEach(text => text.style.display = 'none');
@@ -287,6 +293,14 @@
         alert(isEnglish ? 'Unable to retrieve patient data, please start the assessment from the beginning' : '無法取得患者資料，請從頭開始填寫評估表');
         window.location.href = 'index.html';
         return;
+      }
+      
+      // Update document title with patient name (for print filename)
+      const patientName = patientData.name || 'Patient';
+      if (savedLang === 'en') {
+        document.title = `MRONJ Risk Assessment Result - ${patientName}`;
+      } else {
+        document.title = `MRONJ風險評估結果 - ${patientName}`;
       }
       
       // Display patient summary
