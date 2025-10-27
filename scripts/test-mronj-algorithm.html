@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRONJ Risk Algorithm - Automated Tests</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #007AFF;
+      padding-bottom: 10px;
+    }
+    
+    .test-suite {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .test-case {
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #ccc;
+      background: #f9f9f9;
+    }
+    
+    .test-case.passed {
+      border-left-color: #34C759;
+      background: #f0f9f4;
+    }
+    
+    .test-case.failed {
+      border-left-color: #FF3B30;
+      background: #fff0f0;
+    }
+    
+    .test-summary {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .summary-item {
+      text-align: center;
+    }
+    
+    .summary-number {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    
+    .summary-label {
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
+    
+    .test-name {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    
+    .test-result {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+    
+    .expected, .actual {
+      font-family: 'Courier New', monospace;
+      background: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+      margin: 5px 0;
+      display: inline-block;
+    }
+    
+    .error-message {
+      color: #FF3B30;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    
+    .run-button {
+      background: #007AFF;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .run-button:hover {
+      background: #0056b3;
+    }
+    
+    .run-button:active {
+      transform: translateY(1px);
+    }
+    
+    #results {
+      margin-top: 20px;
+    }
+    
+    .icon {
+      font-size: 1.2em;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 MRONJ Risk Algorithm - Automated Test Suite</h1>
+  
+  <button class="run-button" onclick="runAllTests()">▶️ Run All Tests</button>
+  
+  <div id="results"></div>
+
+  <script src="../assets/js/mronj-references.js"></script>
+  <script src="../assets/js/mronj-risk-algorithm.js"></script>
+  
+  <script>
+    // Test Framework
+    class TestRunner {
+      constructor() {
+        this.tests = [];
+        this.results = {
+          total: 0,
+          passed: 0,
+          failed: 0
+        };
+      }
+      
+      addTest(name, testFunction) {
+        this.tests.push({ name, testFunction });
+      }
+      
+      assertEqual(actual, expected, message = '') {
+        if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+          throw new Error(`${message}\nExpected: ${JSON.stringify(expected)}\nActual: ${JSON.stringify(actual)}`);
+        }
+      }
+      
+      assertTrue(condition, message = '') {
+        if (!condition) {
+          throw new Error(message || 'Assertion failed: expected true');
+        }
+      }
+      
+      assertNotNull(value, message = '') {
+        if (value === null || value === undefined) {
+          throw new Error(message || 'Expected value to be not null');
+        }
+      }
+      
+      async runAll() {
+        this.results = { total: 0, passed: 0, failed: 0 };
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '';
+        
+        for (const test of this.tests) {
+          this.results.total++;
+          const testDiv = document.createElement('div');
+          testDiv.className = 'test-case';
+          
+          try {
+            await test.testFunction(this);
+            this.results.passed++;
+            testDiv.classList.add('passed');
+            testDiv.innerHTML = `
+              <div class="test-name"><span class="icon">✅</span>${test.name}</div>
+              <div class="test-result" style="color: #34C759;">Test passed</div>
+            `;
+          } catch (error) {
+            this.results.failed++;
+            testDiv.classList.add('failed');
+            testDiv.innerHTML = `
+              <div class="test-name"><span class="icon">❌</span>${test.name}</div>
+              <div class="error-message">${error.message}</div>
+            `;
+          }
+          
+          resultsDiv.appendChild(testDiv);
+        }
+        
+        // Add summary at the top
+        const summary = document.createElement('div');
+        summary.className = 'test-summary';
+        summary.innerHTML = `
+          <div class="summary-item">
+            <div class="summary-number">${this.results.total}</div>
+            <div class="summary-label">Total Tests</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number">${this.results.passed}</div>
+            <div class="summary-label">Passed</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number">${this.results.failed}</div>
+            <div class="summary-label">Failed</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number">${((this.results.passed / this.results.total) * 100).toFixed(1)}%</div>
+            <div class="summary-label">Success Rate</div>
+          </div>
+        `;
+        resultsDiv.insertBefore(summary, resultsDiv.firstChild);
+      }
+    }
+    
+    // Create test runner instance
+    const testRunner = new TestRunner();
+    
+    // Test Cases
+    
+    // 1. Test Calculator Initialization
+    testRunner.addTest('Calculator initializes correctly', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      t.assertNotNull(calculator, 'Calculator should not be null');
+      t.assertNotNull(calculator.incidenceData, 'Incidence data should be loaded');
+      t.assertNotNull(calculator.referencePapers, 'Reference papers should be loaded');
+    });
+    
+    // 2. Test Osteoporosis + Bisphosphonate + Oral + Non-invasive
+    testRunner.addTest('Osteoporosis - Bisphosphonate Oral - Non-invasive', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Bisphosphonate',
+        administrationRoute: '口服',
+        hasCancer: false
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const nonInvasive = results.find(r => r.invasiveness === 'nonInvasive');
+      
+      t.assertNotNull(nonInvasive, 'Non-invasive result should exist');
+      t.assertEqual(nonInvasive.riskLevel, '低風險', 'Risk level should be 低風險');
+      t.assertEqual(nonInvasive.incidenceRate, 0.21, 'Incidence rate should be 0.21%');
+    });
+    
+    // 3. Test Osteoporosis + Bisphosphonate + Oral + Invasive
+    testRunner.addTest('Osteoporosis - Bisphosphonate Oral - Invasive', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Bisphosphonate',
+        administrationRoute: '口服',
+        hasCancer: false
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const invasive = results.find(r => r.invasiveness === 'invasive');
+      
+      t.assertNotNull(invasive, 'Invasive result should exist');
+      t.assertEqual(invasive.riskLevel, '中度風險', 'Risk level should be 中度風險');
+      t.assertEqual(invasive.incidenceRate, 1.61, 'Incidence rate should be 1.61%');
+    });
+    
+    // 4. Test Cancer + Denosumab + IV/SC + Invasive
+    testRunner.addTest('Cancer - Denosumab IV/SC - Invasive', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Denosumab',
+        administrationRoute: '注射',
+        hasCancer: true
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const invasive = results.find(r => r.invasiveness === 'invasive');
+      
+      t.assertNotNull(invasive, 'Invasive result should exist');
+      t.assertEqual(invasive.riskLevel, '高風險', 'Risk level should be 高風險');
+      t.assertEqual(invasive.incidenceRate, 12.56, 'Incidence rate should be 12.56%');
+    });
+    
+    // 5. Test No Medication (Control Group)
+    testRunner.addTest('No Medication - Control Group', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: false,
+        drugName: 'none',
+        administrationRoute: 'none',
+        hasCancer: false
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const invasive = results.find(r => r.invasiveness === 'invasive');
+      
+      t.assertNotNull(invasive, 'Invasive result should exist');
+      t.assertEqual(invasive.riskLevel, '低風險', 'Risk level should be 低風險');
+      t.assertEqual(invasive.incidenceRate, 0.10, 'Incidence rate should be 0.10%');
+    });
+    
+    // 6. Test Specific Bisphosphonate - Alendronate
+    testRunner.addTest('Osteoporosis - Alendronate Oral - Invasive', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Alendronate',
+        administrationRoute: 'oral',
+        hasCancer: false
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const invasive = results.find(r => r.invasiveness === 'invasive');
+      
+      t.assertNotNull(invasive, 'Invasive result should exist');
+      t.assertEqual(invasive.riskLevel, '中度風險', 'Risk level should be 中度風險');
+      t.assertEqual(invasive.incidenceRate, 4.97, 'Specific incidence rate should be 4.97%');
+      t.assertTrue(invasive.hasLimitedData, 'Should have limited data flag');
+    });
+    
+    // 7. Test Administration Route Normalization
+    testRunner.addTest('Administration Route Normalization', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      
+      const testCases = [
+        { input: { administrationRoute: '口服' }, expected: 'oral' },
+        { input: { administrationRoute: '注射' }, expected: 'IV/SC' },
+        { input: { administrationRoute: 'oral' }, expected: 'oral' },
+        { input: { administrationRoute: 'IV' }, expected: 'IV/SC' },
+        { input: { administrationRoute: 'injection' }, expected: 'IV/SC' },
+        { input: { administrationRoute: '' }, expected: 'not_specific' }
+      ];
+      
+      testCases.forEach(testCase => {
+        const normalized = calculator.normalizeAdministrationRoute(testCase.input);
+        t.assertEqual(normalized, testCase.expected, 
+          `Route "${testCase.input.administrationRoute}" should normalize to "${testCase.expected}"`);
+      });
+    });
+    
+    // 8. Test Risk Category Determination
+    testRunner.addTest('Risk Category Determination Logic', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      
+      const testCases = [
+        { indication: 'osteoporosis', medication: 'none', route: 'none', invasive: false, expected: 'low' },
+        { indication: 'osteoporosis', medication: 'Bisphosphonate', route: 'oral', invasive: false, expected: 'low' },
+        { indication: 'osteoporosis', medication: 'Bisphosphonate', route: 'oral', invasive: true, expected: 'moderate' },
+        { indication: 'cancer', medication: 'Denosumab', route: 'IV/SC', invasive: false, expected: 'moderate' },
+        { indication: 'cancer', medication: 'Denosumab', route: 'IV/SC', invasive: true, expected: 'high' }
+      ];
+      
+      testCases.forEach(testCase => {
+        const category = calculator.determineRiskCategory(
+          testCase.indication, 
+          testCase.medication, 
+          testCase.route, 
+          testCase.invasive,
+          false
+        );
+        t.assertEqual(category, testCase.expected, 
+          `${testCase.indication} + ${testCase.medication} + ${testCase.invasive ? 'invasive' : 'non-invasive'} should be ${testCase.expected}`);
+      });
+    });
+    
+    // 9. Test Semi-Invasive Treatment
+    testRunner.addTest('Semi-Invasive Treatment - Special Considerations', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Bisphosphonate',
+        administrationRoute: '口服',
+        hasCancer: false
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const semiInvasive = results.find(r => r.invasiveness === 'semiInvasive');
+      
+      t.assertNotNull(semiInvasive, 'Semi-invasive result should exist');
+      t.assertEqual(semiInvasive.riskLevel, '中低風險', 'Risk level should be 中低風險');
+      t.assertTrue(semiInvasive.recommendationZh.includes('根管治療'), 'Should include root canal treatment considerations');
+      t.assertTrue(semiInvasive.recommendationZh.includes('牙齦下牙結石刮除術'), 'Should include subgingival scaling considerations');
+    });
+    
+    // 10. Test English Language Support
+    testRunner.addTest('English Language Translation', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Bisphosphonate',
+        administrationRoute: 'oral',
+        hasCancer: false
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'en');
+      const invasive = results.find(r => r.invasiveness === 'invasive');
+      
+      t.assertNotNull(invasive, 'Invasive result should exist');
+      t.assertTrue(invasive.recommendationEn.includes('physician'), 'English recommendation should exist');
+      t.assertTrue(!invasive.recommendationEn.includes('醫師'), 'Should not contain Chinese characters');
+    });
+    
+    // 11. Test N/A Data Handling
+    testRunner.addTest('N/A Data Handling - Unknown Risk', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Romosuzumab',
+        administrationRoute: 'IV/SC',
+        hasCancer: true
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const invasive = results.find(r => r.invasiveness === 'invasive');
+      
+      t.assertNotNull(invasive, 'Invasive result should exist');
+      t.assertEqual(invasive.riskLevel, '資料不足', 'Risk level should be 資料不足');
+      t.assertTrue(invasive.recommendationZh.includes('缺乏'), 'Should mention lack of data');
+    });
+    
+    // 12. Test Reference Papers Loading
+    testRunner.addTest('Reference Papers Exist', (t) => {
+      const calculator = new MRONJRiskCalculator();
+      const patientData = {
+        hasAntiresorptiveMed: true,
+        drugName: 'Bisphosphonate',
+        administrationRoute: 'oral',
+        hasCancer: false
+      };
+      
+      const results = calculator.calculateRisk(patientData, null, 'zh');
+      const invasive = results.find(r => r.invasiveness === 'invasive');
+      
+      t.assertNotNull(invasive.references, 'References should exist');
+      t.assertTrue(Array.isArray(invasive.references), 'References should be an array');
+    });
+    
+    // Function to run all tests
+    function runAllTests() {
+      testRunner.runAll();
+    }
+    
+    // Auto-run tests on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      console.log('Test page loaded. Click "Run All Tests" to start.');
+    });
+  </script>
+</body>
+</html>
+
