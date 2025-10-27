@@ -232,7 +232,7 @@
 
       <div class="action-buttons no-print">
         <button id="print-btn" class="btn btn-primary zh-text">列印評估報告</button>
-        <button id="print-btn" class="btn btn-primary en-text" style="display: none;">Print Report</button>
+        <button id="print-btn-en" class="btn btn-primary en-text" style="display: none;">Print Report</button>
         <a href="https://risch315815.github.io/MRONJ_WBPG/" class="btn btn-secondary zh-text">返回首頁</a>
         <a href="https://risch315815.github.io/MRONJ_WBPG/" class="btn btn-secondary en-text" style="display: none;">Return to Homepage</a>
       </div>
@@ -305,9 +305,18 @@
       }
       
       // Print button event
-      document.getElementById('print-btn').addEventListener('click', function() {
-        window.print();
-      });
+      const printBtnZh = document.getElementById('print-btn');
+      const printBtnEn = document.getElementById('print-btn-en');
+      if (printBtnZh) {
+        printBtnZh.addEventListener('click', function() {
+          window.print();
+        });
+      }
+      if (printBtnEn) {
+        printBtnEn.addEventListener('click', function() {
+          window.print();
+        });
+      }
     });
     
     function displayPatientSummary() {
