@@ -266,8 +266,6 @@
         <p class="en-text" style="display: none;"><strong>Disclaimer:</strong></p>
         <p class="zh-text">本評估結果僅供參考，不構成醫療建議。最終治療決策應由醫療專業人員與患者共同討論後決定。</p>
         <p class="en-text" style="display: none;">This assessment result is for reference only and does not constitute medical advice. Final treatment decisions should be made after discussion between medical professionals and the patient.</p>
-        <p class="zh-text">評估內容參考 AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>
-        <p class="en-text" style="display: none;">Assessment content references AAOMS Position Paper on Medication-Related Osteonecrosis of the Jaw - 2022 Update</p>
       </div>
 
       <div class="action-buttons no-print">
@@ -723,9 +721,6 @@
       const hasInvasive = assessments.some(a => a.invasiveness === 'invasive');
       
       // Add specific instructions based on treatment types
-      if (hasSemiInvasive) {
-        addSemiInvasiveInstructions(resultsContainer);
-      }
       if (hasInvasive) {
         addInvasiveInstructions(resultsContainer);
       }
@@ -791,34 +786,6 @@
       hygieneSection.appendChild(title);
       hygieneSection.appendChild(instructionsList);
       container.appendChild(hygieneSection);
-    }
-    
-    // Function to add semi-invasive treatment specific instructions
-    function addSemiInvasiveInstructions(container) {
-      const isEnglish = (localStorage.getItem('preferredLanguage') || 'zh') === 'en';
-      
-      const semiInvasiveSection = document.createElement('div');
-      semiInvasiveSection.className = 'semi-invasive-section';
-      semiInvasiveSection.style.cssText = 'background-color: #fff3e0; border-radius: 10px; padding: 20px; margin: 20px 0; border-left: 4px solid #ff9800;';
-      
-      const title = document.createElement('h3');
-      title.style.cssText = 'color: #e65100; margin-top: 0;';
-      title.innerHTML = isEnglish ? 
-        '⚠️ Semi-Invasive Treatment Specific Instructions' : 
-        '⚠️ 半侵入性治療（如根管治療、牙周刮治等）特別指導';
-      
-      const instructionsList = document.createElement('ul');
-      instructionsList.style.cssText = 'line-height: 1.8; margin: 10px 0;';
-      
-      const instruction = document.createElement('li');
-      instruction.textContent = isEnglish ? 
-        'Take antibiotics and analgesics exactly as prescribed.' :
-        '依照醫師指示服用抗生素與止痛藥，勿自行增減劑量或停藥。';
-      instructionsList.appendChild(instruction);
-      
-      semiInvasiveSection.appendChild(title);
-      semiInvasiveSection.appendChild(instructionsList);
-      container.appendChild(semiInvasiveSection);
     }
     
     // Function to add invasive treatment specific instructions
