@@ -112,6 +112,17 @@ also, please show the underlying risk of ONJ/osteomyelitis for cancer patient wi
 
 
 
+------------------------------------------------------------------------
+
+
+https://risch315815.github.io/MRONJ_WBPG/reference-detail.html
+?indication=osteoporosis
+&medication=none
+&route=not_specific
+&invasive=false
+&name=AAA
+
+
 
 
 

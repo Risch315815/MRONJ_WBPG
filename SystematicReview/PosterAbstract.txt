@@ -23,3 +23,6 @@ Conclusion
 MRONJ risk rises by approximately an order of magnitude when invasive dental treatment is performed in patients exposed to antiresorptive medications, across indications and drug classes. Embedding these pooled figures in a chair-side web tool enables rapid medication identification and personalized counseling, supporting informed consent and satisfied treatment.
 
 Keywords: MRONJ, antiresorptive medication, tooth extraction, web-based patient education, personalized dental counseling.
+
+Special thanks
+SPecial thanks to 

@@ -113,6 +113,47 @@
         font-size: 12px;
         page-break-inside: avoid;
       }
+      
+      .hygiene-section,
+      .semi-invasive-section,
+      .invasive-section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      .hygiene-section {
+        background-color: #e8f5e9 !important;
+        border-left: 4px solid #4caf50 !important;
+      }
+      
+      .semi-invasive-section {
+        background-color: #fff3e0 !important;
+        border-left: 4px solid #ff9800 !important;
+      }
+      
+      .invasive-section {
+        background-color: #ffebee !important;
+        border-left: 4px solid #f44336 !important;
+      }
+      
+      .references-section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f5f5f5 !important;
+        border-left: 4px solid #757575 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
     }
     
     .assessment-card {
@@ -478,6 +519,9 @@
       title.textContent = isEnglishHeader ? 'Risk Assessment for Different Dental Treatments' : '不同牙科治療的風險評估';
       resultsContainer.appendChild(title);
       
+      // Add general oral hygiene instructions section
+      addGeneralHygieneSection(resultsContainer);
+      
       // Add reference papers link
       const referenceLink = document.createElement('div');
       referenceLink.style.cssText = 'text-align: center; margin: 20px 0;';
@@ -673,6 +717,236 @@
         
         resultsContainer.appendChild(card);
       });
+      
+      // Check if we have semi-invasive or invasive procedures
+      const hasSemiInvasive = assessments.some(a => a.invasiveness === 'semiInvasive');
+      const hasInvasive = assessments.some(a => a.invasiveness === 'invasive');
+      
+      // Add specific instructions based on treatment types
+      if (hasSemiInvasive) {
+        addSemiInvasiveInstructions(resultsContainer);
+      }
+      if (hasInvasive) {
+        addInvasiveInstructions(resultsContainer);
+      }
+      
+      // Add references section at the end
+      addReferencesSection(resultsContainer);
+    }
+    
+    // Function to add general oral hygiene instructions
+    function addGeneralHygieneSection(container) {
+      const isEnglish = (localStorage.getItem('preferredLanguage') || 'zh') === 'en';
+      
+      const hygieneSection = document.createElement('div');
+      hygieneSection.className = 'hygiene-section';
+      hygieneSection.style.cssText = 'background-color: #e8f5e9; border-radius: 10px; padding: 20px; margin: 20px 0; border-left: 4px solid #4caf50;';
+      
+      const title = document.createElement('h3');
+      title.style.cssText = 'color: #2e7d32; margin-top: 0;';
+      title.innerHTML = isEnglish ? 
+        '📋 General Oral Hygiene Instructions' : 
+        '📋 一般口腔衛生指導';
+      
+      const instructionsList = document.createElement('ul');
+      instructionsList.style.cssText = 'line-height: 1.8; margin: 10px 0;';
+      
+      const instructions = [
+        {
+          zh: '請務必告知所有醫療照護人員（如腫瘤科醫師、內分泌科醫師、牙醫師）您目前或曾使用抗骨吸收藥物。',
+          en: 'Inform all your healthcare providers (oncologists, endocrinologists, dentists) about your medication history.'
+        },
+        {
+          zh: '每天至少刷牙兩次，使用軟毛牙刷及含氟牙膏（氟濃度 >1000 ppm），並在刷牙前使用牙線。',
+          en: 'Brush at least twice daily using a soft-bristled toothbrush and fluoride toothpaste (>1000 ppm), use dental floss before brushing.'
+        },
+        {
+          zh: '若牙醫師建議，請使用牙間刷清潔牙齒鄰接面。',
+          en: 'Use interdental brushes if instructed by your dentist.'
+        },
+        {
+          zh: '請每3–6個月定期做牙科檢查與洗牙。',
+          en: 'Have dental checkup and teeth scaling every 3–6 months.'
+        },
+        {
+          zh: '若出現牙齦疼痛、腫脹或骨頭外露等情形，請立即通知牙醫師。',
+          en: 'Inform your dentist if there is gum pain, swelling, or exposed bone.'
+        },
+        {
+          zh: '控制糖尿病、戒菸並保持均衡營養，有助於促進口腔及骨骼健康。',
+          en: 'Be sure to control diabetes, stop smoking, and maintain balanced nutrition.'
+        },
+        {
+          zh: '請勿自行停用抗骨吸收藥物；如需暫停用藥（藥物假期），應與開立藥物的醫師共同討論並依其建議進行。',
+          en: 'Do not self-discontinue anti-resorptive medication; any drug holiday should be coordinated with the prescribing physician.'
+        }
+      ];
+      
+      instructions.forEach(instruction => {
+        const li = document.createElement('li');
+        li.textContent = isEnglish ? instruction.en : instruction.zh;
+        instructionsList.appendChild(li);
+      });
+      
+      hygieneSection.appendChild(title);
+      hygieneSection.appendChild(instructionsList);
+      container.appendChild(hygieneSection);
+    }
+    
+    // Function to add semi-invasive treatment specific instructions
+    function addSemiInvasiveInstructions(container) {
+      const isEnglish = (localStorage.getItem('preferredLanguage') || 'zh') === 'en';
+      
+      const semiInvasiveSection = document.createElement('div');
+      semiInvasiveSection.className = 'semi-invasive-section';
+      semiInvasiveSection.style.cssText = 'background-color: #fff3e0; border-radius: 10px; padding: 20px; margin: 20px 0; border-left: 4px solid #ff9800;';
+      
+      const title = document.createElement('h3');
+      title.style.cssText = 'color: #e65100; margin-top: 0;';
+      title.innerHTML = isEnglish ? 
+        '⚠️ Semi-Invasive Treatment Specific Instructions' : 
+        '⚠️ 半侵入性治療（如根管治療、牙周刮治等）特別指導';
+      
+      const instructionsList = document.createElement('ul');
+      instructionsList.style.cssText = 'line-height: 1.8; margin: 10px 0;';
+      
+      const instruction = document.createElement('li');
+      instruction.textContent = isEnglish ? 
+        'Take antibiotics and analgesics exactly as prescribed.' :
+        '依照醫師指示服用抗生素與止痛藥，勿自行增減劑量或停藥。';
+      instructionsList.appendChild(instruction);
+      
+      semiInvasiveSection.appendChild(title);
+      semiInvasiveSection.appendChild(instructionsList);
+      container.appendChild(semiInvasiveSection);
+    }
+    
+    // Function to add invasive treatment specific instructions
+    function addInvasiveInstructions(container) {
+      const isEnglish = (localStorage.getItem('preferredLanguage') || 'zh') === 'en';
+      
+      const invasiveSection = document.createElement('div');
+      invasiveSection.className = 'invasive-section';
+      invasiveSection.style.cssText = 'background-color: #ffebee; border-radius: 10px; padding: 20px; margin: 20px 0; border-left: 4px solid #f44336;';
+      
+      const title = document.createElement('h3');
+      title.style.cssText = 'color: #c62828; margin-top: 0;';
+      title.innerHTML = isEnglish ? 
+        '🚨 Invasive Treatment Specific Instructions' : 
+        '🚨 侵入性治療（如拔牙、植牙、補骨手術等）特別指導';
+      
+      const content = document.createElement('div');
+      content.style.cssText = 'line-height: 1.8;';
+      
+      if (isEnglish) {
+        content.innerHTML = `
+          <h4 style="color: #c62828; margin-top: 10px;">Preoperative</h4>
+          <ul>
+            <li>Antibiotic prophylaxis: Follow dentist's prescription (commonly started 1 day before surgery).</li>
+            <li>Confirm with prescribing physician whether temporary suspension of anti-resorptive medication is appropriate.</li>
+          </ul>
+          
+          <h4 style="color: #c62828; margin-top: 15px;">Wound Care</h4>
+          <ul>
+            <li>Apply cold compress in the first 24 hours to minimize swelling.</li>
+            <li>Do not smoke, spit forcefully, or use straws for the first week.</li>
+            <li><strong>Diet:</strong> Soft, lukewarm foods for several days.</li>
+            <li><strong>Pain and infection control:</strong> Complete the full course of antibiotics and analgesics as prescribed.</li>
+          </ul>
+          
+          <h4 style="color: #c62828; margin-top: 15px;">Follow-up</h4>
+          <ul>
+            <li>Schedule wound check at 1 week, then every 2–4 weeks until mucosal healing is complete.</li>
+          </ul>
+          
+          <h4 style="color: #c62828; margin-top: 15px;">Inform your dentist if:</h4>
+          <ul>
+            <li>Persistent pain or swelling beyond one week</li>
+            <li>Exposed bone or ulcer that doesn't heal after 8 weeks</li>
+            <li>Numbness or tingling in jaw/lip area</li>
+          </ul>
+        `;
+      } else {
+        content.innerHTML = `
+          <h4 style="color: #c62828; margin-top: 10px;">手術前（Preoperative）</h4>
+          <ul>
+            <li><strong>預防性抗生素：</strong> 請依牙醫師處方服用，通常於手術前一天開始。</li>
+            <li>請與開立藥物的醫師確認是否需要暫停抗骨吸收藥物（藥物假期）。</li>
+          </ul>
+          
+          <h4 style="color: #c62828; margin-top: 15px;">傷口照護（Wound Care）</h4>
+          <ul>
+            <li>手術後24小時內冰敷，以減少腫脹。</li>
+            <li>手術後一個星期請避免抽菸、用力吐口水或使用吸管。</li>
+            <li><strong>飲食：</strong> 請食用柔軟、溫涼的食物數日，避免過熱或刺激性食物。</li>
+            <li><strong>疼痛與感染控制：</strong> 請完整服用醫師開立的抗生素與止痛藥，不要自行停藥。</li>
+          </ul>
+          
+          <h4 style="color: #c62828; margin-top: 15px;">術後追蹤</h4>
+          <ul>
+            <li>請於手術後1週回診檢查傷口，之後每2–4週追蹤一次，直到黏膜完全癒合為止。</li>
+          </ul>
+          
+          <h4 style="color: #c62828; margin-top: 15px;">若出現下列情況，請立即告知牙醫師：</h4>
+          <ul>
+            <li>疼痛或腫脹持續超過1週未改善。</li>
+            <li>口內骨頭外露或潰瘍8週以上仍未癒合。</li>
+            <li>下巴或嘴唇出現麻木或刺痛感。</li>
+          </ul>
+        `;
+      }
+      
+      invasiveSection.appendChild(title);
+      invasiveSection.appendChild(content);
+      container.appendChild(invasiveSection);
+    }
+    
+    // Function to add references section
+    function addReferencesSection(container) {
+      const isEnglish = (localStorage.getItem('preferredLanguage') || 'zh') === 'en';
+      
+      const referencesSection = document.createElement('div');
+      referencesSection.className = 'references-section';
+      referencesSection.style.cssText = 'background-color: #f5f5f5; border-radius: 10px; padding: 20px; margin: 20px 0; border-left: 4px solid #757575;';
+      
+      const title = document.createElement('h3');
+      title.style.cssText = 'color: #424242; margin-top: 0;';
+      title.innerHTML = isEnglish ? 
+        '📚 References' : 
+        '📚 參考資料';
+      
+      const referencesList = document.createElement('ol');
+      referencesList.style.cssText = 'line-height: 1.8; margin: 10px 0; padding-left: 20px;';
+      
+      const references = [
+        {
+          zh: 'Ruggiero SL、Dodson TB、Aghaloo TL、Carlson ER、Ward BB、Kademani D。〈American Association of Oral and Maxillofacial Surgeons\' Position Paper on Medication-Related Osteonecrosis of the Jaws—2022 Update〉。Journal of Oral and Maxillofacial Surgery。2022；80(5)：920–943。',
+          en: 'Ruggiero SL, Dodson TB, Aghaloo TL, Carlson ER, Ward BB, Kademani D. American Association of Oral and Maxillofacial Surgeons\' Position Paper on Medication-Related Osteonecrosis of the Jaws—2022 Update. Journal of Oral and Maxillofacial Surgery. 2022;80(5):920–943.'
+        },
+        {
+          zh: '衛生福利部口腔健康司。《成人口腔保健專業版手冊》。臺北市：衛生福利部。',
+          en: 'Department of Oral Health, Ministry of Health and Welfare (Taiwan). Adult Oral Health Professional Manual. Taipei: Ministry of Health and Welfare, R.O.C.'
+        },
+        {
+          zh: '衛生福利部口腔健康司。《口腔氟化物之應用與推廣手冊》。臺北市：衛生福利部。',
+          en: 'Department of Oral Health, Ministry of Health and Welfare (Taiwan). Manual for the Application and Promotion of Oral Fluoride Use. Taipei: Ministry of Health and Welfare, R.O.C.'
+        },
+        {
+          zh: 'Newman MG、Takei HH、Klokkevold PR、Carranza FA。《Newman and Carranza\'s Clinical Periodontology》。第13版。聖路易：Elsevier Saunders，2018。',
+          en: 'Newman MG, Takei HH, Klokkevold PR, Carranza FA. Newman and Carranza\'s Clinical Periodontology. 13th ed. St. Louis: Elsevier Saunders; 2018.'
+        }
+      ];
+      
+      references.forEach(reference => {
+        const li = document.createElement('li');
+        li.style.cssText = 'margin-bottom: 10px;';
+        li.textContent = isEnglish ? reference.en : reference.zh;
+        referencesList.appendChild(li);
+      });
+      
+      referencesSection.appendChild(title);
+      referencesSection.appendChild(referencesList);
+      container.appendChild(referencesSection);
     }
     
     // Helper function to get medication for reference URL
